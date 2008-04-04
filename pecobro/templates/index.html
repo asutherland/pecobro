@@ -27,13 +27,18 @@
     </style>
     
     <script src="jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="jquery.history.js"></script>
     <script src="jquery.ui/ui.tabs.js" type="text/javascript"></script>
     <script src="jquery.ui/ui.tablesorter.js" type="text/javascript"></script>
-    <script type="text/javascript"><![CDATA[
+    <script type="text/javascript">// <![CDATA[
     var tabby_main, tabby_sidebar;
+    var view_main;
     var TAB_VIEW = 1;
+    
+    var cur_state = {file: null};
+    
     function _show_file_complete(data, status) {
-        magnetbox = $("#main_view > .magnetbox");
+        var magnetbox = $("#main_view > .magnetbox");
         magnetbox.empty();
         var adapted = document.adoptNode(data.responseXML.documentElement);
         magnetbox[0].appendChild(adapted);
@@ -43,8 +48,59 @@
     }
     
     function show_file() {
-        $.ajax({url: this.id + ".xml", dataType: 'xml', type: 'GET',
-                complete: _show_file_complete});
+        $.history.load(make_hash(modify_state(cur_state,
+                                              'file', this.id + '.xml')));
+    }
+
+    function modify_state(base_state) {
+        new_state = {};
+        
+        // there is presumably some better way to do all this...
+        for (var i in base_state) {
+             new_state[i] = base_state[i];
+        }
+        
+        for (var i = 1; i < arguments.length - 1; i += 2) {
+            new_state[arguments[i]] = arguments[i+1]
+        }
+        
+        return new_state;
+    }
+    
+    function make_hash(state) {
+        var hash_parts = [];
+        
+        for (var i in state) {
+             hash_parts.push(i + '=' + state[i]);
+        }
+        
+        return hash_parts.join('|');
+    }
+    
+    function state_from_hash(hash) {
+        var new_state = {file: null};
+        var hash_bits = hash.split('|');
+        for(var i = 0; i < hash_bits.length; ++i) {
+            var key_val = hash_bits[i].split('=');
+            new_state[key_val[0]] = key_val[1];
+        }
+        
+        return new_state;
+    }
+    
+    function page_state_change(hash) {
+        // allegedly hash should not include a leading #
+        if (hash) {
+            var desired_state = state_from_hash(hash);
+             
+            if (desired_state.file != cur_state.file) {
+	            $.ajax({url: desired_state.file, dataType: 'xml', type: 'GET',
+	                    complete: _show_file_complete});
+	        }
+        } else {
+           magnetbox = $("#main_view > .magnetbox");
+           magnetbox.empty();
+        }
     }
     
     $(function() {
@@ -54,11 +110,16 @@
         tabby_sidebar = $("#sidebar > ul");
         tabby_sidebar.tabs();
         
+        view_main = $("#main_view");
+        
         $("#sidebar_files > ul > li").each(function (i) {
                 $(this).click(show_file);
             });
+
+        $.history.init(page_state_change);;
     });
-    ]]></script>
+    // ]]>
+    </script>
  
   </head>
   <body>
