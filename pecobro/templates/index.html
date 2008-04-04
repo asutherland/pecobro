@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      >
+  <head>
+    <title>Performance Code Browser</title>
+
+    <link rel="stylesheet" href="jquery.ui/themes/flora/flora.all.css" type="text/css" media="print, projection, screen" />
+    <style type="text/css">
+    ${pygments_style_defs}
+    
+    #main {
+        float: left;
+        width: 74%;
+    }
+    
+    #sidebar {
+        float: right;
+        width: 24%;
+    }
+    
+    #sidebar_files > ul {
+        padding-left: 10px;
+    }
+    </style>
+    
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="jquery.ui/ui.tabs.js" type="text/javascript"></script>
+    <script src="jquery.ui/ui.tablesorter.js" type="text/javascript"></script>
+    <script type="text/javascript"><![CDATA[
+    var tabby_main, tabby_sidebar;
+    var TAB_VIEW = 1;
+    function _show_file_complete(data, status) {
+        magnetbox = $("#main_view > .magnetbox");
+        magnetbox.empty();
+        var adapted = document.adoptNode(data.responseXML.documentElement);
+        magnetbox[0].appendChild(adapted);
+        if (tabby_main) {
+            tabby_main.tabs('select', TAB_VIEW);
+        }
+    }
+    
+    function show_file() {
+        $.ajax({url: this.id + ".xml", dataType: 'xml', type: 'GET',
+                complete: _show_file_complete});
+    }
+    
+    $(function() {
+        tabby_main = $("#main > ul");
+        tabby_main.tabs();
+        
+        tabby_sidebar = $("#sidebar > ul");
+        tabby_sidebar.tabs();
+        
+        $("#sidebar_files > ul > li").each(function (i) {
+                $(this).click(show_file);
+            });
+    });
+    ]]></script>
+ 
+  </head>
+  <body>
+    <div id="main">
+      <ul>
+        <li><a href="#main_overview"><span>Overview</span></a></li>
+        <li><a href="#main_view"><span>View</span></a></li>
+      </ul>
+      <div id="main_overview">
+      I have no content yet.
+      </div>
+      <div id="main_view">
+        <div class="magnetbox">
+        </div>
+      </div>        
+    </div>
+    
+    
+    <div id="sidebar">
+      <ul>
+        <li><a href="#sidebar_files"><span>Files</span></a></li>
+        <li><a href="#sidebar_funcs"><span>Funcs</span></a></li>
+      </ul>
+      <div id="sidebar_files">
+        <ul>
+          <py:for each="code_file in code_files">
+            <li id="${code_file.norm_base_name}">${code_file.base_name}</li>
+          </py:for>
+        </ul>
+      </div>
+      <div id="sidebar_funcs">
+      </div>
+    </div>      
+  </body>
+</html>
