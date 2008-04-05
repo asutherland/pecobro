@@ -1,9 +1,13 @@
+# todo: make absolute
+import core
 
 class TraceParser(object):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, caboodle, *args, **kwargs):
+        self.caboodle = caboodle
         self._vfunc_map = {}
 
-    def _get_vfunc(self, filename, funcname):
+    def _get_func(self, filename, obj, funcname):
+        # 
         itupe = (filename, funcname)
         vfunc = self._vfunc_map.get(itupe)
         if vfunc is None:
@@ -12,6 +16,26 @@ class TraceParser(object):
         return vfunc     
     
     def parse(self, filename):
+        func_cache = {}
+        def get_func(filename, funcname):
+            ctupe = (filename, funcname)
+            func = func_cache.get(ctupe)
+            
+            if func is None:
+                source_file = self.caboodle.base_name_to_file.get(filename)
+                if source_file is None:
+                    raise Exception('Unable to locate source file: %s' % filename)
+                
+                func = source_file.functions.get(funcname)
+                if func is None:
+                    func = core.Func(source_file, None, funcname)
+                    source_file.add_function(func)
+                
+                func_cache[ctupe] = func
+            
+            return func
+            
+        
         f = open(filename, 'r')
         
         # Let's do a quick pass where we find out the earliest time we see...
@@ -46,12 +70,22 @@ class TraceParser(object):
             
             ts -= start_ts
             te -= start_ts
+
+            # find our function and log this invocation of our function
+            func = get_func(filename, funcname)
+            this_invoc = func.log_invoke(ts, te, depth, depth)
             
-            vfunc = self._get_vfunc(filename, funcname)
-            this_invoc = vfunc.invoke(ts, te, depth, depth)
+            # queue up this invocation for later consumption by our parent
             deferreds[depth-1].append(this_invoc)
             
+            # log any calls we made that are waiting for us...
             if deferreds[depth]:
                 for deferred in deferreds[depth]:
-                    vfunc.invoc_called(this_invoc, deferred)
+                    this_invoc.log_call(deferred)
                 deferreds[depth] = list()
+        
+        # fix-up source file weights...
+        for source_file in self.caboodle.source_files:
+            for func in source_file.functions.values():
+                source_file.inclusive_weight += func.inclusive_weight
+                source_file.exclusive_weight += func.exclusive_weight

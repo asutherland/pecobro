@@ -22,6 +22,7 @@
     }
     
     #sidebar_files > ul {
+        margin-top: 2px;
         padding-left: 10px;
     }
     </style>
@@ -33,23 +34,45 @@
     <script type="text/javascript">// <![CDATA[
     var tabby_main, tabby_sidebar;
     var view_main;
+    var TAB_OVERVIEW = 0;
     var TAB_VIEW = 1;
     
-    var cur_state = {file: null};
+    var cur_state = {file: null,  overview: null};
+
+
+
+    function _show_overview_complete(data, status) {
+        var magnetbox = $("#main_overview > .magnetbox");
+        magnetbox.empty();
+        
+        var adapted = document.adoptNode(data.responseXML.documentElement);
+        magnetbox[0].appendChild(adapted);
+        
+        // link in to the event party...
+        // (I tried to use jQuery's selector on this, but it didn't work...)
+        var sf_nodes = $(document.getElementsByClassName('vsf'));
+        sf_nodes.each(function (i) {
+                $(this).click(show_file);
+            });
+    }
     
     function _show_file_complete(data, status) {
         var magnetbox = $("#main_view > .magnetbox");
         magnetbox.empty();
         var adapted = document.adoptNode(data.responseXML.documentElement);
         magnetbox[0].appendChild(adapted);
-        if (tabby_main) {
-            tabby_main.tabs('select', TAB_VIEW);
-        }
     }
     
     function show_file() {
+        var barIndex = this.id.indexOf('|');
+        var filename;
+        if (barIndex >= 0) {
+            filename = this.id.substring(barIndex+1);
+        } else {
+            filename = this.id;
+        }
         $.history.load(make_hash(modify_state(cur_state,
-                                              'file', this.id + '.xml')));
+                                              'file', filename + '.xml')));
     }
 
     function modify_state(base_state) {
@@ -78,7 +101,7 @@
     }
     
     function state_from_hash(hash) {
-        var new_state = {file: null};
+        var new_state = {file: null, overview: null};
         var hash_bits = hash.split('|');
         for(var i = 0; i < hash_bits.length; ++i) {
             var key_val = hash_bits[i].split('=');
@@ -96,9 +119,24 @@
             if (desired_state.file != cur_state.file) {
 	            $.ajax({url: desired_state.file, dataType: 'xml', type: 'GET',
 	                    complete: _show_file_complete});
+	            // we change the tab here because the idea is we want to show
+	            //  what has changed...
+		        if (tabby_main) {
+		            tabby_main.tabs('select', TAB_VIEW);
+		        }
 	        }
+            if (desired_state.overview != cur_state.overview) {
+                $.ajax({url: desired_state.overview, dataType: 'xml', type: 'GET',
+                        complete: _show_overview_complete});
+		        if (tabby_main) {
+		            tabby_main.tabs('select', TAB_OVERVIEW);
+		        }
+            }	        
         } else {
-           magnetbox = $("#main_view > .magnetbox");
+           var magnetbox = $("#main_view > .magnetbox");
+           magnetbox.empty();
+           
+           magnetbox = $("#main_overview > .magnetbox");
            magnetbox.empty();
         }
     }
@@ -129,7 +167,8 @@
         <li><a href="#main_view"><span>View</span></a></li>
       </ul>
       <div id="main_overview">
-      I have no content yet.
+        <div class="magnetbox">
+        </div>
       </div>
       <div id="main_view">
         <div class="magnetbox">
@@ -145,7 +184,7 @@
       </ul>
       <div id="sidebar_files">
         <ul>
-          <py:for each="code_file in code_files">
+          <py:for each="code_file in caboodle.sorted_source_files">
             <li id="${code_file.norm_base_name}">${code_file.base_name}</li>
           </py:for>
         </ul>

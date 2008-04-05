@@ -6,6 +6,10 @@ except:
     import xml.etree.ElementTree as etree
 
 import codecs
+try:
+    import cStringIO as StringIO
+except:
+    import StringIO
 
 import genshi.template, genshi.template.loader
 
@@ -13,12 +17,15 @@ import pygments
 import pygments.lexers
 import pygments.formatters
 
+import mozpreproc
 
 # the absolute import explodes for unknown reasons I don't care about right now
 import xbl
 # didn't try these absolute though...
 import core
 import codefmt
+import trace
+import vis
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
@@ -26,11 +33,23 @@ class Generator(object):
     def __init__(self, code_dirs=()):
         self.code_dirs = list(code_dirs)
         
-        self.code_files = []
+        self.caboodle = core.SourceCaboodle()
     
-    def _consider_xml(self, base_path, path):
-        #print 'CONSIDERING', path_or_file
-        doc = etree.parse(path, xbl.ChromeTreeBuilder(base_path=base_path))
+    def _consider_xml(self, code_path, base_path, path):
+        print 'CONSIDERING', path
+        # grrrrr, we need to preprocess things now...
+        f_in = open(path, 'r') #codecs.open(path, 'r', 'utf-8')
+        f_out = StringIO.StringIO()
+        defines={'XP_UNIX': True}
+        mozpreproc.preprocess(includes=[f_in], defines=defines,
+                              output=f_out,
+                              line_endings='lf')
+        f_in.close()
+        f_out.seek(0)
+        
+        doc = etree.parse(f_out, xbl.ChromeTreeBuilder(base_path=base_path))
+        f_out.close()
+        
         #doc = etree.parse(path_or_file)
         root = doc.getroot()
         
@@ -38,12 +57,12 @@ class Generator(object):
         
         if root.tag.startswith('{%s}' % XBL_NS):
             print 'Found XBL:', path
-            self.code_files.append(core.SourceFile(path, 'xbl'))
+            self.caboodle.append(core.SourceFile(path, 'xbl'))
         else:
             print '  non-XBL:', path
     
     def find_code(self):
-        for code_dir in self.code_dirs:
+        for code_dir, base_dir in self.code_dirs:
             for dirpath, dirnames, filenames in os.walk(code_dir):
                 for filename in filenames:
                     trash, suffix = os.path.splitext(filename)
@@ -51,11 +70,15 @@ class Generator(object):
             
                     if suffix in ('.js', '.jsm'):
                         print 'Found JS:', filepath
-                        self.code_files.append(core.SourceFile(filepath,
-                                                               suffix[1:]))
+                        self.caboodle.append(core.SourceFile(filepath,
+                                                             suffix[1:]))
                         pass 
                     elif suffix in ('.xml',):
-                        self._consider_xml(code_dir, filepath)
+                        self._consider_xml(code_dir, base_dir, filepath)
+
+    def parse_trace(self, trace_file):
+        parser = trace.TraceParser(self.caboodle)
+        parser.parse(trace_file)
 
     def output_html(self, out_path):
         if not os.path.isdir(out_path):
@@ -82,12 +105,11 @@ class Generator(object):
                         shutil.copytree(in_file, out_file, False)
         
         # -- Index File
-        self.code_files.sort(key=lambda x: x.norm_base_name)
-        
+        print ' -- generating index'
         formatter = codefmt.CodeFormatter()
         
         index_tmpl = loader.load('index.html')
-        index_stream = index_tmpl.generate(code_files=self.code_files,
+        index_stream = index_tmpl.generate(caboodle=self.caboodle,
                                            pygments_style_defs=formatter.get_style_defs())
         # for mime type reasons, be an xml file.
         index_path = os.path.join(out_path, 'index.xml')
@@ -96,10 +118,14 @@ class Generator(object):
         f_index.write(index_stream.render())
         f_index.close()
         
+        print '  -- generating vis'
+        overview_path = os.path.join(out_path, 'overview.svg')
+        vis.file_overview(self.caboodle, overview_path)
+        
         return
         
         for code_file in self.code_files:
-            print '*** Generating', code_file
+            print '   - Generating', code_file
             fcode = open(code_file.path, 'r')
             code = fcode.read()
             fcode.close()
@@ -119,6 +145,13 @@ class Generator(object):
             
 
 if __name__ == '__main__':
-    gen = Generator(['/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar'])
+    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
+                      '/home/visbrero/vc_mirrors/mozilla-git-mirror'),
+                     ('/home/visbrero/vc_mirrors/mozilla-git-mirror/toolkit/content/widgets',
+                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
+    print '--- finding code ---'
     gen.find_code()
+    print '--- parsing trace ---'
+    gen.parse_trace('/home/visbrero/projects/perf/bob.log')
+    print '--- generating output ---'
     gen.output_html('/tmp/pecobro')

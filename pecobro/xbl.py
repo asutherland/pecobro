@@ -5,15 +5,23 @@ try:
 except:
     #import xml.etree.ElementTree as etree
     pass
+try:
+    import cStringIO as StringIO
+except:
+    import StringIO
 
 import xml.parsers.expat as expat
-import os.path
+import codecs, os.path
+
+import mozpreproc
 
 BASE_PATH = None
 # okay, this is a hack, we really should just parse whatever the
 #  underlying rdf file is or what not, but this works for now...
-CHROME_MAP = {'calendar' : {'locale': ('locales/en-US/chrome/calendar',
-                                       'locales/en-US/chrome/prototypes')},
+CHROME_MAP = {'calendar' : {'locale': ('calendar/locales/en-US/chrome/calendar',
+                                       'calendar/locales/en-US/chrome/prototypes')},
+              'global' : {'locale': ('dom/locales/en-US/chrome',
+                                     'toolkit/locales/en-US/chrome/global')},
               }
 # and this is even worse
 LOCAL_DTD_PATHS = ['/usr/share/4Suite/Schemata']
@@ -96,11 +104,19 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
 
     def _do_external_parse(self, filepath, context):
         eep = self._parser.ExternalEntityParserCreate(context)
-        f = open(filepath, 'r')
+        f_in = open(filepath, 'r') # codecs.open(filepath, 'r', 'utf-8')
+        f_out = StringIO.StringIO()
+        defines={'XP_UNIX': True}
+        mozpreproc.preprocess(includes=[f_in], defines=defines,
+                              output=f_out,
+                              line_endings='lf')
+        f_in.close()
+        f_out.seek(0)
+        
         try:
-            eep.ParseFile(f)
+            eep.ParseFile(f_out)
         finally:
-            f.close()
+            f_out.close()
     
     def _external_entity(self, context, base, systemId, publicId):
         #print 'EXTERNAL ENTITY', context, base, systemId, publicId, ':.'
