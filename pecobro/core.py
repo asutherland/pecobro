@@ -21,14 +21,20 @@ class FuncInvoc(object):
         else:
             self.calls.append(invoc)
         
+        invoc_inc_weight = invoc.t_end - invoc.t_start 
+        
         func = self.func
-        func.ever_called[invoc.func] = func.ever_called.get(invoc.func, 0) + 1
+        func_called, func_inc_weight = func.ever_called.get(invoc.func, (0,0))
+        func.ever_called[invoc.func] = (func_called + 1,
+                                        func_inc_weight + invoc_inc_weight)
         # subtract off the time we spent outside the function
-        func.exclusive_weight -= invoc.t_end - invoc.t_start 
+        func.exclusive_weight -= invoc_inc_weight 
 
         s_file = self.func.file
         c_file = invoc.func.file
-        s_file.ever_called[c_file] = s_file.ever_called.get(c_file, 0) + 1
+        file_called, file_inc_weight = s_file.ever_called.get(c_file, (0,0))
+        s_file.ever_called[c_file] = (file_called + 1,
+                                      file_inc_weight + invoc_inc_weight)
         
 
 class Func(object):
@@ -44,7 +50,8 @@ class Func(object):
         #: list of all invocations (of us)...
         self.invocations = []
 
-        #: dict of every function we have ever called and how many times
+        #: dict of every function we have ever called and a tuple of (how many
+        #   times, inclusive call length)
         self.ever_called = {}
 
     

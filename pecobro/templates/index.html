@@ -37,9 +37,7 @@
     var TAB_OVERVIEW = 0;
     var TAB_VIEW = 1;
     
-    var cur_state = {file: null,  overview: null};
-
-
+    var cur_state = {file: null,  overview: null, mtab: TAB_OVERVIEW};
 
     function _show_overview_complete(data, status) {
         var magnetbox = $("#main_overview > .magnetbox");
@@ -72,7 +70,8 @@
             filename = this.id;
         }
         $.history.load(make_hash(modify_state(cur_state,
-                                              'file', filename + '.xml')));
+                                              'file', filename + '.xml',
+                                              'mtab', TAB_VIEW)));
     }
 
     function modify_state(base_state) {
@@ -105,6 +104,10 @@
         var hash_bits = hash.split('|');
         for(var i = 0; i < hash_bits.length; ++i) {
             var key_val = hash_bits[i].split('=');
+            // maintain types...
+            if (typeof cur_state[key_val[0]] == 'number') {
+                key_val[1] = parseInt(key_val[1]);
+            }
             new_state[key_val[0]] = key_val[1];
         }
         
@@ -117,27 +120,37 @@
             var desired_state = state_from_hash(hash);
              
             if (desired_state.file != cur_state.file) {
-	            $.ajax({url: desired_state.file, dataType: 'xml', type: 'GET',
-	                    complete: _show_file_complete});
-	            // we change the tab here because the idea is we want to show
-	            //  what has changed...
-		        if (tabby_main) {
-		            tabby_main.tabs('select', TAB_VIEW);
-		        }
+              cur_state.file = desired_state.file;
+              
+                if (desired_state.file == null) {
+	                var magnetbox = $("#main_view > .magnetbox");
+	                magnetbox.empty();
+                } else { 
+		            $.ajax({url: desired_state.file, dataType: 'xml', type: 'GET',
+		                    complete: _show_file_complete});
+			    }
 	        }
             if (desired_state.overview != cur_state.overview) {
-                $.ajax({url: desired_state.overview, dataType: 'xml', type: 'GET',
-                        complete: _show_overview_complete});
-		        if (tabby_main) {
-		            tabby_main.tabs('select', TAB_OVERVIEW);
-		        }
-            }	        
+                cur_state.overview = desired_state.overview;
+                
+                if (desired_state.overview == null) {
+		           magnetbox = $("#main_overview > .magnetbox");
+		           magnetbox.empty();
+                } else {
+	                $.ajax({url: desired_state.overview, dataType: 'xml', type: 'GET',
+	                        complete: _show_overview_complete});
+			    }
+            }
+            if (desired_state.mtab != cur_state.mtab) {
+                cur_state.mtab = desired_state.mtab;
+                if (tabby_main) {
+                    tabby_main.tabs('select', parseInt(desired_state.mtab));
+                }           
+            }
         } else {
-           var magnetbox = $("#main_view > .magnetbox");
-           magnetbox.empty();
-           
-           magnetbox = $("#main_overview > .magnetbox");
-           magnetbox.empty();
+           var desired_state = {mtab: TAB_OVERVIEW, overview: 'overview.svg'}; 
+        
+           $.history.load(make_hash(desired_state));
         }
     }
     
@@ -154,7 +167,7 @@
                 $(this).click(show_file);
             });
 
-        $.history.init(page_state_change);;
+        $.history.init(page_state_change);
     });
     // ]]>
     </script>
