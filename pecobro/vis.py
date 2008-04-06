@@ -62,7 +62,7 @@ def file_overview(caboodle, file_or_path):
                                                     output_low=16,
                                                     output_high=128)),
                           #lineWidth=4,
-                          lineWidth=kr.map.linear(kr.map.expr('1.0'),
+                          lineWidth=kr.map.log(kr.map.expr('1.0'),
                                                   output_low=1.0,
                                                   output_high=8.0),
                           nodeId=None,
