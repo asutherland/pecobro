@@ -154,9 +154,18 @@
         }
     }
     
+    function tab_main_changed(event, ui) {
+        var index = ui.instance.$$tabs.index(ui.tab);
+        if (parseInt(cur_state.mtab) != index) {
+            $.history.load(make_hash(modify_state(cur_state,'mtab', index)));
+        } 
+        return true;
+    }
+    
     $(function() {
         tabby_main = $("#main > ul");
         tabby_main.tabs();
+        tabby_main.bind('show.ui-tabs', tab_main_changed);
         
         tabby_sidebar = $("#sidebar > ul");
         tabby_sidebar.tabs();
