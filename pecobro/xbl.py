@@ -13,7 +13,8 @@ except:
 import xml.parsers.expat as expat
 import codecs, os.path
 
-import mozpreproc
+import pecobro.mozpreproc as mozpreproc
+import pecobro.consts as consts 
 
 BASE_PATH = None
 # okay, this is a hack, we really should just parse whatever the
@@ -106,8 +107,7 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
         eep = self._parser.ExternalEntityParserCreate(context)
         f_in = open(filepath, 'r') # codecs.open(filepath, 'r', 'utf-8')
         f_out = StringIO.StringIO()
-        defines={'XP_UNIX': True}
-        mozpreproc.preprocess(includes=[f_in], defines=defines,
+        mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
                               output=f_out,
                               line_endings='lf')
         f_in.close()

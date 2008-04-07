@@ -30,7 +30,6 @@
     <script src="jquery.js" type="text/javascript"></script>
     <script type="text/javascript" src="jquery.history.js"></script>
     <script src="jquery.ui/ui.tabs.js" type="text/javascript"></script>
-    <script src="jquery.ui/ui.tablesorter.js" type="text/javascript"></script>
     <script type="text/javascript">// <![CDATA[
     var tabby_main, tabby_sidebar;
     var view_main;
@@ -40,7 +39,7 @@
     var cur_state = {file: null,  overview: null, mtab: TAB_OVERVIEW};
 
     function _show_overview_complete(data, status) {
-        var magnetbox = $("#main_overview > .magnetbox");
+        var magnetbox = $("#main_overview");
         magnetbox.empty();
         
         var adapted = document.adoptNode(data.responseXML.documentElement);
@@ -55,10 +54,23 @@
     }
     
     function _show_file_complete(data, status) {
-        var magnetbox = $("#main_view > .magnetbox");
-        magnetbox.empty();
+        console.dir(data.responseXML.documentElement);
+    
         var adapted = document.adoptNode(data.responseXML.documentElement);
-        magnetbox[0].appendChild(adapted);
+        
+        console.dir(adapted);
+
+        var magnetbox = $("#main_view");
+        magnetbox.empty();
+        magnetbox[0].appendChild(adapted.childNodes[2]);
+
+        var file_index = $("#sidebar_file");
+        file_index.empty();
+        file_index[0].appendChild(adapted.childNodes[1]);
+
+        var func_list = $("#sidebar_funcs");
+        func_list.empty();
+        func_list[0].appendChild(adapted.childNodes[0]);        
     }
     
     function show_file() {
@@ -123,10 +135,11 @@
               cur_state.file = desired_state.file;
               
                 if (desired_state.file == null) {
-	                var magnetbox = $("#main_view > .magnetbox");
+	                var magnetbox = $("#main_view");
 	                magnetbox.empty();
                 } else { 
-		            $.ajax({url: desired_state.file, dataType: 'xml', type: 'GET',
+		            $.ajax({url: desired_state.file,
+		                    dataType: 'xml', type: 'GET',
 		                    complete: _show_file_complete});
 			    }
 	        }
@@ -134,10 +147,11 @@
                 cur_state.overview = desired_state.overview;
                 
                 if (desired_state.overview == null) {
-		           magnetbox = $("#main_overview > .magnetbox");
+		           magnetbox = $("#main_overview");
 		           magnetbox.empty();
                 } else {
-	                $.ajax({url: desired_state.overview, dataType: 'xml', type: 'GET',
+	                $.ajax({url: desired_state.overview,
+	                        dataType: 'xml', type: 'GET',
 	                        complete: _show_overview_complete});
 			    }
             }
@@ -189,12 +203,8 @@
         <li><a href="#main_view"><span>View</span></a></li>
       </ul>
       <div id="main_overview">
-        <div class="magnetbox">
-        </div>
       </div>
       <div id="main_view">
-        <div class="magnetbox">
-        </div>
       </div>        
     </div>
     
@@ -203,6 +213,7 @@
       <ul>
         <li><a href="#sidebar_files"><span>Files</span></a></li>
         <li><a href="#sidebar_funcs"><span>Funcs</span></a></li>
+        <li><a href="#sidebar_file"><span>File</span></a></li>
       </ul>
       <div id="sidebar_files">
         <ul>
@@ -212,6 +223,8 @@
         </ul>
       </div>
       <div id="sidebar_funcs">
+      </div>
+      <div id="sidebar_file">
       </div>
     </div>      
   </body>

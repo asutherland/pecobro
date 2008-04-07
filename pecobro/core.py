@@ -42,6 +42,7 @@ class Func(object):
         self.file = source_file
         self.clazz = clazz
         self.name = func_name
+        self.norm_name = func_name.replace('$', '_')
         
         #: number of ticks in this function per our simplistic count...
         self.inclusive_weight = 0
@@ -53,6 +54,10 @@ class Func(object):
         #: dict of every function we have ever called and a tuple of (how many
         #   times, inclusive call length)
         self.ever_called = {}
+        
+        ## tokeny stuff
+        self.source_line = None
+        self.source_col = None
 
     
     def log_invoke(self, *args):
@@ -77,16 +82,32 @@ class SourceFile(object):
         self.functions = {}
         
         self.ever_called = {}
+        
+        # the contents of the file, as they ocurr in the file sequentially.
+        self.contents = []
 
         # multiple-counting in this case is probably extra-non-intuitive.
         self.inclusive_weight = 0
         self.exclusive_weight = 0
-    
+
+    def get_or_create_function(self, funcname):
+        func = self.functions.get(funcname)
+        if func is None:
+            func = Func(self, None, funcname)
+            self.add_function(func)
+        return func
+
     def add_function(self, func):
         self.functions[func.name] = func
     
     def __str__(self):
         return 'SourceFile: %s' % (self.path,)
+    
+    @property
+    def sorted_functions(self):
+        sfuncs = list(self.functions.values())
+        sfuncs.sort(key=lambda x:x.name)
+        return sfuncs
 
 class SourceCaboodle(object):
     '''

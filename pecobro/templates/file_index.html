@@ -1,0 +1,9 @@
+<div xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      >
+  <ul>
+    <py:for each="func in source_file.contents">
+      <li id="fil|${func.norm_name}">${func.name}</li>
+    </py:for>
+  </ul>
+</div>

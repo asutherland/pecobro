@@ -17,15 +17,13 @@ import pygments
 import pygments.lexers
 import pygments.formatters
 
-import mozpreproc
-
-# the absolute import explodes for unknown reasons I don't care about right now
-import xbl
-# didn't try these absolute though...
-import core
-import codefmt
-import trace
-import vis
+import pecobro.mozpreproc as mozpreproc
+import pecobro.xbl as xbl
+import pecobro.core as core
+import pecobro.codefmt as codefmt
+import pecobro.trace as trace
+import pecobro.vis as vis
+import pecobro.consts as consts
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
@@ -40,8 +38,7 @@ class Generator(object):
         # grrrrr, we need to preprocess things now...
         f_in = open(path, 'r') #codecs.open(path, 'r', 'utf-8')
         f_out = StringIO.StringIO()
-        defines={'XP_UNIX': True}
-        mozpreproc.preprocess(includes=[f_in], defines=defines,
+        mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
                               output=f_out,
                               line_endings='lf')
         f_in.close()
@@ -124,22 +121,44 @@ class Generator(object):
         
         return
         
-        for code_file in self.code_files:
-            print '   - Generating', code_file
-            fcode = open(code_file.path, 'r')
+        import jsparse.jsparse as jsparse
+        
+        func_list_tmpl = loader.load('func_list.html')
+        file_index_tmpl = loader.load('file_index.html')
+        
+        for source_file in self.caboodle.source_files:
+            print '   - Parsing', source_file
+            if source_file.filetype.startswith('js'):
+                jsparse.sf_process(source_file)
+            # er, XBL in theory should already be processed, what with us
+            #  having to parse the XML to figure out if it is XML.  (well, I
+            #  guess we didn't have to full parse it)
+            
+            print '   - Generating', source_file
+            fcode = open(source_file.path, 'r')
             code = fcode.read()
             fcode.close()
             
-            lexer = pygments.lexers.get_lexer_for_filename(code_file.path)
+            lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
             formatter = codefmt.CodeFormatter()
             
-            webbed = pygments.highlight(code, lexer, formatter)
             
             out_wcode_path = os.path.join(out_path,
-                                          code_file.norm_base_name + '.xml')
+                                          source_file.norm_base_name + '.xml')
             fweb = codecs.open(out_wcode_path, 'w', 'utf-8')
             fweb.write('''<?xml version="1.0"?><div xmlns="http://www.w3.org/1999/xhtml">''')
+
+            func_list_stream = func_list_tmpl.generate(source_file=source_file)
+            fweb.write(func_list_stream.render())
+            
+            file_index_stream = file_index_tmpl.generate(source_file=source_file)
+            fweb.write(file_index_stream.render())
+
+            fweb.write('<div>')
+            webbed = pygments.highlight(code, lexer, formatter)                        
             fweb.write(webbed)
+            fweb.write('</div>')
+            
             fweb.write('</div>')
             fweb.close()
             
