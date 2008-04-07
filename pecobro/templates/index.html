@@ -21,8 +21,8 @@
         width: 24%;
     }
     
-    #sidebar_files > ul {
-        margin-top: 2px;
+    .ui-tabs-panel ul {
+        margin-top: 0px;
         padding-left: 10px;
     }
     </style>
@@ -36,7 +36,8 @@
     var TAB_OVERVIEW = 0;
     var TAB_VIEW = 1;
     
-    var cur_state = {file: null,  overview: null, mtab: TAB_OVERVIEW};
+    var cur_state = {file: null, func: null,
+                     overview: null, mtab: TAB_OVERVIEW};
 
     function _show_overview_complete(data, status) {
         var magnetbox = $("#main_overview");
@@ -67,10 +68,16 @@
         var file_index = $("#sidebar_file");
         file_index.empty();
         file_index[0].appendChild(adapted.childNodes[1]);
+        $("#sidebar_file > div > ul > li").each(function (i) {
+                $(this).click(show_func);
+            });
 
         var func_list = $("#sidebar_funcs");
         func_list.empty();
         func_list[0].appendChild(adapted.childNodes[0]);        
+        $("#sidebar_funcs > div > ul > li").each(function (i) {
+                $(this).click(show_func);
+            });
     }
     
     function show_file() {
@@ -85,7 +92,20 @@
                                               'file', filename + '.xml',
                                               'mtab', TAB_VIEW)));
     }
-
+    
+    function show_func() {
+        var barIndex = this.id.indexOf('|');
+        var funcname;
+        if (barIndex >= 0) {
+            funcname = this.id.substring(barIndex+1);
+        } else {
+            funcname = this.id;
+        }
+        $.history.load(make_hash(modify_state(cur_state,
+                                              'file', filename + '.xml',
+                                              'mtab', TAB_VIEW)));
+    }
+    
     function modify_state(base_state) {
         new_state = {};
         
@@ -105,14 +125,16 @@
         var hash_parts = [];
         
         for (var i in state) {
-             hash_parts.push(i + '=' + state[i]);
+            if (state[i] != null) {
+                hash_parts.push(i + '=' + state[i]);
+            }
         }
         
         return hash_parts.join('|');
     }
     
     function state_from_hash(hash) {
-        var new_state = {file: null, overview: null};
+        var new_state = {file: null, func: null, overview: null, mtab: null};
         var hash_bits = hash.split('|');
         for(var i = 0; i < hash_bits.length; ++i) {
             var key_val = hash_bits[i].split('=');

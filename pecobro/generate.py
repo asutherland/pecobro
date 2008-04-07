@@ -119,7 +119,7 @@ class Generator(object):
         overview_path = os.path.join(out_path, 'overview.svg')
         vis.file_overview(self.caboodle, overview_path)
         
-        return
+        #return
         
         import jsparse.jsparse as jsparse
         
@@ -127,6 +127,8 @@ class Generator(object):
         file_index_tmpl = loader.load('file_index.html')
         
         for source_file in self.caboodle.source_files:
+            if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
+            
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
                 jsparse.sf_process(source_file)
@@ -140,8 +142,8 @@ class Generator(object):
             fcode.close()
             
             lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
-            formatter = codefmt.CodeFormatter()
-            
+            formatter = codefmt.CodeFormatter(linenos='inline',
+                                              source_file=source_file)            
             
             out_wcode_path = os.path.join(out_path,
                                           source_file.norm_base_name + '.xml')
@@ -154,10 +156,8 @@ class Generator(object):
             file_index_stream = file_index_tmpl.generate(source_file=source_file)
             fweb.write(file_index_stream.render())
 
-            fweb.write('<div>')
             webbed = pygments.highlight(code, lexer, formatter)                        
             fweb.write(webbed)
-            fweb.write('</div>')
             
             fweb.write('</div>')
             fweb.close()
