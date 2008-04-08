@@ -2,8 +2,8 @@
       xmlns:xi="http://www.w3.org/2001/XInclude"
       >
   <ul>
-    <py:for each="func in source_file.sorted_functions">
-      <li id="ful|${func.norm_name}">${func.name}</li>
+    <py:for each="func in source_file.weighted_functions">
+      <li id="ful|${func.norm_name}">${func.name}<py:if test="func.invocations">${XML(func_time_slices(func, 60, 10))}</py:if></li>
     </py:for>
   </ul>
 </div>

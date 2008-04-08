@@ -91,3 +91,77 @@ def file_overview(caboodle, file_or_path):
     kr.render.renderToFile(model, file_or_path,
                            linker=link_source_file,
                            width=WIDTH, height=HEIGHT)
+
+def func_time_slices(function, width=640, height=24):
+  try:
+    import visophyte.kora as kr
+    import math
+    
+    max_time_value = float(function.file.caboodle.max_time_value)
+    
+    PIX_PER_HORIZ_POINT = 5
+    horiz_points = width / PIX_PER_HORIZ_POINT
+    time_per_horiz_point = max_time_value / horiz_points 
+    
+    active_points = [0.0] * horiz_points
+    inactive_points = [0.0] * horiz_points
+    
+    for invoc in function.invocations:
+        first_range_beg = int(invoc.t_start / time_per_horiz_point)
+        last_range_beg = int((invoc.t_end - 1) / time_per_horiz_point) + 1
+        
+        # flag if this invocation is happening inside a call to this function
+        # (indirectly recursive works too, not just directly recursive) 
+        recursive_invoc = False
+        ancestor = invoc.parent
+        while ancestor is not None:
+            if ancestor.func == function:
+                recursive_invoc = True
+                break
+            else:
+                ancestor = ancestor.parent
+        
+        for cur_range in range(first_range_beg, last_range_beg):
+            r_start = cur_range * time_per_horiz_point
+            r_stop  = r_start + time_per_horiz_point
+            
+            tr_start = max(r_start, invoc.t_start)
+            tr_stop  = min(r_stop, invoc.t_end)
+            
+            slice = (tr_stop - tr_start) / time_per_horiz_point
+            active_points[cur_range] += slice
+            if recursive_invoc:
+                inactive_points[cur_range] -= slice
+            
+            for call in (invoc.calls or ()):
+                cr_start = max(r_start, call.t_start)
+                cr_stop  = min(r_stop, call.t_end)
+                
+                call_slice = (cr_stop - cr_start) / time_per_horiz_point
+                active_points[cur_range] -= call_slice
+                inactive_points[cur_range] += call_slice
+    
+    data = zip(active_points, inactive_points)
+
+    vis = kr.vis.BarChart(style='sparkline',
+                          values=(kr.map.constant_scale(height, kr.map.expr('0')),
+                                  kr.map.constant_scale(height, kr.map.expr('1'))),
+                          positions=('above', 'above'),
+                          fill=(kr.raw.color('#ee6666'),
+                                kr.raw.color('#66ee66')),
+                          )
+    
+    context = kr.feed.native(data).make_context()
+    
+    kr.render.use_renderer('svg')
+    kr.render.contextualize(context, kr.themes.default)
+    
+    model = vis.topRender(context,
+                      width=width, height=height,
+                      )
+    
+    return kr.render.renderToImageString(model, 'svg',
+                                         width=width, height=height)
+  except:
+    pass
+    

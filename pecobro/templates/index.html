@@ -25,10 +25,19 @@
         margin-top: 0px;
         padding-left: 10px;
     }
+    
+    .fhdr {
+        font-size: 16pt;
+        font-weight: bold;
+    }
+    
+    .finfo {
+    }
     </style>
     
     <script src="jquery.js" type="text/javascript"></script>
     <script type="text/javascript" src="jquery.history.js"></script>
+    <!-- <script type="text/javascript" src="jquery.scrollTo.js"></script> -->
     <script src="jquery.ui/ui.tabs.js" type="text/javascript"></script>
     <script type="text/javascript">// <![CDATA[
     var tabby_main, tabby_sidebar;
@@ -55,12 +64,8 @@
     }
     
     function _show_file_complete(data, status) {
-        console.dir(data.responseXML.documentElement);
-    
         var adapted = document.adoptNode(data.responseXML.documentElement);
         
-        console.dir(adapted);
-
         var magnetbox = $("#main_view");
         magnetbox.empty();
         magnetbox[0].appendChild(adapted.childNodes[2]);
@@ -78,6 +83,10 @@
         $("#sidebar_funcs > div > ul > li").each(function (i) {
                 $(this).click(show_func);
             });
+            
+        if (cur_state.func != null) {
+            $('#func|' + cur_state.func).scrollTo();
+        }
     }
     
     function show_file() {
@@ -90,6 +99,7 @@
         }
         $.history.load(make_hash(modify_state(cur_state,
                                               'file', filename + '.xml',
+                                              'func', null,
                                               'mtab', TAB_VIEW)));
     }
     
@@ -102,7 +112,7 @@
             funcname = this.id;
         }
         $.history.load(make_hash(modify_state(cur_state,
-                                              'file', filename + '.xml',
+                                              'func', funcname,
                                               'mtab', TAB_VIEW)));
     }
     
@@ -152,14 +162,16 @@
         // allegedly hash should not include a leading #
         if (hash) {
             var desired_state = state_from_hash(hash);
-             
+            var loading_file = false;
+            
             if (desired_state.file != cur_state.file) {
-              cur_state.file = desired_state.file;
+                cur_state.file = desired_state.file;
               
                 if (desired_state.file == null) {
 	                var magnetbox = $("#main_view");
 	                magnetbox.empty();
-                } else { 
+                } else {
+                    loading_file = true; 
 		            $.ajax({url: desired_state.file,
 		                    dataType: 'xml', type: 'GET',
 		                    complete: _show_file_complete});
@@ -182,6 +194,16 @@
                 if (tabby_main) {
                     tabby_main.tabs('select', parseInt(desired_state.mtab));
                 }           
+            }
+            if (desired_state.func != cur_state.func) {
+                cur_state.func = desired_state.func;
+                if (!loading_file && cur_state.func != null) {
+//                    var id_name = 'func|' + cur_state.func;
+//                    var dom_obj = document.getElementById(id_name);
+//                    if (dom_obj != null) {
+//                        $.scrollTo($(dom_obj));
+//                    }
+                }
             }
         } else {
            var desired_state = {mtab: TAB_OVERVIEW, overview: 'overview.svg'}; 

@@ -14,8 +14,14 @@ class FuncInvoc(object):
         self.cflow = cflow
         
         self.calls = None
+        self.parent = None
+    
+    @property
+    def weight(self):
+        return self.t_end - self.t_start
     
     def log_call(self, invoc):
+        invoc.parent = self
         if self.calls is None:
             self.calls = [invoc]
         else:
@@ -73,6 +79,8 @@ class Func(object):
 
 class SourceFile(object):
     def __init__(self, path, file_type):
+        self.caboodle = None
+        
         self.path     = path
         self.filetype = file_type
         
@@ -108,6 +116,13 @@ class SourceFile(object):
         sfuncs = list(self.functions.values())
         sfuncs.sort(key=lambda x:x.name)
         return sfuncs
+    
+    @property
+    def weighted_functions(self):
+        sfuncs = list(self.functions.values())
+        sfuncs.sort(key=lambda x:(x.inclusive_weight, x.name), reverse=True)
+        return sfuncs
+    
 
 class SourceCaboodle(object):
     '''
@@ -120,6 +135,7 @@ class SourceCaboodle(object):
         self.base_name_to_file = {}
     
     def append(self, source_file):
+        source_file.caboodle = self
         self.source_files.append(source_file)
         self.base_name_to_file[source_file.base_name] = source_file
     

@@ -11,7 +11,7 @@ try:
 except:
     import StringIO
 
-import genshi.template, genshi.template.loader
+import genshi.template, genshi.template.loader, genshi
 
 import pygments
 import pygments.lexers
@@ -115,7 +115,7 @@ class Generator(object):
         f_index.write(index_stream.render())
         f_index.close()
         
-        print '  -- generating vis'
+        print '  -- generating vis (%d relevant files)' % (len(self.caboodle.relevant_source_files),)
         overview_path = os.path.join(out_path, 'overview.svg')
         vis.file_overview(self.caboodle, overview_path)
         
@@ -127,7 +127,7 @@ class Generator(object):
         file_index_tmpl = loader.load('file_index.html')
         
         for source_file in self.caboodle.source_files:
-            if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
+            #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
@@ -148,9 +148,11 @@ class Generator(object):
             out_wcode_path = os.path.join(out_path,
                                           source_file.norm_base_name + '.xml')
             fweb = codecs.open(out_wcode_path, 'w', 'utf-8')
-            fweb.write('''<?xml version="1.0"?><div xmlns="http://www.w3.org/1999/xhtml">''')
+            fweb.write('''<?xml version="1.0"?><div xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">''')
 
-            func_list_stream = func_list_tmpl.generate(source_file=source_file)
+            func_list_stream = func_list_tmpl.generate(source_file=source_file,
+                                                       func_time_slices=vis.func_time_slices,
+                                                       XML=genshi.XML)
             fweb.write(func_list_stream.render())
             
             file_index_stream = file_index_tmpl.generate(source_file=source_file)

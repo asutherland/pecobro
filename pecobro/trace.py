@@ -39,10 +39,8 @@ class TraceParser(object):
         f = open(filename, 'r')
         
         # Let's do a quick pass where we find out the earliest time we see...
-        # This will end up being the first depth 1 we see, assuming there is
-        #  one.  We'll assume so, otherwise we'd want to just do minimization
-        #  logic for fallback or canon.
-        start_ts = 0
+        start_ts = None
+        max_te = 0
         for line in f:
             line = line.strip()
             if not ',' in line:
@@ -51,15 +49,21 @@ class TraceParser(object):
             depth_str, ts_str, te_str, filename, funcname = line.split(',')
             depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
             
-            if depth == 1:
+            if start_ts is not None:
+                start_ts = min(start_ts, ts)
+            else:
                 start_ts = ts
-                break
+            
+            max_te = max(te, max_te)
         
         # because trace events are generated only on function returns, we
         #  need to accumulate things until we hit our parents...
         MAX_RECURSE_DEPTH = 256
         deferreds = [list() for i in range(MAX_RECURSE_DEPTH)]
         
+        self.caboodle.max_time_value = max_te - start_ts
+        
+        f.seek(0)
         for line in f:
             line = line.strip()
             if not ',' in line:
@@ -67,6 +71,12 @@ class TraceParser(object):
             
             depth_str, ts_str, te_str, filename, funcname = line.split(',')
             depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
+            
+            # gah! so, the probes are double-counting, so for now, let's exclude
+            #  all the even guys...
+            if depth%2 == 0:
+                continue
+            depth = depth / 2 + 1
             
             ts -= start_ts
             te -= start_ts
