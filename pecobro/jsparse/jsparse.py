@@ -8,7 +8,7 @@ except:
 
 import antlr3
 # relative
-from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, PROP
+from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, FUNC, OBJ, PROP, VARDEFS, VARDEF
 from JavaScriptParser import JavaScriptParser
 
 import pecobro.mozpreproc as mozpreproc
@@ -20,7 +20,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
         
         print '[%s%s]' % ('  ' * depth, child.token.text)
         
-        if child.token.text == 'FUNC':
+        if child.getType() == FUNC:
             funcNode = child.getChild(0)
             
             if funcNode.getType() != ANONYMOUS:
@@ -46,15 +46,19 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
             
             source_file.contents.append(func)
             
-            #print '%s(%d, %d): %s' % ('  ' * depth,
-            #                          func.source_line, func.source_col,
-            #                          funcName)
-        elif child.token.text == 'OBJ':
+            print '%s(%d, %d): %s' % ('  ' * depth,
+                                      func.source_line, func.source_col,
+                                      funcName)
+        elif child.getType() == OBJ:
             scan_and_proc(source_file, child, depth+1)
-        elif child.token.text == 'PROP':
+        elif child.getType() == PROP:
             scan_and_proc(source_file, child, depth+1,
                           cur_property=child.getChild(0),
                           prop_type=child.getChild(1))
+        elif child.getType() in (VARDEF, VARDEFS):
+            scan_and_proc(source_file, child, depth+1)
+            
+            
 
 def parse_file(fname):
     f_in = codecs.open(fname, 'r', 'utf-8')
@@ -79,7 +83,7 @@ def parse_file(fname):
 def parse_and_proc(fname):
     ast = parse_file(fname)
     import pecobro.core as pcore
-    source_file = pcore.SourceFile(fname)
+    source_file = pcore.SourceFile(fname, 'js')
     return scan_and_proc(source_file, ast.tree)
 
 def sf_process(source_file):
