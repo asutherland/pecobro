@@ -1,10 +1,15 @@
 
-import codecs
+import codecs, os, os.path
 
 try:
     import cStringIO as StringIO
 except:
     import StringIO
+
+try:
+    import cerealizer
+except:
+    cerealizer = None
 
 import antlr3
 # relative
@@ -14,7 +19,14 @@ from JavaScriptParser import JavaScriptParser
 import pecobro.mozpreproc as mozpreproc
 import pecobro.consts as consts
 
+import pecobro.jsparse.jsgrok as jsgrok
+
 def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
+    '''
+    Chew the AST and put info in our core representation.  This type of
+    analysis is going to migrate into jsgrok; at some point this should become
+    moot...
+    '''
     for iChild in range(ast.getChildCount()):
         child = ast.getChild(iChild)
         
@@ -72,7 +84,7 @@ def parse_string(s, dude='program'):
 
 TRY_CODECS = ['utf-8', 'cp1252']
 
-def parse_file(fname):
+def _parse_file(fname):
     sio = None
     for try_codec in TRY_CODECS:
         try:
@@ -106,8 +118,85 @@ def parse_file(fname):
     
     return z
 
-def parse_and_proc(fname):
-    ast = parse_file(fname)
+_CACHE_INITED = False
+
+def _init_cache():
+    global _CACHE_INITED
+    registered = set()
+    
+    def register_class_and_kids(c):
+        if c in registered:
+            return
+        
+        cerealizer.register(c)
+        
+        for key, val in c.__dict__.items():
+            if type(val) == type and val not in registered:
+                cerealizer.register(val)
+                registered.add(val)
+    
+    def register_module(m):
+        for key, val in m.__dict__.items():
+            if type(val) == type and val not in registered:
+                cerealizer.register(val)
+                registered.add(val)            
+    
+    import antlr3.tokens, antlr3.streams, antlr3.tree
+    register_module(antlr3.tokens)
+    register_module(antlr3.streams)
+    register_module(antlr3.tree)
+    
+    # we need to register all the classes...
+    register_class_and_kids(JavaScriptLexer)
+    register_class_and_kids(JavaScriptParser)
+    
+    _CACHE_INITED = True
+
+def parse_file(fname, cache_dir=None, force=False):
+    '''
+    Parse the file, caching if cache_dir is supplied (and valid).
+    
+    @param cache_dir: Cache directory to use, or None (default) if no cache
+        is desired.
+    @param force: Force a parse to occur, potentially ignoring an otherwise
+        usable cache entry.
+    '''
+    global _CACHE_INITED
+    
+    if cerealizer and cache_dir and os.path.exists(cache_dir):
+        if not _CACHE_INITED:
+            _init_cache()
+            
+        cache_fname = os.path.join(cache_dir, os.path.basename(fname)+'.cache')
+        
+        file_ts = os.path.getmtime(fname)
+        
+        if (os.path.exists(cache_fname) and not force
+                and os.path.getmtime(cache_fname) >= file_ts
+                and os.path.getsize(cache_fname)):
+            # use the cache if we can, but fail-over to a fresh parse if we
+            #  somehow fail.
+            try:
+                f = open(cache_fname, 'rb')
+                ast = cerealizer.load(f)
+                f.close()
+                
+                return ast
+            except:
+                pass
+        
+        ast = _parse_file(fname)
+        # (no need to try and back-date the mtime to the file's mtime)            
+        f = open(cache_fname, 'wb')
+        cerealizer.dump(ast, f, protocol=-1) # use highest version
+        f.close()
+        
+        return ast
+    else:
+        return _parse_file(fname)
+
+def parse_and_proc(fname, cache_dir=None):
+    ast = parse_file(fname, cache_dir=cache_dir)
     import pecobro.core as pcore
     source_file = pcore.SourceFile(fname, 'js')
     return scan_and_proc(source_file, ast.tree)
