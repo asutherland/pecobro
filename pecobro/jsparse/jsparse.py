@@ -87,9 +87,9 @@ def parse_and_proc(fname):
     return scan_and_proc(source_file, ast.tree)
 
 def sf_process(source_file):
-    try:
+    #try:
         ptree = parse_file(source_file.path)
         scan_and_proc(source_file, ptree.tree)
-    except Exception, e:
+    #except Exception, e:
         #print '*** EXCEPTION', e
-        pass
+    #    pass

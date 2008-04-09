@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-09 00:13:18
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-09 00:31:27
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -966,7 +966,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking == 0:
                     stream_statementBlock.add(statementBlock16.tree)
                 # AST Rewrite
-                # elements: identifier, formalParameterList, statementBlock
+                # elements: statementBlock, identifier, formalParameterList
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1172,7 +1172,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock23.tree)
                     # AST Rewrite
-                    # elements: identifier, statementBlock, formalParameterList
+                    # elements: statementBlock, formalParameterList, identifier
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -2249,7 +2249,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: mod, variableDeclarationList
+                # elements: variableDeclarationList, mod
                 # token labels: mod
                 # rule labels: retval
                 # token list labels: 
@@ -2655,7 +2655,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: initialiser, identifier
+                # elements: identifier, initialiser
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2791,7 +2791,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: identifier, initialiserNoIn
+                # elements: initialiserNoIn, identifier
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -8716,7 +8716,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: memberExpression, arguments, callExpressionSuffix
+                # elements: arguments, memberExpression, callExpressionSuffix
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -13498,7 +13498,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock451.tree)
                     # AST Rewrite
-                    # elements: formalParameterList, action, statementBlock, funcname, propname
+                    # elements: propname, statementBlock, formalParameterList, action, funcname
                     # token labels: action
                     # rule labels: propname, retval, funcname
                     # token list labels: 
@@ -13681,7 +13681,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock457.tree)
                     # AST Rewrite
-                    # elements: formalParameterList, action, statementBlock, identifier
+                    # elements: statementBlock, formalParameterList, identifier, action
                     # token labels: action
                     # rule labels: retval
                     # token list labels: 
@@ -14022,7 +14022,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start reFirstChar
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:1: reFirstChar : ( ';' | ',' | '.' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'instanceof' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | StringLiteral | NumericLiteral | Identifier );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:1: reFirstChar : ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'instanceof' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | StringLiteral | NumericLiteral | Identifier );
     def reFirstChar(self, ):
 
         retval = self.reFirstChar_return()
@@ -14039,12 +14039,12 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 81):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:2: ( ';' | ',' | '.' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'instanceof' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | StringLiteral | NumericLiteral | Identifier )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:2: ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'instanceof' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | StringLiteral | NumericLiteral | Identifier )
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
                 root_0 = self.adaptor.nil()
 
                 set467 = self.input.LT(1)
-                if (StringLiteral <= self.input.LA(1) <= Identifier) or (42 <= self.input.LA(1) <= 62) or (64 <= self.input.LA(1) <= 91) or (96 <= self.input.LA(1) <= 105) or (108 <= self.input.LA(1) <= 122):
+                if (StringLiteral <= self.input.LA(1) <= Identifier) or (42 <= self.input.LA(1) <= 91) or (96 <= self.input.LA(1) <= 105) or (108 <= self.input.LA(1) <= 122):
                     self.input.consume();
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set467))
@@ -14118,7 +14118,7 @@ class JavaScriptParser(Parser):
                 alt243 = 2
                 LA243_0 = self.input.LA(1)
 
-                if ((StringLiteral <= LA243_0 <= Identifier) or (42 <= LA243_0 <= 62) or (64 <= LA243_0 <= 91) or (96 <= LA243_0 <= 105) or (108 <= LA243_0 <= 122)) :
+                if ((StringLiteral <= LA243_0 <= Identifier) or (42 <= LA243_0 <= 91) or (96 <= LA243_0 <= 105) or (108 <= LA243_0 <= 122)) :
                     alt243 = 1
                 elif (LA243_0 == 106) :
                     alt243 = 2
@@ -14135,7 +14135,7 @@ class JavaScriptParser(Parser):
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:4: reFirstChar
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_reFirstChar_in_reChars3226)
+                    self.following.append(self.FOLLOW_reFirstChar_in_reChars3230)
                     reFirstChar468 = self.reFirstChar()
                     self.following.pop()
                     if self.failed:
@@ -14149,7 +14149,7 @@ class JavaScriptParser(Parser):
                     root_0 = self.adaptor.nil()
 
                     char_literal469 = self.input.LT(1)
-                    self.match(self.input, 106, self.FOLLOW_106_in_reChars3231)
+                    self.match(self.input, 106, self.FOLLOW_106_in_reChars3235)
                     if self.failed:
                         return retval
 
@@ -14217,14 +14217,14 @@ class JavaScriptParser(Parser):
                 root_0 = self.adaptor.nil()
 
                 char_literal470 = self.input.LT(1)
-                self.match(self.input, 107, self.FOLLOW_107_in_regularExpressionLiteral3242)
+                self.match(self.input, 107, self.FOLLOW_107_in_regularExpressionLiteral3246)
                 if self.failed:
                     return retval
 
                 char_literal470_tree = self.adaptor.createWithPayload(char_literal470)
                 self.adaptor.addChild(root_0, char_literal470_tree)
 
-                self.following.append(self.FOLLOW_reFirstChar_in_regularExpressionLiteral3244)
+                self.following.append(self.FOLLOW_reFirstChar_in_regularExpressionLiteral3248)
                 reFirstChar471 = self.reFirstChar()
                 self.following.pop()
                 if self.failed:
@@ -14236,13 +14236,13 @@ class JavaScriptParser(Parser):
                     alt244 = 2
                     LA244_0 = self.input.LA(1)
 
-                    if ((StringLiteral <= LA244_0 <= Identifier) or (42 <= LA244_0 <= 62) or (64 <= LA244_0 <= 91) or (96 <= LA244_0 <= 106) or (108 <= LA244_0 <= 122)) :
+                    if ((StringLiteral <= LA244_0 <= Identifier) or (42 <= LA244_0 <= 91) or (96 <= LA244_0 <= 106) or (108 <= LA244_0 <= 122)) :
                         alt244 = 1
 
 
                     if alt244 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: reChars
-                        self.following.append(self.FOLLOW_reChars_in_regularExpressionLiteral3246)
+                        self.following.append(self.FOLLOW_reChars_in_regularExpressionLiteral3250)
                         reChars472 = self.reChars()
                         self.following.pop()
                         if self.failed:
@@ -14256,7 +14256,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal473 = self.input.LT(1)
-                self.match(self.input, 107, self.FOLLOW_107_in_regularExpressionLiteral3249)
+                self.match(self.input, 107, self.FOLLOW_107_in_regularExpressionLiteral3253)
                 if self.failed:
                     return retval
 
@@ -14272,7 +14272,7 @@ class JavaScriptParser(Parser):
                 if alt245 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: Identifier
                     Identifier474 = self.input.LT(1)
-                    self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral3251)
+                    self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral3255)
                     if self.failed:
                         return retval
 
@@ -15125,7 +15125,7 @@ class JavaScriptParser(Parser):
         )
 
     DFA14_accept = DFA.unpack(
-        u"\3\uffff\1\2\1\1"
+        u"\3\uffff\1\1\1\2"
         )
 
     DFA14_special = DFA.unpack(
@@ -15135,10 +15135,10 @@ class JavaScriptParser(Parser):
             
     DFA14_transition = [
         DFA.unpack(u"\1\1"),
-        DFA.unpack(u"\1\2\2\uffff\1\4\32\uffff\1\3\15\uffff\1\4\73\uffff"
-        u"\2\4"),
-        DFA.unpack(u"\1\2\2\uffff\1\4\32\uffff\1\3\15\uffff\1\4\73\uffff"
-        u"\2\4"),
+        DFA.unpack(u"\1\2\2\uffff\1\3\32\uffff\1\4\15\uffff\1\3\73\uffff"
+        u"\2\3"),
+        DFA.unpack(u"\1\2\2\uffff\1\3\32\uffff\1\4\15\uffff\1\3\73\uffff"
+        u"\2\3"),
         DFA.unpack(u""),
         DFA.unpack(u"")
     ]
@@ -17164,13 +17164,13 @@ class JavaScriptParser(Parser):
     FOLLOW_NumericLiteral_in_literal2843 = frozenset([1])
     FOLLOW_regularExpressionLiteral_in_literal2848 = frozenset([1])
     FOLLOW_set_in_reFirstChar0 = frozenset([1])
-    FOLLOW_reFirstChar_in_reChars3226 = frozenset([1])
-    FOLLOW_106_in_reChars3231 = frozenset([1])
-    FOLLOW_107_in_regularExpressionLiteral3242 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
-    FOLLOW_reFirstChar_in_regularExpressionLiteral3244 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
-    FOLLOW_reChars_in_regularExpressionLiteral3246 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
-    FOLLOW_107_in_regularExpressionLiteral3249 = frozenset([1, 16])
-    FOLLOW_Identifier_in_regularExpressionLiteral3251 = frozenset([1])
+    FOLLOW_reFirstChar_in_reChars3230 = frozenset([1])
+    FOLLOW_106_in_reChars3235 = frozenset([1])
+    FOLLOW_107_in_regularExpressionLiteral3246 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
+    FOLLOW_reFirstChar_in_regularExpressionLiteral3248 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
+    FOLLOW_reChars_in_regularExpressionLiteral3250 = frozenset([14, 15, 16, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122])
+    FOLLOW_107_in_regularExpressionLiteral3253 = frozenset([1, 16])
+    FOLLOW_Identifier_in_regularExpressionLiteral3255 = frozenset([1])
     FOLLOW_set_in_identifier0 = frozenset([1])
     FOLLOW_functionDeclaration_in_synpred5129 = frozenset([1])
     FOLLOW_statementBlock_in_synpred21304 = frozenset([1])
