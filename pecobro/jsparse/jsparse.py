@@ -60,17 +60,43 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
             
             
 
+def parse_string(s, dude='program'):
+    ss = antlr3.StringStream(s)
+    lexer = JavaScriptLexer(ss)
+    token_stream = antlr3.CommonTokenStream(lexer)
+    parser = JavaScriptParser(token_stream)
+    duder = getattr(parser, dude)
+    z = duder()
+    
+    return z
+
+TRY_CODECS = ['utf-8', 'cp1252']
+
 def parse_file(fname):
-    f_in = codecs.open(fname, 'r', 'utf-8')
-    f_out = StringIO.StringIO()
-    mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
-                          output=f_out,
-                          line_endings='lf')
-    f_in.close()
-    f_out.seek(0)
+    sio = None
+    for try_codec in TRY_CODECS:
+        try:
+            f_in = codecs.open(fname, 'r', try_codec)
+            sio = StringIO.StringIO()
+            f_out = codecs.getwriter('utf-8')(sio)
+            mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
+                                  output=f_out,
+                                  line_endings='lf')
+            f_in.close()
+            sio.seek(0)
+            # if we got here, we are victorious
+            break
+        except Exception, e:
+            print '(codec %s failed us, trying next)' % (try_codec,)
+            print '  exception was:', e
+            f_out = None
+    
+    if sio is None:
+        raise Exception('All our mighty codecs failed us on %s' % (fname,))
     
     #f = open(fname, 'r')
-    ss = antlr3.StringStream(f_out.getvalue())
+    #ss = antlr3.StringStream(sio.getvalue())
+    ss = antlr3.ANTLRInputStream(sio, 'utf-8')
     #f.close()
     #ss = antlr3.ANTLRFileStream(f_out)
     lexer = JavaScriptLexer(ss)
