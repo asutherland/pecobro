@@ -13,7 +13,7 @@ except:
 
 import antlr3
 # relative
-from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, FUNC, OBJ, PROP, VARDEFS, VARDEF
+from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, ASSIGN, FUNC, OBJ, PROP, VARDEFS, VARDEF
 from JavaScriptParser import JavaScriptParser
 
 import pecobro.mozpreproc as mozpreproc
@@ -51,7 +51,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
                 print 'skipping anonymous func at depth %d' % (depth,)
                 continue
             
-            func = source_file.get_or_create_function(funcName)
+            func, created = source_file.get_or_create_function(funcName)
             
             func.source_line = funcNode.token.line
             func.source_col  = funcNode.token.charPositionInLine
@@ -67,7 +67,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
             scan_and_proc(source_file, child, depth+1,
                           cur_property=child.getChild(0),
                           prop_type=child.getChild(1))
-        elif child.getType() in (VARDEF, VARDEFS):
+        elif child.getType() in (VARDEF, VARDEFS, ASSIGN):
             scan_and_proc(source_file, child, depth+1)
             
             
@@ -122,33 +122,38 @@ _CACHE_INITED = False
 
 def _init_cache():
     global _CACHE_INITED
-    registered = set()
-    
-    def register_class_and_kids(c):
-        if c in registered:
-            return
+    try:
+        registered = set()
         
-        cerealizer.register(c)
+        def register_class_and_kids(c):
+            if c in registered:
+                return
+            
+            cerealizer.register(c)
+            
+            for key, val in c.__dict__.items():
+                if type(val) == type and val not in registered:
+                    cerealizer.register(val)
+                    registered.add(val)
         
-        for key, val in c.__dict__.items():
-            if type(val) == type and val not in registered:
-                cerealizer.register(val)
-                registered.add(val)
-    
-    def register_module(m):
-        for key, val in m.__dict__.items():
-            if type(val) == type and val not in registered:
-                cerealizer.register(val)
-                registered.add(val)            
-    
-    import antlr3.tokens, antlr3.streams, antlr3.tree
-    register_module(antlr3.tokens)
-    register_module(antlr3.streams)
-    register_module(antlr3.tree)
-    
-    # we need to register all the classes...
-    register_class_and_kids(JavaScriptLexer)
-    register_class_and_kids(JavaScriptParser)
+        def register_module(m):
+            for key, val in m.__dict__.items():
+                if type(val) == type and val not in registered:
+                    cerealizer.register(val)
+                    registered.add(val)            
+        
+        import antlr3.tokens, antlr3.streams, antlr3.tree
+        register_module(antlr3.tokens)
+        register_module(antlr3.streams)
+        register_module(antlr3.tree)
+        
+        # we need to register all the classes...
+        register_class_and_kids(JavaScriptLexer)
+        register_class_and_kids(JavaScriptParser)
+    except Exception, e:
+        # this is a debugging thing here mainly... it gets mad about
+        #  multiple registrations when I reload things...
+        print 'Warning: cache initialization problem:', e
     
     _CACHE_INITED = True
 
@@ -195,15 +200,18 @@ def parse_file(fname, cache_dir=None, force=False):
     else:
         return _parse_file(fname)
 
-def parse_and_proc(fname, cache_dir=None):
-    ast = parse_file(fname, cache_dir=cache_dir)
+grokker = jsgrok.JSGrok(None)
+
+def parse_and_proc(fname, cache_dir=None, force=False):
+    ast = parse_file(fname, cache_dir=cache_dir, force=force)
     import pecobro.core as pcore
     source_file = pcore.SourceFile(fname, 'js')
-    return scan_and_proc(source_file, ast.tree)
+    scan_and_proc(source_file, ast.tree)
+    grokker.grok_source_file(source_file, ast.tree)
 
-def sf_process(source_file):
+def sf_process(source_file, cache_dir=None, force=False):
     #try:
-        ptree = parse_file(source_file.path)
+        ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
         scan_and_proc(source_file, ptree.tree)
     #except Exception, e:
         #print '*** EXCEPTION', e

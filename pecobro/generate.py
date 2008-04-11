@@ -131,7 +131,7 @@ class Generator(object):
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
-                jsparse.sf_process(source_file)
+                jsparse.sf_process(source_file, cache_dir='/tmp/pecobro_cache')
             # er, XBL in theory should already be processed, what with us
             #  having to parse the XML to figure out if it is XML.  (well, I
             #  guess we didn't have to full parse it)
