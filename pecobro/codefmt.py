@@ -43,14 +43,17 @@ class XmlJsFusionLexer(pygments.lexer.Lexer):
                         attr_str = attr_str[1:-1]
                     else:
                         yield_str = ''
-                        
+
+                    # we want to use Comment.Preproc as the type to serve as a
+                    #  helper-cheaty marker to tell our AST-synch code where it
+                    #  should adjust its offsets from...
                     if yield_str:
-                        yield attr_start, xt, yield_str
+                        yield attr_start, pygments.token.Comment.Preproc, yield_str
                     for ji, jt, jv in self.js_lexer.get_tokens_unprocessed(
                             attr_str):
                         yield attr_start + 1 + ji, jt, jv
                     if yield_str:
-                        yield attr_start + 1 + len(attr_str), xt, yield_str
+                        yield attr_start + 1 + len(attr_str), pygments.token.Comment.Preproc, yield_str
                 else:
                     attr_str += xv
             elif xt == pygments.token.Name.Attribute and xv in ('onget=', 'onset='):
@@ -156,7 +159,7 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
         pygments.formatters.HtmlFormatter.__init__(self, **options)
         
         self.source_file = options.get('source_file')
-    
+            
     def wrap(self, source, outfile):
         source = pygments.formatters.HtmlFormatter.wrap(self, source, outfile)
         
@@ -197,7 +200,7 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                 yield t, line
     
     def _format_lines(self, tokensource):
-        if self.source_file is None or self.source_file.ast is None:
+        if self.source_file is None:
             return super(CodeFormatter, self)._format_lines(tokensource)
         else:
             return self._awesome_format_lines(tokensource) 
@@ -207,9 +210,31 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
         Replace the HTMLFormatter's core logic... we derive from and
         special-case, which is to say, copy-paste-modify.
         '''
-        
+
         # holds tuples of (node, cur child index in node)
-        ast = ASTHelper(self.source_file.ast)
+        ast_line_adjust = 0
+        ast_pos_adjust = 0
+        sync_ast = False
+        if self.source_file.ast:
+            multi_ast = False
+            ast = ASTHelper(self.source_file.ast)
+        else:
+            multi_ast = True
+            ast = None
+
+        if self.source_file:
+            iContents = iter(self.source_file.contents)
+        else:
+            iContents = iter(())
+
+        nextFunc = None
+        
+        def next_contents():
+            try:
+                return iContents.next()
+            except:
+                return None
+        nextFunc = next_contents()
 
         cur_line = 1
         cur_pos = 0
@@ -220,19 +245,45 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
         lspan = ''
         line = ''
         for ttype, value in tokensource:
-            cls = self._get_css_class(ttype)
-            cspan = cls and '<span class="%s">' % cls or ''
-            
-            # -- translate to semantic meaning...
             #print 'TOKEN', cur_line, cur_pos, value
-            if ast.node and cur_line >= ast.line and cur_pos >= ast.pos:
-                #print '  (pyg %d,%d ast %d,%d)' % (cur_line, cur_pos,
-                #                                   ast.line, ast.pos)
-                #print '  ast:', ast.node
+            
+            if nextFunc and nextFunc.source_line == cur_line:
+                if multi_ast:
+                    # look for our Comment.Preproc marker...
+                    sync_ast = True
+                    
+                    if nextFunc.ast:
+                        ast = ASTHelper(nextFunc.ast)
+                        #print '************ new AST', ast.line, ast.pos
+                    else:
+                        ast = None
+                        
+                nextFunc = next_contents()
+            elif ttype == pygments.token.Comment.Preproc and sync_ast:
+                # ast line is zero-based, our line-count is 1-based
+                ast_line_adjust = cur_line - 1
+                ast_pos_adjust = cur_pos + len(value)
+                #print '>>> synced', ast_line_adjust, ast_pos_adjust
+                sync_ast = False
+
+#            if ast and ast.node and not sync_ast:
+#                print '  (next:', ast.node.token.text, ast.line, ast.pos, ast_line_adjust, ast_pos_adjust, ')'
+
+            # -- translate to semantic meaning...
+            if (ast and ast.node and not sync_ast and
+                    cur_line >= (ast.line + ast_line_adjust) and
+                    cur_pos >= (ast.pos + ast_pos_adjust)):
+#                print '  (pyg %d,%d ast %d,%d (adjusted %d,%d))' % (cur_line, cur_pos,
+#                                                   ast.line+ast_line_adjust,
+#                                                   ast.pos+ast_pos_adjust,
+#                                                   ast_line_adjust,
+#                                                   ast_pos_adjust)
+#                print '  ast:', ast.node
                 
                 nodes = []
                 
-                while cur_line >= ast.line and cur_pos >= ast.pos:
+                while (cur_line >= (ast.line + ast_line_adjust) and
+                        cur_pos >= (ast.pos + ast_pos_adjust)):
                     nodes.append(ast.node)
                     if not ast.advance_ast():
                         break
@@ -240,12 +291,15 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                 #print '  traversed:', len(nodes)
             
             # -- semantic cleanup --     
+            cls = self._get_css_class(ttype)
+            cspan = cls and '<span class="%s">' % cls or ''
             
             if enc:
                 value = value.encode(enc)
             fake_parts = value.split('\n')
             if len(fake_parts) > 1:
                 cur_line += len(fake_parts) - 1
+                ast_pos_adjust = 0
                 # zero-based!
                 cur_pos = len(fake_parts[-1])
             else:

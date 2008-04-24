@@ -142,7 +142,7 @@ class Generator(object):
             #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
             #if not source_file.base_name in ['calDavCalendar.js']: continue
             #if not source_file.base_name in ['aboutDialog.js']: continue
-            #if not source_file.base_name in ['calendar-view-core.xml']: continue
+            if not source_file.base_name in ['calendar-view-core.xml']: continue
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):

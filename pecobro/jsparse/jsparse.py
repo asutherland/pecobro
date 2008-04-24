@@ -94,7 +94,10 @@ def parse_snippet(snippet):
     parser = JavaScriptParser(token_stream)
     z = parser.program()
     
-    return z
+    if z is not None:
+        return z.tree
+    else:
+        return None
     
 
 def _parse_file(fname):
