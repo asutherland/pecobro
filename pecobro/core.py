@@ -89,12 +89,18 @@ class Scope(object):
 
 class Func(object):
     def __init__(self, source_file, jstype, func_name):
+        #: what file do we come from
         self.file = source_file
-        self.jstype = jstype 
+        #: the object/javascript type we are a method on
+        self.jstype = jstype
+        #: function name, preferring explicit over inferred from property 
         self.name = func_name
+        #: what is our name identifier, safely used in our html/javascript
         self.norm_name = func_name.replace('$', '_')
         
         self.args = None
+        
+        self.ast = None
         
         #: number of ticks in this function per our simplistic count...
         self.inclusive_weight = 0
@@ -138,10 +144,17 @@ class JSType(object):
         self.instance = Scope('instance', self.prototype)
 
 class SourceFile(object):
-    def __init__(self, path, file_type):
+    def __init__(self, path, file_type, base_dir=None, eRoot=None):
         self.caboodle = None
         
         self.path     = path
+        if base_dir:
+            abspath = os.path.abspath(path)
+            absbase = os.path.abspath(base_dir)
+            self.norm_path = abspath[len(absbase)+1:]
+        else:
+            self.norm_path = path
+            
         self.filetype = file_type
         
         self.base_name = os.path.basename(path)
@@ -150,6 +163,10 @@ class SourceFile(object):
         self.functions = {}
         
         self.ever_called = {}
+        
+        self.eRoot = eRoot
+        
+        self.ast = None
         
         # the contents of the file, as they ocurr in the file sequentially.
         self.contents = []

@@ -73,6 +73,9 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
             
 
 def parse_string(s, dude='program'):
+    '''
+    Intended for debug use.
+    '''
     ss = antlr3.StringStream(s)
     lexer = JavaScriptLexer(ss)
     token_stream = antlr3.CommonTokenStream(lexer)
@@ -83,6 +86,16 @@ def parse_string(s, dude='program'):
     return z
 
 TRY_CODECS = ['utf-8', 'cp1252']
+
+def parse_snippet(snippet):
+    ss = antlr3.StringStream(snippet)
+    lexer = JavaScriptLexer(ss)
+    token_stream = antlr3.CommonTokenStream(lexer)
+    parser = JavaScriptParser(token_stream)
+    z = parser.program()
+    
+    return z
+    
 
 def _parse_file(fname):
     sio = None
@@ -212,6 +225,7 @@ def parse_and_proc(fname, cache_dir=None, force=False):
 def sf_process(source_file, cache_dir=None, force=False):
     #try:
         ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
+        source_file.ast = ptree.tree
         scan_and_proc(source_file, ptree.tree)
     #except Exception, e:
         #print '*** EXCEPTION', e

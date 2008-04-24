@@ -54,13 +54,19 @@ class Generator(object):
         
         if root.tag.startswith('{%s}' % XBL_NS):
             print 'Found XBL:', path
-            self.caboodle.append(core.SourceFile(path, 'xbl'))
+            self.caboodle.append(core.SourceFile(path, 'xbl',
+                                                 base_dir=base_path,
+                                                 eRoot=root))
         else:
             print '  non-XBL:', path
     
     def find_code(self):
         for code_dir, base_dir in self.code_dirs:
             for dirpath, dirnames, filenames in os.walk(code_dir):
+                # don't walk into test subdirs for now...
+                if 'test' in dirnames:
+                    del dirnames[dirnames.index('test')]
+                
                 for filename in filenames:
                     trash, suffix = os.path.splitext(filename)
                     filepath = os.path.join(dirpath, filename)
@@ -68,7 +74,8 @@ class Generator(object):
                     if suffix in ('.js', '.jsm'):
                         print 'Found JS:', filepath
                         self.caboodle.append(core.SourceFile(filepath,
-                                                             suffix[1:]))
+                                                             suffix[1:],
+                                                             base_dir=base_dir))
                         pass 
                     elif suffix in ('.xml',):
                         self._consider_xml(code_dir, base_dir, filepath)
@@ -103,7 +110,7 @@ class Generator(object):
         
         # -- Index File
         print ' -- generating index'
-        formatter = codefmt.CodeFormatter()
+        formatter = codefmt.CodeFormatter(style='manni')
         
         index_tmpl = loader.load('index.html')
         index_stream = index_tmpl.generate(caboodle=self.caboodle,
@@ -126,12 +133,19 @@ class Generator(object):
         func_list_tmpl = loader.load('func_list.html')
         file_index_tmpl = loader.load('file_index.html')
         
+        xblp = xbl.XBLParser()
+        
         for source_file in self.caboodle.source_files:
             #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
+            #if not source_file.base_name in ['calDavCalendar.js']: continue
+            #if not source_file.base_name in ['aboutDialog.js']: continue
+            if not source_file.base_name in ['calendar-view-core.xml']: continue
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
                 jsparse.sf_process(source_file, cache_dir='/tmp/pecobro_cache')
+            elif source_file.filetype == 'xbl':
+                xblp.parse(source_file)
             # er, XBL in theory should already be processed, what with us
             #  having to parse the XML to figure out if it is XML.  (well, I
             #  guess we didn't have to full parse it)
@@ -141,7 +155,10 @@ class Generator(object):
             code = fcode.read()
             fcode.close()
             
-            lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
+            if source_file.filetype == 'xbl':
+                lexer = codefmt.XmlJsFusionLexer()
+            else:
+                lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
             formatter = codefmt.CodeFormatter(linenos='inline',
                                               source_file=source_file)            
             
@@ -158,8 +175,11 @@ class Generator(object):
             file_index_stream = file_index_tmpl.generate(source_file=source_file)
             fweb.write(file_index_stream.render())
 
+            fweb.write('<div>')
+            fweb.write('<h1>%s</h1>' % (source_file.norm_path,))
             webbed = pygments.highlight(code, lexer, formatter)                        
             fweb.write(webbed)
+            fweb.write('</div>')
             
             fweb.write('</div>')
             fweb.close()

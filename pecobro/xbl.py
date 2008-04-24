@@ -1,4 +1,4 @@
-from xml import etree
+#from xml import etree
 try:
     #import xml.etree.cElementTree as etree
     import xml.etree.ElementTree as etree
@@ -14,7 +14,9 @@ import xml.parsers.expat as expat
 import codecs, os.path
 
 import pecobro.mozpreproc as mozpreproc
-import pecobro.consts as consts 
+import pecobro.consts as consts
+import pecobro.core as core 
+import jsparse.jsparse as jsparse
 
 BASE_PATH = None
 # okay, this is a hack, we really should just parse whatever the
@@ -48,6 +50,11 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
         
         #self._parser.XmlDeclHandler = self._xml_decl
         #self._parser.SkippedEntityHandler = self._skip_ent
+        
+        if self._parser.StartElementHandler == etree.XMLTreeBuilder._start:
+            self._parser.StartElementHandler = self._start
+        else:
+            self._parser.StartElementHandler = self._start_list
         
         self.system_id_map = {}
     
@@ -135,6 +142,19 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
             else:
                 print 'Ignoring DTD from:', systemId
             return 1
+    
+    def _start(self, tag, attrib_in):
+        rval = etree.XMLTreeBuilder._start(self, tag, attrib_in)
+        rval.column = self._parser.CurrentColumnNumber
+        rval.line = self._parser.CurrentLineNumber
+        return rval
+
+    def _start_list(self, tag, attrib_in):
+        rval = etree.XMLTreeBuilder._start_list(self, tag, attrib_in)
+        rval.column = self._parser.CurrentColumnNumber
+        rval.line = self._parser.CurrentLineNumber
+        return rval
+
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 XBL_BINDINGS = etree.QName(XBL_NS, 'bindings')
@@ -152,46 +172,90 @@ XBL_BODY = etree.QName(XBL_NS, 'body')
 XBL_HANDLERS = etree.QName(XBL_NS, 'handlers')
 XBL_HANDLER = etree.QName(XBL_NS, 'handler')
 
+from IPython.Shell import IPShellEmbed
+ipshell = IPShellEmbed()
+
 class XBLParser(object):
-    def parseBinding(self, eBinding):
-        eImpl = eBinding.find(XBL_IMPLEMENTATION)
-        if eImpl:
-            eConstructor = eImpl.find(XBL_CONSTRUCTOR)
-            if eConstructor:
-                pass
-            
-            for eField in eImpl.findall(XBL_FIELD):
-                pass
-            
-            for eProperty in eImpl.findall(XBL_PROPERTY):
-                eGetter = eProperty.find(XBL_GETTER)
-                if eGetter:
-                    pass
-                
-                eSetter = eProperty.find(XBL_SETTER)
-                if eSetter:
-                    pass
-            
-            for eMethod in eImpl.findall(XBL_METHOD):
-                for eParameter in eMethod.findall(XBL_PARAMETER):
-                    pass
-                
-                eBody = eMethod.find(XBL_BODY)
-                assert(eBody is not None)
-                
-            
-            for eHandler in eImpl.findall(XBL_HANDLERS + '/' + XBL_HANDLER):
-                pass
+    def _make_func(self, source_file, func_name, eNode, code):
+        func, created = source_file.get_or_create_function(func_name)
         
+        func.source_line = eNode.line
+        func.source_col = eNode.column
+
+        func.ast = jsparse.parse_snippet(code)
+        
+        source_file.contents.append(func)
+    
+    def parseBinding(self, source_file, eBinding):
+        eImpl = eBinding.find(XBL_IMPLEMENTATION.text)
+        if eImpl:
+            print 'IMPL'
+            eConstructor = eImpl.find(XBL_CONSTRUCTOR.text)
+            if eConstructor is not None:
+                print 'CONSTRUCTOR', eConstructor
+                self._make_func(source_file, 'constructor',
+                                eConstructor, eConstructor.text)
+            
+            for eField in eImpl.findall(XBL_FIELD.text):
+                # TODO: process fields
+                pass
+            
+            for eProperty in eImpl.findall(XBL_PROPERTY.text):
+                print 'PROPERTY', eProperty
+                #ipshell()
+                
+                prop_name = eProperty.get('name')
+                
+                eGetter = eProperty.find(XBL_GETTER.text)
+                on_get = eProperty.get('onget')
+                if eGetter is not None or on_get:
+                    print 'GETTER'
+                    func_name = 'get_' + prop_name
+                    if eGetter is not None:
+                        self._make_func(source_file, func_name,
+                                        eGetter, eGetter.text)
+                    else:
+                        self._make_func(source_file, func_name,
+                                        eProperty, on_get)
+                
+                eSetter = eProperty.find(XBL_SETTER.text)
+                on_set = eProperty.get('onset')
+                if eSetter is not None or on_set:
+                    print 'SETTER'
+                    func_name = 'set_' + prop_name
+                    if eSetter is not None:
+                        self._make_func(source_file, func_name,
+                                        eSetter, eSetter.text)
+                    else:
+                        self._make_func(source_file, func_name,
+                                        eProperty, on_set)
+            
+            for eMethod in eImpl.findall(XBL_METHOD.text):
+                func_name = eMethod.get('name')
+                for eParameter in eMethod.findall(XBL_PARAMETER.text):
+                    pass
+                
+                eBody = eMethod.find(XBL_BODY.text)
+                if eBody is not None:
+                    self._make_func(source_file, func_name, eBody, eBody.text)
+            
+        eHandlers = eBinding.find(XBL_HANDLERS.text)
+        if eHandlers is not None:
+            for eHandler in eHandlers.findall(XBL_HANDLER.text):
+                func_name = 'on' + eHandler.get('event')
+                self._make_func(source_file, func_name, eHandler, eHandler.text)
+        
+        source_file.contents.sort(key=lambda x:(x.source_line, x.source_col))
         
     
-    def parse(self, eRoot):
+    def parse(self, source_file):
+        eRoot = source_file.eRoot
         # root should be 'bindings'
         if eRoot.tag != XBL_BINDINGS:
             raise Exception('')
         
         # and is full of 'binding' elements
-        for eBinding in eRoot.findall(XBL_BINDING):
-            self.parseBinding(eBinding)           
+        for eBinding in eRoot.findall(XBL_BINDING.text):
+            self.parseBinding(source_file, eBinding)           
 
     

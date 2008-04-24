@@ -10,6 +10,21 @@ import pecobro.jsparse.JavaScriptLexer as jslex
 
 import pecobro.core as core
 
+GLOBAL_OBJ_NAMES = (
+    'Array', 'Boolean', 'Date', 'Error', 'EvalError', 'Function', 'Math',
+    'Number', 'Object', 'RangeError', 'ReferenceError', 'RegExp', 'String',
+    'SyntaxError', 'TypeError', 'URIError',
+    )
+
+GLOBAL_PROP_NAMES = (
+    'Infinity', 'NaN', 'undefined',
+    )
+
+GLOBAL_FUNC_NAMES = (
+    'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent',
+    'eval', 'isFinite', 'isNaN', 'parseFloat', 'parseInt',
+    )
+
 class JSGrok(object):
     def __init__(self, caboodle):
         self.caboodle = caboodle
@@ -181,8 +196,10 @@ class JSGrok(object):
                     continue
                 if vexpr[1].token.text != 'prototype':
                     continue
-                # make sure the variable reference is a function...
-                
+                # (figure out what they're assigning for subsequent processing)
+                right_node = child.getChild(2)
+                right_val  = self._val_map(source_file, right_node,
+                                           source_file.scope, source_file)
                 
                 # are they assigning an object to the prototype?
                 if len(vexpr) == 2:
@@ -194,14 +211,17 @@ class JSGrok(object):
                 elif len(vexpr) == 3:
                     # they need to be assigning a function, either directly or
                     #  from a (global) variable
-                    pass
+                    # make sure the variable reference is a function...
+                    if not isinstance(right_val, core.Func):
+                        continue
+                    
 
     def grok_source_file(self, source_file, ast):
         
         self.grok_globals(source_file, ast)
         self.grok_objects(source_file, ast)
 
-    def grok_function(self, source_file, tFunc):
+    def grok_function(self, source_file, func, funcNode):
         '''
         Process a function looking for global references as well as local
         references (self method calls or property manipulation.)
@@ -212,4 +232,10 @@ class JSGrok(object):
         Special extras:
         - Detect what Component.classes are accessed (someday)
         '''
+        for child in funcNode.children:
+            pass
+            # the left side of a complex assign is a write at its tip, but a
+            #  read at the base. 
+            # a post-fix expression is a read and a write
+            
         
