@@ -172,9 +172,6 @@ XBL_BODY = etree.QName(XBL_NS, 'body')
 XBL_HANDLERS = etree.QName(XBL_NS, 'handlers')
 XBL_HANDLER = etree.QName(XBL_NS, 'handler')
 
-from IPython.Shell import IPShellEmbed
-ipshell = IPShellEmbed()
-
 class XBLParser(object):
     def _make_func(self, source_file, func_name, eNode, code):
         func, created = source_file.get_or_create_function(func_name)
@@ -182,6 +179,12 @@ class XBLParser(object):
         func.source_line = eNode.line
         func.source_col = eNode.column
 
+        # let's add a synthetic newline to trigger the implicit ';'-effect if
+        #  we don't think we've got a fully legal statement otherwise...
+        # (we're adding a newline instead of a semicolon because the LT isn't
+        #  really a semantic token)
+        if not ';' in code or not '\n' in code:
+            code += '\n'
         func.ast = jsparse.parse_snippet(code)
         
         source_file.contents.append(func)
@@ -189,10 +192,8 @@ class XBLParser(object):
     def parseBinding(self, source_file, eBinding):
         eImpl = eBinding.find(XBL_IMPLEMENTATION.text)
         if eImpl:
-            print 'IMPL'
             eConstructor = eImpl.find(XBL_CONSTRUCTOR.text)
             if eConstructor is not None:
-                print 'CONSTRUCTOR', eConstructor
                 self._make_func(source_file, 'constructor',
                                 eConstructor, eConstructor.text)
             
@@ -201,15 +202,11 @@ class XBLParser(object):
                 pass
             
             for eProperty in eImpl.findall(XBL_PROPERTY.text):
-                print 'PROPERTY', eProperty
-                #ipshell()
-                
                 prop_name = eProperty.get('name')
                 
                 eGetter = eProperty.find(XBL_GETTER.text)
                 on_get = eProperty.get('onget')
                 if eGetter is not None or on_get:
-                    print 'GETTER'
                     func_name = 'get_' + prop_name
                     if eGetter is not None:
                         self._make_func(source_file, func_name,
@@ -221,7 +218,6 @@ class XBLParser(object):
                 eSetter = eProperty.find(XBL_SETTER.text)
                 on_set = eProperty.get('onset')
                 if eSetter is not None or on_set:
-                    print 'SETTER'
                     func_name = 'set_' + prop_name
                     if eSetter is not None:
                         self._make_func(source_file, func_name,
@@ -243,7 +239,12 @@ class XBLParser(object):
         if eHandlers is not None:
             for eHandler in eHandlers.findall(XBL_HANDLER.text):
                 func_name = 'on' + eHandler.get('event')
-                self._make_func(source_file, func_name, eHandler, eHandler.text)
+                if eHandler.text:
+                    self._make_func(source_file, func_name, eHandler,
+                                    eHandler.text)
+                elif eHandler.get('action'):
+                    self._make_func(source_file, func_name, eHandler,
+                                    eHandler.get('action'))
         
         source_file.contents.sort(key=lambda x:(x.source_line, x.source_col))
         

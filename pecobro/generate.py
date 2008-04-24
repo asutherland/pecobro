@@ -27,6 +27,9 @@ import pecobro.consts as consts
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
+#from IPython.Shell import IPShellEmbed
+#ipshell = IPShellEmbed()
+
 class Generator(object):
     def __init__(self, code_dirs=()):
         self.code_dirs = list(code_dirs)
@@ -139,7 +142,7 @@ class Generator(object):
             #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
             #if not source_file.base_name in ['calDavCalendar.js']: continue
             #if not source_file.base_name in ['aboutDialog.js']: continue
-            if not source_file.base_name in ['calendar-view-core.xml']: continue
+            #if not source_file.base_name in ['calendar-view-core.xml']: continue
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):

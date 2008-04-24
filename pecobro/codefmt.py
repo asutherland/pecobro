@@ -26,7 +26,6 @@ class XmlJsFusionLexer(pygments.lexer.Lexer):
             if xt == pygments.token.Comment.Preproc and xv.startswith(self.CDATA_START):
                 yield xi, xt, self.CDATA_START
                 xxi = xi + len(self.CDATA_START)
-                print 'xv', xv
                 for ji, jt, jv in self.js_lexer.get_tokens_unprocessed(
                         xv[len(self.CDATA_START):-len(self.CDATA_END)]):
                     yield xxi + ji, jt, jv
