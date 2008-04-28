@@ -161,6 +161,7 @@ class SourceFile(object):
         self.norm_base_name = os.path.basename(path).replace('.', '_')
         
         self.functions = {}
+        self.functions_by_line = {}
         
         self.ever_called = {}
         
@@ -188,12 +189,20 @@ class SourceFile(object):
             created = False
         return func, created
     
+    def get_func_by_line(self, lineno):
+        return self.functions_by_line.get(lineno)
+    
     def def_global(self, var_name, var_value, token):
         self.globals[var_name] = var_value
         self.global_tokens[var_name] = token
 
     def add_function(self, func):
         self.functions[func.name] = func
+    
+    def add_to_contents(self, func):
+        self.contents.append(func)
+        if func.source_line is not None:
+            self.functions_by_line[func.source_line] = func
     
     def __str__(self):
         return 'SourceFile: %s' % (self.path,)
@@ -217,12 +226,19 @@ class SourceCaboodle(object):
     clever about providing search paths, predicating on configurations, etc.
     Right now we are just a fancy (and poorly, if awesomely, named) dictionary.
     '''
-    def __init__(self):
+    def __init__(self, moz_path, project):
+        self.moz_path = moz_path
+        self.project = project
+        
         self.source_files = []
         self.base_name_to_file = {}
+
+        #: map chrome paths to file-system paths
+        self.chrome_map = {}
         
         self.globals = {}
         self.global_def_locations = {}
+        
     
     def append(self, source_file):
         source_file.caboodle = self

@@ -21,6 +21,7 @@ import pecobro.mozpreproc as mozpreproc
 import pecobro.xbl as xbl
 import pecobro.core as core
 import pecobro.codefmt as codefmt
+import pecobro.jarman as jarman
 import pecobro.trace as trace
 import pecobro.vis as vis
 import pecobro.consts as consts
@@ -31,10 +32,10 @@ XBL_NS = 'http://www.mozilla.org/xbl'
 #ipshell = IPShellEmbed()
 
 class Generator(object):
-    def __init__(self, code_dirs=()):
-        self.code_dirs = list(code_dirs)
+    def __init__(self, moz_path, project):
+        #self.code_dirs = list(code_dirs)
         
-        self.caboodle = core.SourceCaboodle()
+        self.caboodle = core.SourceCaboodle(moz_path, project)
     
     def _consider_xml(self, code_path, base_path, path):
         print 'CONSIDERING', path
@@ -47,7 +48,7 @@ class Generator(object):
         f_in.close()
         f_out.seek(0)
         
-        doc = etree.parse(f_out, xbl.ChromeTreeBuilder(base_path=base_path))
+        doc = etree.parse(f_out, xbl.ChromeTreeBuilder(caboodle=self.caboodle))
         f_out.close()
         
         #doc = etree.parse(path_or_file)
@@ -64,6 +65,8 @@ class Generator(object):
             print '  non-XBL:', path
     
     def find_code(self):
+        jmp = jarman.JarManifestParser(self.caboodle)
+        
         for code_dir, base_dir in self.code_dirs:
             for dirpath, dirnames, filenames in os.walk(code_dir):
                 # don't walk into test subdirs for now...
@@ -73,8 +76,10 @@ class Generator(object):
                 for filename in filenames:
                     trash, suffix = os.path.splitext(filename)
                     filepath = os.path.join(dirpath, filename)
-            
-                    if suffix in ('.js', '.jsm'):
+
+                    if filename == 'jar.mn':
+                        jmp.parse(filepath)
+                    elif suffix in ('.js', '.jsm'):
                         print 'Found JS:', filepath
                         self.caboodle.append(core.SourceFile(filepath,
                                                              suffix[1:],
@@ -84,10 +89,40 @@ class Generator(object):
                         self._consider_xml(code_dir, base_dir, filepath)
 
     def parse_trace(self, trace_file):
+        import jsparse.jsparse as jsparse
+        xblp = xbl.XBLParser()
+
+        for source_file in self.caboodle.source_files:
+            #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
+            #if not source_file.base_name in ['calDavCalendar.js']: continue
+            #if not source_file.base_name in ['aboutDialog.js']: continue
+            #if not source_file.base_name in ['calendar-view-core.xml']: continue
+            
+            print '   - Parsing', source_file
+            if source_file.filetype.startswith('js'):
+                jsparse.sf_process(source_file, cache_dir='/tmp/pecobro_cache')
+            elif source_file.filetype == 'xbl':
+                xblp.parse(source_file)
+
         parser = trace.TraceParser(self.caboodle)
         parser.parse(trace_file)
 
+    def generate_index(self):
+        formatter = codefmt.CodeFormatter(style='manni')
+        
+        index_tmpl = self.loader.load('index.html')
+        index_stream = index_tmpl.generate(caboodle=self.caboodle,
+                                           pygments_style_defs=formatter.get_style_defs())
+        # for mime type reasons, be an xml file.
+        index_path = os.path.join(self.out_path, 'index.xml')
+        
+        f_index = codecs.open(index_path, 'w', 'utf-8')
+        f_index.write(index_stream.render())
+        f_index.close()
+
     def output_html(self, out_path):
+        self.out_path = out_path
+        
         if not os.path.isdir(out_path):
             os.makedirs(out_path)
         
@@ -96,7 +131,7 @@ class Generator(object):
         template_dir = os.path.join(our_path, 'templates')
         static_dir = os.path.join(our_path, 'static')
         
-        loader = genshi.template.loader.TemplateLoader([template_dir])
+        self.loader = genshi.template.loader.TemplateLoader([template_dir])
         
         # -- Copy Static Files
         for fname in os.listdir(static_dir):
@@ -110,20 +145,11 @@ class Generator(object):
                     # don't recursive copy every time...
                     if not os.path.exists(out_file):
                         shutil.copytree(in_file, out_file, False)
+
         
         # -- Index File
         print ' -- generating index'
-        formatter = codefmt.CodeFormatter(style='manni')
-        
-        index_tmpl = loader.load('index.html')
-        index_stream = index_tmpl.generate(caboodle=self.caboodle,
-                                           pygments_style_defs=formatter.get_style_defs())
-        # for mime type reasons, be an xml file.
-        index_path = os.path.join(out_path, 'index.xml')
-        
-        f_index = codecs.open(index_path, 'w', 'utf-8')
-        f_index.write(index_stream.render())
-        f_index.close()
+        self.generate_index()
         
         print '  -- generating vis (%d relevant files)' % (len(self.caboodle.relevant_source_files),)
         overview_path = os.path.join(out_path, 'overview.svg')
@@ -131,24 +157,10 @@ class Generator(object):
         
         #return
         
-        import jsparse.jsparse as jsparse
-        
-        func_list_tmpl = loader.load('func_list.html')
-        file_index_tmpl = loader.load('file_index.html')
-        
-        xblp = xbl.XBLParser()
+        func_list_tmpl = self.loader.load('func_list.html')
+        file_index_tmpl = self.loader.load('file_index.html')
         
         for source_file in self.caboodle.source_files:
-            #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
-            #if not source_file.base_name in ['calDavCalendar.js']: continue
-            #if not source_file.base_name in ['aboutDialog.js']: continue
-            if not source_file.base_name in ['calendar-view-core.xml']: continue
-            
-            print '   - Parsing', source_file
-            if source_file.filetype.startswith('js'):
-                jsparse.sf_process(source_file, cache_dir='/tmp/pecobro_cache')
-            elif source_file.filetype == 'xbl':
-                xblp.parse(source_file)
             # er, XBL in theory should already be processed, what with us
             #  having to parse the XML to figure out if it is XML.  (well, I
             #  guess we didn't have to full parse it)
@@ -189,13 +201,15 @@ class Generator(object):
             
 
 if __name__ == '__main__':
-    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
-                      '/home/visbrero/vc_mirrors/mozilla-git-mirror'),
-                     ('/home/visbrero/vc_mirrors/mozilla-git-mirror/toolkit/content/widgets',
-                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
+#    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
+#                      '/home/visbrero/vc_mirrors/mozilla-git-mirror'),
+#                     ('/home/visbrero/vc_mirrors/mozilla-git-mirror/toolkit/content/widgets',
+#                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
+    gen = Generator('/home/visbrero/vc_mirrors/mozilla-git-mirror', 'mail')
     print '--- finding code ---'
     gen.find_code()
     print '--- parsing trace ---'
-    gen.parse_trace('/home/visbrero/projects/perf/bob.log')
+#    gen.parse_trace('/home/visbrero/projects/perf/bob.log')
+    gen.parse_trace('/home/visbrero/projects/perf/pecobro-tbird.log')
     print '--- generating output ---'
     gen.output_html('/tmp/pecobro')

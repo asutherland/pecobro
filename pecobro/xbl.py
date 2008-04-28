@@ -35,7 +35,7 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
     that is currently a hack.
     '''
     def __init__(self, *args, **kwargs):
-        self.base_path = kwargs.pop('base_path')
+        self.caboodle = kwargs.pop('caboodle')
         
         etree.XMLTreeBuilder.__init__(self, *args, **kwargs)
         
@@ -66,6 +66,12 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
     
     def _map_chrome(self, systemId):
         chrome_path = systemId[9:]
+        
+        path = self.caboodle.chrome_map.get(chrome_path)
+        if path is None:
+            raise Exception('Unknown chrome path: %s' % (chrome_path,))
+        
+        return path
         
         cur_map = CHROME_MAP
         rest_path = chrome_path
@@ -187,7 +193,7 @@ class XBLParser(object):
             code += '\n'
         func.ast = jsparse.parse_snippet(code)
         
-        source_file.contents.append(func)
+        source_file.add_to_contents(func)
     
     def parseBinding(self, source_file, eBinding):
         eImpl = eBinding.find(XBL_IMPLEMENTATION.text)

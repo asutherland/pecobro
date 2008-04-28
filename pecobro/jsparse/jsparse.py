@@ -56,7 +56,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
             func.source_line = funcNode.token.line
             func.source_col  = funcNode.token.charPositionInLine
             
-            source_file.contents.append(func)
+            source_file.add_to_contents(func)
             
             print '%s(%d, %d): %s' % ('  ' * depth,
                                       func.source_line, func.source_col,

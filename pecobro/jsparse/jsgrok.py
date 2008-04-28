@@ -76,6 +76,8 @@ class JSGrok(object):
                 func.args = []
                 for argNode in nArgs.children:
                     func.args.append(argNode.token.text)
+                
+                source_file.add_to_contents(func)
             
             return func
         elif ntype == jslex.VEXPR:

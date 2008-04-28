@@ -4,34 +4,25 @@ import core
 class TraceParser(object):
     def __init__(self, caboodle, *args, **kwargs):
         self.caboodle = caboodle
-        self._vfunc_map = {}
 
-    def _get_func(self, filename, obj, funcname):
-        # 
-        itupe = (filename, funcname)
-        vfunc = self._vfunc_map.get(itupe)
-        if vfunc is None:
-            vfunc = VFunc(filename, funcname)
-            self._vfunc_map[itupe] = vfunc
-        return vfunc     
-    
     def parse(self, filename):
         func_cache = {}
-        def get_func(filename, funcname):
-            ctupe = (filename, funcname)
+        def get_func(filename, funcname, lineno):
+            ctupe = (filename, lineno)
             func = func_cache.get(ctupe)
             
-            if func is None:
+            if not ctupe in func_cache:
                 source_file = self.caboodle.base_name_to_file.get(filename)
                 if source_file is None:
                     raise Exception('Unable to locate source file: %s' % filename)
                 
-                func = source_file.functions.get(funcname)
+                func = source_file.get_func_by_line(lineno)
                 if func is None:
-                    func = core.Func(source_file, None, funcname)
-                    source_file.add_function(func)
+                    print 'Warning: unable to translate %s,%d to a function (hint: %s)' % (filename, lineno, funcname)
                 
                 func_cache[ctupe] = func
+            else:
+                func = func_cache[ctupe]
             
             return func
             
@@ -46,15 +37,18 @@ class TraceParser(object):
             if not ',' in line:
                 continue
             
-            depth_str, ts_str, te_str, filename, funcname = line.split(',')
-            depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
+            line_type = line[0]
             
-            if start_ts is not None:
-                start_ts = min(start_ts, ts)
-            else:
-                start_ts = ts
-            
-            max_te = max(te, max_te)
+            if line_type == 'r':
+                depth_str, ts_str, te_str, filename, funcname = line.split(',')
+                depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
+                
+                if start_ts is not None:
+                    start_ts = min(start_ts, ts)
+                else:
+                    start_ts = ts
+                
+                max_te = max(te, max_te)
         
         # because trace events are generated only on function returns, we
         #  need to accumulate things until we hit our parents...
@@ -68,21 +62,23 @@ class TraceParser(object):
             line = line.strip()
             if not ',' in line:
                 continue
+
+            line_type = line[0]
             
-            depth_str, ts_str, te_str, filename, funcname = line.split(',')
-            depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
-            
-            # gah! so, the probes are double-counting, so for now, let's exclude
-            #  all the even guys...
-            if depth%2 == 0:
+            if line_type != 'r':
                 continue
-            depth = depth / 2 + 1
+            
+            (line_type, depth_str, ts_str, te_str, filename, objname, funcname,
+                lineno_str, caller_filename, caller_lineno_str
+                ) = line.split(',')
+            depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
+            lineno = int(lineno_str)
             
             ts -= start_ts
             te -= start_ts
 
             # find our function and log this invocation of our function
-            func = get_func(filename, funcname)
+            func = get_func(filename, funcname, lineno)
             this_invoc = func.log_invoke(ts, te, depth, depth)
             
             # queue up this invocation for later consumption by our parent
