@@ -59,6 +59,12 @@ class JSGrok(object):
                     #  the basis of the synthetic ANONYMOUS token, we need
                     #  to change things up to just use the property name as our
                     #  token for that purpose
+                    # (note that the specific glitch and our grammar change
+                    #  only happened in the context of having a property; if
+                    #  there is no enclosingPropNode, we should actually be okay
+                    #  to leave nName as is (when this next line doesn't get
+                    #  executed) because we are propagating things still in the
+                    #  pure anonymous function case...)
                     nName = enclosingPropNode.getChild(0)
                 
                 propTypeNode = enclosingPropNode.getChild(1)

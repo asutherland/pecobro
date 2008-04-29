@@ -39,8 +39,11 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
                 funcName = funcNode.token.text
                 # we have to use the cur_property as our funcNode for
                 #  positioning because having antlr assign the property name's
-                #  token info to ANONYMOUS screws up
-                funcNode = cur_property
+                #  token info to ANONYMOUS screws up WHEN WE HAVE A PROPERTY.
+                # things are okay in the non-property case (propagation happens
+                #  correctly.)
+                if cur_property:
+                    funcNode = cur_property
             elif cur_property:
                 print 'assigning name %s to anonymous func' % (cur_property,)
                 funcName = cur_property.token.text
