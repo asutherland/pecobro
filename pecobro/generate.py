@@ -171,6 +171,11 @@ class Generator(object):
                 for rel_component in (mf.get('EXTRA_COMPONENTS').split() +
                                       mf.get('EXTRA_PP_COMPONENTS').split()):
                     abs_component = os.path.join(path, rel_component)
+                    # map them from remote to local paths, if relevant
+                    for path_from, path_to in self.path_maps:
+                        if abs_component.startswith(path_from):
+                            abs_component = abs_component.replace(path_from, path_to)
+                    # flop from the build dir to the source dir if relevant
                     if not os.path.exists(abs_component):
                         abs_component = abs_component.replace(self.caboodle.moz_build_path,
                                                               self.caboodle.moz_src_path)
