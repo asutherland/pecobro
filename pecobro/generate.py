@@ -34,8 +34,8 @@ import pecobro.makeparser as makeparser
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
-#from IPython.Shell import IPShellEmbed
-#ipshell = IPShellEmbed()
+from IPython.Shell import IPShellEmbed
+ipshell = IPShellEmbed()
 
 class Generator(object):
     def __init__(self, moz_src_path, project, moz_build_path,
@@ -363,15 +363,14 @@ if __name__ == '__main__':
         tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
         tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
         remote_build_dir = remote_src_dir = None
+    trace_file = '/home/visbrero/projects/perf/pecobro-tbird.log'
     gen = Generator(tb_src_dir, 'mail', tb_build_dir,
                     cache_dir='/tmp/pecobro_cache',
                     remote_src_path=remote_src_dir,
                     remote_build_path=remote_build_dir)
     print '--- finding code ---'
     gen.main()
-    #gen.find_code()
     print '--- parsing trace ---'
-#    gen.parse_trace('/home/visbrero/projects/perf/bob.log')
-    #gen.parse_trace('/home/visbrero/projects/perf/pecobro-tbird.log')
+    gen.parse_trace(trace_file)
     print '--- generating output ---'
     #gen.output_html('/tmp/pecobro')

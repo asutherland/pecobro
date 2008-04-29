@@ -55,6 +55,11 @@ class JSGrok(object):
             if nName.getType() == jslex.ANONYMOUS:
                 if enclosingPropNode:
                     func_name = enclosingPropNode.getChild(0).token.text
+                    # because we can't assign the property name token to be
+                    #  the basis of the synthetic ANONYMOUS token, we need
+                    #  to change things up to just use the property name as our
+                    #  token for that purpose
+                    nName = enclosingPropNode.getChild(0)
                 
                 propTypeNode = enclosingPropNode.getChild(1)
                 if propTypeNode.getType() != jslex.PROP:

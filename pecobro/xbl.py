@@ -189,9 +189,11 @@ class XBLParser(object):
         #  we don't think we've got a fully legal statement otherwise...
         # (we're adding a newline instead of a semicolon because the LT isn't
         #  really a semantic token)
-        if not ';' in code or not '\n' in code:
-            code += '\n'
-        func.ast = jsparse.parse_snippet(code)
+        # note: it is possible for code to be None (deprecated function idiom)
+        if code:
+            if not ';' in code or not '\n' in code:
+                code += '\n'
+            func.ast = jsparse.parse_snippet(code)
         
         source_file.add_to_contents(func)
     
