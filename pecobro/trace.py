@@ -40,7 +40,9 @@ class TraceParser(object):
             line_type = line[0]
             
             if line_type == 'r':
-                depth_str, ts_str, te_str, filename, funcname = line.split(',')
+                (line_type, depth_str, ts_str, te_str, filename, objname, funcname,
+                    lineno_str, caller_filename, caller_lineno_str
+                    ) = line.split(',')
                 depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
                 
                 if start_ts is not None:

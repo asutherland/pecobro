@@ -241,6 +241,8 @@ class SourceCaboodle(object):
 
         #: map chrome paths to file-system paths
         self.chrome_map = {}
+        #: components
+        self.components = []
         
         self.globals = {}
         self.global_def_locations = {}

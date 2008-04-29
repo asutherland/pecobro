@@ -166,7 +166,17 @@ class Generator(object):
                     print '...', defines
                     jmp.parse(cand_jar_name, defines=defines)
             
-
+                
+                # things in EXTRA_COMPONENTS or EXTRA_PP_COMPONENTS hop right on
+                for rel_component in (mf.get('EXTRA_COMPONENTS').split() +
+                                      mf.get('EXTRA_PP_COMPONENTS').split()):
+                    abs_component = os.path.join(path, rel_component)
+                    if not os.path.exists(abs_component):
+                        abs_component = abs_component.replace(self.caboodle.moz_build_path,
+                                                              self.caboodle.moz_src_path)
+                    if not abs_component in self.caboodle.components:
+                        print 'COMPONENT', abs_component
+                        self.caboodle.components.append(abs_component)
                 
                 for make_dir in mf.get('DIRS').split():
                     make_path = os.path.join(path, make_dir)
@@ -195,11 +205,13 @@ class Generator(object):
         '''
         cache_file = None
         if self.cache_dir and cerealizer:
-            cache_file = os.path.join(self.cache_dir, 'chrome-map.pickle')
+            cache_file = os.path.join(self.cache_dir, 'chrome-map.cereal')
             
             if os.path.isfile(cache_file):
                 f = open(cache_file, 'rb')
-                self.caboodle.chrome_map = cerealizer.load(f)
+                jar_info = cerealizer.load(f)
+                self.caboodle.chrome_map = jar_info['chrome_map']
+                self.caboodle.components = jar_info['components']
                 f.close()
                 return
         
@@ -207,7 +219,9 @@ class Generator(object):
         
         if cache_file:
             f = open(cache_file, 'wb')
-            cerealizer.dump(self.caboodle.chrome_map, f)
+            jar_info = {'chrome_map': self.caboodle.chrome_map,
+                        'components': self.caboodle.components}
+            cerealizer.dump(jar_info, f)
             f.close()
         
     
@@ -220,7 +234,8 @@ class Generator(object):
         stopped us from going into anything that had 'test' in it.  Now we are
         ever so much more fancy.
         '''
-        for src_abs_filepath in self.caboodle.chrome_map.values():
+        for src_abs_filepath in (self.caboodle.components +
+                                 self.caboodle.chrome_map.values()):
             filename = os.path.basename(src_abs_filepath)
             trash, suffix = os.path.splitext(filename)
 
