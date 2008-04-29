@@ -33,26 +33,27 @@ XBL_NS = 'http://www.mozilla.org/xbl'
 #ipshell = IPShellEmbed()
 
 class Generator(object):
-    def __init__(self, moz_path, project):
+    def __init__(self, moz_src_path, project, moz_build_path):
         #self.code_dirs = list(code_dirs)
 
-        client_mk_path = os.path.join(moz_path, 'client.mk')
+        client_mk_path = os.path.join(moz_src_path, 'client.mk')
         if not os.path.isfile(client_mk_path):
             raise Exception("There is no client.mk at %s, what am I supposed to do?" %
                             (client_mk_path,))
         
-        mf = makeparser.Makefile()
+        mf = makeparser.Makefile(force={'TOPSRCDIR': moz_src_path})
         mf.parse(client_mk_path)
         # the NS stuff is for checkout perhaps?
         module_dirs_str = mf.get('MODULES_%s' % (project,))
         locale_dirs_str = mf.get('LOCALES_%s' % (project,))
         
-        module_dirs = [os.path.join(moz_path, md.split('/', 1)[1]) for md in
+        module_dirs = [os.path.join(moz_build_path, md.split('/', 1)[1]) for md in
                        module_dirs_str.split()]
-        locale_dirs = [os.path.join(moz_path, md) for md in
+        locale_dirs = [os.path.join(moz_build_path, md) for md in
                        locale_dirs_str.split()]
         
-        self.caboodle = core.SourceCaboodle(moz_path, project,
+        self.caboodle = core.SourceCaboodle(moz_src_path, moz_build_path,
+                                            project,
                                             module_dirs=module_dirs,
                                             locale_dirs=locale_dirs)
     
@@ -85,6 +86,7 @@ class Generator(object):
     
     def find_jars(self):
         jmp = jarman.JarManifestParser(self.caboodle)
+        seen_dirs = ()
         
         print 'Scanning %d module dirs, %d locale dirs' % (
                 len(self.caboodle.module_dirs), len(self.caboodle.locale_dirs))
@@ -93,12 +95,25 @@ class Generator(object):
             cand_jar_name = os.path.join(path, 'jar.mn')
             print 'checking', cand_jar_name
             if os.path.isfile(cand_jar_name):
+                print 'PARSING', cand_jar_name
                 jmp.parse(cand_jar_name)
             
-            cand_makefile = os.path.join(path, 'Makefile.in')
+            cand_makefile = os.path.join(path, 'Makefile')
             if os.path.isfile(cand_makefile):
-                mf = makeparser.Makefile()
+                print 'parsing', cand_makefile
+                mf = makeparser.Makefile(
+                             force={'TOPSRCDIR': self.caboodle.moz_src_path})
                 mf.parse(cand_makefile)
+                
+                for make_dir in mf.get('DIRS').split():
+                    make_path = os.path.join(path, make_dir)
+                    if not make_path in seen_dirs:
+                        print '.', 
+                        check_path(make_path)
+                
+                # DIRS
+                # STATIC_DIRS
+                # TOOL_DIRS
                 
                 # TIERS -> tier_*_dirs
                 
@@ -249,7 +264,10 @@ if __name__ == '__main__':
 #                      '/home/visbrero/vc_mirrors/mozilla-git-mirror'),
 #                     ('/home/visbrero/vc_mirrors/mozilla-git-mirror/toolkit/content/widgets',
 #                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
-    gen = Generator('/home/visbrero/vc_mirrors/mozilla-git-mirror', 'mail')
+    tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
+    #tb_src_dir = '/home/visbrero/vc_mirrors/mozilla-git-mirror'
+    tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
+    gen = Generator(tb_src_dir, 'mail', tb_build_dir)
     print '--- finding code ---'
     gen.main()
     #gen.find_code()

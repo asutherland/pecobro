@@ -9,19 +9,29 @@ function calls, etc.
 
 import os.path
 
+import re
+
 class Context(object):
     '''
     Exists so that we can change between error-on-nonexistent and silent-empty.
     Arbitrarily chosen in
     '''
     def __init__(self):
-        self.values = {}
+        self._values = {}
+        self._force = set()
+    
+    def force(self, name):
+        self._force.add(name)
     
     def __setitem__(self, name, value):
-        self.values[name] = value
+        if not name in self._force:
+            self._values[name] = value
     
     def __getitem__(self, name):
-        return self.values.get(name, EMPTY_STRING)
+        return self._values.get(name, EMPTY_STRING)
+    
+    def __contains__(self, name):
+        return name in self._values
     
     def eval(self, name):
         return self[name].evalInContext(self)
@@ -32,6 +42,17 @@ class Literal(object):
     
     def evalInContext(self, context):
         return self.value
+    
+    def strip(self, l=True, r=True):
+        if l and r:
+            nval = self.value.strip()
+        elif l:
+            nval = self.value.lstrip()
+        elif r:
+            nval = self.value.rstrip()
+        if nval != self.value:
+            return Literal(nval)
+        return self
     
     def __add__(self, other):
         if isinstance(other, Literal):
@@ -49,13 +70,93 @@ class Literal(object):
     
 EMPTY_STRING = Literal('')
 
+def mfunc_call(nodes, context):
+    variable = nodes[0].evalInContext(context)
+    
+    context['0'] = Literal(variable)
+    for iArg, argNode in enumerate(nodes[1:]):
+        # do _not_ evaluate these... we leave that to the expansion of variable
+        context['%d' % (iArg + 1)] = argNode
+        
+    rval = context.eval(variable)
+    return rval
+
+def mfunc_filter(nodes, context):
+    pattern_str = nodes[0].evalInContext(context)
+    text_str = nodes[1].evalInContext(context)
+    
+    regex_parts = []
+    for pat_str in pattern_str.split():
+        # only the first % is actually wild
+        if '%' in pat_str:
+            idxPercent = pat_str.find('%')
+            regex_part = (re.escape(pat_str[:idxPercent]) + '.*' +
+                            re.escape(pat_str[idxPercent+1:]))
+        else:
+            regex_part = re.escape(pat_str)
+        regex_parts.append('(%s)' % (regex_part,))
+    
+    regex = re.compile('|'.join(regex_parts))
+    
+    text_parts = filter(lambda tp: regex.match(tp) is not None, text_str.split())
+    rval = ' '.join(text_parts)
+    return rval
+    
+
+def mfunc_if(nodes, context):
+    condition = nodes[0].strip().evalInContext(context)
+    if condition:
+        return nodes[1].evalInContext(context)
+    elif len(nodes) == 3:
+        return nodes[2].evalInContext(context)
+    return ''
+
+def mfunc_subst(nodes, context):
+    from_str = nodes[0].evalInContext(context)
+    to_str = nodes[1].evalInContext(context)
+    text_str = nodes[2].evalInContext(context)
+    
+    return text_str.replace(from_str, to_str)
+
+MAKE_FUNCTIONS = {
+    'call': mfunc_call,
+    'filter': mfunc_filter,
+    'if': mfunc_if,
+    'subst': mfunc_subst,
+}
+
+class FuncCall(object):
+    def __init__(self, func_name, nodes):
+        self.func_name = func_name
+        self.nodes = nodes
+    
+    def evalInContext(self, context):
+        if self.func_name in MAKE_FUNCTIONS:
+            return MAKE_FUNCTIONS[self.func_name](self.nodes, context)
+        else:
+            return ''
+    
+    def strip(self, l=True, r=True):
+        return self
+    
+    def __add__(self, other):
+        return ComplexString([self, other])
+    
+    def __str__(self):
+        return '$(%s: %s)' % (self.func_name, ','.join(map(str, self.nodes)))
+        
+
 class VarRef(object):
     def __init__(self, node):
         self.node = node
     
     def evalInContext(self, context):
         var_name = self.node.evalInContext(context)
+        
         return context[var_name].evalInContext(context)
+    
+    def strip(self, l=True, r=True):
+        return self
     
     def __add__(self, other):
         return ComplexString([self, other])
@@ -70,6 +171,30 @@ class ComplexString(object):
     def evalInContext(self, context):
         return ''.join(map(lambda x: x.evalInContext(context), self.nodes))
     
+    def strip(self, l=True, r=True):
+        if not self.nodes:
+            return self
+        
+        if len(self.nodes) == 1:
+            new_node = self.nodes[0].strip()
+            if new_node == self.nodes[0]:
+                return self
+            else:
+                return ComplexString([new_node])
+        
+        new_nodes = self.nodes[:]
+        # strip the left and right sides of the left and right nodes,
+        #  respectively.  we do not consider the case that we completely
+        #  stripped a node and we should strip through its neighbor.  we ignore
+        #  said case on the basis that we know that's not how we construct
+        #  things...
+        new_nodes[0] = new_nodes[0].strip(l=True,r=False)
+        new_nodes[-1] = new_nodes[-1].strip(l=False,r=True)
+        if new_nodes == self.nodes:
+            return self
+        else:
+            return ComplexString(new_nodes)
+    
     def __add__(self, other):
         if isinstance(other, ComplexString):
             self.nodes.extend(other.nodes)
@@ -81,13 +206,16 @@ class ComplexString(object):
         return '[' + '+'.join(map(str, self.nodes)) + ']'
 
 class Makefile(object):
-    def __init__(self, values={}):
+    def __init__(self, values={}, force={}):
         self.context = Context()
         
         self.makefile_stack = []
         
         for key, value in values.items():
             self.context[key] = Literal(value)
+        for key, value in force.items():
+            self.context[key] = Literal(value)
+            self.context.force(key)
     
     CONDITIONALS = set(['ifdef', 'ifeq', 'ifndef', 'ifneq', 'else', 'endif'])
     
@@ -105,6 +233,9 @@ class Makefile(object):
         just_saw_dollar = False
         var_stack = []
         cur_nodes = []
+        in_func = False
+        func_possible = False
+        func_nodes = None
         i = -1
         term_char = None
         for i, c in enumerate(s):
@@ -121,8 +252,10 @@ class Makefile(object):
                         cur_nodes.append(Literal(acc))
                         acc = ''
                     # push a new node list...
-                    var_stack.append((term_c, cur_nodes))
+                    var_stack.append((term_c, in_func, cur_nodes, func_nodes))
                     cur_nodes = []
+                    in_func = False
+                    func_possible = True
                 else:
                     if acc:
                         cur_nodes.append(Literal(acc))
@@ -137,14 +270,49 @@ class Makefile(object):
                     if acc:
                         cur_nodes.append(Literal(acc))
                         acc = ''
-                    if len(cur_nodes) > 1:
-                        var_node = VarRef(ComplexString(cur_nodes))
+                    if in_func:
+                        # (I AM BOB)
+                        if len(cur_nodes) > 1:
+                            func_nodes.append(ComplexString(cur_nodes))
+                        elif cur_nodes:
+                            func_nodes.append(cur_nodes[0])
+                        else:
+                            func_nodes.append(EMPTY_STRING)
+                        cur_nodes = []
+                        var_node = FuncCall(in_func, func_nodes)
                     else:
-                        var_node = VarRef(cur_nodes[0])
-                    cur_nodes = var_stack.pop()[1]
+                        if len(cur_nodes) > 1:
+                            var_node = VarRef(ComplexString(cur_nodes))
+                        else:
+                            var_node = VarRef(cur_nodes[0])
+                    trash, in_func, cur_nodes, func_nodes = var_stack.pop()
+                    # if we just came back from a variable syntax, there's no
+                    #  way we could transition to a function state if we weren't
+                    #  already in one...
+                    func_possible = False
                     cur_nodes.append(var_node)
                 elif var_stack:
-                    acc += c
+                    if func_possible and c == ' ':
+                        if acc in self.FUNCTIONS:
+                            in_func = acc
+                            acc = ''
+                            func_nodes = []
+                        func_possible = False
+                    elif in_func and c == ',':
+                        if acc:
+                            cur_nodes.append(Literal(acc))
+                            acc = ''
+                        
+                        # (clone of BOB)
+                        if len(cur_nodes) > 1:
+                            func_nodes.append(ComplexString(cur_nodes))
+                        elif cur_nodes:
+                            func_nodes.append(cur_nodes[0])
+                        else:
+                            func_nodes.append(EMPTY_STRING)
+                        cur_nodes = []
+                    else:
+                        acc += c
                 elif c in whitespace and stopAtWhitespace:
                     term_char = c
                     break
@@ -177,7 +345,8 @@ class Makefile(object):
         cond_stack = []
         active = True
         for line in f:
-            line = line[:-1]
+            if line.endswith('\n'):
+                line = line[:-1]
             ls_line = line.lstrip()
             s_line = line.strip()
             
@@ -277,24 +446,34 @@ class Makefile(object):
                     #print 'skipping include because inactive'
                     continue
                 include_files_node = self._parseOneFileThing(rest, False)[0]
-                print 'INCLUDE NODE', include_files_node
+                #print 'INCLUDE NODE', include_files_node
                 include_files_s = include_files_node.evalInContext(self.context)
                 include_files = include_files_s.split()
                 
                 for include_file in include_files:
-                    include_path = os.path.join(os.path.dirname(path),
+                    include_path = os.path.join(os.path.dirname(self.makefile_stack[0]),
                                                 include_file)
                     if include_path in self.makefile_stack:
                         raise Exception("Attempted makefile recursion! "
                                         "stack: %s" % (self.makefile_stack,))
                     # if we are -included and the file doesn't exist, just skip
-                    # (otherwise we'll let our parse command fail...)
-                    if not os.path.isfile(include_path) and first_word == '-include':
-                        continue
+                    if not os.path.isfile(include_path):
+                        if first_word == '-include':
+                            continue
+                        else:
+                            msg = ('Unable to locate requested include file: '
+                                   '%s (stack: %s)' % (include_path,
+                                                       self.makefile_stack)) 
+                            raise Exception(msg)
                     
                     #print 'INCLUDING', include_path
                     self.parse(include_path)
                 
+                continue
+            
+            # ignore vpath directives
+            if first_word == 'vpath':
+                in_rule = False
                 continue
             
             # uh, we're no longer in a rule if we see a line with content that
@@ -324,12 +503,20 @@ class Makefile(object):
                     line = term_char + line
                     break
             
+            # so, I've seen "+ =", and we'll assume the ? case is possible...
+            #  we're going to assume people aren't jerks about :=, because that
+            #  gets slightly more messy, but it's probably a bad assumption,
+            #  since we can disambiguate...
             if (line.startswith('=') or line.startswith(':=') or
-                    line.startswith('+=') or line.startswith('?=')):
+                    line.startswith('+') or line.startswith('?')):
                 if line[0] == '=':
                     line = line[1:].lstrip()
                     action = '='
                 else:
+                    eqIndex = line.index('=')
+                    # deal with jerky spaces
+                    if eqIndex > 1:
+                        line = line[0] + line[eqIndex:]
                     action = line[0]
                     line = line[2:].lstrip()
                 value = self._parseOneFileThing(line, False)[0]
@@ -355,7 +542,7 @@ class Makefile(object):
                         value = Literal(value.evalInContext(context))
                         context[name] = value
                     elif action == '?':
-                        if name not in self.context.values:
+                        if name not in self.context:
                             context[name] = value
                 
                     #print '   now equals...', context[name].evalInContext(context)
@@ -364,7 +551,7 @@ class Makefile(object):
                 
             elif line.startswith(':'):
                 in_rule = True
-                print 'found a rule...', pre_gobble_line
+                #print 'found a rule...', pre_gobble_line
             elif file_things and file_things[0] == 'export':
                 # export without assignment doesn't matter to us
                 continue
@@ -375,8 +562,10 @@ class Makefile(object):
                 # unexport without assignment doesn't matter to us
                 continue
             # be okay with (void) variable expansion for side-effects
-            elif len(file_things) == 1 and isinstance(file_things[0], VarRef):
-                continue 
+            elif (len(file_things) == 1 and
+                    (isinstance(file_things[0], VarRef) or
+                     isinstance(file_things[0], FuncCall))):
+                continue
             else:
                 raise Exception("Weird parse: %s, %s: %s" % (map(str, file_things),
                                                      line, pre_gobble_line))
@@ -384,16 +573,18 @@ class Makefile(object):
         self.makefile_stack.pop()
     
     def get(self, name):
-        return self.context[name].evalInContext(self.context)
+        return self.context.eval(name)
     
     def dump(self):
-        for key in self.context.values:
+        for key in self.context._values.keys():
             print '%s: %s' % (key, self.context[key].evalInContext(self.context))
             
 if __name__ == '__main__':
     m = Makefile()
     #m.parse('/home/visbrero/rev_control/mozilla-cvs/client.mk')
     #m.parse('/home/visbrero/rev_control/mozilla-cvs/xpcom/Makefile.in')
-    m.parse('/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/xpcom/Makefile')
+    #m.parse('/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/xpcom/Makefile')
+    #m.parse('/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/dom/tests/mochitest/ajax/scriptaculous/test/Makefile')
+    m.parse('/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/mail/locales/Makefile')
     m.dump()
     #print m.get('MODULES_mail').split()
