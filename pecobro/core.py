@@ -226,9 +226,12 @@ class SourceCaboodle(object):
     clever about providing search paths, predicating on configurations, etc.
     Right now we are just a fancy (and poorly, if awesomely, named) dictionary.
     '''
-    def __init__(self, moz_path, project):
+    def __init__(self, moz_path, project, module_dirs=(), locale_dirs=()):
         self.moz_path = moz_path
         self.project = project
+        
+        self.module_dirs = module_dirs
+        self.locale_dirs = locale_dirs
         
         self.source_files = []
         self.base_name_to_file = {}

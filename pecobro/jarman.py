@@ -43,7 +43,7 @@ class JarManifestParser(object):
                     path = os.path.join(manifest_dir, fs_path)
                 
                 self.caboodle.chrome_map[jar_path] = path
-                print '  %s -> %s', jar_path, path
+                print '  %s -> %s' % (jar_path, path)
             # -- a jar file
             elif line.endswith(':'):
                 pass

@@ -25,6 +25,7 @@ import pecobro.jarman as jarman
 import pecobro.trace as trace
 import pecobro.vis as vis
 import pecobro.consts as consts
+import pecobro.makeparser as makeparser
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
@@ -34,8 +35,26 @@ XBL_NS = 'http://www.mozilla.org/xbl'
 class Generator(object):
     def __init__(self, moz_path, project):
         #self.code_dirs = list(code_dirs)
+
+        client_mk_path = os.path.join(moz_path, 'client.mk')
+        if not os.path.isfile(client_mk_path):
+            raise Exception("There is no client.mk at %s, what am I supposed to do?" %
+                            (client_mk_path,))
         
-        self.caboodle = core.SourceCaboodle(moz_path, project)
+        mf = makeparser.Makefile()
+        mf.parse(client_mk_path)
+        # the NS stuff is for checkout perhaps?
+        module_dirs_str = mf.get('MODULES_%s' % (project,))
+        locale_dirs_str = mf.get('LOCALES_%s' % (project,))
+        
+        module_dirs = [os.path.join(moz_path, md.split('/', 1)[1]) for md in
+                       module_dirs_str.split()]
+        locale_dirs = [os.path.join(moz_path, md) for md in
+                       locale_dirs_str.split()]
+        
+        self.caboodle = core.SourceCaboodle(moz_path, project,
+                                            module_dirs=module_dirs,
+                                            locale_dirs=locale_dirs)
     
     def _consider_xml(self, code_path, base_path, path):
         print 'CONSIDERING', path
@@ -63,6 +82,29 @@ class Generator(object):
                                                  eRoot=root))
         else:
             print '  non-XBL:', path
+    
+    def find_jars(self):
+        jmp = jarman.JarManifestParser(self.caboodle)
+        
+        print 'Scanning %d module dirs, %d locale dirs' % (
+                len(self.caboodle.module_dirs), len(self.caboodle.locale_dirs))
+        
+        def check_path(path):
+            cand_jar_name = os.path.join(path, 'jar.mn')
+            print 'checking', cand_jar_name
+            if os.path.isfile(cand_jar_name):
+                jmp.parse(cand_jar_name)
+            
+            cand_makefile = os.path.join(path, 'Makefile.in')
+            if os.path.isfile(cand_makefile):
+                mf = makeparser.Makefile()
+                mf.parse(cand_makefile)
+                
+                # TIERS -> tier_*_dirs
+                
+        
+        for dir in self.caboodle.module_dirs + self.caboodle.locale_dirs:
+            check_path(dir)
     
     def find_code(self):
         jmp = jarman.JarManifestParser(self.caboodle)
@@ -198,7 +240,9 @@ class Generator(object):
             
             fweb.write('</div>')
             fweb.close()
-            
+    
+    def main(self):
+        self.find_jars()
 
 if __name__ == '__main__':
 #    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
@@ -207,9 +251,10 @@ if __name__ == '__main__':
 #                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
     gen = Generator('/home/visbrero/vc_mirrors/mozilla-git-mirror', 'mail')
     print '--- finding code ---'
-    gen.find_code()
+    gen.main()
+    #gen.find_code()
     print '--- parsing trace ---'
 #    gen.parse_trace('/home/visbrero/projects/perf/bob.log')
-    gen.parse_trace('/home/visbrero/projects/perf/pecobro-tbird.log')
+    #gen.parse_trace('/home/visbrero/projects/perf/pecobro-tbird.log')
     print '--- generating output ---'
-    gen.output_html('/tmp/pecobro')
+    #gen.output_html('/tmp/pecobro')
