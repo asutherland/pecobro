@@ -86,21 +86,28 @@ class Generator(object):
     
     def find_jars(self):
         jmp = jarman.JarManifestParser(self.caboodle)
-        seen_dirs = ()
+        seen_dirs = set()
         
         print 'Scanning %d module dirs, %d locale dirs' % (
                 len(self.caboodle.module_dirs), len(self.caboodle.locale_dirs))
         
         def check_path(path):
-            cand_jar_name = os.path.join(path, 'jar.mn')
-            print 'checking', cand_jar_name
+            seen_dirs.add(path)
+            
+            # okay, the path is going to be in the build hierarchy, let's get
+            #  a corresponding source path
+            src_path = path.replace(self.caboodle.moz_build_path,
+                                    self.caboodle.moz_src_path)
+            
+            cand_jar_name = os.path.join(src_path, 'jar.mn')
+            #print 'checking', cand_jar_name
             if os.path.isfile(cand_jar_name):
                 print 'PARSING', cand_jar_name
                 jmp.parse(cand_jar_name)
             
             cand_makefile = os.path.join(path, 'Makefile')
             if os.path.isfile(cand_makefile):
-                print 'parsing', cand_makefile
+                #print 'parsing', cand_makefile
                 mf = makeparser.Makefile(
                              force={'TOPSRCDIR': self.caboodle.moz_src_path})
                 mf.parse(cand_makefile)
@@ -108,7 +115,6 @@ class Generator(object):
                 for make_dir in mf.get('DIRS').split():
                     make_path = os.path.join(path, make_dir)
                     if not make_path in seen_dirs:
-                        print '.', 
                         check_path(make_path)
                 
                 # DIRS
