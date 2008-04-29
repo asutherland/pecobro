@@ -214,8 +214,9 @@ class ComplexString(object):
         return '[' + '+'.join(map(str, self.nodes)) + ']'
 
 class Makefile(object):
-    def __init__(self, values={}, force={}):
+    def __init__(self, values={}, force={}, path_maps=()):
         self.context = Context()
+        self.path_maps = path_maps
         
         self.makefile_stack = []
         
@@ -461,6 +462,13 @@ class Makefile(object):
                 for include_file in include_files:
                     include_path = os.path.join(os.path.dirname(self.makefile_stack[0]),
                                                 include_file)
+                    if self.path_maps:
+                        for path_from, path_to in self.path_maps:
+                            if include_path.startswith(path_from):
+                                # replace is good enough...
+                                include_path = include_path.replace(path_from,
+                                                                    path_to)
+                                break
                     if include_path in self.makefile_stack:
                         raise Exception("Attempted makefile recursion! "
                                         "stack: %s" % (self.makefile_stack,))

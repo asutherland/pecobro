@@ -39,7 +39,8 @@ XBL_NS = 'http://www.mozilla.org/xbl'
 
 class Generator(object):
     def __init__(self, moz_src_path, project, moz_build_path,
-                 cache_dir=None):
+                 cache_dir=None,
+                 remote_src_path=None, remote_build_path=None):
         # okay, we actually want to parameterize our cache a little
         if cache_dir:
             cache_dir = os.path.join(cache_dir, '%x' % (abs(hash(moz_build_path)),))
@@ -49,13 +50,20 @@ class Generator(object):
             except:
                 cache_dir = None
         self.cache_dir = cache_dir
+        
+        self.path_maps = []
+        if remote_build_path:
+            self.path_maps.append((remote_build_path, moz_build_path))
+        if remote_src_path:
+            self.path_maps.append((remote_src_path, moz_src_path))
 
         client_mk_path = os.path.join(moz_src_path, 'client.mk')
         if not os.path.isfile(client_mk_path):
             raise Exception("There is no client.mk at %s, what am I supposed to do?" %
                             (client_mk_path,))
         
-        mf = makeparser.Makefile(force={'TOPSRCDIR': moz_src_path})
+        mf = makeparser.Makefile(force={'TOPSRCDIR': moz_src_path},
+                                 path_maps=self.path_maps)
         mf.parse(client_mk_path)
         # the NS stuff is for checkout perhaps?
         module_dirs_str = mf.get('MODULES_%s' % (project,))
@@ -134,7 +142,8 @@ class Generator(object):
             if os.path.isfile(cand_makefile):
                 #print 'parsing', cand_makefile
                 mf = makeparser.Makefile(
-                             force={'TOPSRCDIR': self.caboodle.moz_src_path})
+                             force={'TOPSRCDIR': self.caboodle.moz_src_path},
+                             path_maps=self.path_maps)
                 mf.parse(cand_makefile)
                 
                 if os.path.isfile(cand_jar_name):
@@ -337,17 +346,27 @@ class Generator(object):
     
     def main(self):
         self.find_jars()
-        #self.find_code()
+        self.find_code()
 
 if __name__ == '__main__':
 #    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
 #                      '/home/visbrero/vc_mirrors/mozilla-git-mirror'),
 #                     ('/home/visbrero/vc_mirrors/mozilla-git-mirror/toolkit/content/widgets',
 #                      '/home/visbrero/vc_mirrors/mozilla-git-mirror')])
-    tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
-    #tb_src_dir = '/home/visbrero/vc_mirrors/mozilla-git-mirror'
-    tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
-    gen = Generator(tb_src_dir, 'mail', tb_build_dir, cache_dir='/tmp/pecobro_cache')
+    mac = True
+    if mac:
+        tb_build_dir = '/home/visbrero/mnt/roisin/rev_control/hg/mozilla/obj-thunderbird-generic/'
+        tb_src_dir = '/home/visbrero/mnt/roisin/rev_control/hg/mozilla/'
+        remote_build_dir = '/Users/sombrero/rev_control/hg/mozilla/obj-thunderbird-generic/'
+        remote_src_dir = '/Users/sombrero/rev_control/hg/mozilla/'
+    else:
+        tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
+        tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
+        remote_build_dir = remote_src_dir = None
+    gen = Generator(tb_src_dir, 'mail', tb_build_dir,
+                    cache_dir='/tmp/pecobro_cache',
+                    remote_src_path=remote_src_dir,
+                    remote_build_path=remote_build_dir)
     print '--- finding code ---'
     gen.main()
     #gen.find_code()
