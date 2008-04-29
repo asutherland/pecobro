@@ -233,10 +233,10 @@ def parse_and_proc(fname, cache_dir=None, force=False):
     grokker.grok_source_file(source_file, ast.tree)
 
 def sf_process(source_file, cache_dir=None, force=False):
-    #try:
+    try:
         ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
         source_file.ast = ptree.tree
         scan_and_proc(source_file, ptree.tree)
-    #except Exception, e:
-        #print '*** EXCEPTION', e
-    #    pass
+    except Exception, e:
+        print '*** EXCEPTION', e
+        pass
