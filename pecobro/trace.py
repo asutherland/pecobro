@@ -16,7 +16,12 @@ class TraceParser(object):
                 if source_file is None:
                     raise Exception('Unable to locate source file: %s' % filename)
                 
-                func = source_file.get_func_by_line(lineno)
+                # import is a special case!
+                if funcname == 'import' and lineno == 1:
+                    func = source_file.import_function
+                else:
+                    func = source_file.get_func_by_line(lineno)
+                
                 if func is None:
                     print 'Warning: unable to translate %s,%d to a function (hint: %s)' % (filename, lineno, funcname)
                 

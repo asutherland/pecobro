@@ -178,6 +178,12 @@ class SourceFile(object):
         
         #: Global variables exposed by this file.
         self.scope = Scope('global', None)
+        
+        # create our synthetic import function
+        self.import_function, trash = self.get_or_create_function('!import')
+        self.import_function.source_line = 0
+        self.import_function.source_col = 0
+        self.add_to_contents(self.import_function)
 
     def get_or_create_function(self, funcname):
         func = self.functions.get(funcname)

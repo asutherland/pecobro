@@ -186,7 +186,7 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
             if t == 1:
                 cur_line += 1
                 
-                if nextFunc and nextFunc.source_line == cur_line:
+                while nextFunc and nextFunc.source_line <= cur_line:
                     yield 0, '<span id="func|%s" class="fhdr">%s</span>' % (nextFunc.norm_name,
                                                              nextFunc.name)
                     if nextFunc.invocations:
@@ -247,18 +247,19 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
         for ttype, value in tokensource:
             #print 'TOKEN', cur_line, cur_pos, value
             
-            if nextFunc and nextFunc.source_line == cur_line:
-                if multi_ast:
-                    # look for our Comment.Preproc marker...
-                    sync_ast = True
-                    
-                    if nextFunc.ast:
-                        ast = ASTHelper(nextFunc.ast)
-                        #print '************ new AST', ast.line, ast.pos
-                    else:
-                        ast = None
+            if nextFunc and nextFunc.source_line <= cur_line:
+                while nextFunc and nextFunc.source_line <= cur_line:
+                    if multi_ast:
+                        # look for our Comment.Preproc marker...
+                        sync_ast = True
                         
-                nextFunc = next_contents()
+                        if nextFunc.ast:
+                            ast = ASTHelper(nextFunc.ast)
+                            #print '************ new AST', ast.line, ast.pos
+                        else:
+                            ast = None
+                            
+                    nextFunc = next_contents()
             elif ttype == pygments.token.Comment.Preproc and sync_ast:
                 # ast line is zero-based, our line-count is 1-based
                 ast_line_adjust = cur_line - 1
