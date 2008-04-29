@@ -11,6 +11,11 @@ try:
 except:
     import StringIO
 
+try:
+    import cerealizer
+except:
+    cerealizer = None
+
 import genshi.template, genshi.template.loader, genshi
 
 import pygments
@@ -33,8 +38,17 @@ XBL_NS = 'http://www.mozilla.org/xbl'
 #ipshell = IPShellEmbed()
 
 class Generator(object):
-    def __init__(self, moz_src_path, project, moz_build_path):
-        #self.code_dirs = list(code_dirs)
+    def __init__(self, moz_src_path, project, moz_build_path,
+                 cache_dir=None):
+        # okay, we actually want to parameterize our cache a little
+        if cache_dir:
+            cache_dir = os.path.join(cache_dir, '%x' % (abs(hash(moz_build_path)),))
+        if not os.path.isdir(cache_dir):
+            try:
+                os.makedirs(cache_dir)
+            except:
+                cache_dir = None
+        self.cache_dir = cache_dir
 
         client_mk_path = os.path.join(moz_src_path, 'client.mk')
         if not os.path.isfile(client_mk_path):
@@ -57,7 +71,7 @@ class Generator(object):
                                             module_dirs=module_dirs,
                                             locale_dirs=locale_dirs)
     
-    def _consider_xml(self, code_path, base_path, path):
+    def _consider_xml(self, path):
         print 'CONSIDERING', path
         # grrrrr, we need to preprocess things now...
         f_in = open(path, 'r') #codecs.open(path, 'r', 'utf-8')
@@ -79,12 +93,26 @@ class Generator(object):
         if root.tag.startswith('{%s}' % XBL_NS):
             print 'Found XBL:', path
             self.caboodle.append(core.SourceFile(path, 'xbl',
-                                                 base_dir=base_path,
+                                                 base_dir=self.caboodle.moz_src_path,
                                                  eRoot=root))
         else:
             print '  non-XBL:', path
     
-    def find_jars(self):
+    def _find_jars(self):
+        '''
+        Given the module_dirs and locale_dirs extracted from client.mk (but
+        make relative to the build dir) for the given project as a set of
+        starting directories, parse the Makefiles in those directories,
+        recursing if we haven't yet processed them.  For every directory, see
+        if there is a jar.mn manifest file, and if so, process it.
+        
+        The result of this call is that self.caboodle.chrome_map will have
+        entries for all the files that could be used by the system in the
+        existing configuration.  We use this both for DTD resolution in XBL
+        processing and also as our means of finding source files of interest. 
+        
+        This is very expensive, so we have a cached wrapped helper, find_jars.
+        '''
         jmp = jarman.JarManifestParser(self.caboodle)
         seen_dirs = set()
         
@@ -127,29 +155,50 @@ class Generator(object):
         for dir in self.caboodle.module_dirs + self.caboodle.locale_dirs:
             check_path(dir)
     
-    def find_code(self):
-        jmp = jarman.JarManifestParser(self.caboodle)
+    def find_jars(self):
+        '''
+        Because _find_jars is so expensive, we attempt to cache the results of
+        running that here...  See _find_jars for info on the actual logic.
+        '''
+        cache_file = None
+        if self.cache_dir and cerealizer:
+            cache_file = os.path.join(self.cache_dir, 'chrome-map.pickle')
+            
+            if os.path.isfile(cache_file):
+                f = open(cache_file, 'rb')
+                self.caboodle.chrome_map = cerealizer.load(f)
+                f.close()
+                return
         
-        for code_dir, base_dir in self.code_dirs:
-            for dirpath, dirnames, filenames in os.walk(code_dir):
-                # don't walk into test subdirs for now...
-                if 'test' in dirnames:
-                    del dirnames[dirnames.index('test')]
-                
-                for filename in filenames:
-                    trash, suffix = os.path.splitext(filename)
-                    filepath = os.path.join(dirpath, filename)
+        self._find_jars()
+        
+        if cache_file:
+            f = open(cache_file, 'wb')
+            cerealizer.dump(self.caboodle.chrome_map, f)
+            f.close()
+        
+    
+    def find_code(self):
+        '''
+        Walk the listing of all the files known to us in the caboodle chrome_map
+        and process any that are of interest to us based on their extension.
+        
+        We used to just walk some user-provided paths with a heuristic that
+        stopped us from going into anything that had 'test' in it.  Now we are
+        ever so much more fancy.
+        '''
+        for src_abs_filepath in self.caboodle.chrome_map.values():
+            filename = os.path.basename(src_abs_filepath)
+            trash, suffix = os.path.splitext(filename)
 
-                    if filename == 'jar.mn':
-                        jmp.parse(filepath)
-                    elif suffix in ('.js', '.jsm'):
-                        print 'Found JS:', filepath
-                        self.caboodle.append(core.SourceFile(filepath,
-                                                             suffix[1:],
-                                                             base_dir=base_dir))
-                        pass 
-                    elif suffix in ('.xml',):
-                        self._consider_xml(code_dir, base_dir, filepath)
+            if suffix in ('.js', '.jsm'):
+                print 'Found JS:', src_abs_filepath
+                self.caboodle.append(core.SourceFile(src_abs_filepath,
+                                                     suffix[1:],
+                                                     base_dir=self.caboodle.moz_src_path))
+                pass 
+            elif suffix in ('.xml',):
+                self._consider_xml(src_abs_filepath)
 
     def parse_trace(self, trace_file):
         import jsparse.jsparse as jsparse
@@ -163,7 +212,7 @@ class Generator(object):
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
-                jsparse.sf_process(source_file, cache_dir='/tmp/pecobro_cache')
+                jsparse.sf_process(source_file, cache_dir=self.cache_dir)
             elif source_file.filetype == 'xbl':
                 xblp.parse(source_file)
 
@@ -264,6 +313,7 @@ class Generator(object):
     
     def main(self):
         self.find_jars()
+        #self.find_code()
 
 if __name__ == '__main__':
 #    gen = Generator([('/home/visbrero/vc_mirrors/mozilla-git-mirror/calendar',
@@ -273,7 +323,7 @@ if __name__ == '__main__':
     tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
     #tb_src_dir = '/home/visbrero/vc_mirrors/mozilla-git-mirror'
     tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
-    gen = Generator(tb_src_dir, 'mail', tb_build_dir)
+    gen = Generator(tb_src_dir, 'mail', tb_build_dir, cache_dir='/tmp/pecobro_cache')
     print '--- finding code ---'
     gen.main()
     #gen.find_code()

@@ -43,7 +43,9 @@ class JarManifestParser(object):
                     pkg_ignore = False
                     pkg_name = parts[1]
                     pkg_locale = parts[2]
-                    pkg_prepend = os.path.join(pkg_name, pkg_type, pkg_locale)
+                    # we do _not_ want the locale in there, there should only
+                    #  be one at this point...
+                    pkg_prepend = os.path.join(pkg_name, pkg_type)
                     pkg_replace = parts[3][1:]
                     if pkg_replace.endswith('/'):
                         pkg_prepend += '/'
@@ -73,17 +75,25 @@ class JarManifestParser(object):
                     jar_path, paren_fs_path = line.split()
                     fs_path = paren_fs_path[1:-1]
                 else:
-                    jar_path = fs_path = line.strip()
+                    jar_path = line.strip()
+                    fs_path = os.path.basename(jar_path)
                 
                 # locale-case
                 if fs_path[0] == '%':
-                    path = os.path.join('en-US', fs_path[1:])
+                    path = os.path.join(manifest_dir, 'en-US', fs_path[1:])
                 # (absolute) relative to mozilla/
-                elif fs_path == '/':
-                    path = os.path.join(self.caboodle.moz_path, fs_path[1:])
+                elif fs_path[0] == '/':
+                    path = os.path.join(self.caboodle.moz_src_path, fs_path[1:])
                 # relative to this manifest...
                 else:
                     path = os.path.join(manifest_dir, fs_path)
+                # maybe it had an '.in' friend... maybe we should just append
+                #  .in instead?  dunno... TODO: consider consuming .in files?
+                if not os.path.exists(path):
+                    path = path.replace(self.caboodle.moz_src_path,
+                                        self.caboodle.moz_build_path)
+                if not os.path.exists(path):
+                    raise Exception("Tried to map %s to %s." % (fs_path, path))
                 
                 # if we were provide explicit chrome directives, use those
                 chrome_path = None
@@ -111,18 +121,19 @@ class JarManifestParser(object):
                         
                     elif this_pkg_type in ('locale', 'skin') and rem_path.count('/') >= 2:
                         # (locale/)AB_CD/pkg_name/...
-                        # and we want pkg_name/locale/AB_CD/...
+                        # and we want pkg_name/locale/...
+                        # (we don't want the specific locale; only one should
+                        #  exist at this point.)
                         this_locale, this_pkg_name, rem_path = rem_path.split('/', 2)
                         chrome_path = os.path.join(this_pkg_name,
                                                    this_pkg_type,
-                                                   this_locale,
                                                    rem_path)
                     else:
                         chrome_path = None
                 
                 if chrome_path:
                     self.caboodle.chrome_map[chrome_path] = path
-                #print '  %s -> %s' % (chrome_path, path)
+                print '  %s -> %s' % (chrome_path, path)
             # -- a jar file
             elif line.endswith(':'):
                 pass
