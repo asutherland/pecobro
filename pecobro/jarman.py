@@ -142,11 +142,13 @@ class JarManifestParser(object):
                                 (line,))
             
     
-    def parse(self, fname):
+    def parse(self, fname, defines=None):
+        if defines is None:
+            defines = consts.defines
         f_in = codecs.open(fname, 'r', 'latin1')
         sio = StringIO.StringIO()
         f_out = codecs.getwriter('utf-8')(sio)
-        mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
+        mozpreproc.preprocess(includes=[f_in], defines=defines,
                               output=f_out,
                               line_endings='lf')
         f_in.close()

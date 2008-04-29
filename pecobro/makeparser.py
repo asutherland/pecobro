@@ -35,6 +35,14 @@ class Context(object):
     
     def eval(self, name):
         return self[name].evalInContext(self)
+    
+    def export(self):
+        rdict = {}
+        
+        for key, valueNode in self._values.items():
+            rdict[key] = valueNode.evalInContext(self)
+        
+        return rdict
 
 class Literal(object):
     def __init__(self, value):
@@ -575,9 +583,12 @@ class Makefile(object):
     def get(self, name):
         return self.context.eval(name)
     
+    def export(self):
+        return self.context.export()
+    
     def dump(self):
-        for key in self.context._values.keys():
-            print '%s: %s' % (key, self.context[key].evalInContext(self.context))
+        for key, value in self.context.export().items():
+            print '%s: %s' % (key, value)
             
 if __name__ == '__main__':
     m = Makefile()

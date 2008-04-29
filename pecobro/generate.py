@@ -129,9 +129,6 @@ class Generator(object):
             
             cand_jar_name = os.path.join(src_path, 'jar.mn')
             #print 'checking', cand_jar_name
-            if os.path.isfile(cand_jar_name):
-                print 'PARSING', cand_jar_name
-                jmp.parse(cand_jar_name)
             
             cand_makefile = os.path.join(path, 'Makefile')
             if os.path.isfile(cand_makefile):
@@ -139,6 +136,28 @@ class Generator(object):
                 mf = makeparser.Makefile(
                              force={'TOPSRCDIR': self.caboodle.moz_src_path})
                 mf.parse(cand_makefile)
+                
+                if os.path.isfile(cand_jar_name):
+                    print 'PARSING', cand_jar_name
+                    # use the Makefile's resulting variables...
+                    defines = {}
+                    for dash_d in mf.get('DEFINES').split():
+                        if dash_d.startswith('-D'):
+                            dash_d = dash_d[2:]
+                            if '=' in dash_d:
+                                key, value = dash_d.split('=',1)
+                                # er, I guess quotes would lose their escaping
+                                #  in reality?  or would the quotes bail too?
+                                value = value.replace('\\"', '"')
+                            else:
+                                key = dash_d
+                                value = True
+                            defines[key] = value
+                    
+                    print '...', defines
+                    jmp.parse(cand_jar_name, defines=defines)
+            
+
                 
                 for make_dir in mf.get('DIRS').split():
                     make_path = os.path.join(path, make_dir)
@@ -150,6 +169,11 @@ class Generator(object):
                 # TOOL_DIRS
                 
                 # TIERS -> tier_*_dirs
+            elif os.path.isfile(cand_jar_name):
+                # TODO: use better defaults for defines
+                print 'PARSING', cand_jar_name
+                print '... (default defines)'
+                jmp.parse(cand_jar_name)
                 
         
         for dir in self.caboodle.module_dirs + self.caboodle.locale_dirs:
