@@ -249,6 +249,8 @@ class SourceCaboodle(object):
         self.chrome_map = {}
         #: components
         self.components = []
+        #: modules (from EXTRA_(PP_)JS_MODULES)
+        self.modules = []
         
         self.globals = {}
         self.global_def_locations = {}

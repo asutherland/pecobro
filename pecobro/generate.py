@@ -34,8 +34,11 @@ import pecobro.makeparser as makeparser
 
 XBL_NS = 'http://www.mozilla.org/xbl'
 
-from IPython.Shell import IPShellEmbed
-ipshell = IPShellEmbed()
+try:
+    from IPython.Shell import IPShellEmbed
+    ipshell = IPShellEmbed(['-pdb'])
+except:
+    pass
 
 class Generator(object):
     def __init__(self, moz_src_path, project, moz_build_path,
@@ -182,6 +185,23 @@ class Generator(object):
                     if not abs_component in self.caboodle.components:
                         print 'COMPONENT', abs_component
                         self.caboodle.components.append(abs_component)
+
+                # EXTRA_(PP_)JS_MODULES
+                for rel_module in (mf.get('EXTRA_JS_MODULES').split() +
+                                   mf.get('EXTRA_PP_JS_MODULES').split()):
+                    abs_module = os.path.join(path, rel_module)
+                    # map them from remote to local paths, if relevant
+                    for path_from, path_to in self.path_maps:
+                        if abs_module.startswith(path_from):
+                            abs_module = abs_module.replace(path_from, path_to)
+                    # flop from the build dir to the source dir if relevant
+                    if not os.path.exists(abs_module):
+                        abs_module = abs_module.replace(self.caboodle.moz_build_path,
+                                                        self.caboodle.moz_src_path)
+                    if not abs_module in self.caboodle.modules:
+                        print 'MODULE', abs_module
+                        self.caboodle.modules.append(abs_module)
+
                 
                 for make_dir in mf.get('DIRS').split():
                     make_path = os.path.join(path, make_dir)
@@ -217,6 +237,7 @@ class Generator(object):
                 jar_info = cerealizer.load(f)
                 self.caboodle.chrome_map = jar_info['chrome_map']
                 self.caboodle.components = jar_info['components']
+                self.caboodle.modules    = jar_info['modules']
                 f.close()
                 return
         
@@ -225,7 +246,9 @@ class Generator(object):
         if cache_file:
             f = open(cache_file, 'wb')
             jar_info = {'chrome_map': self.caboodle.chrome_map,
-                        'components': self.caboodle.components}
+                        'components': self.caboodle.components,
+                        'modules': self.caboodle.modules,
+                        }
             cerealizer.dump(jar_info, f)
             f.close()
         
@@ -240,6 +263,7 @@ class Generator(object):
         ever so much more fancy.
         '''
         for src_abs_filepath in (self.caboodle.components +
+                                 self.caboodle.modules +
                                  self.caboodle.chrome_map.values()):
             filename = os.path.basename(src_abs_filepath)
             trash, suffix = os.path.splitext(filename)

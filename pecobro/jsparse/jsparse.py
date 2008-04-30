@@ -27,6 +27,8 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
     analysis is going to migrate into jsgrok; at some point this should become
     moot...
     '''
+    if ast is None:
+        print '*** WARNING, null AST for %s' % (source_file,)
     for iChild in range(ast.getChildCount()):
         child = ast.getChild(iChild)
         
@@ -44,7 +46,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
                 #  correctly.)
                 if cur_property:
                     funcNode = cur_property
-            elif cur_property:
+            elif cur_property is not None:
                 print 'assigning name %s to anonymous func' % (cur_property,)
                 funcName = cur_property.token.text
                 
@@ -233,10 +235,12 @@ def parse_and_proc(fname, cache_dir=None, force=False):
     grokker.grok_source_file(source_file, ast.tree)
 
 def sf_process(source_file, cache_dir=None, force=False):
-    try:
+    # Called by generate...
+    #try:
         ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
         source_file.ast = ptree.tree
         scan_and_proc(source_file, ptree.tree)
-    except Exception, e:
-        print '*** EXCEPTION', e
-        pass
+        grokker.grok_source_file(source_file, ptree.tree)
+    #except Exception, e:
+    #    print '*** EXCEPTION', e
+    #    pass

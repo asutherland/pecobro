@@ -25,6 +25,8 @@ GLOBAL_FUNC_NAMES = (
     'eval', 'isFinite', 'isNaN', 'parseFloat', 'parseInt',
     )
 
+UNDEFINED = None
+
 class JSGrok(object):
     def __init__(self, caboodle):
         self.caboodle = caboodle
@@ -53,7 +55,7 @@ class JSGrok(object):
         if ntype == jslex.FUNC:
             nName = node.getChild(0)
             if nName.getType() == jslex.ANONYMOUS:
-                if enclosingPropNode:
+                if enclosingPropNode is not None:
                     func_name = enclosingPropNode.getChild(0).token.text
                     # because we can't assign the property name token to be
                     #  the basis of the synthetic ANONYMOUS token, we need
@@ -133,7 +135,7 @@ class JSGrok(object):
                     key = propNode.getChild(0).token.text
                     val = self._val_map(source_file, propNode.getChild(2),
                                         scope, who,
-                                        enclosingPropNode=propNode.getChild(1))
+                                        enclosingPropNode=propNode)
                     obj[key] = val
                 return obj
             # --- lookups ---
@@ -156,8 +158,11 @@ class JSGrok(object):
                     # get the name
                     var_name = vardef.getChild(0).token.text
                     # get the value mapped into our space...
-                    var_val = self._val_map(source_file, vardef.getChild(1),
-                                            source_file.scope, source_file)
+                    if len(vardef.children) == 3:
+                        var_val = self._val_map(source_file, vardef.getChild(1),
+                                                source_file.scope, source_file)
+                    else:
+                        var_val = UNDEFINED
                     source_file.scope.store(var_name, var_val, source_file)
             # function
             elif ctype == jslex.FUNC:
