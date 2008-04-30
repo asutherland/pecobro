@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-29 07:07:11
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-30 18:12:25
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -2172,7 +2172,7 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = RegularExpressionHacks
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:609:2: ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:2: ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' )
             alt3 = 2
             LA3_0 = self.input.LA(1)
 
@@ -2188,7 +2188,7 @@ class JavaScriptLexer(Lexer):
                         self.failed = True
                         return 
 
-                    nvae = NoViableAltException("608:1: RegularExpressionHacks : ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' );", 3, 1, self.input)
+                    nvae = NoViableAltException("609:1: RegularExpressionHacks : ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' );", 3, 1, self.input)
 
                     raise nvae
 
@@ -2197,17 +2197,17 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("608:1: RegularExpressionHacks : ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' );", 3, 0, self.input)
+                nvae = NoViableAltException("609:1: RegularExpressionHacks : ( '/\"' ( RegularExpressionChars )* '/' | '/\\'' ( RegularExpressionChars )* '/' );", 3, 0, self.input)
 
                 raise nvae
 
             if alt3 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:609:4: '/\"' ( RegularExpressionChars )* '/'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:4: '/\"' ( RegularExpressionChars )* '/'
                 self.match("/\"")
                 if self.failed:
                     return 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:609:9: ( RegularExpressionChars )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:9: ( RegularExpressionChars )*
                 while True: #loop1
                     alt1 = 2
                     LA1_0 = self.input.LA(1)
@@ -2217,7 +2217,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt1 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:609:9: RegularExpressionChars
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:9: RegularExpressionChars
                         self.mRegularExpressionChars()
                         if self.failed:
                             return 
@@ -2233,12 +2233,12 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt3 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:4: '/\\'' ( RegularExpressionChars )* '/'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:611:4: '/\\'' ( RegularExpressionChars )* '/'
                 self.match("/\'")
                 if self.failed:
                     return 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:10: ( RegularExpressionChars )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:611:10: ( RegularExpressionChars )*
                 while True: #loop2
                     alt2 = 2
                     LA2_0 = self.input.LA(1)
@@ -2248,7 +2248,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt2 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:610:10: RegularExpressionChars
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:611:10: RegularExpressionChars
                         self.mRegularExpressionChars()
                         if self.failed:
                             return 
@@ -2276,7 +2276,7 @@ class JavaScriptLexer(Lexer):
     def mRegularExpressionFirstChar(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:614:2: (~ ( '*' | '/' | '\\\\' | LT ) | '\\\\' EscapeSequence )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:615:2: (~ ( '*' | '/' | '\\\\' | LT ) | '\\\\' EscapeSequence )
             alt4 = 2
             LA4_0 = self.input.LA(1)
 
@@ -2289,12 +2289,12 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("613:10: fragment RegularExpressionFirstChar : (~ ( '*' | '/' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 4, 0, self.input)
+                nvae = NoViableAltException("614:10: fragment RegularExpressionFirstChar : (~ ( '*' | '/' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 4, 0, self.input)
 
                 raise nvae
 
             if alt4 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:614:4: ~ ( '*' | '/' | '\\\\' | LT )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:615:4: ~ ( '*' | '/' | '\\\\' | LT )
                 if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u')') or (u'+' <= self.input.LA(1) <= u'.') or (u'0' <= self.input.LA(1) <= u'[') or (u']' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                     self.input.consume();
                     self.failed = False
@@ -2312,7 +2312,7 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt4 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:615:4: '\\\\' EscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:616:4: '\\\\' EscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -2334,7 +2334,7 @@ class JavaScriptLexer(Lexer):
     def mRegularExpressionChars(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:619:2: (~ ( '/' | '\\\\' | LT ) | '\\\\' EscapeSequence )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:620:2: (~ ( '/' | '\\\\' | LT ) | '\\\\' EscapeSequence )
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
@@ -2347,12 +2347,12 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("618:10: fragment RegularExpressionChars : (~ ( '/' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 5, 0, self.input)
+                nvae = NoViableAltException("619:10: fragment RegularExpressionChars : (~ ( '/' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 5, 0, self.input)
 
                 raise nvae
 
             if alt5 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:619:4: ~ ( '/' | '\\\\' | LT )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:620:4: ~ ( '/' | '\\\\' | LT )
                 if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u'.') or (u'0' <= self.input.LA(1) <= u'[') or (u']' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                     self.input.consume();
                     self.failed = False
@@ -2370,7 +2370,7 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt5 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:620:4: '\\\\' EscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:621:4: '\\\\' EscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -2394,7 +2394,7 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = StringLiteral
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:624:2: ( '\"' ( DoubleStringCharacter )* '\"' | '\\'' ( SingleStringCharacter )* '\\'' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:2: ( '\"' ( DoubleStringCharacter )* '\"' | '\\'' ( SingleStringCharacter )* '\\'' )
             alt8 = 2
             LA8_0 = self.input.LA(1)
 
@@ -2407,16 +2407,16 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("623:1: StringLiteral : ( '\"' ( DoubleStringCharacter )* '\"' | '\\'' ( SingleStringCharacter )* '\\'' );", 8, 0, self.input)
+                nvae = NoViableAltException("624:1: StringLiteral : ( '\"' ( DoubleStringCharacter )* '\"' | '\\'' ( SingleStringCharacter )* '\\'' );", 8, 0, self.input)
 
                 raise nvae
 
             if alt8 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:624:4: '\"' ( DoubleStringCharacter )* '\"'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:4: '\"' ( DoubleStringCharacter )* '\"'
                 self.match(u'"')
                 if self.failed:
                     return 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:624:8: ( DoubleStringCharacter )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:8: ( DoubleStringCharacter )*
                 while True: #loop6
                     alt6 = 2
                     LA6_0 = self.input.LA(1)
@@ -2426,7 +2426,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt6 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:624:8: DoubleStringCharacter
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:8: DoubleStringCharacter
                         self.mDoubleStringCharacter()
                         if self.failed:
                             return 
@@ -2442,11 +2442,11 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt8 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:4: '\\'' ( SingleStringCharacter )* '\\''
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:626:4: '\\'' ( SingleStringCharacter )* '\\''
                 self.match(u'\'')
                 if self.failed:
                     return 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:9: ( SingleStringCharacter )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:626:9: ( SingleStringCharacter )*
                 while True: #loop7
                     alt7 = 2
                     LA7_0 = self.input.LA(1)
@@ -2456,7 +2456,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt7 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:625:9: SingleStringCharacter
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:626:9: SingleStringCharacter
                         self.mSingleStringCharacter()
                         if self.failed:
                             return 
@@ -2484,7 +2484,7 @@ class JavaScriptLexer(Lexer):
     def mDoubleStringCharacter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:629:2: (~ ( '\"' | '\\\\' | LT ) | '\\\\' EscapeSequence )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:630:2: (~ ( '\"' | '\\\\' | LT ) | '\\\\' EscapeSequence )
             alt9 = 2
             LA9_0 = self.input.LA(1)
 
@@ -2497,12 +2497,12 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("628:10: fragment DoubleStringCharacter : (~ ( '\"' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 9, 0, self.input)
+                nvae = NoViableAltException("629:10: fragment DoubleStringCharacter : (~ ( '\"' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 9, 0, self.input)
 
                 raise nvae
 
             if alt9 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:629:4: ~ ( '\"' | '\\\\' | LT )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:630:4: ~ ( '\"' | '\\\\' | LT )
                 if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u'!') or (u'#' <= self.input.LA(1) <= u'[') or (u']' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                     self.input.consume();
                     self.failed = False
@@ -2520,7 +2520,7 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt9 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:630:4: '\\\\' EscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:631:4: '\\\\' EscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -2542,7 +2542,7 @@ class JavaScriptLexer(Lexer):
     def mSingleStringCharacter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:634:2: (~ ( '\\'' | '\\\\' | LT ) | '\\\\' EscapeSequence )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:635:2: (~ ( '\\'' | '\\\\' | LT ) | '\\\\' EscapeSequence )
             alt10 = 2
             LA10_0 = self.input.LA(1)
 
@@ -2555,12 +2555,12 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("633:10: fragment SingleStringCharacter : (~ ( '\\'' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 10, 0, self.input)
+                nvae = NoViableAltException("634:10: fragment SingleStringCharacter : (~ ( '\\'' | '\\\\' | LT ) | '\\\\' EscapeSequence );", 10, 0, self.input)
 
                 raise nvae
 
             if alt10 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:634:4: ~ ( '\\'' | '\\\\' | LT )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:635:4: ~ ( '\\'' | '\\\\' | LT )
                 if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u'&') or (u'(' <= self.input.LA(1) <= u'[') or (u']' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                     self.input.consume();
                     self.failed = False
@@ -2578,7 +2578,7 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt10 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:635:4: '\\\\' EscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:636:4: '\\\\' EscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -2600,7 +2600,7 @@ class JavaScriptLexer(Lexer):
     def mEscapeSequence(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:639:2: ( CharacterEscapeSequence | '0' | HexEscapeSequence | UnicodeEscapeSequence | '\\n' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:640:2: ( CharacterEscapeSequence | '0' | HexEscapeSequence | UnicodeEscapeSequence | '\\n' )
             alt11 = 5
             LA11_0 = self.input.LA(1)
 
@@ -2619,40 +2619,40 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("638:10: fragment EscapeSequence : ( CharacterEscapeSequence | '0' | HexEscapeSequence | UnicodeEscapeSequence | '\\n' );", 11, 0, self.input)
+                nvae = NoViableAltException("639:10: fragment EscapeSequence : ( CharacterEscapeSequence | '0' | HexEscapeSequence | UnicodeEscapeSequence | '\\n' );", 11, 0, self.input)
 
                 raise nvae
 
             if alt11 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:639:4: CharacterEscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:640:4: CharacterEscapeSequence
                 self.mCharacterEscapeSequence()
                 if self.failed:
                     return 
 
 
             elif alt11 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:640:4: '0'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:641:4: '0'
                 self.match(u'0')
                 if self.failed:
                     return 
 
 
             elif alt11 == 3:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:641:4: HexEscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:642:4: HexEscapeSequence
                 self.mHexEscapeSequence()
                 if self.failed:
                     return 
 
 
             elif alt11 == 4:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:642:4: UnicodeEscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:643:4: UnicodeEscapeSequence
                 self.mUnicodeEscapeSequence()
                 if self.failed:
                     return 
 
 
             elif alt11 == 5:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:643:4: '\\n'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:644:4: '\\n'
                 self.match(u'\n')
                 if self.failed:
                     return 
@@ -2671,7 +2671,7 @@ class JavaScriptLexer(Lexer):
     def mCharacterEscapeSequence(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:647:2: ( SingleEscapeCharacter | NonEscapeCharacter )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:648:2: ( SingleEscapeCharacter | NonEscapeCharacter )
             alt12 = 2
             LA12_0 = self.input.LA(1)
 
@@ -2684,19 +2684,19 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("646:10: fragment CharacterEscapeSequence : ( SingleEscapeCharacter | NonEscapeCharacter );", 12, 0, self.input)
+                nvae = NoViableAltException("647:10: fragment CharacterEscapeSequence : ( SingleEscapeCharacter | NonEscapeCharacter );", 12, 0, self.input)
 
                 raise nvae
 
             if alt12 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:647:4: SingleEscapeCharacter
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:648:4: SingleEscapeCharacter
                 self.mSingleEscapeCharacter()
                 if self.failed:
                     return 
 
 
             elif alt12 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:648:4: NonEscapeCharacter
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:649:4: NonEscapeCharacter
                 self.mNonEscapeCharacter()
                 if self.failed:
                     return 
@@ -2715,8 +2715,8 @@ class JavaScriptLexer(Lexer):
     def mNonEscapeCharacter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:652:2: (~ ( EscapeCharacter | LT ) )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:652:4: ~ ( EscapeCharacter | LT )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:653:2: (~ ( EscapeCharacter | LT ) )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:653:4: ~ ( EscapeCharacter | LT )
             if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u'!') or (u'#' <= self.input.LA(1) <= u'&') or (u'(' <= self.input.LA(1) <= u'/') or (u':' <= self.input.LA(1) <= u'[') or (u']' <= self.input.LA(1) <= u'a') or (u'c' <= self.input.LA(1) <= u'e') or (u'g' <= self.input.LA(1) <= u'm') or (u'o' <= self.input.LA(1) <= u'q') or self.input.LA(1) == u's' or self.input.LA(1) == u'w' or (u'y' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                 self.input.consume();
                 self.failed = False
@@ -2747,7 +2747,7 @@ class JavaScriptLexer(Lexer):
     def mSingleEscapeCharacter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:656:2: ( '\\'' | '\"' | '\\\\' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:657:2: ( '\\'' | '\"' | '\\\\' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if self.input.LA(1) == u'"' or self.input.LA(1) == u'\'' or self.input.LA(1) == u'\\' or self.input.LA(1) == u'b' or self.input.LA(1) == u'f' or self.input.LA(1) == u'n' or self.input.LA(1) == u'r' or self.input.LA(1) == u't' or self.input.LA(1) == u'v':
                 self.input.consume();
@@ -2779,7 +2779,7 @@ class JavaScriptLexer(Lexer):
     def mEscapeCharacter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:660:2: ( SingleEscapeCharacter | DecimalDigit | 'x' | 'u' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:661:2: ( SingleEscapeCharacter | DecimalDigit | 'x' | 'u' )
             alt13 = 4
             LA13 = self.input.LA(1)
             if LA13 == u'"' or LA13 == u'\'' or LA13 == u'\\' or LA13 == u'b' or LA13 == u'f' or LA13 == u'n' or LA13 == u'r' or LA13 == u't' or LA13 == u'v':
@@ -2795,33 +2795,33 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("659:10: fragment EscapeCharacter : ( SingleEscapeCharacter | DecimalDigit | 'x' | 'u' );", 13, 0, self.input)
+                nvae = NoViableAltException("660:10: fragment EscapeCharacter : ( SingleEscapeCharacter | DecimalDigit | 'x' | 'u' );", 13, 0, self.input)
 
                 raise nvae
 
             if alt13 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:660:4: SingleEscapeCharacter
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:661:4: SingleEscapeCharacter
                 self.mSingleEscapeCharacter()
                 if self.failed:
                     return 
 
 
             elif alt13 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:661:4: DecimalDigit
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:662:4: DecimalDigit
                 self.mDecimalDigit()
                 if self.failed:
                     return 
 
 
             elif alt13 == 3:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:662:4: 'x'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:663:4: 'x'
                 self.match(u'x')
                 if self.failed:
                     return 
 
 
             elif alt13 == 4:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:663:4: 'u'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:664:4: 'u'
                 self.match(u'u')
                 if self.failed:
                     return 
@@ -2840,8 +2840,8 @@ class JavaScriptLexer(Lexer):
     def mHexEscapeSequence(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:667:2: ( 'x' HexDigit HexDigit )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:667:4: 'x' HexDigit HexDigit
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:668:2: ( 'x' HexDigit HexDigit )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:668:4: 'x' HexDigit HexDigit
             self.match(u'x')
             if self.failed:
                 return 
@@ -2867,8 +2867,8 @@ class JavaScriptLexer(Lexer):
     def mUnicodeEscapeSequence(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:671:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:671:4: 'u' HexDigit HexDigit HexDigit HexDigit
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:672:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:672:4: 'u' HexDigit HexDigit HexDigit HexDigit
             self.match(u'u')
             if self.failed:
                 return 
@@ -2902,7 +2902,7 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = NumericLiteral
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:675:2: ( DecimalLiteral | HexIntegerLiteral )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:676:2: ( DecimalLiteral | HexIntegerLiteral )
             alt14 = 2
             LA14_0 = self.input.LA(1)
 
@@ -2920,19 +2920,19 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("674:1: NumericLiteral : ( DecimalLiteral | HexIntegerLiteral );", 14, 0, self.input)
+                nvae = NoViableAltException("675:1: NumericLiteral : ( DecimalLiteral | HexIntegerLiteral );", 14, 0, self.input)
 
                 raise nvae
 
             if alt14 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:675:4: DecimalLiteral
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:676:4: DecimalLiteral
                 self.mDecimalLiteral()
                 if self.failed:
                     return 
 
 
             elif alt14 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:676:4: HexIntegerLiteral
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:677:4: HexIntegerLiteral
                 self.mHexIntegerLiteral()
                 if self.failed:
                     return 
@@ -2951,8 +2951,8 @@ class JavaScriptLexer(Lexer):
     def mHexIntegerLiteral(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:680:2: ( '0' ( 'x' | 'X' ) ( HexDigit )+ )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:680:4: '0' ( 'x' | 'X' ) ( HexDigit )+
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:681:2: ( '0' ( 'x' | 'X' ) ( HexDigit )+ )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:681:4: '0' ( 'x' | 'X' ) ( HexDigit )+
             self.match(u'0')
             if self.failed:
                 return 
@@ -2970,7 +2970,7 @@ class JavaScriptLexer(Lexer):
                 raise mse
 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:680:20: ( HexDigit )+
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:681:20: ( HexDigit )+
             cnt15 = 0
             while True: #loop15
                 alt15 = 2
@@ -2981,7 +2981,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt15 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:680:20: HexDigit
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:681:20: HexDigit
                     self.mHexDigit()
                     if self.failed:
                         return 
@@ -3017,7 +3017,7 @@ class JavaScriptLexer(Lexer):
     def mHexDigit(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:2: ( DecimalDigit | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:2: ( DecimalDigit | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) )
             alt16 = 3
             LA16 = self.input.LA(1)
             if LA16 == u'0' or LA16 == u'1' or LA16 == u'2' or LA16 == u'3' or LA16 == u'4' or LA16 == u'5' or LA16 == u'6' or LA16 == u'7' or LA16 == u'8' or LA16 == u'9':
@@ -3031,21 +3031,21 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("683:10: fragment HexDigit : ( DecimalDigit | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) );", 16, 0, self.input)
+                nvae = NoViableAltException("684:10: fragment HexDigit : ( DecimalDigit | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) );", 16, 0, self.input)
 
                 raise nvae
 
             if alt16 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:4: DecimalDigit
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:4: DecimalDigit
                 self.mDecimalDigit()
                 if self.failed:
                     return 
 
 
             elif alt16 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:19: ( 'a' .. 'f' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:19: ( 'a' .. 'f' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:20: 'a' .. 'f'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:19: ( 'a' .. 'f' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:19: ( 'a' .. 'f' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:20: 'a' .. 'f'
                 self.matchRange(u'a', u'f')
                 if self.failed:
                     return 
@@ -3055,9 +3055,9 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt16 == 3:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:32: ( 'A' .. 'F' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:32: ( 'A' .. 'F' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:684:33: 'A' .. 'F'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:32: ( 'A' .. 'F' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:32: ( 'A' .. 'F' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:685:33: 'A' .. 'F'
                 self.matchRange(u'A', u'F')
                 if self.failed:
                     return 
@@ -3079,12 +3079,12 @@ class JavaScriptLexer(Lexer):
     def mDecimalLiteral(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:2: ( ( DecimalDigit )+ '.' ( DecimalDigit )* ( ExponentPart )? | ( '.' )? ( DecimalDigit )+ ( ExponentPart )? )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:2: ( ( DecimalDigit )+ '.' ( DecimalDigit )* ( ExponentPart )? | ( '.' )? ( DecimalDigit )+ ( ExponentPart )? )
             alt23 = 2
             alt23 = self.dfa23.predict(self.input)
             if alt23 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:4: ( DecimalDigit )+ '.' ( DecimalDigit )* ( ExponentPart )?
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:4: ( DecimalDigit )+
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: ( DecimalDigit )+ '.' ( DecimalDigit )* ( ExponentPart )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: ( DecimalDigit )+
                 cnt17 = 0
                 while True: #loop17
                     alt17 = 2
@@ -3095,7 +3095,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt17 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:4: DecimalDigit
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: DecimalDigit
                         self.mDecimalDigit()
                         if self.failed:
                             return 
@@ -3118,7 +3118,7 @@ class JavaScriptLexer(Lexer):
                 self.match(u'.')
                 if self.failed:
                     return 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:22: ( DecimalDigit )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:22: ( DecimalDigit )*
                 while True: #loop18
                     alt18 = 2
                     LA18_0 = self.input.LA(1)
@@ -3128,7 +3128,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt18 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:22: DecimalDigit
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:22: DecimalDigit
                         self.mDecimalDigit()
                         if self.failed:
                             return 
@@ -3138,14 +3138,14 @@ class JavaScriptLexer(Lexer):
                         break #loop18
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:36: ( ExponentPart )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:36: ( ExponentPart )?
                 alt19 = 2
                 LA19_0 = self.input.LA(1)
 
                 if (LA19_0 == u'E' or LA19_0 == u'e') :
                     alt19 = 1
                 if alt19 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:688:36: ExponentPart
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:36: ExponentPart
                     self.mExponentPart()
                     if self.failed:
                         return 
@@ -3155,22 +3155,22 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt23 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: ( '.' )? ( DecimalDigit )+ ( ExponentPart )?
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: ( '.' )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:4: ( '.' )? ( DecimalDigit )+ ( ExponentPart )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:4: ( '.' )?
                 alt20 = 2
                 LA20_0 = self.input.LA(1)
 
                 if (LA20_0 == u'.') :
                     alt20 = 1
                 if alt20 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:4: '.'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:4: '.'
                     self.match(u'.')
                     if self.failed:
                         return 
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:9: ( DecimalDigit )+
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:9: ( DecimalDigit )+
                 cnt21 = 0
                 while True: #loop21
                     alt21 = 2
@@ -3181,7 +3181,7 @@ class JavaScriptLexer(Lexer):
 
 
                     if alt21 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:9: DecimalDigit
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:9: DecimalDigit
                         self.mDecimalDigit()
                         if self.failed:
                             return 
@@ -3201,14 +3201,14 @@ class JavaScriptLexer(Lexer):
                     cnt21 += 1
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:23: ( ExponentPart )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:23: ( ExponentPart )?
                 alt22 = 2
                 LA22_0 = self.input.LA(1)
 
                 if (LA22_0 == u'E' or LA22_0 == u'e') :
                     alt22 = 1
                 if alt22 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:689:23: ExponentPart
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:690:23: ExponentPart
                     self.mExponentPart()
                     if self.failed:
                         return 
@@ -3230,8 +3230,8 @@ class JavaScriptLexer(Lexer):
     def mDecimalDigit(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:693:2: ( ( '0' .. '9' ) )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:693:4: ( '0' .. '9' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:694:2: ( ( '0' .. '9' ) )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:694:4: ( '0' .. '9' )
             if (u'0' <= self.input.LA(1) <= u'9'):
                 self.input.consume();
                 self.failed = False
@@ -3262,8 +3262,8 @@ class JavaScriptLexer(Lexer):
     def mExponentPart(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:697:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DecimalDigit )+ )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:697:4: ( 'e' | 'E' ) ( '+' | '-' )? ( DecimalDigit )+
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:698:2: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DecimalDigit )+ )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:698:4: ( 'e' | 'E' ) ( '+' | '-' )? ( DecimalDigit )+
             if self.input.LA(1) == u'E' or self.input.LA(1) == u'e':
                 self.input.consume();
                 self.failed = False
@@ -3278,7 +3278,7 @@ class JavaScriptLexer(Lexer):
                 raise mse
 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:697:16: ( '+' | '-' )?
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:698:16: ( '+' | '-' )?
             alt24 = 2
             LA24_0 = self.input.LA(1)
 
@@ -3303,7 +3303,7 @@ class JavaScriptLexer(Lexer):
 
 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:697:30: ( DecimalDigit )+
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:698:30: ( DecimalDigit )+
             cnt25 = 0
             while True: #loop25
                 alt25 = 2
@@ -3314,7 +3314,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt25 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:697:30: DecimalDigit
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:698:30: DecimalDigit
                     self.mDecimalDigit()
                     if self.failed:
                         return 
@@ -3352,12 +3352,12 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = Identifier
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:701:2: ( IdentifierStart ( IdentifierPart )* )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:701:4: IdentifierStart ( IdentifierPart )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:702:2: ( IdentifierStart ( IdentifierPart )* )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:702:4: IdentifierStart ( IdentifierPart )*
             self.mIdentifierStart()
             if self.failed:
                 return 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:701:20: ( IdentifierPart )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:702:20: ( IdentifierPart )*
             while True: #loop26
                 alt26 = 2
                 LA26_0 = self.input.LA(1)
@@ -3367,7 +3367,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt26 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:701:20: IdentifierPart
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:702:20: IdentifierPart
                     self.mIdentifierPart()
                     if self.failed:
                         return 
@@ -3393,7 +3393,7 @@ class JavaScriptLexer(Lexer):
     def mIdentifierStart(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:705:2: ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:706:2: ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence )
             alt27 = 6
             LA27_0 = self.input.LA(1)
 
@@ -3417,7 +3417,7 @@ class JavaScriptLexer(Lexer):
                         self.failed = True
                         return 
 
-                    nvae = NoViableAltException("704:10: fragment IdentifierStart : ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence );", 27, 5, self.input)
+                    nvae = NoViableAltException("705:10: fragment IdentifierStart : ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence );", 27, 5, self.input)
 
                     raise nvae
 
@@ -3426,40 +3426,40 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("704:10: fragment IdentifierStart : ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence );", 27, 0, self.input)
+                nvae = NoViableAltException("705:10: fragment IdentifierStart : ( UnicodeLetter | '$' | '_' | '@' | '\\\\' UnicodeEscapeSequence | '\\\\' CharacterEscapeSequence );", 27, 0, self.input)
 
                 raise nvae
 
             if alt27 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:705:4: UnicodeLetter
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:706:4: UnicodeLetter
                 self.mUnicodeLetter()
                 if self.failed:
                     return 
 
 
             elif alt27 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:706:4: '$'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:707:4: '$'
                 self.match(u'$')
                 if self.failed:
                     return 
 
 
             elif alt27 == 3:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:707:4: '_'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:708:4: '_'
                 self.match(u'_')
                 if self.failed:
                     return 
 
 
             elif alt27 == 4:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:708:4: '@'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:709:4: '@'
                 self.match(u'@')
                 if self.failed:
                     return 
 
 
             elif alt27 == 5:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:709:11: '\\\\' UnicodeEscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:710:11: '\\\\' UnicodeEscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -3469,7 +3469,7 @@ class JavaScriptLexer(Lexer):
 
 
             elif alt27 == 6:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:711:11: '\\\\' CharacterEscapeSequence
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:712:11: '\\\\' CharacterEscapeSequence
                 self.match(u'\\')
                 if self.failed:
                     return 
@@ -3491,7 +3491,7 @@ class JavaScriptLexer(Lexer):
     def mIdentifierPart(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:715:2: ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:716:2: ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation )
             alt28 = 3
             LA28_0 = self.input.LA(1)
 
@@ -3511,7 +3511,7 @@ class JavaScriptLexer(Lexer):
                         self.failed = True
                         return 
 
-                    nvae = NoViableAltException("714:10: fragment IdentifierPart : ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation );", 28, 3, self.input)
+                    nvae = NoViableAltException("715:10: fragment IdentifierPart : ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation );", 28, 3, self.input)
 
                     raise nvae
 
@@ -3528,26 +3528,26 @@ class JavaScriptLexer(Lexer):
                     self.failed = True
                     return 
 
-                nvae = NoViableAltException("714:10: fragment IdentifierPart : ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation );", 28, 0, self.input)
+                nvae = NoViableAltException("715:10: fragment IdentifierPart : ( ( IdentifierStart )=> IdentifierStart | UnicodeDigit | UnicodeConnectorPunctuation );", 28, 0, self.input)
 
                 raise nvae
 
             if alt28 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:715:4: ( IdentifierStart )=> IdentifierStart
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:716:4: ( IdentifierStart )=> IdentifierStart
                 self.mIdentifierStart()
                 if self.failed:
                     return 
 
 
             elif alt28 == 2:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:716:4: UnicodeDigit
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:717:4: UnicodeDigit
                 self.mUnicodeDigit()
                 if self.failed:
                     return 
 
 
             elif alt28 == 3:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:717:4: UnicodeConnectorPunctuation
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:718:4: UnicodeConnectorPunctuation
                 self.mUnicodeConnectorPunctuation()
                 if self.failed:
                     return 
@@ -3566,7 +3566,7 @@ class JavaScriptLexer(Lexer):
     def mUnicodeLetter(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:721:2: ( '\\u0041' .. '\\u005A' | '\\u0061' .. '\\u007A' | '\\u00AA' | '\\u00B5' | '\\u00BA' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u021F' | '\\u0222' .. '\\u0233' | '\\u0250' .. '\\u02AD' | '\\u02B0' .. '\\u02B8' | '\\u02BB' .. '\\u02C1' | '\\u02D0' .. '\\u02D1' | '\\u02E0' .. '\\u02E4' | '\\u02EE' | '\\u037A' | '\\u0386' | '\\u0388' .. '\\u038A' | '\\u038C' | '\\u038E' .. '\\u03A1' | '\\u03A3' .. '\\u03CE' | '\\u03D0' .. '\\u03D7' | '\\u03DA' .. '\\u03F3' | '\\u0400' .. '\\u0481' | '\\u048C' .. '\\u04C4' | '\\u04C7' .. '\\u04C8' | '\\u04CB' .. '\\u04CC' | '\\u04D0' .. '\\u04F5' | '\\u04F8' .. '\\u04F9' | '\\u0531' .. '\\u0556' | '\\u0559' | '\\u0561' .. '\\u0587' | '\\u05D0' .. '\\u05EA' | '\\u05F0' .. '\\u05F2' | '\\u0621' .. '\\u063A' | '\\u0640' .. '\\u064A' | '\\u0671' .. '\\u06D3' | '\\u06D5' | '\\u06E5' .. '\\u06E6' | '\\u06FA' .. '\\u06FC' | '\\u0710' | '\\u0712' .. '\\u072C' | '\\u0780' .. '\\u07A5' | '\\u0905' .. '\\u0939' | '\\u093D' | '\\u0950' | '\\u0958' .. '\\u0961' | '\\u0985' .. '\\u098C' | '\\u098F' .. '\\u0990' | '\\u0993' .. '\\u09A8' | '\\u09AA' .. '\\u09B0' | '\\u09B2' | '\\u09B6' .. '\\u09B9' | '\\u09DC' .. '\\u09DD' | '\\u09DF' .. '\\u09E1' | '\\u09F0' .. '\\u09F1' | '\\u0A05' .. '\\u0A0A' | '\\u0A0F' .. '\\u0A10' | '\\u0A13' .. '\\u0A28' | '\\u0A2A' .. '\\u0A30' | '\\u0A32' .. '\\u0A33' | '\\u0A35' .. '\\u0A36' | '\\u0A38' .. '\\u0A39' | '\\u0A59' .. '\\u0A5C' | '\\u0A5E' | '\\u0A72' .. '\\u0A74' | '\\u0A85' .. '\\u0A8B' | '\\u0A8D' | '\\u0A8F' .. '\\u0A91' | '\\u0A93' .. '\\u0AA8' | '\\u0AAA' .. '\\u0AB0' | '\\u0AB2' .. '\\u0AB3' | '\\u0AB5' .. '\\u0AB9' | '\\u0ABD' | '\\u0AD0' | '\\u0AE0' | '\\u0B05' .. '\\u0B0C' | '\\u0B0F' .. '\\u0B10' | '\\u0B13' .. '\\u0B28' | '\\u0B2A' .. '\\u0B30' | '\\u0B32' .. '\\u0B33' | '\\u0B36' .. '\\u0B39' | '\\u0B3D' | '\\u0B5C' .. '\\u0B5D' | '\\u0B5F' .. '\\u0B61' | '\\u0B85' .. '\\u0B8A' | '\\u0B8E' .. '\\u0B90' | '\\u0B92' .. '\\u0B95' | '\\u0B99' .. '\\u0B9A' | '\\u0B9C' | '\\u0B9E' .. '\\u0B9F' | '\\u0BA3' .. '\\u0BA4' | '\\u0BA8' .. '\\u0BAA' | '\\u0BAE' .. '\\u0BB5' | '\\u0BB7' .. '\\u0BB9' | '\\u0C05' .. '\\u0C0C' | '\\u0C0E' .. '\\u0C10' | '\\u0C12' .. '\\u0C28' | '\\u0C2A' .. '\\u0C33' | '\\u0C35' .. '\\u0C39' | '\\u0C60' .. '\\u0C61' | '\\u0C85' .. '\\u0C8C' | '\\u0C8E' .. '\\u0C90' | '\\u0C92' .. '\\u0CA8' | '\\u0CAA' .. '\\u0CB3' | '\\u0CB5' .. '\\u0CB9' | '\\u0CDE' | '\\u0CE0' .. '\\u0CE1' | '\\u0D05' .. '\\u0D0C' | '\\u0D0E' .. '\\u0D10' | '\\u0D12' .. '\\u0D28' | '\\u0D2A' .. '\\u0D39' | '\\u0D60' .. '\\u0D61' | '\\u0D85' .. '\\u0D96' | '\\u0D9A' .. '\\u0DB1' | '\\u0DB3' .. '\\u0DBB' | '\\u0DBD' | '\\u0DC0' .. '\\u0DC6' | '\\u0E01' .. '\\u0E30' | '\\u0E32' .. '\\u0E33' | '\\u0E40' .. '\\u0E46' | '\\u0E81' .. '\\u0E82' | '\\u0E84' | '\\u0E87' .. '\\u0E88' | '\\u0E8A' | '\\u0E8D' | '\\u0E94' .. '\\u0E97' | '\\u0E99' .. '\\u0E9F' | '\\u0EA1' .. '\\u0EA3' | '\\u0EA5' | '\\u0EA7' | '\\u0EAA' .. '\\u0EAB' | '\\u0EAD' .. '\\u0EB0' | '\\u0EB2' .. '\\u0EB3' | '\\u0EBD' .. '\\u0EC4' | '\\u0EC6' | '\\u0EDC' .. '\\u0EDD' | '\\u0F00' | '\\u0F40' .. '\\u0F6A' | '\\u0F88' .. '\\u0F8B' | '\\u1000' .. '\\u1021' | '\\u1023' .. '\\u1027' | '\\u1029' .. '\\u102A' | '\\u1050' .. '\\u1055' | '\\u10A0' .. '\\u10C5' | '\\u10D0' .. '\\u10F6' | '\\u1100' .. '\\u1159' | '\\u115F' .. '\\u11A2' | '\\u11A8' .. '\\u11F9' | '\\u1200' .. '\\u1206' | '\\u1208' .. '\\u1246' | '\\u1248' | '\\u124A' .. '\\u124D' | '\\u1250' .. '\\u1256' | '\\u1258' | '\\u125A' .. '\\u125D' | '\\u1260' .. '\\u1286' | '\\u1288' | '\\u128A' .. '\\u128D' | '\\u1290' .. '\\u12AE' | '\\u12B0' | '\\u12B2' .. '\\u12B5' | '\\u12B8' .. '\\u12BE' | '\\u12C0' | '\\u12C2' .. '\\u12C5' | '\\u12C8' .. '\\u12CE' | '\\u12D0' .. '\\u12D6' | '\\u12D8' .. '\\u12EE' | '\\u12F0' .. '\\u130E' | '\\u1310' | '\\u1312' .. '\\u1315' | '\\u1318' .. '\\u131E' | '\\u1320' .. '\\u1346' | '\\u1348' .. '\\u135A' | '\\u13A0' .. '\\u13B0' | '\\u13B1' .. '\\u13F4' | '\\u1401' .. '\\u1676' | '\\u1681' .. '\\u169A' | '\\u16A0' .. '\\u16EA' | '\\u1780' .. '\\u17B3' | '\\u1820' .. '\\u1877' | '\\u1880' .. '\\u18A8' | '\\u1E00' .. '\\u1E9B' | '\\u1EA0' .. '\\u1EE0' | '\\u1EE1' .. '\\u1EF9' | '\\u1F00' .. '\\u1F15' | '\\u1F18' .. '\\u1F1D' | '\\u1F20' .. '\\u1F39' | '\\u1F3A' .. '\\u1F45' | '\\u1F48' .. '\\u1F4D' | '\\u1F50' .. '\\u1F57' | '\\u1F59' | '\\u1F5B' | '\\u1F5D' | '\\u1F5F' .. '\\u1F7D' | '\\u1F80' .. '\\u1FB4' | '\\u1FB6' .. '\\u1FBC' | '\\u1FBE' | '\\u1FC2' .. '\\u1FC4' | '\\u1FC6' .. '\\u1FCC' | '\\u1FD0' .. '\\u1FD3' | '\\u1FD6' .. '\\u1FDB' | '\\u1FE0' .. '\\u1FEC' | '\\u1FF2' .. '\\u1FF4' | '\\u1FF6' .. '\\u1FFC' | '\\u207F' | '\\u2102' | '\\u2107' | '\\u210A' .. '\\u2113' | '\\u2115' | '\\u2119' .. '\\u211D' | '\\u2124' | '\\u2126' | '\\u2128' | '\\u212A' .. '\\u212D' | '\\u212F' .. '\\u2131' | '\\u2133' .. '\\u2139' | '\\u2160' .. '\\u2183' | '\\u3005' .. '\\u3007' | '\\u3021' .. '\\u3029' | '\\u3031' .. '\\u3035' | '\\u3038' .. '\\u303A' | '\\u3041' .. '\\u3094' | '\\u309D' .. '\\u309E' | '\\u30A1' .. '\\u30FA' | '\\u30FC' .. '\\u30FE' | '\\u3105' .. '\\u312C' | '\\u3131' .. '\\u318E' | '\\u31A0' .. '\\u31B7' | '\\u3400' | '\\u4DB5' | '\\u4E00' | '\\u9FA5' | '\\uA000' .. '\\uA48C' | '\\uAC00' | '\\uD7A3' | '\\uF900' .. '\\uFA2D' | '\\uFB00' .. '\\uFB06' | '\\uFB13' .. '\\uFB17' | '\\uFB1D' | '\\uFB1F' .. '\\uFB28' | '\\uFB2A' .. '\\uFB36' | '\\uFB38' .. '\\uFB3C' | '\\uFB3E' | '\\uFB40' .. '\\uFB41' | '\\uFB43' .. '\\uFB44' | '\\uFB46' .. '\\uFBB1' | '\\uFBD3' .. '\\uFD3D' | '\\uFD50' .. '\\uFD8F' | '\\uFD92' .. '\\uFDC7' | '\\uFDF0' .. '\\uFDFB' | '\\uFE70' .. '\\uFE72' | '\\uFE74' | '\\uFE76' .. '\\uFEFC' | '\\uFF21' .. '\\uFF3A' | '\\uFF41' .. '\\uFF5A' | '\\uFF66' .. '\\uFFBE' | '\\uFFC2' .. '\\uFFC7' | '\\uFFCA' .. '\\uFFCF' | '\\uFFD2' .. '\\uFFD7' | '\\uFFDA' .. '\\uFFDC' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:722:2: ( '\\u0041' .. '\\u005A' | '\\u0061' .. '\\u007A' | '\\u00AA' | '\\u00B5' | '\\u00BA' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u021F' | '\\u0222' .. '\\u0233' | '\\u0250' .. '\\u02AD' | '\\u02B0' .. '\\u02B8' | '\\u02BB' .. '\\u02C1' | '\\u02D0' .. '\\u02D1' | '\\u02E0' .. '\\u02E4' | '\\u02EE' | '\\u037A' | '\\u0386' | '\\u0388' .. '\\u038A' | '\\u038C' | '\\u038E' .. '\\u03A1' | '\\u03A3' .. '\\u03CE' | '\\u03D0' .. '\\u03D7' | '\\u03DA' .. '\\u03F3' | '\\u0400' .. '\\u0481' | '\\u048C' .. '\\u04C4' | '\\u04C7' .. '\\u04C8' | '\\u04CB' .. '\\u04CC' | '\\u04D0' .. '\\u04F5' | '\\u04F8' .. '\\u04F9' | '\\u0531' .. '\\u0556' | '\\u0559' | '\\u0561' .. '\\u0587' | '\\u05D0' .. '\\u05EA' | '\\u05F0' .. '\\u05F2' | '\\u0621' .. '\\u063A' | '\\u0640' .. '\\u064A' | '\\u0671' .. '\\u06D3' | '\\u06D5' | '\\u06E5' .. '\\u06E6' | '\\u06FA' .. '\\u06FC' | '\\u0710' | '\\u0712' .. '\\u072C' | '\\u0780' .. '\\u07A5' | '\\u0905' .. '\\u0939' | '\\u093D' | '\\u0950' | '\\u0958' .. '\\u0961' | '\\u0985' .. '\\u098C' | '\\u098F' .. '\\u0990' | '\\u0993' .. '\\u09A8' | '\\u09AA' .. '\\u09B0' | '\\u09B2' | '\\u09B6' .. '\\u09B9' | '\\u09DC' .. '\\u09DD' | '\\u09DF' .. '\\u09E1' | '\\u09F0' .. '\\u09F1' | '\\u0A05' .. '\\u0A0A' | '\\u0A0F' .. '\\u0A10' | '\\u0A13' .. '\\u0A28' | '\\u0A2A' .. '\\u0A30' | '\\u0A32' .. '\\u0A33' | '\\u0A35' .. '\\u0A36' | '\\u0A38' .. '\\u0A39' | '\\u0A59' .. '\\u0A5C' | '\\u0A5E' | '\\u0A72' .. '\\u0A74' | '\\u0A85' .. '\\u0A8B' | '\\u0A8D' | '\\u0A8F' .. '\\u0A91' | '\\u0A93' .. '\\u0AA8' | '\\u0AAA' .. '\\u0AB0' | '\\u0AB2' .. '\\u0AB3' | '\\u0AB5' .. '\\u0AB9' | '\\u0ABD' | '\\u0AD0' | '\\u0AE0' | '\\u0B05' .. '\\u0B0C' | '\\u0B0F' .. '\\u0B10' | '\\u0B13' .. '\\u0B28' | '\\u0B2A' .. '\\u0B30' | '\\u0B32' .. '\\u0B33' | '\\u0B36' .. '\\u0B39' | '\\u0B3D' | '\\u0B5C' .. '\\u0B5D' | '\\u0B5F' .. '\\u0B61' | '\\u0B85' .. '\\u0B8A' | '\\u0B8E' .. '\\u0B90' | '\\u0B92' .. '\\u0B95' | '\\u0B99' .. '\\u0B9A' | '\\u0B9C' | '\\u0B9E' .. '\\u0B9F' | '\\u0BA3' .. '\\u0BA4' | '\\u0BA8' .. '\\u0BAA' | '\\u0BAE' .. '\\u0BB5' | '\\u0BB7' .. '\\u0BB9' | '\\u0C05' .. '\\u0C0C' | '\\u0C0E' .. '\\u0C10' | '\\u0C12' .. '\\u0C28' | '\\u0C2A' .. '\\u0C33' | '\\u0C35' .. '\\u0C39' | '\\u0C60' .. '\\u0C61' | '\\u0C85' .. '\\u0C8C' | '\\u0C8E' .. '\\u0C90' | '\\u0C92' .. '\\u0CA8' | '\\u0CAA' .. '\\u0CB3' | '\\u0CB5' .. '\\u0CB9' | '\\u0CDE' | '\\u0CE0' .. '\\u0CE1' | '\\u0D05' .. '\\u0D0C' | '\\u0D0E' .. '\\u0D10' | '\\u0D12' .. '\\u0D28' | '\\u0D2A' .. '\\u0D39' | '\\u0D60' .. '\\u0D61' | '\\u0D85' .. '\\u0D96' | '\\u0D9A' .. '\\u0DB1' | '\\u0DB3' .. '\\u0DBB' | '\\u0DBD' | '\\u0DC0' .. '\\u0DC6' | '\\u0E01' .. '\\u0E30' | '\\u0E32' .. '\\u0E33' | '\\u0E40' .. '\\u0E46' | '\\u0E81' .. '\\u0E82' | '\\u0E84' | '\\u0E87' .. '\\u0E88' | '\\u0E8A' | '\\u0E8D' | '\\u0E94' .. '\\u0E97' | '\\u0E99' .. '\\u0E9F' | '\\u0EA1' .. '\\u0EA3' | '\\u0EA5' | '\\u0EA7' | '\\u0EAA' .. '\\u0EAB' | '\\u0EAD' .. '\\u0EB0' | '\\u0EB2' .. '\\u0EB3' | '\\u0EBD' .. '\\u0EC4' | '\\u0EC6' | '\\u0EDC' .. '\\u0EDD' | '\\u0F00' | '\\u0F40' .. '\\u0F6A' | '\\u0F88' .. '\\u0F8B' | '\\u1000' .. '\\u1021' | '\\u1023' .. '\\u1027' | '\\u1029' .. '\\u102A' | '\\u1050' .. '\\u1055' | '\\u10A0' .. '\\u10C5' | '\\u10D0' .. '\\u10F6' | '\\u1100' .. '\\u1159' | '\\u115F' .. '\\u11A2' | '\\u11A8' .. '\\u11F9' | '\\u1200' .. '\\u1206' | '\\u1208' .. '\\u1246' | '\\u1248' | '\\u124A' .. '\\u124D' | '\\u1250' .. '\\u1256' | '\\u1258' | '\\u125A' .. '\\u125D' | '\\u1260' .. '\\u1286' | '\\u1288' | '\\u128A' .. '\\u128D' | '\\u1290' .. '\\u12AE' | '\\u12B0' | '\\u12B2' .. '\\u12B5' | '\\u12B8' .. '\\u12BE' | '\\u12C0' | '\\u12C2' .. '\\u12C5' | '\\u12C8' .. '\\u12CE' | '\\u12D0' .. '\\u12D6' | '\\u12D8' .. '\\u12EE' | '\\u12F0' .. '\\u130E' | '\\u1310' | '\\u1312' .. '\\u1315' | '\\u1318' .. '\\u131E' | '\\u1320' .. '\\u1346' | '\\u1348' .. '\\u135A' | '\\u13A0' .. '\\u13B0' | '\\u13B1' .. '\\u13F4' | '\\u1401' .. '\\u1676' | '\\u1681' .. '\\u169A' | '\\u16A0' .. '\\u16EA' | '\\u1780' .. '\\u17B3' | '\\u1820' .. '\\u1877' | '\\u1880' .. '\\u18A8' | '\\u1E00' .. '\\u1E9B' | '\\u1EA0' .. '\\u1EE0' | '\\u1EE1' .. '\\u1EF9' | '\\u1F00' .. '\\u1F15' | '\\u1F18' .. '\\u1F1D' | '\\u1F20' .. '\\u1F39' | '\\u1F3A' .. '\\u1F45' | '\\u1F48' .. '\\u1F4D' | '\\u1F50' .. '\\u1F57' | '\\u1F59' | '\\u1F5B' | '\\u1F5D' | '\\u1F5F' .. '\\u1F7D' | '\\u1F80' .. '\\u1FB4' | '\\u1FB6' .. '\\u1FBC' | '\\u1FBE' | '\\u1FC2' .. '\\u1FC4' | '\\u1FC6' .. '\\u1FCC' | '\\u1FD0' .. '\\u1FD3' | '\\u1FD6' .. '\\u1FDB' | '\\u1FE0' .. '\\u1FEC' | '\\u1FF2' .. '\\u1FF4' | '\\u1FF6' .. '\\u1FFC' | '\\u207F' | '\\u2102' | '\\u2107' | '\\u210A' .. '\\u2113' | '\\u2115' | '\\u2119' .. '\\u211D' | '\\u2124' | '\\u2126' | '\\u2128' | '\\u212A' .. '\\u212D' | '\\u212F' .. '\\u2131' | '\\u2133' .. '\\u2139' | '\\u2160' .. '\\u2183' | '\\u3005' .. '\\u3007' | '\\u3021' .. '\\u3029' | '\\u3031' .. '\\u3035' | '\\u3038' .. '\\u303A' | '\\u3041' .. '\\u3094' | '\\u309D' .. '\\u309E' | '\\u30A1' .. '\\u30FA' | '\\u30FC' .. '\\u30FE' | '\\u3105' .. '\\u312C' | '\\u3131' .. '\\u318E' | '\\u31A0' .. '\\u31B7' | '\\u3400' | '\\u4DB5' | '\\u4E00' | '\\u9FA5' | '\\uA000' .. '\\uA48C' | '\\uAC00' | '\\uD7A3' | '\\uF900' .. '\\uFA2D' | '\\uFB00' .. '\\uFB06' | '\\uFB13' .. '\\uFB17' | '\\uFB1D' | '\\uFB1F' .. '\\uFB28' | '\\uFB2A' .. '\\uFB36' | '\\uFB38' .. '\\uFB3C' | '\\uFB3E' | '\\uFB40' .. '\\uFB41' | '\\uFB43' .. '\\uFB44' | '\\uFB46' .. '\\uFBB1' | '\\uFBD3' .. '\\uFD3D' | '\\uFD50' .. '\\uFD8F' | '\\uFD92' .. '\\uFDC7' | '\\uFDF0' .. '\\uFDFB' | '\\uFE70' .. '\\uFE72' | '\\uFE74' | '\\uFE76' .. '\\uFEFC' | '\\uFF21' .. '\\uFF3A' | '\\uFF41' .. '\\uFF5A' | '\\uFF66' .. '\\uFFBE' | '\\uFFC2' .. '\\uFFC7' | '\\uFFCA' .. '\\uFFCF' | '\\uFFD2' .. '\\uFFD7' | '\\uFFDA' .. '\\uFFDC' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if (u'A' <= self.input.LA(1) <= u'Z') or (u'a' <= self.input.LA(1) <= u'z') or self.input.LA(1) == u'\u00AA' or self.input.LA(1) == u'\u00B5' or self.input.LA(1) == u'\u00BA' or (u'\u00C0' <= self.input.LA(1) <= u'\u00D6') or (u'\u00D8' <= self.input.LA(1) <= u'\u00F6') or (u'\u00F8' <= self.input.LA(1) <= u'\u021F') or (u'\u0222' <= self.input.LA(1) <= u'\u0233') or (u'\u0250' <= self.input.LA(1) <= u'\u02AD') or (u'\u02B0' <= self.input.LA(1) <= u'\u02B8') or (u'\u02BB' <= self.input.LA(1) <= u'\u02C1') or (u'\u02D0' <= self.input.LA(1) <= u'\u02D1') or (u'\u02E0' <= self.input.LA(1) <= u'\u02E4') or self.input.LA(1) == u'\u02EE' or self.input.LA(1) == u'\u037A' or self.input.LA(1) == u'\u0386' or (u'\u0388' <= self.input.LA(1) <= u'\u038A') or self.input.LA(1) == u'\u038C' or (u'\u038E' <= self.input.LA(1) <= u'\u03A1') or (u'\u03A3' <= self.input.LA(1) <= u'\u03CE') or (u'\u03D0' <= self.input.LA(1) <= u'\u03D7') or (u'\u03DA' <= self.input.LA(1) <= u'\u03F3') or (u'\u0400' <= self.input.LA(1) <= u'\u0481') or (u'\u048C' <= self.input.LA(1) <= u'\u04C4') or (u'\u04C7' <= self.input.LA(1) <= u'\u04C8') or (u'\u04CB' <= self.input.LA(1) <= u'\u04CC') or (u'\u04D0' <= self.input.LA(1) <= u'\u04F5') or (u'\u04F8' <= self.input.LA(1) <= u'\u04F9') or (u'\u0531' <= self.input.LA(1) <= u'\u0556') or self.input.LA(1) == u'\u0559' or (u'\u0561' <= self.input.LA(1) <= u'\u0587') or (u'\u05D0' <= self.input.LA(1) <= u'\u05EA') or (u'\u05F0' <= self.input.LA(1) <= u'\u05F2') or (u'\u0621' <= self.input.LA(1) <= u'\u063A') or (u'\u0640' <= self.input.LA(1) <= u'\u064A') or (u'\u0671' <= self.input.LA(1) <= u'\u06D3') or self.input.LA(1) == u'\u06D5' or (u'\u06E5' <= self.input.LA(1) <= u'\u06E6') or (u'\u06FA' <= self.input.LA(1) <= u'\u06FC') or self.input.LA(1) == u'\u0710' or (u'\u0712' <= self.input.LA(1) <= u'\u072C') or (u'\u0780' <= self.input.LA(1) <= u'\u07A5') or (u'\u0905' <= self.input.LA(1) <= u'\u0939') or self.input.LA(1) == u'\u093D' or self.input.LA(1) == u'\u0950' or (u'\u0958' <= self.input.LA(1) <= u'\u0961') or (u'\u0985' <= self.input.LA(1) <= u'\u098C') or (u'\u098F' <= self.input.LA(1) <= u'\u0990') or (u'\u0993' <= self.input.LA(1) <= u'\u09A8') or (u'\u09AA' <= self.input.LA(1) <= u'\u09B0') or self.input.LA(1) == u'\u09B2' or (u'\u09B6' <= self.input.LA(1) <= u'\u09B9') or (u'\u09DC' <= self.input.LA(1) <= u'\u09DD') or (u'\u09DF' <= self.input.LA(1) <= u'\u09E1') or (u'\u09F0' <= self.input.LA(1) <= u'\u09F1') or (u'\u0A05' <= self.input.LA(1) <= u'\u0A0A') or (u'\u0A0F' <= self.input.LA(1) <= u'\u0A10') or (u'\u0A13' <= self.input.LA(1) <= u'\u0A28') or (u'\u0A2A' <= self.input.LA(1) <= u'\u0A30') or (u'\u0A32' <= self.input.LA(1) <= u'\u0A33') or (u'\u0A35' <= self.input.LA(1) <= u'\u0A36') or (u'\u0A38' <= self.input.LA(1) <= u'\u0A39') or (u'\u0A59' <= self.input.LA(1) <= u'\u0A5C') or self.input.LA(1) == u'\u0A5E' or (u'\u0A72' <= self.input.LA(1) <= u'\u0A74') or (u'\u0A85' <= self.input.LA(1) <= u'\u0A8B') or self.input.LA(1) == u'\u0A8D' or (u'\u0A8F' <= self.input.LA(1) <= u'\u0A91') or (u'\u0A93' <= self.input.LA(1) <= u'\u0AA8') or (u'\u0AAA' <= self.input.LA(1) <= u'\u0AB0') or (u'\u0AB2' <= self.input.LA(1) <= u'\u0AB3') or (u'\u0AB5' <= self.input.LA(1) <= u'\u0AB9') or self.input.LA(1) == u'\u0ABD' or self.input.LA(1) == u'\u0AD0' or self.input.LA(1) == u'\u0AE0' or (u'\u0B05' <= self.input.LA(1) <= u'\u0B0C') or (u'\u0B0F' <= self.input.LA(1) <= u'\u0B10') or (u'\u0B13' <= self.input.LA(1) <= u'\u0B28') or (u'\u0B2A' <= self.input.LA(1) <= u'\u0B30') or (u'\u0B32' <= self.input.LA(1) <= u'\u0B33') or (u'\u0B36' <= self.input.LA(1) <= u'\u0B39') or self.input.LA(1) == u'\u0B3D' or (u'\u0B5C' <= self.input.LA(1) <= u'\u0B5D') or (u'\u0B5F' <= self.input.LA(1) <= u'\u0B61') or (u'\u0B85' <= self.input.LA(1) <= u'\u0B8A') or (u'\u0B8E' <= self.input.LA(1) <= u'\u0B90') or (u'\u0B92' <= self.input.LA(1) <= u'\u0B95') or (u'\u0B99' <= self.input.LA(1) <= u'\u0B9A') or self.input.LA(1) == u'\u0B9C' or (u'\u0B9E' <= self.input.LA(1) <= u'\u0B9F') or (u'\u0BA3' <= self.input.LA(1) <= u'\u0BA4') or (u'\u0BA8' <= self.input.LA(1) <= u'\u0BAA') or (u'\u0BAE' <= self.input.LA(1) <= u'\u0BB5') or (u'\u0BB7' <= self.input.LA(1) <= u'\u0BB9') or (u'\u0C05' <= self.input.LA(1) <= u'\u0C0C') or (u'\u0C0E' <= self.input.LA(1) <= u'\u0C10') or (u'\u0C12' <= self.input.LA(1) <= u'\u0C28') or (u'\u0C2A' <= self.input.LA(1) <= u'\u0C33') or (u'\u0C35' <= self.input.LA(1) <= u'\u0C39') or (u'\u0C60' <= self.input.LA(1) <= u'\u0C61') or (u'\u0C85' <= self.input.LA(1) <= u'\u0C8C') or (u'\u0C8E' <= self.input.LA(1) <= u'\u0C90') or (u'\u0C92' <= self.input.LA(1) <= u'\u0CA8') or (u'\u0CAA' <= self.input.LA(1) <= u'\u0CB3') or (u'\u0CB5' <= self.input.LA(1) <= u'\u0CB9') or self.input.LA(1) == u'\u0CDE' or (u'\u0CE0' <= self.input.LA(1) <= u'\u0CE1') or (u'\u0D05' <= self.input.LA(1) <= u'\u0D0C') or (u'\u0D0E' <= self.input.LA(1) <= u'\u0D10') or (u'\u0D12' <= self.input.LA(1) <= u'\u0D28') or (u'\u0D2A' <= self.input.LA(1) <= u'\u0D39') or (u'\u0D60' <= self.input.LA(1) <= u'\u0D61') or (u'\u0D85' <= self.input.LA(1) <= u'\u0D96') or (u'\u0D9A' <= self.input.LA(1) <= u'\u0DB1') or (u'\u0DB3' <= self.input.LA(1) <= u'\u0DBB') or self.input.LA(1) == u'\u0DBD' or (u'\u0DC0' <= self.input.LA(1) <= u'\u0DC6') or (u'\u0E01' <= self.input.LA(1) <= u'\u0E30') or (u'\u0E32' <= self.input.LA(1) <= u'\u0E33') or (u'\u0E40' <= self.input.LA(1) <= u'\u0E46') or (u'\u0E81' <= self.input.LA(1) <= u'\u0E82') or self.input.LA(1) == u'\u0E84' or (u'\u0E87' <= self.input.LA(1) <= u'\u0E88') or self.input.LA(1) == u'\u0E8A' or self.input.LA(1) == u'\u0E8D' or (u'\u0E94' <= self.input.LA(1) <= u'\u0E97') or (u'\u0E99' <= self.input.LA(1) <= u'\u0E9F') or (u'\u0EA1' <= self.input.LA(1) <= u'\u0EA3') or self.input.LA(1) == u'\u0EA5' or self.input.LA(1) == u'\u0EA7' or (u'\u0EAA' <= self.input.LA(1) <= u'\u0EAB') or (u'\u0EAD' <= self.input.LA(1) <= u'\u0EB0') or (u'\u0EB2' <= self.input.LA(1) <= u'\u0EB3') or (u'\u0EBD' <= self.input.LA(1) <= u'\u0EC4') or self.input.LA(1) == u'\u0EC6' or (u'\u0EDC' <= self.input.LA(1) <= u'\u0EDD') or self.input.LA(1) == u'\u0F00' or (u'\u0F40' <= self.input.LA(1) <= u'\u0F6A') or (u'\u0F88' <= self.input.LA(1) <= u'\u0F8B') or (u'\u1000' <= self.input.LA(1) <= u'\u1021') or (u'\u1023' <= self.input.LA(1) <= u'\u1027') or (u'\u1029' <= self.input.LA(1) <= u'\u102A') or (u'\u1050' <= self.input.LA(1) <= u'\u1055') or (u'\u10A0' <= self.input.LA(1) <= u'\u10C5') or (u'\u10D0' <= self.input.LA(1) <= u'\u10F6') or (u'\u1100' <= self.input.LA(1) <= u'\u1159') or (u'\u115F' <= self.input.LA(1) <= u'\u11A2') or (u'\u11A8' <= self.input.LA(1) <= u'\u11F9') or (u'\u1200' <= self.input.LA(1) <= u'\u1206') or (u'\u1208' <= self.input.LA(1) <= u'\u1246') or self.input.LA(1) == u'\u1248' or (u'\u124A' <= self.input.LA(1) <= u'\u124D') or (u'\u1250' <= self.input.LA(1) <= u'\u1256') or self.input.LA(1) == u'\u1258' or (u'\u125A' <= self.input.LA(1) <= u'\u125D') or (u'\u1260' <= self.input.LA(1) <= u'\u1286') or self.input.LA(1) == u'\u1288' or (u'\u128A' <= self.input.LA(1) <= u'\u128D') or (u'\u1290' <= self.input.LA(1) <= u'\u12AE') or self.input.LA(1) == u'\u12B0' or (u'\u12B2' <= self.input.LA(1) <= u'\u12B5') or (u'\u12B8' <= self.input.LA(1) <= u'\u12BE') or self.input.LA(1) == u'\u12C0' or (u'\u12C2' <= self.input.LA(1) <= u'\u12C5') or (u'\u12C8' <= self.input.LA(1) <= u'\u12CE') or (u'\u12D0' <= self.input.LA(1) <= u'\u12D6') or (u'\u12D8' <= self.input.LA(1) <= u'\u12EE') or (u'\u12F0' <= self.input.LA(1) <= u'\u130E') or self.input.LA(1) == u'\u1310' or (u'\u1312' <= self.input.LA(1) <= u'\u1315') or (u'\u1318' <= self.input.LA(1) <= u'\u131E') or (u'\u1320' <= self.input.LA(1) <= u'\u1346') or (u'\u1348' <= self.input.LA(1) <= u'\u135A') or (u'\u13A0' <= self.input.LA(1) <= u'\u13F4') or (u'\u1401' <= self.input.LA(1) <= u'\u1676') or (u'\u1681' <= self.input.LA(1) <= u'\u169A') or (u'\u16A0' <= self.input.LA(1) <= u'\u16EA') or (u'\u1780' <= self.input.LA(1) <= u'\u17B3') or (u'\u1820' <= self.input.LA(1) <= u'\u1877') or (u'\u1880' <= self.input.LA(1) <= u'\u18A8') or (u'\u1E00' <= self.input.LA(1) <= u'\u1E9B') or (u'\u1EA0' <= self.input.LA(1) <= u'\u1EF9') or (u'\u1F00' <= self.input.LA(1) <= u'\u1F15') or (u'\u1F18' <= self.input.LA(1) <= u'\u1F1D') or (u'\u1F20' <= self.input.LA(1) <= u'\u1F45') or (u'\u1F48' <= self.input.LA(1) <= u'\u1F4D') or (u'\u1F50' <= self.input.LA(1) <= u'\u1F57') or self.input.LA(1) == u'\u1F59' or self.input.LA(1) == u'\u1F5B' or self.input.LA(1) == u'\u1F5D' or (u'\u1F5F' <= self.input.LA(1) <= u'\u1F7D') or (u'\u1F80' <= self.input.LA(1) <= u'\u1FB4') or (u'\u1FB6' <= self.input.LA(1) <= u'\u1FBC') or self.input.LA(1) == u'\u1FBE' or (u'\u1FC2' <= self.input.LA(1) <= u'\u1FC4') or (u'\u1FC6' <= self.input.LA(1) <= u'\u1FCC') or (u'\u1FD0' <= self.input.LA(1) <= u'\u1FD3') or (u'\u1FD6' <= self.input.LA(1) <= u'\u1FDB') or (u'\u1FE0' <= self.input.LA(1) <= u'\u1FEC') or (u'\u1FF2' <= self.input.LA(1) <= u'\u1FF4') or (u'\u1FF6' <= self.input.LA(1) <= u'\u1FFC') or self.input.LA(1) == u'\u207F' or self.input.LA(1) == u'\u2102' or self.input.LA(1) == u'\u2107' or (u'\u210A' <= self.input.LA(1) <= u'\u2113') or self.input.LA(1) == u'\u2115' or (u'\u2119' <= self.input.LA(1) <= u'\u211D') or self.input.LA(1) == u'\u2124' or self.input.LA(1) == u'\u2126' or self.input.LA(1) == u'\u2128' or (u'\u212A' <= self.input.LA(1) <= u'\u212D') or (u'\u212F' <= self.input.LA(1) <= u'\u2131') or (u'\u2133' <= self.input.LA(1) <= u'\u2139') or (u'\u2160' <= self.input.LA(1) <= u'\u2183') or (u'\u3005' <= self.input.LA(1) <= u'\u3007') or (u'\u3021' <= self.input.LA(1) <= u'\u3029') or (u'\u3031' <= self.input.LA(1) <= u'\u3035') or (u'\u3038' <= self.input.LA(1) <= u'\u303A') or (u'\u3041' <= self.input.LA(1) <= u'\u3094') or (u'\u309D' <= self.input.LA(1) <= u'\u309E') or (u'\u30A1' <= self.input.LA(1) <= u'\u30FA') or (u'\u30FC' <= self.input.LA(1) <= u'\u30FE') or (u'\u3105' <= self.input.LA(1) <= u'\u312C') or (u'\u3131' <= self.input.LA(1) <= u'\u318E') or (u'\u31A0' <= self.input.LA(1) <= u'\u31B7') or self.input.LA(1) == u'\u3400' or self.input.LA(1) == u'\u4DB5' or self.input.LA(1) == u'\u4E00' or self.input.LA(1) == u'\u9FA5' or (u'\uA000' <= self.input.LA(1) <= u'\uA48C') or self.input.LA(1) == u'\uAC00' or self.input.LA(1) == u'\uD7A3' or (u'\uF900' <= self.input.LA(1) <= u'\uFA2D') or (u'\uFB00' <= self.input.LA(1) <= u'\uFB06') or (u'\uFB13' <= self.input.LA(1) <= u'\uFB17') or self.input.LA(1) == u'\uFB1D' or (u'\uFB1F' <= self.input.LA(1) <= u'\uFB28') or (u'\uFB2A' <= self.input.LA(1) <= u'\uFB36') or (u'\uFB38' <= self.input.LA(1) <= u'\uFB3C') or self.input.LA(1) == u'\uFB3E' or (u'\uFB40' <= self.input.LA(1) <= u'\uFB41') or (u'\uFB43' <= self.input.LA(1) <= u'\uFB44') or (u'\uFB46' <= self.input.LA(1) <= u'\uFBB1') or (u'\uFBD3' <= self.input.LA(1) <= u'\uFD3D') or (u'\uFD50' <= self.input.LA(1) <= u'\uFD8F') or (u'\uFD92' <= self.input.LA(1) <= u'\uFDC7') or (u'\uFDF0' <= self.input.LA(1) <= u'\uFDFB') or (u'\uFE70' <= self.input.LA(1) <= u'\uFE72') or self.input.LA(1) == u'\uFE74' or (u'\uFE76' <= self.input.LA(1) <= u'\uFEFC') or (u'\uFF21' <= self.input.LA(1) <= u'\uFF3A') or (u'\uFF41' <= self.input.LA(1) <= u'\uFF5A') or (u'\uFF66' <= self.input.LA(1) <= u'\uFFBE') or (u'\uFFC2' <= self.input.LA(1) <= u'\uFFC7') or (u'\uFFCA' <= self.input.LA(1) <= u'\uFFCF') or (u'\uFFD2' <= self.input.LA(1) <= u'\uFFD7') or (u'\uFFDA' <= self.input.LA(1) <= u'\uFFDC'):
                 self.input.consume();
@@ -3598,7 +3598,7 @@ class JavaScriptLexer(Lexer):
     def mUnicodeCombiningMark(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:985:2: ( '\\u0300' .. '\\u034E' | '\\u0360' .. '\\u0362' | '\\u0483' .. '\\u0486' | '\\u0591' .. '\\u05A1' | '\\u05A3' .. '\\u05B9' | '\\u05BB' .. '\\u05BD' | '\\u05BF' | '\\u05C1' .. '\\u05C2' | '\\u05C4' | '\\u064B' .. '\\u0655' | '\\u0670' | '\\u06D6' .. '\\u06DC' | '\\u06DF' .. '\\u06E4' | '\\u06E7' .. '\\u06E8' | '\\u06EA' .. '\\u06ED' | '\\u0711' | '\\u0730' .. '\\u074A' | '\\u07A6' .. '\\u07B0' | '\\u0901' .. '\\u0903' | '\\u093C' | '\\u093E' .. '\\u094D' | '\\u0951' .. '\\u0954' | '\\u0962' .. '\\u0963' | '\\u0981' .. '\\u0983' | '\\u09BC' .. '\\u09C4' | '\\u09C7' .. '\\u09C8' | '\\u09CB' .. '\\u09CD' | '\\u09D7' | '\\u09E2' .. '\\u09E3' | '\\u0A02' | '\\u0A3C' | '\\u0A3E' .. '\\u0A42' | '\\u0A47' .. '\\u0A48' | '\\u0A4B' .. '\\u0A4D' | '\\u0A70' .. '\\u0A71' | '\\u0A81' .. '\\u0A83' | '\\u0ABC' | '\\u0ABE' .. '\\u0AC5' | '\\u0AC7' .. '\\u0AC9' | '\\u0ACB' .. '\\u0ACD' | '\\u0B01' .. '\\u0B03' | '\\u0B3C' | '\\u0B3E' .. '\\u0B43' | '\\u0B47' .. '\\u0B48' | '\\u0B4B' .. '\\u0B4D' | '\\u0B56' .. '\\u0B57' | '\\u0B82' .. '\\u0B83' | '\\u0BBE' .. '\\u0BC2' | '\\u0BC6' .. '\\u0BC8' | '\\u0BCA' .. '\\u0BCD' | '\\u0BD7' | '\\u0C01' .. '\\u0C03' | '\\u0C3E' .. '\\u0C44' | '\\u0C46' .. '\\u0C48' | '\\u0C4A' .. '\\u0C4D' | '\\u0C55' .. '\\u0C56' | '\\u0C82' .. '\\u0C83' | '\\u0CBE' .. '\\u0CC4' | '\\u0CC6' .. '\\u0CC8' | '\\u0CCA' .. '\\u0CCD' | '\\u0CD5' .. '\\u0CD6' | '\\u0D02' .. '\\u0D03' | '\\u0D3E' .. '\\u0D43' | '\\u0D46' .. '\\u0D48' | '\\u0D4A' .. '\\u0D4D' | '\\u0D57' | '\\u0D82' .. '\\u0D83' | '\\u0DCA' | '\\u0DCF' .. '\\u0DD4' | '\\u0DD6' | '\\u0DD8' .. '\\u0DDF' | '\\u0DF2' .. '\\u0DF3' | '\\u0E31' | '\\u0E34' .. '\\u0E3A' | '\\u0E47' .. '\\u0E4E' | '\\u0EB1' | '\\u0EB4' .. '\\u0EB9' | '\\u0EBB' .. '\\u0EBC' | '\\u0EC8' .. '\\u0ECD' | '\\u0F18' .. '\\u0F19' | '\\u0F35' | '\\u0F37' | '\\u0F39' | '\\u0F3E' .. '\\u0F3F' | '\\u0F71' .. '\\u0F84' | '\\u0F86' .. '\\u0F87' | '\\u0F90' .. '\\u0F97' | '\\u0F99' .. '\\u0FBC' | '\\u0FC6' | '\\u102C' .. '\\u1032' | '\\u1036' .. '\\u1039' | '\\u1056' .. '\\u1059' | '\\u17B4' .. '\\u17D3' | '\\u18A9' | '\\u20D0' .. '\\u20DC' | '\\u20E1' | '\\u302A' .. '\\u302F' | '\\u3099' .. '\\u309A' | '\\uFB1E' | '\\uFE20' .. '\\uFE23' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:986:2: ( '\\u0300' .. '\\u034E' | '\\u0360' .. '\\u0362' | '\\u0483' .. '\\u0486' | '\\u0591' .. '\\u05A1' | '\\u05A3' .. '\\u05B9' | '\\u05BB' .. '\\u05BD' | '\\u05BF' | '\\u05C1' .. '\\u05C2' | '\\u05C4' | '\\u064B' .. '\\u0655' | '\\u0670' | '\\u06D6' .. '\\u06DC' | '\\u06DF' .. '\\u06E4' | '\\u06E7' .. '\\u06E8' | '\\u06EA' .. '\\u06ED' | '\\u0711' | '\\u0730' .. '\\u074A' | '\\u07A6' .. '\\u07B0' | '\\u0901' .. '\\u0903' | '\\u093C' | '\\u093E' .. '\\u094D' | '\\u0951' .. '\\u0954' | '\\u0962' .. '\\u0963' | '\\u0981' .. '\\u0983' | '\\u09BC' .. '\\u09C4' | '\\u09C7' .. '\\u09C8' | '\\u09CB' .. '\\u09CD' | '\\u09D7' | '\\u09E2' .. '\\u09E3' | '\\u0A02' | '\\u0A3C' | '\\u0A3E' .. '\\u0A42' | '\\u0A47' .. '\\u0A48' | '\\u0A4B' .. '\\u0A4D' | '\\u0A70' .. '\\u0A71' | '\\u0A81' .. '\\u0A83' | '\\u0ABC' | '\\u0ABE' .. '\\u0AC5' | '\\u0AC7' .. '\\u0AC9' | '\\u0ACB' .. '\\u0ACD' | '\\u0B01' .. '\\u0B03' | '\\u0B3C' | '\\u0B3E' .. '\\u0B43' | '\\u0B47' .. '\\u0B48' | '\\u0B4B' .. '\\u0B4D' | '\\u0B56' .. '\\u0B57' | '\\u0B82' .. '\\u0B83' | '\\u0BBE' .. '\\u0BC2' | '\\u0BC6' .. '\\u0BC8' | '\\u0BCA' .. '\\u0BCD' | '\\u0BD7' | '\\u0C01' .. '\\u0C03' | '\\u0C3E' .. '\\u0C44' | '\\u0C46' .. '\\u0C48' | '\\u0C4A' .. '\\u0C4D' | '\\u0C55' .. '\\u0C56' | '\\u0C82' .. '\\u0C83' | '\\u0CBE' .. '\\u0CC4' | '\\u0CC6' .. '\\u0CC8' | '\\u0CCA' .. '\\u0CCD' | '\\u0CD5' .. '\\u0CD6' | '\\u0D02' .. '\\u0D03' | '\\u0D3E' .. '\\u0D43' | '\\u0D46' .. '\\u0D48' | '\\u0D4A' .. '\\u0D4D' | '\\u0D57' | '\\u0D82' .. '\\u0D83' | '\\u0DCA' | '\\u0DCF' .. '\\u0DD4' | '\\u0DD6' | '\\u0DD8' .. '\\u0DDF' | '\\u0DF2' .. '\\u0DF3' | '\\u0E31' | '\\u0E34' .. '\\u0E3A' | '\\u0E47' .. '\\u0E4E' | '\\u0EB1' | '\\u0EB4' .. '\\u0EB9' | '\\u0EBB' .. '\\u0EBC' | '\\u0EC8' .. '\\u0ECD' | '\\u0F18' .. '\\u0F19' | '\\u0F35' | '\\u0F37' | '\\u0F39' | '\\u0F3E' .. '\\u0F3F' | '\\u0F71' .. '\\u0F84' | '\\u0F86' .. '\\u0F87' | '\\u0F90' .. '\\u0F97' | '\\u0F99' .. '\\u0FBC' | '\\u0FC6' | '\\u102C' .. '\\u1032' | '\\u1036' .. '\\u1039' | '\\u1056' .. '\\u1059' | '\\u17B4' .. '\\u17D3' | '\\u18A9' | '\\u20D0' .. '\\u20DC' | '\\u20E1' | '\\u302A' .. '\\u302F' | '\\u3099' .. '\\u309A' | '\\uFB1E' | '\\uFE20' .. '\\uFE23' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if (u'\u0300' <= self.input.LA(1) <= u'\u034E') or (u'\u0360' <= self.input.LA(1) <= u'\u0362') or (u'\u0483' <= self.input.LA(1) <= u'\u0486') or (u'\u0591' <= self.input.LA(1) <= u'\u05A1') or (u'\u05A3' <= self.input.LA(1) <= u'\u05B9') or (u'\u05BB' <= self.input.LA(1) <= u'\u05BD') or self.input.LA(1) == u'\u05BF' or (u'\u05C1' <= self.input.LA(1) <= u'\u05C2') or self.input.LA(1) == u'\u05C4' or (u'\u064B' <= self.input.LA(1) <= u'\u0655') or self.input.LA(1) == u'\u0670' or (u'\u06D6' <= self.input.LA(1) <= u'\u06DC') or (u'\u06DF' <= self.input.LA(1) <= u'\u06E4') or (u'\u06E7' <= self.input.LA(1) <= u'\u06E8') or (u'\u06EA' <= self.input.LA(1) <= u'\u06ED') or self.input.LA(1) == u'\u0711' or (u'\u0730' <= self.input.LA(1) <= u'\u074A') or (u'\u07A6' <= self.input.LA(1) <= u'\u07B0') or (u'\u0901' <= self.input.LA(1) <= u'\u0903') or self.input.LA(1) == u'\u093C' or (u'\u093E' <= self.input.LA(1) <= u'\u094D') or (u'\u0951' <= self.input.LA(1) <= u'\u0954') or (u'\u0962' <= self.input.LA(1) <= u'\u0963') or (u'\u0981' <= self.input.LA(1) <= u'\u0983') or (u'\u09BC' <= self.input.LA(1) <= u'\u09C4') or (u'\u09C7' <= self.input.LA(1) <= u'\u09C8') or (u'\u09CB' <= self.input.LA(1) <= u'\u09CD') or self.input.LA(1) == u'\u09D7' or (u'\u09E2' <= self.input.LA(1) <= u'\u09E3') or self.input.LA(1) == u'\u0A02' or self.input.LA(1) == u'\u0A3C' or (u'\u0A3E' <= self.input.LA(1) <= u'\u0A42') or (u'\u0A47' <= self.input.LA(1) <= u'\u0A48') or (u'\u0A4B' <= self.input.LA(1) <= u'\u0A4D') or (u'\u0A70' <= self.input.LA(1) <= u'\u0A71') or (u'\u0A81' <= self.input.LA(1) <= u'\u0A83') or self.input.LA(1) == u'\u0ABC' or (u'\u0ABE' <= self.input.LA(1) <= u'\u0AC5') or (u'\u0AC7' <= self.input.LA(1) <= u'\u0AC9') or (u'\u0ACB' <= self.input.LA(1) <= u'\u0ACD') or (u'\u0B01' <= self.input.LA(1) <= u'\u0B03') or self.input.LA(1) == u'\u0B3C' or (u'\u0B3E' <= self.input.LA(1) <= u'\u0B43') or (u'\u0B47' <= self.input.LA(1) <= u'\u0B48') or (u'\u0B4B' <= self.input.LA(1) <= u'\u0B4D') or (u'\u0B56' <= self.input.LA(1) <= u'\u0B57') or (u'\u0B82' <= self.input.LA(1) <= u'\u0B83') or (u'\u0BBE' <= self.input.LA(1) <= u'\u0BC2') or (u'\u0BC6' <= self.input.LA(1) <= u'\u0BC8') or (u'\u0BCA' <= self.input.LA(1) <= u'\u0BCD') or self.input.LA(1) == u'\u0BD7' or (u'\u0C01' <= self.input.LA(1) <= u'\u0C03') or (u'\u0C3E' <= self.input.LA(1) <= u'\u0C44') or (u'\u0C46' <= self.input.LA(1) <= u'\u0C48') or (u'\u0C4A' <= self.input.LA(1) <= u'\u0C4D') or (u'\u0C55' <= self.input.LA(1) <= u'\u0C56') or (u'\u0C82' <= self.input.LA(1) <= u'\u0C83') or (u'\u0CBE' <= self.input.LA(1) <= u'\u0CC4') or (u'\u0CC6' <= self.input.LA(1) <= u'\u0CC8') or (u'\u0CCA' <= self.input.LA(1) <= u'\u0CCD') or (u'\u0CD5' <= self.input.LA(1) <= u'\u0CD6') or (u'\u0D02' <= self.input.LA(1) <= u'\u0D03') or (u'\u0D3E' <= self.input.LA(1) <= u'\u0D43') or (u'\u0D46' <= self.input.LA(1) <= u'\u0D48') or (u'\u0D4A' <= self.input.LA(1) <= u'\u0D4D') or self.input.LA(1) == u'\u0D57' or (u'\u0D82' <= self.input.LA(1) <= u'\u0D83') or self.input.LA(1) == u'\u0DCA' or (u'\u0DCF' <= self.input.LA(1) <= u'\u0DD4') or self.input.LA(1) == u'\u0DD6' or (u'\u0DD8' <= self.input.LA(1) <= u'\u0DDF') or (u'\u0DF2' <= self.input.LA(1) <= u'\u0DF3') or self.input.LA(1) == u'\u0E31' or (u'\u0E34' <= self.input.LA(1) <= u'\u0E3A') or (u'\u0E47' <= self.input.LA(1) <= u'\u0E4E') or self.input.LA(1) == u'\u0EB1' or (u'\u0EB4' <= self.input.LA(1) <= u'\u0EB9') or (u'\u0EBB' <= self.input.LA(1) <= u'\u0EBC') or (u'\u0EC8' <= self.input.LA(1) <= u'\u0ECD') or (u'\u0F18' <= self.input.LA(1) <= u'\u0F19') or self.input.LA(1) == u'\u0F35' or self.input.LA(1) == u'\u0F37' or self.input.LA(1) == u'\u0F39' or (u'\u0F3E' <= self.input.LA(1) <= u'\u0F3F') or (u'\u0F71' <= self.input.LA(1) <= u'\u0F84') or (u'\u0F86' <= self.input.LA(1) <= u'\u0F87') or (u'\u0F90' <= self.input.LA(1) <= u'\u0F97') or (u'\u0F99' <= self.input.LA(1) <= u'\u0FBC') or self.input.LA(1) == u'\u0FC6' or (u'\u102C' <= self.input.LA(1) <= u'\u1032') or (u'\u1036' <= self.input.LA(1) <= u'\u1039') or (u'\u1056' <= self.input.LA(1) <= u'\u1059') or (u'\u17B4' <= self.input.LA(1) <= u'\u17D3') or self.input.LA(1) == u'\u18A9' or (u'\u20D0' <= self.input.LA(1) <= u'\u20DC') or self.input.LA(1) == u'\u20E1' or (u'\u302A' <= self.input.LA(1) <= u'\u302F') or (u'\u3099' <= self.input.LA(1) <= u'\u309A') or self.input.LA(1) == u'\uFB1E' or (u'\uFE20' <= self.input.LA(1) <= u'\uFE23'):
                 self.input.consume();
@@ -3630,7 +3630,7 @@ class JavaScriptLexer(Lexer):
     def mUnicodeDigit(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1088:2: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06F0' .. '\\u06F9' | '\\u0966' .. '\\u096F' | '\\u09E6' .. '\\u09EF' | '\\u0A66' .. '\\u0A6F' | '\\u0AE6' .. '\\u0AEF' | '\\u0B66' .. '\\u0B6F' | '\\u0BE7' .. '\\u0BEF' | '\\u0C66' .. '\\u0C6F' | '\\u0CE6' .. '\\u0CEF' | '\\u0D66' .. '\\u0D6F' | '\\u0E50' .. '\\u0E59' | '\\u0ED0' .. '\\u0ED9' | '\\u0F20' .. '\\u0F29' | '\\u1040' .. '\\u1049' | '\\u1369' .. '\\u1371' | '\\u17E0' .. '\\u17E9' | '\\u1810' .. '\\u1819' | '\\uFF10' .. '\\uFF19' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1089:2: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06F0' .. '\\u06F9' | '\\u0966' .. '\\u096F' | '\\u09E6' .. '\\u09EF' | '\\u0A66' .. '\\u0A6F' | '\\u0AE6' .. '\\u0AEF' | '\\u0B66' .. '\\u0B6F' | '\\u0BE7' .. '\\u0BEF' | '\\u0C66' .. '\\u0C6F' | '\\u0CE6' .. '\\u0CEF' | '\\u0D66' .. '\\u0D6F' | '\\u0E50' .. '\\u0E59' | '\\u0ED0' .. '\\u0ED9' | '\\u0F20' .. '\\u0F29' | '\\u1040' .. '\\u1049' | '\\u1369' .. '\\u1371' | '\\u17E0' .. '\\u17E9' | '\\u1810' .. '\\u1819' | '\\uFF10' .. '\\uFF19' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if (u'0' <= self.input.LA(1) <= u'9') or (u'\u0660' <= self.input.LA(1) <= u'\u0669') or (u'\u06F0' <= self.input.LA(1) <= u'\u06F9') or (u'\u0966' <= self.input.LA(1) <= u'\u096F') or (u'\u09E6' <= self.input.LA(1) <= u'\u09EF') or (u'\u0A66' <= self.input.LA(1) <= u'\u0A6F') or (u'\u0AE6' <= self.input.LA(1) <= u'\u0AEF') or (u'\u0B66' <= self.input.LA(1) <= u'\u0B6F') or (u'\u0BE7' <= self.input.LA(1) <= u'\u0BEF') or (u'\u0C66' <= self.input.LA(1) <= u'\u0C6F') or (u'\u0CE6' <= self.input.LA(1) <= u'\u0CEF') or (u'\u0D66' <= self.input.LA(1) <= u'\u0D6F') or (u'\u0E50' <= self.input.LA(1) <= u'\u0E59') or (u'\u0ED0' <= self.input.LA(1) <= u'\u0ED9') or (u'\u0F20' <= self.input.LA(1) <= u'\u0F29') or (u'\u1040' <= self.input.LA(1) <= u'\u1049') or (u'\u1369' <= self.input.LA(1) <= u'\u1371') or (u'\u17E0' <= self.input.LA(1) <= u'\u17E9') or (u'\u1810' <= self.input.LA(1) <= u'\u1819') or (u'\uFF10' <= self.input.LA(1) <= u'\uFF19'):
                 self.input.consume();
@@ -3662,7 +3662,7 @@ class JavaScriptLexer(Lexer):
     def mUnicodeConnectorPunctuation(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1111:2: ( '\\u005F' | '\\u203F' .. '\\u2040' | '\\u30FB' | '\\uFE33' .. '\\uFE34' | '\\uFE4D' .. '\\uFE4F' | '\\uFF3F' | '\\uFF65' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1112:2: ( '\\u005F' | '\\u203F' .. '\\u2040' | '\\u30FB' | '\\uFE33' .. '\\uFE34' | '\\uFE4D' .. '\\uFE4F' | '\\uFF3F' | '\\uFF65' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if self.input.LA(1) == u'_' or (u'\u203F' <= self.input.LA(1) <= u'\u2040') or self.input.LA(1) == u'\u30FB' or (u'\uFE33' <= self.input.LA(1) <= u'\uFE34') or (u'\uFE4D' <= self.input.LA(1) <= u'\uFE4F') or self.input.LA(1) == u'\uFF3F' or self.input.LA(1) == u'\uFF65':
                 self.input.consume();
@@ -3696,13 +3696,13 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = Comment
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1121:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1121:4: '/*' ( options {greedy=false; } : . )* '*/'
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1122:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1122:4: '/*' ( options {greedy=false; } : . )* '*/'
             self.match("/*")
             if self.failed:
                 return 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1121:9: ( options {greedy=false; } : . )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1122:9: ( options {greedy=false; } : . )*
             while True: #loop29
                 alt29 = 2
                 LA29_0 = self.input.LA(1)
@@ -3721,7 +3721,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt29 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1121:36: .
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1122:36: .
                     self.matchAny()
                     if self.failed:
                         return 
@@ -3756,13 +3756,13 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = LineComment
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1125:2: ( '//' (~ ( LT ) )* )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1125:4: '//' (~ ( LT ) )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1126:2: ( '//' (~ ( LT ) )* )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1126:4: '//' (~ ( LT ) )*
             self.match("//")
             if self.failed:
                 return 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1125:9: (~ ( LT ) )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1126:9: (~ ( LT ) )*
             while True: #loop30
                 alt30 = 2
                 LA30_0 = self.input.LA(1)
@@ -3772,7 +3772,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt30 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1125:9: ~ ( LT )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1126:9: ~ ( LT )
                     if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\f') or (u'\u000E' <= self.input.LA(1) <= u'\u2027') or (u'\u202A' <= self.input.LA(1) <= u'\uFFFE'):
                         self.input.consume();
                         self.failed = False
@@ -3814,13 +3814,13 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = XMLComment
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1129:2: ( '<!--' ( options {greedy=false; } : . )* '-->' )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1129:4: '<!--' ( options {greedy=false; } : . )* '-->'
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1130:2: ( '<!--' ( options {greedy=false; } : . )* '-->' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1130:4: '<!--' ( options {greedy=false; } : . )* '-->'
             self.match("<!--")
             if self.failed:
                 return 
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1129:11: ( options {greedy=false; } : . )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1130:11: ( options {greedy=false; } : . )*
             while True: #loop31
                 alt31 = 2
                 LA31_0 = self.input.LA(1)
@@ -3846,7 +3846,7 @@ class JavaScriptLexer(Lexer):
 
 
                 if alt31 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1129:38: .
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1130:38: .
                     self.matchAny()
                     if self.failed:
                         return 
@@ -3878,7 +3878,7 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = LT
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1133:2: ( '\\n' | '\\r' | '\\u2028' | '\\u2029' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1134:2: ( '\\n' | '\\r' | '\\u2028' | '\\u2029' )
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
             if self.input.LA(1) == u'\n' or self.input.LA(1) == u'\r' or (u'\u2028' <= self.input.LA(1) <= u'\u2029'):
                 self.input.consume();
@@ -3912,8 +3912,8 @@ class JavaScriptLexer(Lexer):
         try:
             self.type = WhiteSpace
 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1140:2: ( ( '\\t' | '\\v' | '\\f' | ' ' | '\\u00A0' ) )
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1140:4: ( '\\t' | '\\v' | '\\f' | ' ' | '\\u00A0' )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1141:2: ( ( '\\t' | '\\v' | '\\f' | ' ' | '\\u00A0' ) )
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:1141:4: ( '\\t' | '\\v' | '\\f' | ' ' | '\\u00A0' )
             if self.input.LA(1) == u'\t' or self.input.LA(1) == u'\f' or self.input.LA(1) == u' ' or self.input.LA(1) == u'v' or self.input.LA(1) == u'\u00A0':
                 self.input.consume();
                 self.failed = False
@@ -5523,8 +5523,8 @@ class JavaScriptLexer(Lexer):
 
     # $ANTLR start synpred1
     def synpred1_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:715:4: ( IdentifierStart )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:715:5: IdentifierStart
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:716:4: ( IdentifierStart )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:716:5: IdentifierStart
         self.mIdentifierStart()
         if self.failed:
             return 

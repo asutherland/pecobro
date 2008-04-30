@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-29 07:07:10
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-30 18:12:24
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -355,6 +355,16 @@ class JavaScriptParser(Parser):
             accept = self.DFA157_accept,
             special = self.DFA157_special,
             transition = self.DFA157_transition
+            )
+        self.dfa166 = self.DFA166(
+            self, 166,
+            eot = self.DFA166_eot,
+            eof = self.DFA166_eof,
+            min = self.DFA166_min,
+            max = self.DFA166_max,
+            accept = self.DFA166_accept,
+            special = self.DFA166_special,
+            transition = self.DFA166_transition
             )
         self.dfa174 = self.DFA174(
             self, 174,
@@ -2139,7 +2149,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking == 0:
                     stream_statementBlock.add(statementBlock54.tree)
                 # AST Rewrite
-                # elements: statementBlock, identifier, formalParameterList
+                # elements: identifier, statementBlock, formalParameterList
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2200,7 +2210,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start functionExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:127:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* expression -> ^( FUNC ANONYMOUS[$func] formalParameterList expression ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* assignmentExpression -> ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression ) );
     def functionExpression(self, ):
 
         retval = self.functionExpression_return()
@@ -2229,7 +2239,7 @@ class JavaScriptParser(Parser):
 
         formalParameterList67 = None
 
-        expression69 = None
+        assignmentExpression69 = None
 
 
         func_tree = None
@@ -2243,7 +2253,7 @@ class JavaScriptParser(Parser):
         LT68_tree = None
         stream_69 = RewriteRuleTokenStream(self.adaptor, "token 69")
         stream_LT = RewriteRuleTokenStream(self.adaptor, "token LT")
-        stream_expression = RewriteRuleSubtreeStream(self.adaptor, "rule expression")
+        stream_assignmentExpression = RewriteRuleSubtreeStream(self.adaptor, "rule assignmentExpression")
         stream_statementBlock = RewriteRuleSubtreeStream(self.adaptor, "rule statementBlock")
         stream_identifier = RewriteRuleSubtreeStream(self.adaptor, "rule identifier")
         stream_formalParameterList = RewriteRuleSubtreeStream(self.adaptor, "rule formalParameterList")
@@ -2252,7 +2262,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 15):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:2: ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* expression -> ^( FUNC ANONYMOUS[$func] formalParameterList expression ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:2: ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* assignmentExpression -> ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression ) )
                 alt28 = 3
                 LA28_0 = self.input.LA(1)
 
@@ -2270,7 +2280,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("127:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* expression -> ^( FUNC ANONYMOUS[$func] formalParameterList expression ) );", 28, 1, self.input)
+                        nvae = NoViableAltException("128:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* assignmentExpression -> ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression ) );", 28, 1, self.input)
 
                         raise nvae
 
@@ -2279,19 +2289,19 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("127:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* expression -> ^( FUNC ANONYMOUS[$func] formalParameterList expression ) );", 28, 0, self.input)
+                    nvae = NoViableAltException("128:1: functionExpression : ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC identifier formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* statementBlock -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock ) | func= 'function' ( LT )* formalParameterList ( LT )* assignmentExpression -> ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression ) );", 28, 0, self.input)
 
                     raise nvae
 
                 if alt28 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:4: 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:4: 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock
                     string_literal55 = self.input.LT(1)
-                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression539)
+                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression540)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_69.add(string_literal55)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:15: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:15: ( LT )*
                     while True: #loop21
                         alt21 = 2
                         LA21_0 = self.input.LA(1)
@@ -2303,7 +2313,7 @@ class JavaScriptParser(Parser):
                         if alt21 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT56 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression541)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression542)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2314,14 +2324,14 @@ class JavaScriptParser(Parser):
                             break #loop21
 
 
-                    self.following.append(self.FOLLOW_identifier_in_functionExpression544)
+                    self.following.append(self.FOLLOW_identifier_in_functionExpression545)
                     identifier57 = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(identifier57.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:30: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:30: ( LT )*
                     while True: #loop22
                         alt22 = 2
                         LA22_0 = self.input.LA(1)
@@ -2333,7 +2343,7 @@ class JavaScriptParser(Parser):
                         if alt22 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT58 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression546)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression547)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2344,14 +2354,14 @@ class JavaScriptParser(Parser):
                             break #loop22
 
 
-                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression549)
+                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression550)
                     formalParameterList59 = self.formalParameterList()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_formalParameterList.add(formalParameterList59.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:54: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:54: ( LT )*
                     while True: #loop23
                         alt23 = 2
                         LA23_0 = self.input.LA(1)
@@ -2363,7 +2373,7 @@ class JavaScriptParser(Parser):
                         if alt23 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT60 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression551)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression552)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2374,7 +2384,7 @@ class JavaScriptParser(Parser):
                             break #loop23
 
 
-                    self.following.append(self.FOLLOW_statementBlock_in_functionExpression554)
+                    self.following.append(self.FOLLOW_statementBlock_in_functionExpression555)
                     statementBlock61 = self.statementBlock()
                     self.following.pop()
                     if self.failed:
@@ -2382,7 +2392,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock61.tree)
                     # AST Rewrite
-                    # elements: formalParameterList, identifier, statementBlock
+                    # elements: formalParameterList, statementBlock, identifier
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -2398,8 +2408,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 129:3: -> ^( FUNC identifier formalParameterList statementBlock )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:6: ^( FUNC identifier formalParameterList statementBlock )
+                        # 130:3: -> ^( FUNC identifier formalParameterList statementBlock )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:6: ^( FUNC identifier formalParameterList statementBlock )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNC, "FUNC"), root_1)
 
@@ -2414,14 +2424,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt28 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:4: func= 'function' ( LT )* formalParameterList ( LT )* statementBlock
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:4: func= 'function' ( LT )* formalParameterList ( LT )* statementBlock
                     func = self.input.LT(1)
-                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression575)
+                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression576)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_69.add(func)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:20: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:20: ( LT )*
                     while True: #loop24
                         alt24 = 2
                         LA24_0 = self.input.LA(1)
@@ -2433,7 +2443,7 @@ class JavaScriptParser(Parser):
                         if alt24 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT62 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression577)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression578)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2444,14 +2454,14 @@ class JavaScriptParser(Parser):
                             break #loop24
 
 
-                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression580)
+                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression581)
                     formalParameterList63 = self.formalParameterList()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_formalParameterList.add(formalParameterList63.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:44: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:44: ( LT )*
                     while True: #loop25
                         alt25 = 2
                         LA25_0 = self.input.LA(1)
@@ -2463,7 +2473,7 @@ class JavaScriptParser(Parser):
                         if alt25 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT64 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression582)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression583)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2474,7 +2484,7 @@ class JavaScriptParser(Parser):
                             break #loop25
 
 
-                    self.following.append(self.FOLLOW_statementBlock_in_functionExpression585)
+                    self.following.append(self.FOLLOW_statementBlock_in_functionExpression586)
                     statementBlock65 = self.statementBlock()
                     self.following.pop()
                     if self.failed:
@@ -2498,8 +2508,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 131:3: -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:6: ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock )
+                        # 132:3: -> ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:6: ^( FUNC ANONYMOUS[$func] formalParameterList statementBlock )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNC, "FUNC"), root_1)
 
@@ -2514,14 +2524,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt28 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:4: func= 'function' ( LT )* formalParameterList ( LT )* expression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:4: func= 'function' ( LT )* formalParameterList ( LT )* assignmentExpression
                     func = self.input.LT(1)
-                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression607)
+                    self.match(self.input, 69, self.FOLLOW_69_in_functionExpression608)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_69.add(func)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:20: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:20: ( LT )*
                     while True: #loop26
                         alt26 = 2
                         LA26_0 = self.input.LA(1)
@@ -2533,7 +2543,7 @@ class JavaScriptParser(Parser):
                         if alt26 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT66 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression609)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression610)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2544,14 +2554,14 @@ class JavaScriptParser(Parser):
                             break #loop26
 
 
-                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression612)
+                    self.following.append(self.FOLLOW_formalParameterList_in_functionExpression613)
                     formalParameterList67 = self.formalParameterList()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_formalParameterList.add(formalParameterList67.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:44: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:44: ( LT )*
                     while True: #loop27
                         alt27 = 2
                         LA27_0 = self.input.LA(1)
@@ -2568,7 +2578,7 @@ class JavaScriptParser(Parser):
                         if alt27 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT68 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression614)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_functionExpression615)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2579,15 +2589,15 @@ class JavaScriptParser(Parser):
                             break #loop27
 
 
-                    self.following.append(self.FOLLOW_expression_in_functionExpression617)
-                    expression69 = self.expression()
+                    self.following.append(self.FOLLOW_assignmentExpression_in_functionExpression618)
+                    assignmentExpression69 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_expression.add(expression69.tree)
+                        stream_assignmentExpression.add(assignmentExpression69.tree)
                     # AST Rewrite
-                    # elements: expression, formalParameterList
+                    # elements: assignmentExpression, formalParameterList
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -2603,14 +2613,14 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 133:3: -> ^( FUNC ANONYMOUS[$func] formalParameterList expression )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:6: ^( FUNC ANONYMOUS[$func] formalParameterList expression )
+                        # 134:3: -> ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:134:6: ^( FUNC ANONYMOUS[$func] formalParameterList assignmentExpression )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNC, "FUNC"), root_1)
 
                         self.adaptor.addChild(root_1, self.adaptor.createFromToken(ANONYMOUS, func))
                         self.adaptor.addChild(root_1, stream_formalParameterList.next())
-                        self.adaptor.addChild(root_1, stream_expression.next())
+                        self.adaptor.addChild(root_1, stream_assignmentExpression.next())
 
                         self.adaptor.addChild(root_0, root_1)
 
@@ -2647,7 +2657,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start formalParameterList
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:136:1: formalParameterList : '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')' -> ^( FUNCARGS ( identifier )* ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:1: formalParameterList : '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')' -> ^( FUNCARGS ( identifier )* ) ;
     def formalParameterList(self, ):
 
         retval = self.formalParameterList_return()
@@ -2684,20 +2694,20 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 16):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:2: ( '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')' -> ^( FUNCARGS ( identifier )* ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:4: '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:2: ( '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')' -> ^( FUNCARGS ( identifier )* ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:4: '(' ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )? ( LT )* ')'
                 char_literal70 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_formalParameterList644)
+                self.match(self.input, 70, self.FOLLOW_70_in_formalParameterList645)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_70.add(char_literal70)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:8: ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:8: ( ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )* )?
                 alt33 = 2
                 alt33 = self.dfa33.predict(self.input)
                 if alt33 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:9: ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )*
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:9: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:9: ( LT )* identifier ( ( LT )* ',' ( LT )* identifier )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:9: ( LT )*
                     while True: #loop29
                         alt29 = 2
                         LA29_0 = self.input.LA(1)
@@ -2709,7 +2719,7 @@ class JavaScriptParser(Parser):
                         if alt29 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT71 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList647)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList648)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -2720,20 +2730,20 @@ class JavaScriptParser(Parser):
                             break #loop29
 
 
-                    self.following.append(self.FOLLOW_identifier_in_formalParameterList650)
+                    self.following.append(self.FOLLOW_identifier_in_formalParameterList651)
                     identifier72 = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(identifier72.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:24: ( ( LT )* ',' ( LT )* identifier )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:24: ( ( LT )* ',' ( LT )* identifier )*
                     while True: #loop32
                         alt32 = 2
                         alt32 = self.dfa32.predict(self.input)
                         if alt32 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:25: ( LT )* ',' ( LT )* identifier
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:25: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:25: ( LT )* ',' ( LT )* identifier
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:25: ( LT )*
                             while True: #loop30
                                 alt30 = 2
                                 LA30_0 = self.input.LA(1)
@@ -2745,7 +2755,7 @@ class JavaScriptParser(Parser):
                                 if alt30 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT73 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList653)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList654)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -2757,12 +2767,12 @@ class JavaScriptParser(Parser):
 
 
                             char_literal74 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_formalParameterList656)
+                            self.match(self.input, 71, self.FOLLOW_71_in_formalParameterList657)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_71.add(char_literal74)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:33: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:33: ( LT )*
                             while True: #loop31
                                 alt31 = 2
                                 LA31_0 = self.input.LA(1)
@@ -2774,7 +2784,7 @@ class JavaScriptParser(Parser):
                                 if alt31 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT75 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList658)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList659)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -2785,7 +2795,7 @@ class JavaScriptParser(Parser):
                                     break #loop31
 
 
-                            self.following.append(self.FOLLOW_identifier_in_formalParameterList661)
+                            self.following.append(self.FOLLOW_identifier_in_formalParameterList662)
                             identifier76 = self.identifier()
                             self.following.pop()
                             if self.failed:
@@ -2801,7 +2811,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:137:52: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:52: ( LT )*
                 while True: #loop34
                     alt34 = 2
                     LA34_0 = self.input.LA(1)
@@ -2813,7 +2823,7 @@ class JavaScriptParser(Parser):
                     if alt34 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT77 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList667)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_formalParameterList668)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -2825,7 +2835,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal78 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_formalParameterList670)
+                self.match(self.input, 72, self.FOLLOW_72_in_formalParameterList671)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
@@ -2847,12 +2857,12 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 138:3: -> ^( FUNCARGS ( identifier )* )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:6: ^( FUNCARGS ( identifier )* )
+                    # 139:3: -> ^( FUNCARGS ( identifier )* )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:139:6: ^( FUNCARGS ( identifier )* )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNCARGS, "FUNCARGS"), root_1)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:138:17: ( identifier )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:139:17: ( identifier )*
                     while stream_identifier.hasNext():
                         self.adaptor.addChild(root_1, stream_identifier.next())
 
@@ -2895,7 +2905,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start statement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );
     def statement(self, ):
 
         retval = self.statement_return()
@@ -2942,7 +2952,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 17):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:143:2: ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:2: ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement )
                 alt35 = 16
                 LA35 = self.input.LA(1)
                 if LA35 == 67:
@@ -2957,7 +2967,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 1, self.input)
+                        nvae = NoViableAltException("143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 1, self.input)
 
                         raise nvae
 
@@ -2977,7 +2987,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 4, self.input)
+                        nvae = NoViableAltException("143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 4, self.input)
 
                         raise nvae
 
@@ -2999,7 +3009,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 10, self.input)
+                        nvae = NoViableAltException("143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 10, self.input)
 
                         raise nvae
 
@@ -3033,7 +3043,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 34, self.input)
+                        nvae = NoViableAltException("143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 34, self.input)
 
                         raise nvae
 
@@ -3042,15 +3052,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("142:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 0, self.input)
+                    nvae = NoViableAltException("143:1: statement : ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | letStatement | labelledStatement | switchStatement | throwStatement | tryStatement | defaultXmlNamespaceStatement );", 35, 0, self.input)
 
                     raise nvae
 
                 if alt35 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:143:4: statementBlock
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: statementBlock
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_statementBlock_in_statement693)
+                    self.following.append(self.FOLLOW_statementBlock_in_statement694)
                     statementBlock79 = self.statementBlock()
                     self.following.pop()
                     if self.failed:
@@ -3060,10 +3070,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: variableStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:145:4: variableStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_variableStatement_in_statement698)
+                    self.following.append(self.FOLLOW_variableStatement_in_statement699)
                     variableStatement80 = self.variableStatement()
                     self.following.pop()
                     if self.failed:
@@ -3073,10 +3083,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:145:4: emptyStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:146:4: emptyStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_emptyStatement_in_statement703)
+                    self.following.append(self.FOLLOW_emptyStatement_in_statement704)
                     emptyStatement81 = self.emptyStatement()
                     self.following.pop()
                     if self.failed:
@@ -3086,10 +3096,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:146:4: expressionStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:147:4: expressionStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_expressionStatement_in_statement708)
+                    self.following.append(self.FOLLOW_expressionStatement_in_statement709)
                     expressionStatement82 = self.expressionStatement()
                     self.following.pop()
                     if self.failed:
@@ -3099,10 +3109,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 5:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:147:4: ifStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:148:4: ifStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_ifStatement_in_statement713)
+                    self.following.append(self.FOLLOW_ifStatement_in_statement714)
                     ifStatement83 = self.ifStatement()
                     self.following.pop()
                     if self.failed:
@@ -3112,10 +3122,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 6:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:148:4: iterationStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:149:4: iterationStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_iterationStatement_in_statement718)
+                    self.following.append(self.FOLLOW_iterationStatement_in_statement719)
                     iterationStatement84 = self.iterationStatement()
                     self.following.pop()
                     if self.failed:
@@ -3125,10 +3135,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 7:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:149:4: continueStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:150:4: continueStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_continueStatement_in_statement723)
+                    self.following.append(self.FOLLOW_continueStatement_in_statement724)
                     continueStatement85 = self.continueStatement()
                     self.following.pop()
                     if self.failed:
@@ -3138,10 +3148,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 8:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:150:4: breakStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:151:4: breakStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_breakStatement_in_statement728)
+                    self.following.append(self.FOLLOW_breakStatement_in_statement729)
                     breakStatement86 = self.breakStatement()
                     self.following.pop()
                     if self.failed:
@@ -3151,10 +3161,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 9:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:151:4: returnStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:152:4: returnStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_returnStatement_in_statement733)
+                    self.following.append(self.FOLLOW_returnStatement_in_statement734)
                     returnStatement87 = self.returnStatement()
                     self.following.pop()
                     if self.failed:
@@ -3164,10 +3174,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 10:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:152:4: withStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:153:4: withStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_withStatement_in_statement738)
+                    self.following.append(self.FOLLOW_withStatement_in_statement739)
                     withStatement88 = self.withStatement()
                     self.following.pop()
                     if self.failed:
@@ -3177,10 +3187,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 11:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:153:4: letStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: letStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_letStatement_in_statement743)
+                    self.following.append(self.FOLLOW_letStatement_in_statement744)
                     letStatement89 = self.letStatement()
                     self.following.pop()
                     if self.failed:
@@ -3190,10 +3200,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 12:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: labelledStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:155:4: labelledStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_labelledStatement_in_statement748)
+                    self.following.append(self.FOLLOW_labelledStatement_in_statement749)
                     labelledStatement90 = self.labelledStatement()
                     self.following.pop()
                     if self.failed:
@@ -3203,10 +3213,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 13:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:155:4: switchStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:156:4: switchStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_switchStatement_in_statement753)
+                    self.following.append(self.FOLLOW_switchStatement_in_statement754)
                     switchStatement91 = self.switchStatement()
                     self.following.pop()
                     if self.failed:
@@ -3216,10 +3226,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 14:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:156:4: throwStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:157:4: throwStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_throwStatement_in_statement758)
+                    self.following.append(self.FOLLOW_throwStatement_in_statement759)
                     throwStatement92 = self.throwStatement()
                     self.following.pop()
                     if self.failed:
@@ -3229,10 +3239,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 15:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:157:4: tryStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:158:4: tryStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_tryStatement_in_statement763)
+                    self.following.append(self.FOLLOW_tryStatement_in_statement764)
                     tryStatement93 = self.tryStatement()
                     self.following.pop()
                     if self.failed:
@@ -3242,10 +3252,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt35 == 16:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:158:4: defaultXmlNamespaceStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:159:4: defaultXmlNamespaceStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_defaultXmlNamespaceStatement_in_statement768)
+                    self.following.append(self.FOLLOW_defaultXmlNamespaceStatement_in_statement769)
                     defaultXmlNamespaceStatement94 = self.defaultXmlNamespaceStatement()
                     self.following.pop()
                     if self.failed:
@@ -3283,7 +3293,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start defaultXmlNamespaceStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:161:1: defaultXmlNamespaceStatement : 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' ) -> ^( DEFAULTNS identifier ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:1: defaultXmlNamespaceStatement : 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' ) -> ^( DEFAULTNS identifier ) ;
     def defaultXmlNamespaceStatement(self, ):
 
         retval = self.defaultXmlNamespaceStatement_return()
@@ -3322,27 +3332,27 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 18):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:2: ( 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' ) -> ^( DEFAULTNS identifier ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:4: 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:2: ( 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' ) -> ^( DEFAULTNS identifier ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:4: 'default' 'xml' 'namespace' ( LT )* '=' ( LT )* identifier ( LT | ';' )
                 string_literal95 = self.input.LT(1)
-                self.match(self.input, 73, self.FOLLOW_73_in_defaultXmlNamespaceStatement779)
+                self.match(self.input, 73, self.FOLLOW_73_in_defaultXmlNamespaceStatement780)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_73.add(string_literal95)
                 string_literal96 = self.input.LT(1)
-                self.match(self.input, 74, self.FOLLOW_74_in_defaultXmlNamespaceStatement781)
+                self.match(self.input, 74, self.FOLLOW_74_in_defaultXmlNamespaceStatement782)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_74.add(string_literal96)
                 string_literal97 = self.input.LT(1)
-                self.match(self.input, 75, self.FOLLOW_75_in_defaultXmlNamespaceStatement783)
+                self.match(self.input, 75, self.FOLLOW_75_in_defaultXmlNamespaceStatement784)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_75.add(string_literal97)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:32: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:32: ( LT )*
                 while True: #loop36
                     alt36 = 2
                     LA36_0 = self.input.LA(1)
@@ -3354,7 +3364,7 @@ class JavaScriptParser(Parser):
                     if alt36 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT98 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement785)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement786)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -3366,12 +3376,12 @@ class JavaScriptParser(Parser):
 
 
                 char_literal99 = self.input.LT(1)
-                self.match(self.input, 66, self.FOLLOW_66_in_defaultXmlNamespaceStatement788)
+                self.match(self.input, 66, self.FOLLOW_66_in_defaultXmlNamespaceStatement789)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_66.add(char_literal99)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:40: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:40: ( LT )*
                 while True: #loop37
                     alt37 = 2
                     LA37_0 = self.input.LA(1)
@@ -3383,7 +3393,7 @@ class JavaScriptParser(Parser):
                     if alt37 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT100 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement790)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement791)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -3394,14 +3404,14 @@ class JavaScriptParser(Parser):
                         break #loop37
 
 
-                self.following.append(self.FOLLOW_identifier_in_defaultXmlNamespaceStatement793)
+                self.following.append(self.FOLLOW_identifier_in_defaultXmlNamespaceStatement794)
                 identifier101 = self.identifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_identifier.add(identifier101.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:55: ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:55: ( LT | ';' )
                 alt38 = 2
                 LA38_0 = self.input.LA(1)
 
@@ -3414,14 +3424,14 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("162:55: ( LT | ';' )", 38, 0, self.input)
+                    nvae = NoViableAltException("163:55: ( LT | ';' )", 38, 0, self.input)
 
                     raise nvae
 
                 if alt38 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:56: LT
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:56: LT
                     LT102 = self.input.LT(1)
-                    self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement796)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_defaultXmlNamespaceStatement797)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3429,9 +3439,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt38 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:162:61: ';'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:61: ';'
                     char_literal103 = self.input.LT(1)
-                    self.match(self.input, 76, self.FOLLOW_76_in_defaultXmlNamespaceStatement800)
+                    self.match(self.input, 76, self.FOLLOW_76_in_defaultXmlNamespaceStatement801)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3456,8 +3466,8 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 163:3: -> ^( DEFAULTNS identifier )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:163:6: ^( DEFAULTNS identifier )
+                    # 164:3: -> ^( DEFAULTNS identifier )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:164:6: ^( DEFAULTNS identifier )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(DEFAULTNS, "DEFAULTNS"), root_1)
 
@@ -3499,7 +3509,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start statementBlock
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:166:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );
     def statementBlock(self, ):
 
         retval = self.statementBlock_return()
@@ -3532,7 +3542,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 19):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:2: ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:2: ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' )
                 alt43 = 2
                 LA43_0 = self.input.LA(1)
 
@@ -3548,7 +3558,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("166:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );", 43, 1, self.input)
+                        nvae = NoViableAltException("167:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );", 43, 1, self.input)
 
                         raise nvae
 
@@ -3557,23 +3567,23 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("166:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );", 43, 0, self.input)
+                    nvae = NoViableAltException("167:1: statementBlock : ( '{' ( LT )* ( statementList )? ( LT )* '}' | '{' ( 'return' )? expression '}' );", 43, 0, self.input)
 
                     raise nvae
 
                 if alt43 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:4: '{' ( LT )* ( statementList )? ( LT )* '}'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:4: '{' ( LT )* ( statementList )? ( LT )* '}'
                     root_0 = self.adaptor.nil()
 
                     char_literal104 = self.input.LT(1)
-                    self.match(self.input, 67, self.FOLLOW_67_in_statementBlock822)
+                    self.match(self.input, 67, self.FOLLOW_67_in_statementBlock823)
                     if self.failed:
                         return retval
 
                     char_literal104_tree = self.adaptor.createWithPayload(char_literal104)
                     self.adaptor.addChild(root_0, char_literal104_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:10: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:10: ( LT )*
                     while True: #loop39
                         alt39 = 2
                         LA39_0 = self.input.LA(1)
@@ -3590,7 +3600,7 @@ class JavaScriptParser(Parser):
                         if alt39 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT105 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_statementBlock824)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_statementBlock825)
                             if self.failed:
                                 return retval
 
@@ -3599,12 +3609,12 @@ class JavaScriptParser(Parser):
                             break #loop39
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:13: ( statementList )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:13: ( statementList )?
                     alt40 = 2
                     alt40 = self.dfa40.predict(self.input)
                     if alt40 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: statementList
-                        self.following.append(self.FOLLOW_statementList_in_statementBlock828)
+                        self.following.append(self.FOLLOW_statementList_in_statementBlock829)
                         statementList106 = self.statementList()
                         self.following.pop()
                         if self.failed:
@@ -3614,7 +3624,7 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:30: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:30: ( LT )*
                     while True: #loop41
                         alt41 = 2
                         LA41_0 = self.input.LA(1)
@@ -3626,7 +3636,7 @@ class JavaScriptParser(Parser):
                         if alt41 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT107 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_statementBlock831)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_statementBlock832)
                             if self.failed:
                                 return retval
 
@@ -3636,7 +3646,7 @@ class JavaScriptParser(Parser):
 
 
                     char_literal108 = self.input.LT(1)
-                    self.match(self.input, 68, self.FOLLOW_68_in_statementBlock835)
+                    self.match(self.input, 68, self.FOLLOW_68_in_statementBlock836)
                     if self.failed:
                         return retval
 
@@ -3646,18 +3656,18 @@ class JavaScriptParser(Parser):
 
 
                 elif alt43 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:4: '{' ( 'return' )? expression '}'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:169:4: '{' ( 'return' )? expression '}'
                     root_0 = self.adaptor.nil()
 
                     char_literal109 = self.input.LT(1)
-                    self.match(self.input, 67, self.FOLLOW_67_in_statementBlock840)
+                    self.match(self.input, 67, self.FOLLOW_67_in_statementBlock841)
                     if self.failed:
                         return retval
 
                     char_literal109_tree = self.adaptor.createWithPayload(char_literal109)
                     self.adaptor.addChild(root_0, char_literal109_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:8: ( 'return' )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:169:8: ( 'return' )?
                     alt42 = 2
                     LA42_0 = self.input.LA(1)
 
@@ -3666,7 +3676,7 @@ class JavaScriptParser(Parser):
                     if alt42 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: 'return'
                         string_literal110 = self.input.LT(1)
-                        self.match(self.input, 77, self.FOLLOW_77_in_statementBlock842)
+                        self.match(self.input, 77, self.FOLLOW_77_in_statementBlock843)
                         if self.failed:
                             return retval
 
@@ -3676,7 +3686,7 @@ class JavaScriptParser(Parser):
 
 
 
-                    self.following.append(self.FOLLOW_expression_in_statementBlock845)
+                    self.following.append(self.FOLLOW_expression_in_statementBlock846)
                     expression111 = self.expression()
                     self.following.pop()
                     if self.failed:
@@ -3684,7 +3694,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, expression111.tree)
                     char_literal112 = self.input.LT(1)
-                    self.match(self.input, 68, self.FOLLOW_68_in_statementBlock847)
+                    self.match(self.input, 68, self.FOLLOW_68_in_statementBlock848)
                     if self.failed:
                         return retval
 
@@ -3722,7 +3732,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start statementList
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:171:1: statementList : statement ( ( LT )* statement )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:1: statementList : statement ( ( LT )* statement )* ;
     def statementList(self, ):
 
         retval = self.statementList_return()
@@ -3743,18 +3753,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 20):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:2: ( statement ( ( LT )* statement )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:4: statement ( ( LT )* statement )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:2: ( statement ( ( LT )* statement )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:4: statement ( ( LT )* statement )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_statement_in_statementList860)
+                self.following.append(self.FOLLOW_statement_in_statementList861)
                 statement113 = self.statement()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, statement113.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:14: ( ( LT )* statement )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:14: ( ( LT )* statement )*
                 while True: #loop45
                     alt45 = 2
                     LA45 = self.input.LA(1)
@@ -3776,8 +3786,8 @@ class JavaScriptParser(Parser):
                         alt45 = 1
 
                     if alt45 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:15: ( LT )* statement
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:17: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:15: ( LT )* statement
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:17: ( LT )*
                         while True: #loop44
                             alt44 = 2
                             LA44_0 = self.input.LA(1)
@@ -3794,7 +3804,7 @@ class JavaScriptParser(Parser):
                             if alt44 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT114 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_statementList863)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_statementList864)
                                 if self.failed:
                                     return retval
 
@@ -3803,7 +3813,7 @@ class JavaScriptParser(Parser):
                                 break #loop44
 
 
-                        self.following.append(self.FOLLOW_statement_in_statementList867)
+                        self.following.append(self.FOLLOW_statement_in_statementList868)
                         statement115 = self.statement()
                         self.following.pop()
                         if self.failed:
@@ -3848,7 +3858,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start variableStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:175:1: variableStatement : (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' ) -> ^( VARDEFS $mod variableDeclarationList ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:1: variableStatement : (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' ) -> ^( VARDEFS $mod variableDeclarationList ) ;
     def variableStatement(self, ):
 
         retval = self.variableStatement_return()
@@ -3878,9 +3888,9 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 21):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:2: ( (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' ) -> ^( VARDEFS $mod variableDeclarationList ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:4: (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:4: (mod= 'var' | mod= 'const' | mod= 'let' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:2: ( (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' ) -> ^( VARDEFS $mod variableDeclarationList ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:4: (mod= 'var' | mod= 'const' | mod= 'let' ) ( LT )* variableDeclarationList ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:4: (mod= 'var' | mod= 'const' | mod= 'let' )
                 alt46 = 3
                 LA46 = self.input.LA(1)
                 if LA46 == 78:
@@ -3894,14 +3904,14 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("176:4: (mod= 'var' | mod= 'const' | mod= 'let' )", 46, 0, self.input)
+                    nvae = NoViableAltException("177:4: (mod= 'var' | mod= 'const' | mod= 'let' )", 46, 0, self.input)
 
                     raise nvae
 
                 if alt46 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:5: mod= 'var'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:5: mod= 'var'
                     mod = self.input.LT(1)
-                    self.match(self.input, 78, self.FOLLOW_78_in_variableStatement883)
+                    self.match(self.input, 78, self.FOLLOW_78_in_variableStatement884)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3909,9 +3919,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt46 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:15: mod= 'const'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:15: mod= 'const'
                     mod = self.input.LT(1)
-                    self.match(self.input, 79, self.FOLLOW_79_in_variableStatement887)
+                    self.match(self.input, 79, self.FOLLOW_79_in_variableStatement888)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3919,9 +3929,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt46 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:27: mod= 'let'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:27: mod= 'let'
                     mod = self.input.LT(1)
-                    self.match(self.input, 80, self.FOLLOW_80_in_variableStatement891)
+                    self.match(self.input, 80, self.FOLLOW_80_in_variableStatement892)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3929,7 +3939,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:38: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:38: ( LT )*
                 while True: #loop47
                     alt47 = 2
                     LA47_0 = self.input.LA(1)
@@ -3941,7 +3951,7 @@ class JavaScriptParser(Parser):
                     if alt47 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT116 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_variableStatement894)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_variableStatement895)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -3952,14 +3962,14 @@ class JavaScriptParser(Parser):
                         break #loop47
 
 
-                self.following.append(self.FOLLOW_variableDeclarationList_in_variableStatement897)
+                self.following.append(self.FOLLOW_variableDeclarationList_in_variableStatement898)
                 variableDeclarationList117 = self.variableDeclarationList()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_variableDeclarationList.add(variableDeclarationList117.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:66: ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:66: ( LT | ';' )
                 alt48 = 2
                 LA48_0 = self.input.LA(1)
 
@@ -3972,14 +3982,14 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("176:66: ( LT | ';' )", 48, 0, self.input)
+                    nvae = NoViableAltException("177:66: ( LT | ';' )", 48, 0, self.input)
 
                     raise nvae
 
                 if alt48 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:67: LT
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:67: LT
                     LT118 = self.input.LT(1)
-                    self.match(self.input, LT, self.FOLLOW_LT_in_variableStatement900)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_variableStatement901)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3987,9 +3997,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt48 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:176:72: ';'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:72: ';'
                     char_literal119 = self.input.LT(1)
-                    self.match(self.input, 76, self.FOLLOW_76_in_variableStatement904)
+                    self.match(self.input, 76, self.FOLLOW_76_in_variableStatement905)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3998,7 +4008,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: variableDeclarationList, mod
+                # elements: mod, variableDeclarationList
                 # token labels: mod
                 # rule labels: retval
                 # token list labels: 
@@ -4015,8 +4025,8 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 177:3: -> ^( VARDEFS $mod variableDeclarationList )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:177:6: ^( VARDEFS $mod variableDeclarationList )
+                    # 178:3: -> ^( VARDEFS $mod variableDeclarationList )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:178:6: ^( VARDEFS $mod variableDeclarationList )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARDEFS, "VARDEFS"), root_1)
 
@@ -4059,7 +4069,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start variableDeclarationList
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:180:1: variableDeclarationList : variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:1: variableDeclarationList : variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )* ;
     def variableDeclarationList(self, ):
 
         retval = self.variableDeclarationList_return()
@@ -4084,24 +4094,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 22):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:2: ( variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:4: variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:2: ( variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:4: variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_variableDeclaration_in_variableDeclarationList929)
+                self.following.append(self.FOLLOW_variableDeclaration_in_variableDeclarationList930)
                 variableDeclaration120 = self.variableDeclaration()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, variableDeclaration120.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:24: ( ( LT )* ',' ( LT )* variableDeclaration )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:24: ( ( LT )* ',' ( LT )* variableDeclaration )*
                 while True: #loop51
                     alt51 = 2
                     alt51 = self.dfa51.predict(self.input)
                     if alt51 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:25: ( LT )* ',' ( LT )* variableDeclaration
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:27: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:25: ( LT )* ',' ( LT )* variableDeclaration
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:27: ( LT )*
                         while True: #loop49
                             alt49 = 2
                             LA49_0 = self.input.LA(1)
@@ -4113,7 +4123,7 @@ class JavaScriptParser(Parser):
                             if alt49 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT121 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationList932)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationList933)
                                 if self.failed:
                                     return retval
 
@@ -4123,14 +4133,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal122 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationList936)
+                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationList937)
                         if self.failed:
                             return retval
 
                         char_literal122_tree = self.adaptor.createWithPayload(char_literal122)
                         self.adaptor.addChild(root_0, char_literal122_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:181:36: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:182:36: ( LT )*
                         while True: #loop50
                             alt50 = 2
                             LA50_0 = self.input.LA(1)
@@ -4142,7 +4152,7 @@ class JavaScriptParser(Parser):
                             if alt50 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT123 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationList938)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationList939)
                                 if self.failed:
                                     return retval
 
@@ -4151,7 +4161,7 @@ class JavaScriptParser(Parser):
                                 break #loop50
 
 
-                        self.following.append(self.FOLLOW_variableDeclaration_in_variableDeclarationList942)
+                        self.following.append(self.FOLLOW_variableDeclaration_in_variableDeclarationList943)
                         variableDeclaration124 = self.variableDeclaration()
                         self.following.pop()
                         if self.failed:
@@ -4196,7 +4206,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start variableDeclarationListNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:184:1: variableDeclarationListNoIn : variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:1: variableDeclarationListNoIn : variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )* ;
     def variableDeclarationListNoIn(self, ):
 
         retval = self.variableDeclarationListNoIn_return()
@@ -4221,24 +4231,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 23):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:2: ( variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:4: variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:2: ( variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:4: variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn956)
+                self.following.append(self.FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn957)
                 variableDeclarationNoIn125 = self.variableDeclarationNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, variableDeclarationNoIn125.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:28: ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:28: ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
                 while True: #loop54
                     alt54 = 2
                     alt54 = self.dfa54.predict(self.input)
                     if alt54 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:29: ( LT )* ',' ( LT )* variableDeclarationNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:31: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:29: ( LT )* ',' ( LT )* variableDeclarationNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:31: ( LT )*
                         while True: #loop52
                             alt52 = 2
                             LA52_0 = self.input.LA(1)
@@ -4250,7 +4260,7 @@ class JavaScriptParser(Parser):
                             if alt52 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT126 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationListNoIn959)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationListNoIn960)
                                 if self.failed:
                                     return retval
 
@@ -4260,14 +4270,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal127 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationListNoIn963)
+                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationListNoIn964)
                         if self.failed:
                             return retval
 
                         char_literal127_tree = self.adaptor.createWithPayload(char_literal127)
                         self.adaptor.addChild(root_0, char_literal127_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:185:40: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:186:40: ( LT )*
                         while True: #loop53
                             alt53 = 2
                             LA53_0 = self.input.LA(1)
@@ -4279,7 +4289,7 @@ class JavaScriptParser(Parser):
                             if alt53 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT128 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationListNoIn965)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationListNoIn966)
                                 if self.failed:
                                     return retval
 
@@ -4288,7 +4298,7 @@ class JavaScriptParser(Parser):
                                 break #loop53
 
 
-                        self.following.append(self.FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn969)
+                        self.following.append(self.FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn970)
                         variableDeclarationNoIn129 = self.variableDeclarationNoIn()
                         self.following.pop()
                         if self.failed:
@@ -4333,7 +4343,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start variableDeclaration
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:188:1: variableDeclaration : ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:1: variableDeclaration : ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) );
     def variableDeclaration(self, ):
 
         retval = self.variableDeclaration_return()
@@ -4385,7 +4395,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 24):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:2: ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:2: ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) )
                 alt68 = 2
                 LA68_0 = self.input.LA(1)
 
@@ -4398,25 +4408,25 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("188:1: variableDeclaration : ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) );", 68, 0, self.input)
+                    nvae = NoViableAltException("189:1: variableDeclaration : ( identifier ( ( LT )* initialiser )? -> ^( VARDEF identifier ( initialiser )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? ) );", 68, 0, self.input)
 
                     raise nvae
 
                 if alt68 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:4: identifier ( ( LT )* initialiser )?
-                    self.following.append(self.FOLLOW_identifier_in_variableDeclaration983)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:4: identifier ( ( LT )* initialiser )?
+                    self.following.append(self.FOLLOW_identifier_in_variableDeclaration984)
                     identifier130 = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(identifier130.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:15: ( ( LT )* initialiser )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:15: ( ( LT )* initialiser )?
                     alt56 = 2
                     alt56 = self.dfa56.predict(self.input)
                     if alt56 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:16: ( LT )* initialiser
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:189:16: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:16: ( LT )* initialiser
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:16: ( LT )*
                         while True: #loop55
                             alt55 = 2
                             LA55_0 = self.input.LA(1)
@@ -4428,7 +4438,7 @@ class JavaScriptParser(Parser):
                             if alt55 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT131 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration986)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration987)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -4439,7 +4449,7 @@ class JavaScriptParser(Parser):
                                 break #loop55
 
 
-                        self.following.append(self.FOLLOW_initialiser_in_variableDeclaration989)
+                        self.following.append(self.FOLLOW_initialiser_in_variableDeclaration990)
                         initialiser132 = self.initialiser()
                         self.following.pop()
                         if self.failed:
@@ -4466,13 +4476,13 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 190:3: -> ^( VARDEF identifier ( initialiser )? )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:6: ^( VARDEF identifier ( initialiser )? )
+                        # 191:3: -> ^( VARDEF identifier ( initialiser )? )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:6: ^( VARDEF identifier ( initialiser )? )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARDEF, "VARDEF"), root_1)
 
                         self.adaptor.addChild(root_1, stream_identifier.next())
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:190:26: ( initialiser )?
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:26: ( initialiser )?
                         if stream_initialiser.hasNext():
                             self.adaptor.addChild(root_1, stream_initialiser.next())
 
@@ -4486,14 +4496,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt68 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:4: '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:4: '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiser )?
                     char_literal133 = self.input.LT(1)
-                    self.match(self.input, 81, self.FOLLOW_81_in_variableDeclaration1009)
+                    self.match(self.input, 81, self.FOLLOW_81_in_variableDeclaration1010)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_81.add(char_literal133)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:8: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:8: ( LT )*
                     while True: #loop57
                         alt57 = 2
                         LA57_0 = self.input.LA(1)
@@ -4510,7 +4520,7 @@ class JavaScriptParser(Parser):
                         if alt57 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT134 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1011)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1012)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -4521,7 +4531,7 @@ class JavaScriptParser(Parser):
                             break #loop57
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:12: ( identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:12: ( identifier )?
                     alt58 = 2
                     LA58_0 = self.input.LA(1)
 
@@ -4529,7 +4539,7 @@ class JavaScriptParser(Parser):
                         alt58 = 1
                     if alt58 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: identifier
-                        self.following.append(self.FOLLOW_identifier_in_variableDeclaration1014)
+                        self.following.append(self.FOLLOW_identifier_in_variableDeclaration1015)
                         identifier135 = self.identifier()
                         self.following.pop()
                         if self.failed:
@@ -4539,13 +4549,13 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:24: ( ( LT )* ',' ( ( LT )* identifier )? )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:24: ( ( LT )* ',' ( ( LT )* identifier )? )*
                     while True: #loop62
                         alt62 = 2
                         alt62 = self.dfa62.predict(self.input)
                         if alt62 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:25: ( LT )* ',' ( ( LT )* identifier )?
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:25: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:25: ( LT )* ',' ( ( LT )* identifier )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:25: ( LT )*
                             while True: #loop59
                                 alt59 = 2
                                 LA59_0 = self.input.LA(1)
@@ -4557,7 +4567,7 @@ class JavaScriptParser(Parser):
                                 if alt59 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT136 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1018)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1019)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -4569,17 +4579,17 @@ class JavaScriptParser(Parser):
 
 
                             char_literal137 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_variableDeclaration1021)
+                            self.match(self.input, 71, self.FOLLOW_71_in_variableDeclaration1022)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_71.add(char_literal137)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:33: ( ( LT )* identifier )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:33: ( ( LT )* identifier )?
                             alt61 = 2
                             alt61 = self.dfa61.predict(self.input)
                             if alt61 == 1:
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:34: ( LT )* identifier
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:34: ( LT )*
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:34: ( LT )* identifier
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:34: ( LT )*
                                 while True: #loop60
                                     alt60 = 2
                                     LA60_0 = self.input.LA(1)
@@ -4591,7 +4601,7 @@ class JavaScriptParser(Parser):
                                     if alt60 == 1:
                                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                         LT138 = self.input.LT(1)
-                                        self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1024)
+                                        self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1025)
                                         if self.failed:
                                             return retval
                                         if self.backtracking == 0:
@@ -4602,7 +4612,7 @@ class JavaScriptParser(Parser):
                                         break #loop60
 
 
-                                self.following.append(self.FOLLOW_identifier_in_variableDeclaration1027)
+                                self.following.append(self.FOLLOW_identifier_in_variableDeclaration1028)
                                 identifier139 = self.identifier()
                                 self.following.pop()
                                 if self.failed:
@@ -4618,7 +4628,7 @@ class JavaScriptParser(Parser):
                             break #loop62
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:53: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:53: ( LT )*
                     while True: #loop63
                         alt63 = 2
                         LA63_0 = self.input.LA(1)
@@ -4630,7 +4640,7 @@ class JavaScriptParser(Parser):
                         if alt63 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT140 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1033)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1034)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -4641,21 +4651,21 @@ class JavaScriptParser(Parser):
                             break #loop63
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:57: ( ',' ( LT )* )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:57: ( ',' ( LT )* )?
                     alt65 = 2
                     LA65_0 = self.input.LA(1)
 
                     if (LA65_0 == 71) :
                         alt65 = 1
                     if alt65 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:58: ',' ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:58: ',' ( LT )*
                         char_literal141 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclaration1037)
+                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclaration1038)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
                             stream_71.add(char_literal141)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:62: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:62: ( LT )*
                         while True: #loop64
                             alt64 = 2
                             LA64_0 = self.input.LA(1)
@@ -4667,7 +4677,7 @@ class JavaScriptParser(Parser):
                             if alt64 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT142 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1039)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1040)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -4682,17 +4692,17 @@ class JavaScriptParser(Parser):
 
 
                     char_literal143 = self.input.LT(1)
-                    self.match(self.input, 82, self.FOLLOW_82_in_variableDeclaration1044)
+                    self.match(self.input, 82, self.FOLLOW_82_in_variableDeclaration1045)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_82.add(char_literal143)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:72: ( ( LT )* initialiser )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:72: ( ( LT )* initialiser )?
                     alt67 = 2
                     alt67 = self.dfa67.predict(self.input)
                     if alt67 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:73: ( LT )* initialiser
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:73: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:73: ( LT )* initialiser
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:73: ( LT )*
                         while True: #loop66
                             alt66 = 2
                             LA66_0 = self.input.LA(1)
@@ -4704,7 +4714,7 @@ class JavaScriptParser(Parser):
                             if alt66 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT144 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1047)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclaration1048)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -4715,7 +4725,7 @@ class JavaScriptParser(Parser):
                                 break #loop66
 
 
-                        self.following.append(self.FOLLOW_initialiser_in_variableDeclaration1050)
+                        self.following.append(self.FOLLOW_initialiser_in_variableDeclaration1051)
                         initialiser145 = self.initialiser()
                         self.following.pop()
                         if self.failed:
@@ -4742,16 +4752,16 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 192:3: -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:6: ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? )
+                        # 193:3: -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:193:6: ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiser )? )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARDEF, "VARDEF"), root_1)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:15: ^( ARRAY ( identifier )* )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:193:15: ^( ARRAY ( identifier )* )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(ARRAY, "ARRAY"), root_2)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:23: ( identifier )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:193:23: ( identifier )*
                         while stream_identifier.hasNext():
                             self.adaptor.addChild(root_2, stream_identifier.next())
 
@@ -4759,7 +4769,7 @@ class JavaScriptParser(Parser):
                         stream_identifier.reset();
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:36: ( initialiser )?
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:193:36: ( initialiser )?
                         if stream_initialiser.hasNext():
                             self.adaptor.addChild(root_1, stream_initialiser.next())
 
@@ -4801,7 +4811,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start variableDeclarationNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:195:1: variableDeclarationNoIn : ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:1: variableDeclarationNoIn : ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) );
     def variableDeclarationNoIn(self, ):
 
         retval = self.variableDeclarationNoIn_return()
@@ -4853,7 +4863,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 25):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:2: ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:2: ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) )
                 alt82 = 2
                 LA82_0 = self.input.LA(1)
 
@@ -4866,25 +4876,25 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("195:1: variableDeclarationNoIn : ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) );", 82, 0, self.input)
+                    nvae = NoViableAltException("196:1: variableDeclarationNoIn : ( identifier ( ( LT )* initialiserNoIn )? -> ^( VARDEF identifier ( initialiserNoIn )? ) | '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )? -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? ) );", 82, 0, self.input)
 
                     raise nvae
 
                 if alt82 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:4: identifier ( ( LT )* initialiserNoIn )?
-                    self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1082)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:4: identifier ( ( LT )* initialiserNoIn )?
+                    self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1083)
                     identifier146 = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(identifier146.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:15: ( ( LT )* initialiserNoIn )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:15: ( ( LT )* initialiserNoIn )?
                     alt70 = 2
                     alt70 = self.dfa70.predict(self.input)
                     if alt70 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:16: ( LT )* initialiserNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:196:16: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:16: ( LT )* initialiserNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:16: ( LT )*
                         while True: #loop69
                             alt69 = 2
                             LA69_0 = self.input.LA(1)
@@ -4896,7 +4906,7 @@ class JavaScriptParser(Parser):
                             if alt69 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT147 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1085)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1086)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -4907,7 +4917,7 @@ class JavaScriptParser(Parser):
                                 break #loop69
 
 
-                        self.following.append(self.FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1088)
+                        self.following.append(self.FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1089)
                         initialiserNoIn148 = self.initialiserNoIn()
                         self.following.pop()
                         if self.failed:
@@ -4934,13 +4944,13 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 197:3: -> ^( VARDEF identifier ( initialiserNoIn )? )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:6: ^( VARDEF identifier ( initialiserNoIn )? )
+                        # 198:3: -> ^( VARDEF identifier ( initialiserNoIn )? )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:6: ^( VARDEF identifier ( initialiserNoIn )? )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARDEF, "VARDEF"), root_1)
 
                         self.adaptor.addChild(root_1, stream_identifier.next())
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:197:26: ( initialiserNoIn )?
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:26: ( initialiserNoIn )?
                         if stream_initialiserNoIn.hasNext():
                             self.adaptor.addChild(root_1, stream_initialiserNoIn.next())
 
@@ -4954,14 +4964,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt82 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:4: '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:4: '[' ( LT )* ( identifier )? ( ( LT )* ',' ( ( LT )* identifier )? )* ( LT )* ( ',' ( LT )* )? ']' ( ( LT )* initialiserNoIn )?
                     char_literal149 = self.input.LT(1)
-                    self.match(self.input, 81, self.FOLLOW_81_in_variableDeclarationNoIn1108)
+                    self.match(self.input, 81, self.FOLLOW_81_in_variableDeclarationNoIn1109)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_81.add(char_literal149)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:8: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:8: ( LT )*
                     while True: #loop71
                         alt71 = 2
                         LA71_0 = self.input.LA(1)
@@ -4978,7 +4988,7 @@ class JavaScriptParser(Parser):
                         if alt71 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT150 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1110)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1111)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -4989,7 +4999,7 @@ class JavaScriptParser(Parser):
                             break #loop71
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:12: ( identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:12: ( identifier )?
                     alt72 = 2
                     LA72_0 = self.input.LA(1)
 
@@ -4997,7 +5007,7 @@ class JavaScriptParser(Parser):
                         alt72 = 1
                     if alt72 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: identifier
-                        self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1113)
+                        self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1114)
                         identifier151 = self.identifier()
                         self.following.pop()
                         if self.failed:
@@ -5007,13 +5017,13 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:24: ( ( LT )* ',' ( ( LT )* identifier )? )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:24: ( ( LT )* ',' ( ( LT )* identifier )? )*
                     while True: #loop76
                         alt76 = 2
                         alt76 = self.dfa76.predict(self.input)
                         if alt76 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:25: ( LT )* ',' ( ( LT )* identifier )?
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:25: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:25: ( LT )* ',' ( ( LT )* identifier )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:25: ( LT )*
                             while True: #loop73
                                 alt73 = 2
                                 LA73_0 = self.input.LA(1)
@@ -5025,7 +5035,7 @@ class JavaScriptParser(Parser):
                                 if alt73 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT152 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1117)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1118)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -5037,17 +5047,17 @@ class JavaScriptParser(Parser):
 
 
                             char_literal153 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationNoIn1120)
+                            self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationNoIn1121)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_71.add(char_literal153)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:33: ( ( LT )* identifier )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:33: ( ( LT )* identifier )?
                             alt75 = 2
                             alt75 = self.dfa75.predict(self.input)
                             if alt75 == 1:
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:34: ( LT )* identifier
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:34: ( LT )*
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:34: ( LT )* identifier
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:34: ( LT )*
                                 while True: #loop74
                                     alt74 = 2
                                     LA74_0 = self.input.LA(1)
@@ -5059,7 +5069,7 @@ class JavaScriptParser(Parser):
                                     if alt74 == 1:
                                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                         LT154 = self.input.LT(1)
-                                        self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1123)
+                                        self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1124)
                                         if self.failed:
                                             return retval
                                         if self.backtracking == 0:
@@ -5070,7 +5080,7 @@ class JavaScriptParser(Parser):
                                         break #loop74
 
 
-                                self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1126)
+                                self.following.append(self.FOLLOW_identifier_in_variableDeclarationNoIn1127)
                                 identifier155 = self.identifier()
                                 self.following.pop()
                                 if self.failed:
@@ -5086,7 +5096,7 @@ class JavaScriptParser(Parser):
                             break #loop76
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:53: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:53: ( LT )*
                     while True: #loop77
                         alt77 = 2
                         LA77_0 = self.input.LA(1)
@@ -5098,7 +5108,7 @@ class JavaScriptParser(Parser):
                         if alt77 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT156 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1132)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1133)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -5109,21 +5119,21 @@ class JavaScriptParser(Parser):
                             break #loop77
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:57: ( ',' ( LT )* )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:57: ( ',' ( LT )* )?
                     alt79 = 2
                     LA79_0 = self.input.LA(1)
 
                     if (LA79_0 == 71) :
                         alt79 = 1
                     if alt79 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:58: ',' ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:58: ',' ( LT )*
                         char_literal157 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationNoIn1136)
+                        self.match(self.input, 71, self.FOLLOW_71_in_variableDeclarationNoIn1137)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
                             stream_71.add(char_literal157)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:62: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:62: ( LT )*
                         while True: #loop78
                             alt78 = 2
                             LA78_0 = self.input.LA(1)
@@ -5135,7 +5145,7 @@ class JavaScriptParser(Parser):
                             if alt78 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT158 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1138)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1139)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -5150,17 +5160,17 @@ class JavaScriptParser(Parser):
 
 
                     char_literal159 = self.input.LT(1)
-                    self.match(self.input, 82, self.FOLLOW_82_in_variableDeclarationNoIn1143)
+                    self.match(self.input, 82, self.FOLLOW_82_in_variableDeclarationNoIn1144)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_82.add(char_literal159)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:72: ( ( LT )* initialiserNoIn )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:72: ( ( LT )* initialiserNoIn )?
                     alt81 = 2
                     alt81 = self.dfa81.predict(self.input)
                     if alt81 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:73: ( LT )* initialiserNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:73: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:73: ( LT )* initialiserNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:73: ( LT )*
                         while True: #loop80
                             alt80 = 2
                             LA80_0 = self.input.LA(1)
@@ -5172,7 +5182,7 @@ class JavaScriptParser(Parser):
                             if alt80 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT160 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1146)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_variableDeclarationNoIn1147)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -5183,7 +5193,7 @@ class JavaScriptParser(Parser):
                                 break #loop80
 
 
-                        self.following.append(self.FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1149)
+                        self.following.append(self.FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1150)
                         initialiserNoIn161 = self.initialiserNoIn()
                         self.following.pop()
                         if self.failed:
@@ -5210,16 +5220,16 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 199:3: -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:6: ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? )
+                        # 200:3: -> ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:200:6: ^( VARDEF ^( ARRAY ( identifier )* ) ( initialiserNoIn )? )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARDEF, "VARDEF"), root_1)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:15: ^( ARRAY ( identifier )* )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:200:15: ^( ARRAY ( identifier )* )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(ARRAY, "ARRAY"), root_2)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:23: ( identifier )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:200:23: ( identifier )*
                         while stream_identifier.hasNext():
                             self.adaptor.addChild(root_2, stream_identifier.next())
 
@@ -5227,7 +5237,7 @@ class JavaScriptParser(Parser):
                         stream_identifier.reset();
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:36: ( initialiserNoIn )?
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:200:36: ( initialiserNoIn )?
                         if stream_initialiserNoIn.hasNext():
                             self.adaptor.addChild(root_1, stream_initialiserNoIn.next())
 
@@ -5269,7 +5279,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start initialiser
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:202:1: initialiser : '=' ( LT )* assignmentExpression -> assignmentExpression ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:1: initialiser : '=' ( LT )* assignmentExpression -> assignmentExpression ;
     def initialiser(self, ):
 
         retval = self.initialiser_return()
@@ -5292,15 +5302,15 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 26):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:2: ( '=' ( LT )* assignmentExpression -> assignmentExpression )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:4: '=' ( LT )* assignmentExpression
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:204:2: ( '=' ( LT )* assignmentExpression -> assignmentExpression )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:204:4: '=' ( LT )* assignmentExpression
                 char_literal162 = self.input.LT(1)
-                self.match(self.input, 66, self.FOLLOW_66_in_initialiser1181)
+                self.match(self.input, 66, self.FOLLOW_66_in_initialiser1182)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_66.add(char_literal162)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:8: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:204:8: ( LT )*
                 while True: #loop83
                     alt83 = 2
                     LA83_0 = self.input.LA(1)
@@ -5317,7 +5327,7 @@ class JavaScriptParser(Parser):
                     if alt83 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT163 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_initialiser1183)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_initialiser1184)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -5328,7 +5338,7 @@ class JavaScriptParser(Parser):
                         break #loop83
 
 
-                self.following.append(self.FOLLOW_assignmentExpression_in_initialiser1186)
+                self.following.append(self.FOLLOW_assignmentExpression_in_initialiser1187)
                 assignmentExpression164 = self.assignmentExpression()
                 self.following.pop()
                 if self.failed:
@@ -5352,7 +5362,7 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 204:3: -> assignmentExpression
+                    # 205:3: -> assignmentExpression
                     self.adaptor.addChild(root_0, stream_assignmentExpression.next())
 
 
@@ -5389,7 +5399,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start initialiserNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:207:1: initialiserNoIn : '=' ( LT )* assignmentExpressionNoIn -> assignmentExpressionNoIn ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:1: initialiserNoIn : '=' ( LT )* assignmentExpressionNoIn -> assignmentExpressionNoIn ;
     def initialiserNoIn(self, ):
 
         retval = self.initialiserNoIn_return()
@@ -5412,15 +5422,15 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 27):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:2: ( '=' ( LT )* assignmentExpressionNoIn -> assignmentExpressionNoIn )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:4: '=' ( LT )* assignmentExpressionNoIn
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:209:2: ( '=' ( LT )* assignmentExpressionNoIn -> assignmentExpressionNoIn )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:209:4: '=' ( LT )* assignmentExpressionNoIn
                 char_literal165 = self.input.LT(1)
-                self.match(self.input, 66, self.FOLLOW_66_in_initialiserNoIn1204)
+                self.match(self.input, 66, self.FOLLOW_66_in_initialiserNoIn1205)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_66.add(char_literal165)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:8: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:209:8: ( LT )*
                 while True: #loop84
                     alt84 = 2
                     LA84_0 = self.input.LA(1)
@@ -5437,7 +5447,7 @@ class JavaScriptParser(Parser):
                     if alt84 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT166 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_initialiserNoIn1206)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_initialiserNoIn1207)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -5448,7 +5458,7 @@ class JavaScriptParser(Parser):
                         break #loop84
 
 
-                self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_initialiserNoIn1209)
+                self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_initialiserNoIn1210)
                 assignmentExpressionNoIn167 = self.assignmentExpressionNoIn()
                 self.following.pop()
                 if self.failed:
@@ -5472,7 +5482,7 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 209:3: -> assignmentExpressionNoIn
+                    # 210:3: -> assignmentExpressionNoIn
                     self.adaptor.addChild(root_0, stream_assignmentExpressionNoIn.next())
 
 
@@ -5509,7 +5519,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start emptyStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:212:1: emptyStatement : ';' ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:213:1: emptyStatement : ';' ;
     def emptyStatement(self, ):
 
         retval = self.emptyStatement_return()
@@ -5526,12 +5536,12 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 28):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:213:2: ( ';' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:213:4: ';'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:214:2: ( ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:214:4: ';'
                 root_0 = self.adaptor.nil()
 
                 char_literal168 = self.input.LT(1)
-                self.match(self.input, 76, self.FOLLOW_76_in_emptyStatement1227)
+                self.match(self.input, 76, self.FOLLOW_76_in_emptyStatement1228)
                 if self.failed:
                     return retval
 
@@ -5570,7 +5580,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start expressionStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:216:1: expressionStatement : expression ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:217:1: expressionStatement : expression ( LT | ';' ) ;
     def expressionStatement(self, ):
 
         retval = self.expressionStatement_return()
@@ -5589,11 +5599,11 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 29):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:217:2: ( expression ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:217:4: expression ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:218:2: ( expression ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:218:4: expression ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_expression_in_expressionStatement1239)
+                self.following.append(self.FOLLOW_expression_in_expressionStatement1240)
                 expression169 = self.expression()
                 self.following.pop()
                 if self.failed:
@@ -5613,7 +5623,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_expressionStatement1241
+                        self.input, mse, self.FOLLOW_set_in_expressionStatement1242
                         )
                     raise mse
 
@@ -5650,7 +5660,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start ifStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:220:1: ifStatement : 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:1: ifStatement : 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )? ;
     def ifStatement(self, ):
 
         retval = self.ifStatement_return()
@@ -5691,19 +5701,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 30):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:2: ( 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:4: 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:2: ( 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:4: 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ( ( LT )* 'else' ( LT )* statement )?
                 root_0 = self.adaptor.nil()
 
                 string_literal171 = self.input.LT(1)
-                self.match(self.input, 83, self.FOLLOW_83_in_ifStatement1260)
+                self.match(self.input, 83, self.FOLLOW_83_in_ifStatement1261)
                 if self.failed:
                     return retval
 
                 string_literal171_tree = self.adaptor.createWithPayload(string_literal171)
                 self.adaptor.addChild(root_0, string_literal171_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:11: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:11: ( LT )*
                 while True: #loop85
                     alt85 = 2
                     LA85_0 = self.input.LA(1)
@@ -5715,7 +5725,7 @@ class JavaScriptParser(Parser):
                     if alt85 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT172 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1262)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1263)
                         if self.failed:
                             return retval
 
@@ -5725,14 +5735,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal173 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_ifStatement1266)
+                self.match(self.input, 70, self.FOLLOW_70_in_ifStatement1267)
                 if self.failed:
                     return retval
 
                 char_literal173_tree = self.adaptor.createWithPayload(char_literal173)
                 self.adaptor.addChild(root_0, char_literal173_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:20: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:20: ( LT )*
                 while True: #loop86
                     alt86 = 2
                     LA86_0 = self.input.LA(1)
@@ -5749,7 +5759,7 @@ class JavaScriptParser(Parser):
                     if alt86 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT174 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1268)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1269)
                         if self.failed:
                             return retval
 
@@ -5758,14 +5768,14 @@ class JavaScriptParser(Parser):
                         break #loop86
 
 
-                self.following.append(self.FOLLOW_expression_in_ifStatement1272)
+                self.following.append(self.FOLLOW_expression_in_ifStatement1273)
                 expression175 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression175.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:36: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:36: ( LT )*
                 while True: #loop87
                     alt87 = 2
                     LA87_0 = self.input.LA(1)
@@ -5777,7 +5787,7 @@ class JavaScriptParser(Parser):
                     if alt87 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT176 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1274)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1275)
                         if self.failed:
                             return retval
 
@@ -5787,14 +5797,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal177 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_ifStatement1278)
+                self.match(self.input, 72, self.FOLLOW_72_in_ifStatement1279)
                 if self.failed:
                     return retval
 
                 char_literal177_tree = self.adaptor.createWithPayload(char_literal177)
                 self.adaptor.addChild(root_0, char_literal177_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:45: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:45: ( LT )*
                 while True: #loop88
                     alt88 = 2
                     LA88_0 = self.input.LA(1)
@@ -5811,7 +5821,7 @@ class JavaScriptParser(Parser):
                     if alt88 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT178 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1280)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1281)
                         if self.failed:
                             return retval
 
@@ -5820,14 +5830,14 @@ class JavaScriptParser(Parser):
                         break #loop88
 
 
-                self.following.append(self.FOLLOW_statement_in_ifStatement1284)
+                self.following.append(self.FOLLOW_statement_in_ifStatement1285)
                 statement179 = self.statement()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, statement179.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:58: ( ( LT )* 'else' ( LT )* statement )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:58: ( ( LT )* 'else' ( LT )* statement )?
                 alt91 = 2
                 LA91_0 = self.input.LA(1)
 
@@ -5842,8 +5852,8 @@ class JavaScriptParser(Parser):
                     if (self.synpred113()) :
                         alt91 = 1
                 if alt91 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:59: ( LT )* 'else' ( LT )* statement
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:61: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:59: ( LT )* 'else' ( LT )* statement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:61: ( LT )*
                     while True: #loop89
                         alt89 = 2
                         LA89_0 = self.input.LA(1)
@@ -5855,7 +5865,7 @@ class JavaScriptParser(Parser):
                         if alt89 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT180 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1287)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1288)
                             if self.failed:
                                 return retval
 
@@ -5865,14 +5875,14 @@ class JavaScriptParser(Parser):
 
 
                     string_literal181 = self.input.LT(1)
-                    self.match(self.input, 84, self.FOLLOW_84_in_ifStatement1291)
+                    self.match(self.input, 84, self.FOLLOW_84_in_ifStatement1292)
                     if self.failed:
                         return retval
 
                     string_literal181_tree = self.adaptor.createWithPayload(string_literal181)
                     self.adaptor.addChild(root_0, string_literal181_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:73: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:73: ( LT )*
                     while True: #loop90
                         alt90 = 2
                         LA90_0 = self.input.LA(1)
@@ -5889,7 +5899,7 @@ class JavaScriptParser(Parser):
                         if alt90 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT182 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1293)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_ifStatement1294)
                             if self.failed:
                                 return retval
 
@@ -5898,7 +5908,7 @@ class JavaScriptParser(Parser):
                             break #loop90
 
 
-                    self.following.append(self.FOLLOW_statement_in_ifStatement1297)
+                    self.following.append(self.FOLLOW_statement_in_ifStatement1298)
                     statement183 = self.statement()
                     self.following.pop()
                     if self.failed:
@@ -5940,7 +5950,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start iterationStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:224:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:225:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );
     def iterationStatement(self, ):
 
         retval = self.iterationStatement_return()
@@ -5963,7 +5973,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 31):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:225:2: ( doWhileStatement | whileStatement | forStatement | forInStatement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:226:2: ( doWhileStatement | whileStatement | forStatement | forInStatement )
                 alt92 = 4
                 LA92 = self.input.LA(1)
                 if LA92 == 85:
@@ -5982,7 +5992,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("224:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );", 92, 3, self.input)
+                        nvae = NoViableAltException("225:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );", 92, 3, self.input)
 
                         raise nvae
 
@@ -5991,15 +6001,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("224:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );", 92, 0, self.input)
+                    nvae = NoViableAltException("225:1: iterationStatement : ( doWhileStatement | whileStatement | forStatement | forInStatement );", 92, 0, self.input)
 
                     raise nvae
 
                 if alt92 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:225:4: doWhileStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:226:4: doWhileStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_doWhileStatement_in_iterationStatement1311)
+                    self.following.append(self.FOLLOW_doWhileStatement_in_iterationStatement1312)
                     doWhileStatement184 = self.doWhileStatement()
                     self.following.pop()
                     if self.failed:
@@ -6009,10 +6019,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt92 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:226:4: whileStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:227:4: whileStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_whileStatement_in_iterationStatement1316)
+                    self.following.append(self.FOLLOW_whileStatement_in_iterationStatement1317)
                     whileStatement185 = self.whileStatement()
                     self.following.pop()
                     if self.failed:
@@ -6022,10 +6032,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt92 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:227:4: forStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:228:4: forStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_forStatement_in_iterationStatement1321)
+                    self.following.append(self.FOLLOW_forStatement_in_iterationStatement1322)
                     forStatement186 = self.forStatement()
                     self.following.pop()
                     if self.failed:
@@ -6035,10 +6045,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt92 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:228:4: forInStatement
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:229:4: forInStatement
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_forInStatement_in_iterationStatement1326)
+                    self.following.append(self.FOLLOW_forInStatement_in_iterationStatement1327)
                     forInStatement187 = self.forInStatement()
                     self.following.pop()
                     if self.failed:
@@ -6076,7 +6086,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start doWhileStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:231:1: doWhileStatement : 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:1: doWhileStatement : 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' ) ;
     def doWhileStatement(self, ):
 
         retval = self.doWhileStatement_return()
@@ -6111,19 +6121,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 32):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:2: ( 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:4: 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:2: ( 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:4: 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
                 string_literal188 = self.input.LT(1)
-                self.match(self.input, 85, self.FOLLOW_85_in_doWhileStatement1338)
+                self.match(self.input, 85, self.FOLLOW_85_in_doWhileStatement1339)
                 if self.failed:
                     return retval
 
                 string_literal188_tree = self.adaptor.createWithPayload(string_literal188)
                 self.adaptor.addChild(root_0, string_literal188_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:11: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:11: ( LT )*
                 while True: #loop93
                     alt93 = 2
                     LA93_0 = self.input.LA(1)
@@ -6140,7 +6150,7 @@ class JavaScriptParser(Parser):
                     if alt93 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT189 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1340)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1341)
                         if self.failed:
                             return retval
 
@@ -6149,14 +6159,14 @@ class JavaScriptParser(Parser):
                         break #loop93
 
 
-                self.following.append(self.FOLLOW_statement_in_doWhileStatement1344)
+                self.following.append(self.FOLLOW_statement_in_doWhileStatement1345)
                 statement190 = self.statement()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, statement190.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:26: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:26: ( LT )*
                 while True: #loop94
                     alt94 = 2
                     LA94_0 = self.input.LA(1)
@@ -6168,7 +6178,7 @@ class JavaScriptParser(Parser):
                     if alt94 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT191 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1346)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1347)
                         if self.failed:
                             return retval
 
@@ -6178,14 +6188,14 @@ class JavaScriptParser(Parser):
 
 
                 string_literal192 = self.input.LT(1)
-                self.match(self.input, 86, self.FOLLOW_86_in_doWhileStatement1350)
+                self.match(self.input, 86, self.FOLLOW_86_in_doWhileStatement1351)
                 if self.failed:
                     return retval
 
                 string_literal192_tree = self.adaptor.createWithPayload(string_literal192)
                 self.adaptor.addChild(root_0, string_literal192_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:39: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:39: ( LT )*
                 while True: #loop95
                     alt95 = 2
                     LA95_0 = self.input.LA(1)
@@ -6197,7 +6207,7 @@ class JavaScriptParser(Parser):
                     if alt95 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT193 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1352)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_doWhileStatement1353)
                         if self.failed:
                             return retval
 
@@ -6207,14 +6217,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal194 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_doWhileStatement1356)
+                self.match(self.input, 70, self.FOLLOW_70_in_doWhileStatement1357)
                 if self.failed:
                     return retval
 
                 char_literal194_tree = self.adaptor.createWithPayload(char_literal194)
                 self.adaptor.addChild(root_0, char_literal194_tree)
 
-                self.following.append(self.FOLLOW_expression_in_doWhileStatement1358)
+                self.following.append(self.FOLLOW_expression_in_doWhileStatement1359)
                 expression195 = self.expression()
                 self.following.pop()
                 if self.failed:
@@ -6222,7 +6232,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression195.tree)
                 char_literal196 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_doWhileStatement1360)
+                self.match(self.input, 72, self.FOLLOW_72_in_doWhileStatement1361)
                 if self.failed:
                     return retval
 
@@ -6242,7 +6252,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_doWhileStatement1362
+                        self.input, mse, self.FOLLOW_set_in_doWhileStatement1363
                         )
                     raise mse
 
@@ -6279,7 +6289,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start whileStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:235:1: whileStatement : 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:1: whileStatement : 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
     def whileStatement(self, ):
 
         retval = self.whileStatement_return()
@@ -6312,19 +6322,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 33):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:2: ( 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:4: 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:2: ( 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:4: 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
                 string_literal198 = self.input.LT(1)
-                self.match(self.input, 86, self.FOLLOW_86_in_whileStatement1381)
+                self.match(self.input, 86, self.FOLLOW_86_in_whileStatement1382)
                 if self.failed:
                     return retval
 
                 string_literal198_tree = self.adaptor.createWithPayload(string_literal198)
                 self.adaptor.addChild(root_0, string_literal198_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:14: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:14: ( LT )*
                 while True: #loop96
                     alt96 = 2
                     LA96_0 = self.input.LA(1)
@@ -6336,7 +6346,7 @@ class JavaScriptParser(Parser):
                     if alt96 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT199 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1383)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1384)
                         if self.failed:
                             return retval
 
@@ -6346,14 +6356,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal200 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_whileStatement1387)
+                self.match(self.input, 70, self.FOLLOW_70_in_whileStatement1388)
                 if self.failed:
                     return retval
 
                 char_literal200_tree = self.adaptor.createWithPayload(char_literal200)
                 self.adaptor.addChild(root_0, char_literal200_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:23: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:23: ( LT )*
                 while True: #loop97
                     alt97 = 2
                     LA97_0 = self.input.LA(1)
@@ -6370,7 +6380,7 @@ class JavaScriptParser(Parser):
                     if alt97 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT201 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1389)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1390)
                         if self.failed:
                             return retval
 
@@ -6379,14 +6389,14 @@ class JavaScriptParser(Parser):
                         break #loop97
 
 
-                self.following.append(self.FOLLOW_expression_in_whileStatement1393)
+                self.following.append(self.FOLLOW_expression_in_whileStatement1394)
                 expression202 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression202.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:39: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:39: ( LT )*
                 while True: #loop98
                     alt98 = 2
                     LA98_0 = self.input.LA(1)
@@ -6398,7 +6408,7 @@ class JavaScriptParser(Parser):
                     if alt98 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT203 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1395)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1396)
                         if self.failed:
                             return retval
 
@@ -6408,14 +6418,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal204 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_whileStatement1399)
+                self.match(self.input, 72, self.FOLLOW_72_in_whileStatement1400)
                 if self.failed:
                     return retval
 
                 char_literal204_tree = self.adaptor.createWithPayload(char_literal204)
                 self.adaptor.addChild(root_0, char_literal204_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:48: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:48: ( LT )*
                 while True: #loop99
                     alt99 = 2
                     LA99_0 = self.input.LA(1)
@@ -6432,7 +6442,7 @@ class JavaScriptParser(Parser):
                     if alt99 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT205 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1401)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_whileStatement1402)
                         if self.failed:
                             return retval
 
@@ -6441,7 +6451,7 @@ class JavaScriptParser(Parser):
                         break #loop99
 
 
-                self.following.append(self.FOLLOW_statement_in_whileStatement1405)
+                self.following.append(self.FOLLOW_statement_in_whileStatement1406)
                 statement206 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -6480,7 +6490,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start forStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:239:1: forStatement : 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:1: forStatement : 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement ;
     def forStatement(self, ):
 
         retval = self.forStatement_return()
@@ -6529,19 +6539,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 34):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:2: ( 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:4: 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:2: ( 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:4: 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ';' ( ( LT )* expression )? ( LT )* ')' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
                 string_literal207 = self.input.LT(1)
-                self.match(self.input, 87, self.FOLLOW_87_in_forStatement1417)
+                self.match(self.input, 87, self.FOLLOW_87_in_forStatement1418)
                 if self.failed:
                     return retval
 
                 string_literal207_tree = self.adaptor.createWithPayload(string_literal207)
                 self.adaptor.addChild(root_0, string_literal207_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:12: ( LT )*
                 while True: #loop100
                     alt100 = 2
                     LA100_0 = self.input.LA(1)
@@ -6553,7 +6563,7 @@ class JavaScriptParser(Parser):
                     if alt100 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT208 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1419)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1420)
                         if self.failed:
                             return retval
 
@@ -6563,19 +6573,19 @@ class JavaScriptParser(Parser):
 
 
                 char_literal209 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_forStatement1423)
+                self.match(self.input, 70, self.FOLLOW_70_in_forStatement1424)
                 if self.failed:
                     return retval
 
                 char_literal209_tree = self.adaptor.createWithPayload(char_literal209)
                 self.adaptor.addChild(root_0, char_literal209_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:19: ( ( LT )* forStatementInitialiserPart )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:19: ( ( LT )* forStatementInitialiserPart )?
                 alt102 = 2
                 alt102 = self.dfa102.predict(self.input)
                 if alt102 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:20: ( LT )* forStatementInitialiserPart
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:22: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:20: ( LT )* forStatementInitialiserPart
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:22: ( LT )*
                     while True: #loop101
                         alt101 = 2
                         LA101_0 = self.input.LA(1)
@@ -6592,7 +6602,7 @@ class JavaScriptParser(Parser):
                         if alt101 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT210 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1426)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1427)
                             if self.failed:
                                 return retval
 
@@ -6601,7 +6611,7 @@ class JavaScriptParser(Parser):
                             break #loop101
 
 
-                    self.following.append(self.FOLLOW_forStatementInitialiserPart_in_forStatement1430)
+                    self.following.append(self.FOLLOW_forStatementInitialiserPart_in_forStatement1431)
                     forStatementInitialiserPart211 = self.forStatementInitialiserPart()
                     self.following.pop()
                     if self.failed:
@@ -6611,7 +6621,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:57: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:57: ( LT )*
                 while True: #loop103
                     alt103 = 2
                     LA103_0 = self.input.LA(1)
@@ -6623,7 +6633,7 @@ class JavaScriptParser(Parser):
                     if alt103 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT212 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1434)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1435)
                         if self.failed:
                             return retval
 
@@ -6633,19 +6643,19 @@ class JavaScriptParser(Parser):
 
 
                 char_literal213 = self.input.LT(1)
-                self.match(self.input, 76, self.FOLLOW_76_in_forStatement1438)
+                self.match(self.input, 76, self.FOLLOW_76_in_forStatement1439)
                 if self.failed:
                     return retval
 
                 char_literal213_tree = self.adaptor.createWithPayload(char_literal213)
                 self.adaptor.addChild(root_0, char_literal213_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:64: ( ( LT )* expression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:64: ( ( LT )* expression )?
                 alt105 = 2
                 alt105 = self.dfa105.predict(self.input)
                 if alt105 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:65: ( LT )* expression
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:67: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:65: ( LT )* expression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:67: ( LT )*
                     while True: #loop104
                         alt104 = 2
                         LA104_0 = self.input.LA(1)
@@ -6662,7 +6672,7 @@ class JavaScriptParser(Parser):
                         if alt104 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT214 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1441)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1442)
                             if self.failed:
                                 return retval
 
@@ -6671,7 +6681,7 @@ class JavaScriptParser(Parser):
                             break #loop104
 
 
-                    self.following.append(self.FOLLOW_expression_in_forStatement1445)
+                    self.following.append(self.FOLLOW_expression_in_forStatement1446)
                     expression215 = self.expression()
                     self.following.pop()
                     if self.failed:
@@ -6681,7 +6691,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:85: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:85: ( LT )*
                 while True: #loop106
                     alt106 = 2
                     LA106_0 = self.input.LA(1)
@@ -6693,7 +6703,7 @@ class JavaScriptParser(Parser):
                     if alt106 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT216 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1449)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1450)
                         if self.failed:
                             return retval
 
@@ -6703,19 +6713,19 @@ class JavaScriptParser(Parser):
 
 
                 char_literal217 = self.input.LT(1)
-                self.match(self.input, 76, self.FOLLOW_76_in_forStatement1453)
+                self.match(self.input, 76, self.FOLLOW_76_in_forStatement1454)
                 if self.failed:
                     return retval
 
                 char_literal217_tree = self.adaptor.createWithPayload(char_literal217)
                 self.adaptor.addChild(root_0, char_literal217_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:92: ( ( LT )* expression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:92: ( ( LT )* expression )?
                 alt108 = 2
                 alt108 = self.dfa108.predict(self.input)
                 if alt108 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:93: ( LT )* expression
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:95: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:93: ( LT )* expression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:95: ( LT )*
                     while True: #loop107
                         alt107 = 2
                         LA107_0 = self.input.LA(1)
@@ -6732,7 +6742,7 @@ class JavaScriptParser(Parser):
                         if alt107 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT218 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1456)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1457)
                             if self.failed:
                                 return retval
 
@@ -6741,7 +6751,7 @@ class JavaScriptParser(Parser):
                             break #loop107
 
 
-                    self.following.append(self.FOLLOW_expression_in_forStatement1460)
+                    self.following.append(self.FOLLOW_expression_in_forStatement1461)
                     expression219 = self.expression()
                     self.following.pop()
                     if self.failed:
@@ -6751,7 +6761,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:113: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:113: ( LT )*
                 while True: #loop109
                     alt109 = 2
                     LA109_0 = self.input.LA(1)
@@ -6763,7 +6773,7 @@ class JavaScriptParser(Parser):
                     if alt109 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT220 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1464)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1465)
                         if self.failed:
                             return retval
 
@@ -6773,14 +6783,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal221 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_forStatement1468)
+                self.match(self.input, 72, self.FOLLOW_72_in_forStatement1469)
                 if self.failed:
                     return retval
 
                 char_literal221_tree = self.adaptor.createWithPayload(char_literal221)
                 self.adaptor.addChild(root_0, char_literal221_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:122: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:122: ( LT )*
                 while True: #loop110
                     alt110 = 2
                     LA110_0 = self.input.LA(1)
@@ -6797,7 +6807,7 @@ class JavaScriptParser(Parser):
                     if alt110 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT222 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1470)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forStatement1471)
                         if self.failed:
                             return retval
 
@@ -6806,7 +6816,7 @@ class JavaScriptParser(Parser):
                         break #loop110
 
 
-                self.following.append(self.FOLLOW_statement_in_forStatement1474)
+                self.following.append(self.FOLLOW_statement_in_forStatement1475)
                 statement223 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -6845,7 +6855,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start forStatementInitialiserPart
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:243:1: forStatementInitialiserPart : ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:244:1: forStatementInitialiserPart : ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn );
     def forStatementInitialiserPart(self, ):
 
         retval = self.forStatementInitialiserPart_return()
@@ -6868,7 +6878,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 35):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:244:2: ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:245:2: ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn )
                 alt112 = 2
                 LA112_0 = self.input.LA(1)
 
@@ -6881,15 +6891,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("243:1: forStatementInitialiserPart : ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn );", 112, 0, self.input)
+                    nvae = NoViableAltException("244:1: forStatementInitialiserPart : ( expressionNoIn | ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn );", 112, 0, self.input)
 
                     raise nvae
 
                 if alt112 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:244:4: expressionNoIn
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:245:4: expressionNoIn
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_expressionNoIn_in_forStatementInitialiserPart1486)
+                    self.following.append(self.FOLLOW_expressionNoIn_in_forStatementInitialiserPart1487)
                     expressionNoIn224 = self.expressionNoIn()
                     self.following.pop()
                     if self.failed:
@@ -6899,7 +6909,7 @@ class JavaScriptParser(Parser):
 
 
                 elif alt112 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:245:4: ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:246:4: ( 'var' | 'let' ) ( LT )* variableDeclarationListNoIn
                     root_0 = self.adaptor.nil()
 
                     set225 = self.input.LT(1)
@@ -6917,12 +6927,12 @@ class JavaScriptParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_forStatementInitialiserPart1491
+                            self.input, mse, self.FOLLOW_set_in_forStatementInitialiserPart1492
                             )
                         raise mse
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:245:20: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:246:20: ( LT )*
                     while True: #loop111
                         alt111 = 2
                         LA111_0 = self.input.LA(1)
@@ -6934,7 +6944,7 @@ class JavaScriptParser(Parser):
                         if alt111 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT226 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatementInitialiserPart1497)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_forStatementInitialiserPart1498)
                             if self.failed:
                                 return retval
 
@@ -6943,7 +6953,7 @@ class JavaScriptParser(Parser):
                             break #loop111
 
 
-                    self.following.append(self.FOLLOW_variableDeclarationListNoIn_in_forStatementInitialiserPart1501)
+                    self.following.append(self.FOLLOW_variableDeclarationListNoIn_in_forStatementInitialiserPart1502)
                     variableDeclarationListNoIn227 = self.variableDeclarationListNoIn()
                     self.following.pop()
                     if self.failed:
@@ -6981,7 +6991,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start forInStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:248:1: forInStatement : 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:1: forInStatement : 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement ;
     def forInStatement(self, ):
 
         retval = self.forInStatement_return()
@@ -7026,19 +7036,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 36):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:2: ( 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:4: 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:2: ( 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:4: 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
                 string_literal228 = self.input.LT(1)
-                self.match(self.input, 87, self.FOLLOW_87_in_forInStatement1513)
+                self.match(self.input, 87, self.FOLLOW_87_in_forInStatement1514)
                 if self.failed:
                     return retval
 
                 string_literal228_tree = self.adaptor.createWithPayload(string_literal228)
                 self.adaptor.addChild(root_0, string_literal228_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:12: ( LT )*
                 while True: #loop113
                     alt113 = 2
                     LA113_0 = self.input.LA(1)
@@ -7055,7 +7065,7 @@ class JavaScriptParser(Parser):
                     if alt113 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT229 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1515)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1516)
                         if self.failed:
                             return retval
 
@@ -7064,7 +7074,7 @@ class JavaScriptParser(Parser):
                         break #loop113
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:15: ( 'each' )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:15: ( 'each' )?
                 alt114 = 2
                 LA114_0 = self.input.LA(1)
 
@@ -7073,7 +7083,7 @@ class JavaScriptParser(Parser):
                 if alt114 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: 'each'
                     string_literal230 = self.input.LT(1)
-                    self.match(self.input, 88, self.FOLLOW_88_in_forInStatement1519)
+                    self.match(self.input, 88, self.FOLLOW_88_in_forInStatement1520)
                     if self.failed:
                         return retval
 
@@ -7083,7 +7093,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:25: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:25: ( LT )*
                 while True: #loop115
                     alt115 = 2
                     LA115_0 = self.input.LA(1)
@@ -7095,7 +7105,7 @@ class JavaScriptParser(Parser):
                     if alt115 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT231 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1522)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1523)
                         if self.failed:
                             return retval
 
@@ -7105,14 +7115,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal232 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_forInStatement1526)
+                self.match(self.input, 70, self.FOLLOW_70_in_forInStatement1527)
                 if self.failed:
                     return retval
 
                 char_literal232_tree = self.adaptor.createWithPayload(char_literal232)
                 self.adaptor.addChild(root_0, char_literal232_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:34: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:34: ( LT )*
                 while True: #loop116
                     alt116 = 2
                     LA116_0 = self.input.LA(1)
@@ -7129,7 +7139,7 @@ class JavaScriptParser(Parser):
                     if alt116 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT233 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1528)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1529)
                         if self.failed:
                             return retval
 
@@ -7138,14 +7148,14 @@ class JavaScriptParser(Parser):
                         break #loop116
 
 
-                self.following.append(self.FOLLOW_forInStatementInitialiserPart_in_forInStatement1532)
+                self.following.append(self.FOLLOW_forInStatementInitialiserPart_in_forInStatement1533)
                 forInStatementInitialiserPart234 = self.forInStatementInitialiserPart()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, forInStatementInitialiserPart234.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:69: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:69: ( LT )*
                 while True: #loop117
                     alt117 = 2
                     LA117_0 = self.input.LA(1)
@@ -7157,7 +7167,7 @@ class JavaScriptParser(Parser):
                     if alt117 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT235 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1534)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1535)
                         if self.failed:
                             return retval
 
@@ -7167,14 +7177,14 @@ class JavaScriptParser(Parser):
 
 
                 string_literal236 = self.input.LT(1)
-                self.match(self.input, 89, self.FOLLOW_89_in_forInStatement1538)
+                self.match(self.input, 89, self.FOLLOW_89_in_forInStatement1539)
                 if self.failed:
                     return retval
 
                 string_literal236_tree = self.adaptor.createWithPayload(string_literal236)
                 self.adaptor.addChild(root_0, string_literal236_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:79: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:79: ( LT )*
                 while True: #loop118
                     alt118 = 2
                     LA118_0 = self.input.LA(1)
@@ -7191,7 +7201,7 @@ class JavaScriptParser(Parser):
                     if alt118 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT237 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1540)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1541)
                         if self.failed:
                             return retval
 
@@ -7200,14 +7210,14 @@ class JavaScriptParser(Parser):
                         break #loop118
 
 
-                self.following.append(self.FOLLOW_expression_in_forInStatement1544)
+                self.following.append(self.FOLLOW_expression_in_forInStatement1545)
                 expression238 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression238.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:95: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:95: ( LT )*
                 while True: #loop119
                     alt119 = 2
                     LA119_0 = self.input.LA(1)
@@ -7219,7 +7229,7 @@ class JavaScriptParser(Parser):
                     if alt119 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT239 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1546)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1547)
                         if self.failed:
                             return retval
 
@@ -7229,14 +7239,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal240 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_forInStatement1550)
+                self.match(self.input, 72, self.FOLLOW_72_in_forInStatement1551)
                 if self.failed:
                     return retval
 
                 char_literal240_tree = self.adaptor.createWithPayload(char_literal240)
                 self.adaptor.addChild(root_0, char_literal240_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:104: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:104: ( LT )*
                 while True: #loop120
                     alt120 = 2
                     LA120_0 = self.input.LA(1)
@@ -7253,7 +7263,7 @@ class JavaScriptParser(Parser):
                     if alt120 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT241 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1552)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_forInStatement1553)
                         if self.failed:
                             return retval
 
@@ -7262,7 +7272,7 @@ class JavaScriptParser(Parser):
                         break #loop120
 
 
-                self.following.append(self.FOLLOW_statement_in_forInStatement1556)
+                self.following.append(self.FOLLOW_statement_in_forInStatement1557)
                 statement242 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -7301,7 +7311,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start forInStatementInitialiserPart
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:252:1: forInStatementInitialiserPart : ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:253:1: forInStatementInitialiserPart : ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn );
     def forInStatementInitialiserPart(self, ):
 
         retval = self.forInStatementInitialiserPart_return()
@@ -7324,7 +7334,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 37):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:253:2: ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:254:2: ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn )
                 alt122 = 2
                 LA122_0 = self.input.LA(1)
 
@@ -7337,15 +7347,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("252:1: forInStatementInitialiserPart : ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn );", 122, 0, self.input)
+                    nvae = NoViableAltException("253:1: forInStatementInitialiserPart : ( leftHandSideExpression | ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn );", 122, 0, self.input)
 
                     raise nvae
 
                 if alt122 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:253:4: leftHandSideExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:254:4: leftHandSideExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_leftHandSideExpression_in_forInStatementInitialiserPart1568)
+                    self.following.append(self.FOLLOW_leftHandSideExpression_in_forInStatementInitialiserPart1569)
                     leftHandSideExpression243 = self.leftHandSideExpression()
                     self.following.pop()
                     if self.failed:
@@ -7355,7 +7365,7 @@ class JavaScriptParser(Parser):
 
 
                 elif alt122 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:254:4: ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:255:4: ( 'var' | 'let' ) ( LT )* variableDeclarationNoIn
                     root_0 = self.adaptor.nil()
 
                     set244 = self.input.LT(1)
@@ -7373,12 +7383,12 @@ class JavaScriptParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_forInStatementInitialiserPart1573
+                            self.input, mse, self.FOLLOW_set_in_forInStatementInitialiserPart1574
                             )
                         raise mse
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:254:20: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:255:20: ( LT )*
                     while True: #loop121
                         alt121 = 2
                         LA121_0 = self.input.LA(1)
@@ -7390,7 +7400,7 @@ class JavaScriptParser(Parser):
                         if alt121 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT245 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_forInStatementInitialiserPart1579)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_forInStatementInitialiserPart1580)
                             if self.failed:
                                 return retval
 
@@ -7399,7 +7409,7 @@ class JavaScriptParser(Parser):
                             break #loop121
 
 
-                    self.following.append(self.FOLLOW_variableDeclarationNoIn_in_forInStatementInitialiserPart1583)
+                    self.following.append(self.FOLLOW_variableDeclarationNoIn_in_forInStatementInitialiserPart1584)
                     variableDeclarationNoIn246 = self.variableDeclarationNoIn()
                     self.following.pop()
                     if self.failed:
@@ -7437,7 +7447,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start continueStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:257:1: continueStatement : 'continue' ( identifier )? ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:258:1: continueStatement : 'continue' ( identifier )? ( LT | ';' ) ;
     def continueStatement(self, ):
 
         retval = self.continueStatement_return()
@@ -7458,19 +7468,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 38):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:258:2: ( 'continue' ( identifier )? ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:258:4: 'continue' ( identifier )? ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:259:2: ( 'continue' ( identifier )? ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:259:4: 'continue' ( identifier )? ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
                 string_literal247 = self.input.LT(1)
-                self.match(self.input, 90, self.FOLLOW_90_in_continueStatement1594)
+                self.match(self.input, 90, self.FOLLOW_90_in_continueStatement1595)
                 if self.failed:
                     return retval
 
                 string_literal247_tree = self.adaptor.createWithPayload(string_literal247)
                 self.adaptor.addChild(root_0, string_literal247_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:258:15: ( identifier )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:259:15: ( identifier )?
                 alt123 = 2
                 LA123_0 = self.input.LA(1)
 
@@ -7478,7 +7488,7 @@ class JavaScriptParser(Parser):
                     alt123 = 1
                 if alt123 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: identifier
-                    self.following.append(self.FOLLOW_identifier_in_continueStatement1596)
+                    self.following.append(self.FOLLOW_identifier_in_continueStatement1597)
                     identifier248 = self.identifier()
                     self.following.pop()
                     if self.failed:
@@ -7501,7 +7511,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_continueStatement1599
+                        self.input, mse, self.FOLLOW_set_in_continueStatement1600
                         )
                     raise mse
 
@@ -7538,7 +7548,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start breakStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:261:1: breakStatement : 'break' ( identifier )? ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:262:1: breakStatement : 'break' ( identifier )? ( LT | ';' ) ;
     def breakStatement(self, ):
 
         retval = self.breakStatement_return()
@@ -7559,19 +7569,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 39):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:262:2: ( 'break' ( identifier )? ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:262:4: 'break' ( identifier )? ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:263:2: ( 'break' ( identifier )? ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:263:4: 'break' ( identifier )? ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
                 string_literal250 = self.input.LT(1)
-                self.match(self.input, 91, self.FOLLOW_91_in_breakStatement1617)
+                self.match(self.input, 91, self.FOLLOW_91_in_breakStatement1618)
                 if self.failed:
                     return retval
 
                 string_literal250_tree = self.adaptor.createWithPayload(string_literal250)
                 self.adaptor.addChild(root_0, string_literal250_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:262:12: ( identifier )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:263:12: ( identifier )?
                 alt124 = 2
                 LA124_0 = self.input.LA(1)
 
@@ -7579,7 +7589,7 @@ class JavaScriptParser(Parser):
                     alt124 = 1
                 if alt124 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: identifier
-                    self.following.append(self.FOLLOW_identifier_in_breakStatement1619)
+                    self.following.append(self.FOLLOW_identifier_in_breakStatement1620)
                     identifier251 = self.identifier()
                     self.following.pop()
                     if self.failed:
@@ -7602,7 +7612,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_breakStatement1622
+                        self.input, mse, self.FOLLOW_set_in_breakStatement1623
                         )
                     raise mse
 
@@ -7639,7 +7649,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start returnStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:265:1: returnStatement : 'return' ( expression )? ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:1: returnStatement : 'return' ( expression )? ( LT | ';' ) ;
     def returnStatement(self, ):
 
         retval = self.returnStatement_return()
@@ -7660,19 +7670,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 40):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:2: ( 'return' ( expression )? ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:4: 'return' ( expression )? ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:267:2: ( 'return' ( expression )? ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:267:4: 'return' ( expression )? ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
                 string_literal253 = self.input.LT(1)
-                self.match(self.input, 77, self.FOLLOW_77_in_returnStatement1640)
+                self.match(self.input, 77, self.FOLLOW_77_in_returnStatement1641)
                 if self.failed:
                     return retval
 
                 string_literal253_tree = self.adaptor.createWithPayload(string_literal253)
                 self.adaptor.addChild(root_0, string_literal253_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:13: ( expression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:267:13: ( expression )?
                 alt125 = 2
                 LA125_0 = self.input.LA(1)
 
@@ -7685,7 +7695,7 @@ class JavaScriptParser(Parser):
                         alt125 = 1
                 if alt125 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: expression
-                    self.following.append(self.FOLLOW_expression_in_returnStatement1642)
+                    self.following.append(self.FOLLOW_expression_in_returnStatement1643)
                     expression254 = self.expression()
                     self.following.pop()
                     if self.failed:
@@ -7708,7 +7718,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_returnStatement1645
+                        self.input, mse, self.FOLLOW_set_in_returnStatement1646
                         )
                     raise mse
 
@@ -7745,7 +7755,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start withStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:269:1: withStatement : 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:1: withStatement : 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
     def withStatement(self, ):
 
         retval = self.withStatement_return()
@@ -7778,19 +7788,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 41):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:2: ( 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:4: 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:2: ( 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:4: 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
                 string_literal256 = self.input.LT(1)
-                self.match(self.input, 92, self.FOLLOW_92_in_withStatement1664)
+                self.match(self.input, 92, self.FOLLOW_92_in_withStatement1665)
                 if self.failed:
                     return retval
 
                 string_literal256_tree = self.adaptor.createWithPayload(string_literal256)
                 self.adaptor.addChild(root_0, string_literal256_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:13: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:13: ( LT )*
                 while True: #loop126
                     alt126 = 2
                     LA126_0 = self.input.LA(1)
@@ -7802,7 +7812,7 @@ class JavaScriptParser(Parser):
                     if alt126 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT257 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1666)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1667)
                         if self.failed:
                             return retval
 
@@ -7812,14 +7822,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal258 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_withStatement1670)
+                self.match(self.input, 70, self.FOLLOW_70_in_withStatement1671)
                 if self.failed:
                     return retval
 
                 char_literal258_tree = self.adaptor.createWithPayload(char_literal258)
                 self.adaptor.addChild(root_0, char_literal258_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:22: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:22: ( LT )*
                 while True: #loop127
                     alt127 = 2
                     LA127_0 = self.input.LA(1)
@@ -7836,7 +7846,7 @@ class JavaScriptParser(Parser):
                     if alt127 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT259 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1672)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1673)
                         if self.failed:
                             return retval
 
@@ -7845,14 +7855,14 @@ class JavaScriptParser(Parser):
                         break #loop127
 
 
-                self.following.append(self.FOLLOW_expression_in_withStatement1676)
+                self.following.append(self.FOLLOW_expression_in_withStatement1677)
                 expression260 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression260.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:38: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:38: ( LT )*
                 while True: #loop128
                     alt128 = 2
                     LA128_0 = self.input.LA(1)
@@ -7864,7 +7874,7 @@ class JavaScriptParser(Parser):
                     if alt128 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT261 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1678)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1679)
                         if self.failed:
                             return retval
 
@@ -7874,14 +7884,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal262 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_withStatement1682)
+                self.match(self.input, 72, self.FOLLOW_72_in_withStatement1683)
                 if self.failed:
                     return retval
 
                 char_literal262_tree = self.adaptor.createWithPayload(char_literal262)
                 self.adaptor.addChild(root_0, char_literal262_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:47: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:47: ( LT )*
                 while True: #loop129
                     alt129 = 2
                     LA129_0 = self.input.LA(1)
@@ -7898,7 +7908,7 @@ class JavaScriptParser(Parser):
                     if alt129 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT263 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1684)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_withStatement1685)
                         if self.failed:
                             return retval
 
@@ -7907,7 +7917,7 @@ class JavaScriptParser(Parser):
                         break #loop129
 
 
-                self.following.append(self.FOLLOW_statement_in_withStatement1688)
+                self.following.append(self.FOLLOW_statement_in_withStatement1689)
                 statement264 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -7946,7 +7956,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start letStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:273:1: letStatement : 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:1: letStatement : 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement ;
     def letStatement(self, ):
 
         retval = self.letStatement_return()
@@ -7979,19 +7989,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 42):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:2: ( 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:4: 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:2: ( 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:4: 'let' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
                 string_literal265 = self.input.LT(1)
-                self.match(self.input, 80, self.FOLLOW_80_in_letStatement1699)
+                self.match(self.input, 80, self.FOLLOW_80_in_letStatement1700)
                 if self.failed:
                     return retval
 
                 string_literal265_tree = self.adaptor.createWithPayload(string_literal265)
                 self.adaptor.addChild(root_0, string_literal265_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:12: ( LT )*
                 while True: #loop130
                     alt130 = 2
                     LA130_0 = self.input.LA(1)
@@ -8003,7 +8013,7 @@ class JavaScriptParser(Parser):
                     if alt130 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT266 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1701)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1702)
                         if self.failed:
                             return retval
 
@@ -8013,14 +8023,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal267 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_letStatement1705)
+                self.match(self.input, 70, self.FOLLOW_70_in_letStatement1706)
                 if self.failed:
                     return retval
 
                 char_literal267_tree = self.adaptor.createWithPayload(char_literal267)
                 self.adaptor.addChild(root_0, char_literal267_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:21: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:21: ( LT )*
                 while True: #loop131
                     alt131 = 2
                     LA131_0 = self.input.LA(1)
@@ -8037,7 +8047,7 @@ class JavaScriptParser(Parser):
                     if alt131 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT268 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1707)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1708)
                         if self.failed:
                             return retval
 
@@ -8046,14 +8056,14 @@ class JavaScriptParser(Parser):
                         break #loop131
 
 
-                self.following.append(self.FOLLOW_expression_in_letStatement1711)
+                self.following.append(self.FOLLOW_expression_in_letStatement1712)
                 expression269 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression269.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:37: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:37: ( LT )*
                 while True: #loop132
                     alt132 = 2
                     LA132_0 = self.input.LA(1)
@@ -8065,7 +8075,7 @@ class JavaScriptParser(Parser):
                     if alt132 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT270 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1713)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1714)
                         if self.failed:
                             return retval
 
@@ -8075,14 +8085,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal271 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_letStatement1717)
+                self.match(self.input, 72, self.FOLLOW_72_in_letStatement1718)
                 if self.failed:
                     return retval
 
                 char_literal271_tree = self.adaptor.createWithPayload(char_literal271)
                 self.adaptor.addChild(root_0, char_literal271_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:46: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:46: ( LT )*
                 while True: #loop133
                     alt133 = 2
                     LA133_0 = self.input.LA(1)
@@ -8099,7 +8109,7 @@ class JavaScriptParser(Parser):
                     if alt133 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT272 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1719)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_letStatement1720)
                         if self.failed:
                             return retval
 
@@ -8108,7 +8118,7 @@ class JavaScriptParser(Parser):
                         break #loop133
 
 
-                self.following.append(self.FOLLOW_statement_in_letStatement1723)
+                self.following.append(self.FOLLOW_statement_in_letStatement1724)
                 statement273 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -8147,7 +8157,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start labelledStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:277:1: labelledStatement : identifier ( LT )* ':' ( LT )* statement ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:1: labelledStatement : identifier ( LT )* ':' ( LT )* statement ;
     def labelledStatement(self, ):
 
         retval = self.labelledStatement_return()
@@ -8172,18 +8182,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 43):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:2: ( identifier ( LT )* ':' ( LT )* statement )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:4: identifier ( LT )* ':' ( LT )* statement
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:2: ( identifier ( LT )* ':' ( LT )* statement )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:4: identifier ( LT )* ':' ( LT )* statement
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_identifier_in_labelledStatement1734)
+                self.following.append(self.FOLLOW_identifier_in_labelledStatement1735)
                 identifier274 = self.identifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, identifier274.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:17: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:17: ( LT )*
                 while True: #loop134
                     alt134 = 2
                     LA134_0 = self.input.LA(1)
@@ -8195,7 +8205,7 @@ class JavaScriptParser(Parser):
                     if alt134 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT275 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_labelledStatement1736)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_labelledStatement1737)
                         if self.failed:
                             return retval
 
@@ -8205,14 +8215,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal276 = self.input.LT(1)
-                self.match(self.input, 64, self.FOLLOW_64_in_labelledStatement1740)
+                self.match(self.input, 64, self.FOLLOW_64_in_labelledStatement1741)
                 if self.failed:
                     return retval
 
                 char_literal276_tree = self.adaptor.createWithPayload(char_literal276)
                 self.adaptor.addChild(root_0, char_literal276_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:26: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:26: ( LT )*
                 while True: #loop135
                     alt135 = 2
                     LA135_0 = self.input.LA(1)
@@ -8229,7 +8239,7 @@ class JavaScriptParser(Parser):
                     if alt135 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT277 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_labelledStatement1742)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_labelledStatement1743)
                         if self.failed:
                             return retval
 
@@ -8238,7 +8248,7 @@ class JavaScriptParser(Parser):
                         break #loop135
 
 
-                self.following.append(self.FOLLOW_statement_in_labelledStatement1746)
+                self.following.append(self.FOLLOW_statement_in_labelledStatement1747)
                 statement278 = self.statement()
                 self.following.pop()
                 if self.failed:
@@ -8277,7 +8287,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start switchStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:281:1: switchStatement : 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:1: switchStatement : 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock ;
     def switchStatement(self, ):
 
         retval = self.switchStatement_return()
@@ -8310,19 +8320,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 44):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:2: ( 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:4: 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:2: ( 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:4: 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock
                 root_0 = self.adaptor.nil()
 
                 string_literal279 = self.input.LT(1)
-                self.match(self.input, 93, self.FOLLOW_93_in_switchStatement1758)
+                self.match(self.input, 93, self.FOLLOW_93_in_switchStatement1759)
                 if self.failed:
                     return retval
 
                 string_literal279_tree = self.adaptor.createWithPayload(string_literal279)
                 self.adaptor.addChild(root_0, string_literal279_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:15: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:15: ( LT )*
                 while True: #loop136
                     alt136 = 2
                     LA136_0 = self.input.LA(1)
@@ -8334,7 +8344,7 @@ class JavaScriptParser(Parser):
                     if alt136 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT280 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1760)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1761)
                         if self.failed:
                             return retval
 
@@ -8344,14 +8354,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal281 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_switchStatement1764)
+                self.match(self.input, 70, self.FOLLOW_70_in_switchStatement1765)
                 if self.failed:
                     return retval
 
                 char_literal281_tree = self.adaptor.createWithPayload(char_literal281)
                 self.adaptor.addChild(root_0, char_literal281_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:24: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:24: ( LT )*
                 while True: #loop137
                     alt137 = 2
                     LA137_0 = self.input.LA(1)
@@ -8368,7 +8378,7 @@ class JavaScriptParser(Parser):
                     if alt137 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT282 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1766)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1767)
                         if self.failed:
                             return retval
 
@@ -8377,14 +8387,14 @@ class JavaScriptParser(Parser):
                         break #loop137
 
 
-                self.following.append(self.FOLLOW_expression_in_switchStatement1770)
+                self.following.append(self.FOLLOW_expression_in_switchStatement1771)
                 expression283 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression283.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:40: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:40: ( LT )*
                 while True: #loop138
                     alt138 = 2
                     LA138_0 = self.input.LA(1)
@@ -8396,7 +8406,7 @@ class JavaScriptParser(Parser):
                     if alt138 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT284 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1772)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1773)
                         if self.failed:
                             return retval
 
@@ -8406,14 +8416,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal285 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_switchStatement1776)
+                self.match(self.input, 72, self.FOLLOW_72_in_switchStatement1777)
                 if self.failed:
                     return retval
 
                 char_literal285_tree = self.adaptor.createWithPayload(char_literal285)
                 self.adaptor.addChild(root_0, char_literal285_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:49: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:49: ( LT )*
                 while True: #loop139
                     alt139 = 2
                     LA139_0 = self.input.LA(1)
@@ -8425,7 +8435,7 @@ class JavaScriptParser(Parser):
                     if alt139 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT286 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1778)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_switchStatement1779)
                         if self.failed:
                             return retval
 
@@ -8434,7 +8444,7 @@ class JavaScriptParser(Parser):
                         break #loop139
 
 
-                self.following.append(self.FOLLOW_caseBlock_in_switchStatement1782)
+                self.following.append(self.FOLLOW_caseBlock_in_switchStatement1783)
                 caseBlock287 = self.caseBlock()
                 self.following.pop()
                 if self.failed:
@@ -8473,7 +8483,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start caseBlock
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:285:1: caseBlock : '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}' ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:1: caseBlock : '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}' ;
     def caseBlock(self, ):
 
         retval = self.caseBlock_return()
@@ -8506,25 +8516,25 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 45):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:2: ( '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}' )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:4: '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:2: ( '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:4: '{' ( ( LT )* caseClause )* ( ( LT )* defaultClause ( ( LT )* caseClause )* )? ( LT )* '}'
                 root_0 = self.adaptor.nil()
 
                 char_literal288 = self.input.LT(1)
-                self.match(self.input, 67, self.FOLLOW_67_in_caseBlock1794)
+                self.match(self.input, 67, self.FOLLOW_67_in_caseBlock1795)
                 if self.failed:
                     return retval
 
                 char_literal288_tree = self.adaptor.createWithPayload(char_literal288)
                 self.adaptor.addChild(root_0, char_literal288_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:8: ( ( LT )* caseClause )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:8: ( ( LT )* caseClause )*
                 while True: #loop141
                     alt141 = 2
                     alt141 = self.dfa141.predict(self.input)
                     if alt141 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:9: ( LT )* caseClause
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:11: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:9: ( LT )* caseClause
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:11: ( LT )*
                         while True: #loop140
                             alt140 = 2
                             LA140_0 = self.input.LA(1)
@@ -8536,7 +8546,7 @@ class JavaScriptParser(Parser):
                             if alt140 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT289 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1797)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1798)
                                 if self.failed:
                                     return retval
 
@@ -8545,7 +8555,7 @@ class JavaScriptParser(Parser):
                                 break #loop140
 
 
-                        self.following.append(self.FOLLOW_caseClause_in_caseBlock1801)
+                        self.following.append(self.FOLLOW_caseClause_in_caseBlock1802)
                         caseClause290 = self.caseClause()
                         self.following.pop()
                         if self.failed:
@@ -8558,12 +8568,12 @@ class JavaScriptParser(Parser):
                         break #loop141
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:27: ( ( LT )* defaultClause ( ( LT )* caseClause )* )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:27: ( ( LT )* defaultClause ( ( LT )* caseClause )* )?
                 alt145 = 2
                 alt145 = self.dfa145.predict(self.input)
                 if alt145 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:28: ( LT )* defaultClause ( ( LT )* caseClause )*
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:30: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:28: ( LT )* defaultClause ( ( LT )* caseClause )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:30: ( LT )*
                     while True: #loop142
                         alt142 = 2
                         LA142_0 = self.input.LA(1)
@@ -8575,7 +8585,7 @@ class JavaScriptParser(Parser):
                         if alt142 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT291 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1806)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1807)
                             if self.failed:
                                 return retval
 
@@ -8584,20 +8594,20 @@ class JavaScriptParser(Parser):
                             break #loop142
 
 
-                    self.following.append(self.FOLLOW_defaultClause_in_caseBlock1810)
+                    self.following.append(self.FOLLOW_defaultClause_in_caseBlock1811)
                     defaultClause292 = self.defaultClause()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, defaultClause292.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:47: ( ( LT )* caseClause )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:47: ( ( LT )* caseClause )*
                     while True: #loop144
                         alt144 = 2
                         alt144 = self.dfa144.predict(self.input)
                         if alt144 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:48: ( LT )* caseClause
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:50: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:48: ( LT )* caseClause
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:50: ( LT )*
                             while True: #loop143
                                 alt143 = 2
                                 LA143_0 = self.input.LA(1)
@@ -8609,7 +8619,7 @@ class JavaScriptParser(Parser):
                                 if alt143 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT293 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1813)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1814)
                                     if self.failed:
                                         return retval
 
@@ -8618,7 +8628,7 @@ class JavaScriptParser(Parser):
                                     break #loop143
 
 
-                            self.following.append(self.FOLLOW_caseClause_in_caseBlock1817)
+                            self.following.append(self.FOLLOW_caseClause_in_caseBlock1818)
                             caseClause294 = self.caseClause()
                             self.following.pop()
                             if self.failed:
@@ -8634,7 +8644,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:286:70: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:287:70: ( LT )*
                 while True: #loop146
                     alt146 = 2
                     LA146_0 = self.input.LA(1)
@@ -8646,7 +8656,7 @@ class JavaScriptParser(Parser):
                     if alt146 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT295 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1823)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_caseBlock1824)
                         if self.failed:
                             return retval
 
@@ -8656,7 +8666,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal296 = self.input.LT(1)
-                self.match(self.input, 68, self.FOLLOW_68_in_caseBlock1827)
+                self.match(self.input, 68, self.FOLLOW_68_in_caseBlock1828)
                 if self.failed:
                     return retval
 
@@ -8695,7 +8705,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start caseClause
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:289:1: caseClause : 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:1: caseClause : 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )? ;
     def caseClause(self, ):
 
         retval = self.caseClause_return()
@@ -8724,19 +8734,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 46):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:2: ( 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:4: 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:2: ( 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:4: 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )?
                 root_0 = self.adaptor.nil()
 
                 string_literal297 = self.input.LT(1)
-                self.match(self.input, 94, self.FOLLOW_94_in_caseClause1838)
+                self.match(self.input, 94, self.FOLLOW_94_in_caseClause1839)
                 if self.failed:
                     return retval
 
                 string_literal297_tree = self.adaptor.createWithPayload(string_literal297)
                 self.adaptor.addChild(root_0, string_literal297_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:13: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:13: ( LT )*
                 while True: #loop147
                     alt147 = 2
                     LA147_0 = self.input.LA(1)
@@ -8753,7 +8763,7 @@ class JavaScriptParser(Parser):
                     if alt147 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT298 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1840)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1841)
                         if self.failed:
                             return retval
 
@@ -8762,14 +8772,14 @@ class JavaScriptParser(Parser):
                         break #loop147
 
 
-                self.following.append(self.FOLLOW_expression_in_caseClause1844)
+                self.following.append(self.FOLLOW_expression_in_caseClause1845)
                 expression299 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, expression299.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:29: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:29: ( LT )*
                 while True: #loop148
                     alt148 = 2
                     LA148_0 = self.input.LA(1)
@@ -8781,7 +8791,7 @@ class JavaScriptParser(Parser):
                     if alt148 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT300 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1846)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1847)
                         if self.failed:
                             return retval
 
@@ -8791,14 +8801,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal301 = self.input.LT(1)
-                self.match(self.input, 64, self.FOLLOW_64_in_caseClause1850)
+                self.match(self.input, 64, self.FOLLOW_64_in_caseClause1851)
                 if self.failed:
                     return retval
 
                 char_literal301_tree = self.adaptor.createWithPayload(char_literal301)
                 self.adaptor.addChild(root_0, char_literal301_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:38: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:38: ( LT )*
                 while True: #loop149
                     alt149 = 2
                     LA149_0 = self.input.LA(1)
@@ -8815,7 +8825,7 @@ class JavaScriptParser(Parser):
                     if alt149 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT302 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1852)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_caseClause1853)
                         if self.failed:
                             return retval
 
@@ -8824,7 +8834,7 @@ class JavaScriptParser(Parser):
                         break #loop149
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:41: ( statementList )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:41: ( statementList )?
                 alt150 = 2
                 LA150 = self.input.LA(1)
                 if LA150 == StringLiteral or LA150 == XMLComment or LA150 == NumericLiteral or LA150 == Identifier or LA150 == RegularExpressionHacks or LA150 == 61 or LA150 == 63 or LA150 == 65 or LA150 == 67 or LA150 == 69 or LA150 == 70 or LA150 == 74 or LA150 == 75 or LA150 == 76 or LA150 == 77 or LA150 == 78 or LA150 == 79 or LA150 == 80 or LA150 == 81 or LA150 == 83 or LA150 == 85 or LA150 == 86 or LA150 == 87 or LA150 == 88 or LA150 == 90 or LA150 == 91 or LA150 == 92 or LA150 == 93 or LA150 == 95 or LA150 == 96 or LA150 == 99 or LA150 == 129 or LA150 == 131 or LA150 == 132 or LA150 == 133 or LA150 == 134 or LA150 == 135 or LA150 == 136 or LA150 == 137 or LA150 == 138 or LA150 == 139 or LA150 == 140 or LA150 == 141 or LA150 == 142 or LA150 == 143:
@@ -8841,7 +8851,7 @@ class JavaScriptParser(Parser):
                         alt150 = 1
                 if alt150 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: statementList
-                    self.following.append(self.FOLLOW_statementList_in_caseClause1856)
+                    self.following.append(self.FOLLOW_statementList_in_caseClause1857)
                     statementList303 = self.statementList()
                     self.following.pop()
                     if self.failed:
@@ -8883,7 +8893,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start defaultClause
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:293:1: defaultClause : 'default' ( LT )* ':' ( LT )* ( statementList )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:1: defaultClause : 'default' ( LT )* ':' ( LT )* ( statementList )? ;
     def defaultClause(self, ):
 
         retval = self.defaultClause_return()
@@ -8908,19 +8918,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 47):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:2: ( 'default' ( LT )* ':' ( LT )* ( statementList )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:4: 'default' ( LT )* ':' ( LT )* ( statementList )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:2: ( 'default' ( LT )* ':' ( LT )* ( statementList )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:4: 'default' ( LT )* ':' ( LT )* ( statementList )?
                 root_0 = self.adaptor.nil()
 
                 string_literal304 = self.input.LT(1)
-                self.match(self.input, 73, self.FOLLOW_73_in_defaultClause1869)
+                self.match(self.input, 73, self.FOLLOW_73_in_defaultClause1870)
                 if self.failed:
                     return retval
 
                 string_literal304_tree = self.adaptor.createWithPayload(string_literal304)
                 self.adaptor.addChild(root_0, string_literal304_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:16: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:16: ( LT )*
                 while True: #loop151
                     alt151 = 2
                     LA151_0 = self.input.LA(1)
@@ -8932,7 +8942,7 @@ class JavaScriptParser(Parser):
                     if alt151 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT305 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultClause1871)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultClause1872)
                         if self.failed:
                             return retval
 
@@ -8942,14 +8952,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal306 = self.input.LT(1)
-                self.match(self.input, 64, self.FOLLOW_64_in_defaultClause1875)
+                self.match(self.input, 64, self.FOLLOW_64_in_defaultClause1876)
                 if self.failed:
                     return retval
 
                 char_literal306_tree = self.adaptor.createWithPayload(char_literal306)
                 self.adaptor.addChild(root_0, char_literal306_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:25: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:25: ( LT )*
                 while True: #loop152
                     alt152 = 2
                     LA152_0 = self.input.LA(1)
@@ -8966,7 +8976,7 @@ class JavaScriptParser(Parser):
                     if alt152 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT307 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultClause1877)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_defaultClause1878)
                         if self.failed:
                             return retval
 
@@ -8975,12 +8985,12 @@ class JavaScriptParser(Parser):
                         break #loop152
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:28: ( statementList )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:28: ( statementList )?
                 alt153 = 2
                 alt153 = self.dfa153.predict(self.input)
                 if alt153 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: statementList
-                    self.following.append(self.FOLLOW_statementList_in_defaultClause1881)
+                    self.following.append(self.FOLLOW_statementList_in_defaultClause1882)
                     statementList308 = self.statementList()
                     self.following.pop()
                     if self.failed:
@@ -9022,7 +9032,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start throwStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:297:1: throwStatement : 'throw' expression ( LT | ';' ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:298:1: throwStatement : 'throw' expression ( LT | ';' ) ;
     def throwStatement(self, ):
 
         retval = self.throwStatement_return()
@@ -9043,19 +9053,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 48):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:298:2: ( 'throw' expression ( LT | ';' ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:298:4: 'throw' expression ( LT | ';' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:299:2: ( 'throw' expression ( LT | ';' ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:299:4: 'throw' expression ( LT | ';' )
                 root_0 = self.adaptor.nil()
 
                 string_literal309 = self.input.LT(1)
-                self.match(self.input, 95, self.FOLLOW_95_in_throwStatement1894)
+                self.match(self.input, 95, self.FOLLOW_95_in_throwStatement1895)
                 if self.failed:
                     return retval
 
                 string_literal309_tree = self.adaptor.createWithPayload(string_literal309)
                 self.adaptor.addChild(root_0, string_literal309_tree)
 
-                self.following.append(self.FOLLOW_expression_in_throwStatement1896)
+                self.following.append(self.FOLLOW_expression_in_throwStatement1897)
                 expression310 = self.expression()
                 self.following.pop()
                 if self.failed:
@@ -9075,7 +9085,7 @@ class JavaScriptParser(Parser):
 
                     mse = MismatchedSetException(None, self.input)
                     self.recoverFromMismatchedSet(
-                        self.input, mse, self.FOLLOW_set_in_throwStatement1898
+                        self.input, mse, self.FOLLOW_set_in_throwStatement1899
                         )
                     raise mse
 
@@ -9112,7 +9122,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start tryStatement
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:301:1: tryStatement : 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:1: tryStatement : 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? ) ;
     def tryStatement(self, ):
 
         retval = self.tryStatement_return()
@@ -9143,19 +9153,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 49):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:2: ( 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:4: 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:2: ( 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:4: 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? )
                 root_0 = self.adaptor.nil()
 
                 string_literal312 = self.input.LT(1)
-                self.match(self.input, 96, self.FOLLOW_96_in_tryStatement1916)
+                self.match(self.input, 96, self.FOLLOW_96_in_tryStatement1917)
                 if self.failed:
                     return retval
 
                 string_literal312_tree = self.adaptor.createWithPayload(string_literal312)
                 self.adaptor.addChild(root_0, string_literal312_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:12: ( LT )*
                 while True: #loop154
                     alt154 = 2
                     LA154_0 = self.input.LA(1)
@@ -9167,7 +9177,7 @@ class JavaScriptParser(Parser):
                     if alt154 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT313 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1918)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1919)
                         if self.failed:
                             return retval
 
@@ -9176,14 +9186,14 @@ class JavaScriptParser(Parser):
                         break #loop154
 
 
-                self.following.append(self.FOLLOW_statementBlock_in_tryStatement1922)
+                self.following.append(self.FOLLOW_statementBlock_in_tryStatement1923)
                 statementBlock314 = self.statementBlock()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, statementBlock314.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:32: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:32: ( LT )*
                 while True: #loop155
                     alt155 = 2
                     LA155_0 = self.input.LA(1)
@@ -9195,7 +9205,7 @@ class JavaScriptParser(Parser):
                     if alt155 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT315 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1924)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1925)
                         if self.failed:
                             return retval
 
@@ -9204,7 +9214,7 @@ class JavaScriptParser(Parser):
                         break #loop155
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:35: ( finallyClause | catchClause ( ( LT )* finallyClause )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:35: ( finallyClause | catchClause ( ( LT )* finallyClause )? )
                 alt158 = 2
                 LA158_0 = self.input.LA(1)
 
@@ -9217,13 +9227,13 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("302:35: ( finallyClause | catchClause ( ( LT )* finallyClause )? )", 158, 0, self.input)
+                    nvae = NoViableAltException("303:35: ( finallyClause | catchClause ( ( LT )* finallyClause )? )", 158, 0, self.input)
 
                     raise nvae
 
                 if alt158 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:36: finallyClause
-                    self.following.append(self.FOLLOW_finallyClause_in_tryStatement1929)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:36: finallyClause
+                    self.following.append(self.FOLLOW_finallyClause_in_tryStatement1930)
                     finallyClause316 = self.finallyClause()
                     self.following.pop()
                     if self.failed:
@@ -9233,20 +9243,20 @@ class JavaScriptParser(Parser):
 
 
                 elif alt158 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:52: catchClause ( ( LT )* finallyClause )?
-                    self.following.append(self.FOLLOW_catchClause_in_tryStatement1933)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:52: catchClause ( ( LT )* finallyClause )?
+                    self.following.append(self.FOLLOW_catchClause_in_tryStatement1934)
                     catchClause317 = self.catchClause()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, catchClause317.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:64: ( ( LT )* finallyClause )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:64: ( ( LT )* finallyClause )?
                     alt157 = 2
                     alt157 = self.dfa157.predict(self.input)
                     if alt157 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:65: ( LT )* finallyClause
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:302:67: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:65: ( LT )* finallyClause
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:303:67: ( LT )*
                         while True: #loop156
                             alt156 = 2
                             LA156_0 = self.input.LA(1)
@@ -9258,7 +9268,7 @@ class JavaScriptParser(Parser):
                             if alt156 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT318 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1936)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_tryStatement1937)
                                 if self.failed:
                                     return retval
 
@@ -9267,7 +9277,7 @@ class JavaScriptParser(Parser):
                                 break #loop156
 
 
-                        self.following.append(self.FOLLOW_finallyClause_in_tryStatement1940)
+                        self.following.append(self.FOLLOW_finallyClause_in_tryStatement1941)
                         finallyClause319 = self.finallyClause()
                         self.following.pop()
                         if self.failed:
@@ -9312,7 +9322,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start catchClause
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:305:1: catchClause : 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:1: catchClause : 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock ;
     def catchClause(self, ):
 
         retval = self.catchClause_return()
@@ -9345,19 +9355,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 50):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:2: ( 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:4: 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:2: ( 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:4: 'catch' ( LT )* '(' ( LT )* identifier ( LT )* ')' ( LT )* statementBlock
                 root_0 = self.adaptor.nil()
 
                 string_literal320 = self.input.LT(1)
-                self.match(self.input, 97, self.FOLLOW_97_in_catchClause1961)
+                self.match(self.input, 97, self.FOLLOW_97_in_catchClause1962)
                 if self.failed:
                     return retval
 
                 string_literal320_tree = self.adaptor.createWithPayload(string_literal320)
                 self.adaptor.addChild(root_0, string_literal320_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:14: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:14: ( LT )*
                 while True: #loop159
                     alt159 = 2
                     LA159_0 = self.input.LA(1)
@@ -9369,7 +9379,7 @@ class JavaScriptParser(Parser):
                     if alt159 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT321 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1963)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1964)
                         if self.failed:
                             return retval
 
@@ -9379,14 +9389,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal322 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_catchClause1967)
+                self.match(self.input, 70, self.FOLLOW_70_in_catchClause1968)
                 if self.failed:
                     return retval
 
                 char_literal322_tree = self.adaptor.createWithPayload(char_literal322)
                 self.adaptor.addChild(root_0, char_literal322_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:23: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:23: ( LT )*
                 while True: #loop160
                     alt160 = 2
                     LA160_0 = self.input.LA(1)
@@ -9398,7 +9408,7 @@ class JavaScriptParser(Parser):
                     if alt160 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT323 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1969)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1970)
                         if self.failed:
                             return retval
 
@@ -9407,14 +9417,14 @@ class JavaScriptParser(Parser):
                         break #loop160
 
 
-                self.following.append(self.FOLLOW_identifier_in_catchClause1973)
+                self.following.append(self.FOLLOW_identifier_in_catchClause1974)
                 identifier324 = self.identifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, identifier324.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:39: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:39: ( LT )*
                 while True: #loop161
                     alt161 = 2
                     LA161_0 = self.input.LA(1)
@@ -9426,7 +9436,7 @@ class JavaScriptParser(Parser):
                     if alt161 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT325 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1975)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1976)
                         if self.failed:
                             return retval
 
@@ -9436,14 +9446,14 @@ class JavaScriptParser(Parser):
 
 
                 char_literal326 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_catchClause1979)
+                self.match(self.input, 72, self.FOLLOW_72_in_catchClause1980)
                 if self.failed:
                     return retval
 
                 char_literal326_tree = self.adaptor.createWithPayload(char_literal326)
                 self.adaptor.addChild(root_0, char_literal326_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:306:48: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:307:48: ( LT )*
                 while True: #loop162
                     alt162 = 2
                     LA162_0 = self.input.LA(1)
@@ -9455,7 +9465,7 @@ class JavaScriptParser(Parser):
                     if alt162 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT327 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1981)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_catchClause1982)
                         if self.failed:
                             return retval
 
@@ -9464,7 +9474,7 @@ class JavaScriptParser(Parser):
                         break #loop162
 
 
-                self.following.append(self.FOLLOW_statementBlock_in_catchClause1985)
+                self.following.append(self.FOLLOW_statementBlock_in_catchClause1986)
                 statementBlock328 = self.statementBlock()
                 self.following.pop()
                 if self.failed:
@@ -9503,7 +9513,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start finallyClause
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:309:1: finallyClause : 'finally' ( LT )* statementBlock ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:310:1: finallyClause : 'finally' ( LT )* statementBlock ;
     def finallyClause(self, ):
 
         retval = self.finallyClause_return()
@@ -9524,19 +9534,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 51):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:310:2: ( 'finally' ( LT )* statementBlock )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:310:4: 'finally' ( LT )* statementBlock
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:311:2: ( 'finally' ( LT )* statementBlock )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:311:4: 'finally' ( LT )* statementBlock
                 root_0 = self.adaptor.nil()
 
                 string_literal329 = self.input.LT(1)
-                self.match(self.input, 98, self.FOLLOW_98_in_finallyClause1997)
+                self.match(self.input, 98, self.FOLLOW_98_in_finallyClause1998)
                 if self.failed:
                     return retval
 
                 string_literal329_tree = self.adaptor.createWithPayload(string_literal329)
                 self.adaptor.addChild(root_0, string_literal329_tree)
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:310:16: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:311:16: ( LT )*
                 while True: #loop163
                     alt163 = 2
                     LA163_0 = self.input.LA(1)
@@ -9548,7 +9558,7 @@ class JavaScriptParser(Parser):
                     if alt163 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT330 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_finallyClause1999)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_finallyClause2000)
                         if self.failed:
                             return retval
 
@@ -9557,7 +9567,7 @@ class JavaScriptParser(Parser):
                         break #loop163
 
 
-                self.following.append(self.FOLLOW_statementBlock_in_finallyClause2003)
+                self.following.append(self.FOLLOW_statementBlock_in_finallyClause2004)
                 statementBlock331 = self.statementBlock()
                 self.following.pop()
                 if self.failed:
@@ -9596,7 +9606,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start expression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:314:1: expression : ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:1: expression : ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression );
     def expression(self, ):
 
         retval = self.expression_return()
@@ -9639,7 +9649,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 52):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:2: ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:2: ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression )
                 alt171 = 2
                 LA171_0 = self.input.LA(1)
 
@@ -9652,45 +9662,28 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("314:1: expression : ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression );", 171, 0, self.input)
+                    nvae = NoViableAltException("315:1: expression : ( assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* | 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression );", 171, 0, self.input)
 
                     raise nvae
 
                 if alt171 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:4: assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:4: assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )*
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2015)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2016)
                     assignmentExpression332 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, assignmentExpression332.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:25: ( ( LT )* ',' ( LT )* assignmentExpression )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:25: ( ( LT )* ',' ( LT )* assignmentExpression )*
                     while True: #loop166
                         alt166 = 2
-                        LA166_0 = self.input.LA(1)
-
-                        if (LA166_0 == LT) :
-                            LA166_2 = self.input.LA(2)
-
-                            if (self.synpred197()) :
-                                alt166 = 1
-
-
-                        elif (LA166_0 == 71) :
-                            LA166_3 = self.input.LA(2)
-
-                            if (self.synpred197()) :
-                                alt166 = 1
-
-
-
-
+                        alt166 = self.dfa166.predict(self.input)
                         if alt166 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:26: ( LT )* ',' ( LT )* assignmentExpression
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:28: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:26: ( LT )* ',' ( LT )* assignmentExpression
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:28: ( LT )*
                             while True: #loop164
                                 alt164 = 2
                                 LA164_0 = self.input.LA(1)
@@ -9702,7 +9695,7 @@ class JavaScriptParser(Parser):
                                 if alt164 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT333 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_expression2018)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_expression2019)
                                     if self.failed:
                                         return retval
 
@@ -9712,14 +9705,14 @@ class JavaScriptParser(Parser):
 
 
                             char_literal334 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_expression2022)
+                            self.match(self.input, 71, self.FOLLOW_71_in_expression2023)
                             if self.failed:
                                 return retval
 
                             char_literal334_tree = self.adaptor.createWithPayload(char_literal334)
                             self.adaptor.addChild(root_0, char_literal334_tree)
 
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:37: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:37: ( LT )*
                             while True: #loop165
                                 alt165 = 2
                                 LA165_0 = self.input.LA(1)
@@ -9736,7 +9729,7 @@ class JavaScriptParser(Parser):
                                 if alt165 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT335 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_expression2024)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_expression2025)
                                     if self.failed:
                                         return retval
 
@@ -9745,7 +9738,7 @@ class JavaScriptParser(Parser):
                                     break #loop165
 
 
-                            self.following.append(self.FOLLOW_assignmentExpression_in_expression2028)
+                            self.following.append(self.FOLLOW_assignmentExpression_in_expression2029)
                             assignmentExpression336 = self.assignmentExpression()
                             self.following.pop()
                             if self.failed:
@@ -9761,18 +9754,18 @@ class JavaScriptParser(Parser):
 
 
                 elif alt171 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:4: 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:4: 'let' ( LT )* '(' ( LT )* assignmentExpression ( LT )* ')' ( LT )* assignmentExpression
                     root_0 = self.adaptor.nil()
 
                     string_literal337 = self.input.LT(1)
-                    self.match(self.input, 80, self.FOLLOW_80_in_expression2035)
+                    self.match(self.input, 80, self.FOLLOW_80_in_expression2036)
                     if self.failed:
                         return retval
 
                     string_literal337_tree = self.adaptor.createWithPayload(string_literal337)
                     self.adaptor.addChild(root_0, string_literal337_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:12: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:12: ( LT )*
                     while True: #loop167
                         alt167 = 2
                         LA167_0 = self.input.LA(1)
@@ -9784,7 +9777,7 @@ class JavaScriptParser(Parser):
                         if alt167 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT338 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2037)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2038)
                             if self.failed:
                                 return retval
 
@@ -9794,14 +9787,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal339 = self.input.LT(1)
-                    self.match(self.input, 70, self.FOLLOW_70_in_expression2041)
+                    self.match(self.input, 70, self.FOLLOW_70_in_expression2042)
                     if self.failed:
                         return retval
 
                     char_literal339_tree = self.adaptor.createWithPayload(char_literal339)
                     self.adaptor.addChild(root_0, char_literal339_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:21: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:21: ( LT )*
                     while True: #loop168
                         alt168 = 2
                         LA168_0 = self.input.LA(1)
@@ -9818,7 +9811,7 @@ class JavaScriptParser(Parser):
                         if alt168 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT340 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2043)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2044)
                             if self.failed:
                                 return retval
 
@@ -9827,14 +9820,14 @@ class JavaScriptParser(Parser):
                             break #loop168
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2047)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2048)
                     assignmentExpression341 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, assignmentExpression341.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:47: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:47: ( LT )*
                     while True: #loop169
                         alt169 = 2
                         LA169_0 = self.input.LA(1)
@@ -9846,7 +9839,7 @@ class JavaScriptParser(Parser):
                         if alt169 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT342 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2049)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2050)
                             if self.failed:
                                 return retval
 
@@ -9856,14 +9849,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal343 = self.input.LT(1)
-                    self.match(self.input, 72, self.FOLLOW_72_in_expression2053)
+                    self.match(self.input, 72, self.FOLLOW_72_in_expression2054)
                     if self.failed:
                         return retval
 
                     char_literal343_tree = self.adaptor.createWithPayload(char_literal343)
                     self.adaptor.addChild(root_0, char_literal343_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:56: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:56: ( LT )*
                     while True: #loop170
                         alt170 = 2
                         LA170_0 = self.input.LA(1)
@@ -9880,7 +9873,7 @@ class JavaScriptParser(Parser):
                         if alt170 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT344 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2055)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_expression2056)
                             if self.failed:
                                 return retval
 
@@ -9889,7 +9882,7 @@ class JavaScriptParser(Parser):
                             break #loop170
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2059)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_expression2060)
                     assignmentExpression345 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
@@ -9927,7 +9920,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start expressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:319:1: expressionNoIn : assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:1: expressionNoIn : assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )* ;
     def expressionNoIn(self, ):
 
         retval = self.expressionNoIn_return()
@@ -9952,24 +9945,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 53):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:2: ( assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:4: assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:2: ( assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:4: assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2071)
+                self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2072)
                 assignmentExpressionNoIn346 = self.assignmentExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, assignmentExpressionNoIn346.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:29: ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:29: ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
                 while True: #loop174
                     alt174 = 2
                     alt174 = self.dfa174.predict(self.input)
                     if alt174 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:30: ( LT )* ',' ( LT )* assignmentExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:30: ( LT )* ',' ( LT )* assignmentExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:32: ( LT )*
                         while True: #loop172
                             alt172 = 2
                             LA172_0 = self.input.LA(1)
@@ -9981,7 +9974,7 @@ class JavaScriptParser(Parser):
                             if alt172 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT347 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_expressionNoIn2074)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_expressionNoIn2075)
                                 if self.failed:
                                     return retval
 
@@ -9991,14 +9984,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal348 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_expressionNoIn2078)
+                        self.match(self.input, 71, self.FOLLOW_71_in_expressionNoIn2079)
                         if self.failed:
                             return retval
 
                         char_literal348_tree = self.adaptor.createWithPayload(char_literal348)
                         self.adaptor.addChild(root_0, char_literal348_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:41: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:41: ( LT )*
                         while True: #loop173
                             alt173 = 2
                             LA173_0 = self.input.LA(1)
@@ -10015,7 +10008,7 @@ class JavaScriptParser(Parser):
                             if alt173 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT349 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_expressionNoIn2080)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_expressionNoIn2081)
                                 if self.failed:
                                     return retval
 
@@ -10024,7 +10017,7 @@ class JavaScriptParser(Parser):
                                 break #loop173
 
 
-                        self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2084)
+                        self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2085)
                         assignmentExpressionNoIn350 = self.assignmentExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -10069,7 +10062,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start assignmentExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );
     def assignmentExpression(self, ):
 
         retval = self.assignmentExpression_return()
@@ -10099,7 +10092,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 54):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:2: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:2: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression )
                 alt177 = 2
                 LA177 = self.input.LA(1)
                 if LA177 == 138:
@@ -10114,7 +10107,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 1, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 1, self.input)
 
                         raise nvae
 
@@ -10130,7 +10123,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 2, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 2, self.input)
 
                         raise nvae
 
@@ -10146,7 +10139,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 3, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 3, self.input)
 
                         raise nvae
 
@@ -10162,7 +10155,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 4, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 4, self.input)
 
                         raise nvae
 
@@ -10178,7 +10171,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 5, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 5, self.input)
 
                         raise nvae
 
@@ -10194,7 +10187,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 6, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 6, self.input)
 
                         raise nvae
 
@@ -10210,7 +10203,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 7, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 7, self.input)
 
                         raise nvae
 
@@ -10226,7 +10219,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 8, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 8, self.input)
 
                         raise nvae
 
@@ -10242,7 +10235,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 9, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 9, self.input)
 
                         raise nvae
 
@@ -10258,7 +10251,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 10, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 10, self.input)
 
                         raise nvae
 
@@ -10274,7 +10267,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 11, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 11, self.input)
 
                         raise nvae
 
@@ -10290,7 +10283,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 12, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 12, self.input)
 
                         raise nvae
 
@@ -10306,7 +10299,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 13, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 13, self.input)
 
                         raise nvae
 
@@ -10322,7 +10315,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 14, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 14, self.input)
 
                         raise nvae
 
@@ -10338,7 +10331,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 15, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 15, self.input)
 
                         raise nvae
 
@@ -10354,7 +10347,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 16, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 16, self.input)
 
                         raise nvae
 
@@ -10370,7 +10363,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 17, self.input)
+                        nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 17, self.input)
 
                         raise nvae
 
@@ -10381,20 +10374,20 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("323:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 0, self.input)
+                    nvae = NoViableAltException("324:1: assignmentExpression : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression ) | conditionalExpression );", 177, 0, self.input)
 
                     raise nvae
 
                 if alt177 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression
-                    self.following.append(self.FOLLOW_leftHandSideExpression_in_assignmentExpression2098)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression
+                    self.following.append(self.FOLLOW_leftHandSideExpression_in_assignmentExpression2099)
                     leftHandSideExpression351 = self.leftHandSideExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_leftHandSideExpression.add(leftHandSideExpression351.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:27: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:27: ( LT )*
                     while True: #loop175
                         alt175 = 2
                         LA175_0 = self.input.LA(1)
@@ -10406,7 +10399,7 @@ class JavaScriptParser(Parser):
                         if alt175 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT352 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpression2100)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpression2101)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -10417,14 +10410,14 @@ class JavaScriptParser(Parser):
                             break #loop175
 
 
-                    self.following.append(self.FOLLOW_assignmentOperator_in_assignmentExpression2103)
+                    self.following.append(self.FOLLOW_assignmentOperator_in_assignmentExpression2104)
                     assignmentOperator353 = self.assignmentOperator()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_assignmentOperator.add(assignmentOperator353.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:50: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:50: ( LT )*
                     while True: #loop176
                         alt176 = 2
                         LA176_0 = self.input.LA(1)
@@ -10441,7 +10434,7 @@ class JavaScriptParser(Parser):
                         if alt176 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT354 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpression2105)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpression2106)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -10452,7 +10445,7 @@ class JavaScriptParser(Parser):
                             break #loop176
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_assignmentExpression2108)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_assignmentExpression2109)
                     assignmentExpression355 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
@@ -10476,8 +10469,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 325:3: -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:6: ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression )
+                        # 326:3: -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:326:6: ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpression )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ASSIGN, "ASSIGN"), root_1)
 
@@ -10492,10 +10485,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt177 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:326:4: conditionalExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:327:4: conditionalExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_conditionalExpression_in_assignmentExpression2127)
+                    self.following.append(self.FOLLOW_conditionalExpression_in_assignmentExpression2128)
                     conditionalExpression356 = self.conditionalExpression()
                     self.following.pop()
                     if self.failed:
@@ -10533,7 +10526,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start assignmentExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );
     def assignmentExpressionNoIn(self, ):
 
         retval = self.assignmentExpressionNoIn_return()
@@ -10563,7 +10556,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 55):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:2: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:2: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn )
                 alt180 = 2
                 LA180 = self.input.LA(1)
                 if LA180 == 138:
@@ -10578,7 +10571,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 1, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 1, self.input)
 
                         raise nvae
 
@@ -10594,7 +10587,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 2, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 2, self.input)
 
                         raise nvae
 
@@ -10610,7 +10603,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 3, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 3, self.input)
 
                         raise nvae
 
@@ -10626,7 +10619,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 4, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 4, self.input)
 
                         raise nvae
 
@@ -10642,7 +10635,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 5, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 5, self.input)
 
                         raise nvae
 
@@ -10658,7 +10651,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 6, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 6, self.input)
 
                         raise nvae
 
@@ -10674,7 +10667,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 7, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 7, self.input)
 
                         raise nvae
 
@@ -10690,7 +10683,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 8, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 8, self.input)
 
                         raise nvae
 
@@ -10706,7 +10699,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 9, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 9, self.input)
 
                         raise nvae
 
@@ -10722,7 +10715,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 10, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 10, self.input)
 
                         raise nvae
 
@@ -10738,7 +10731,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 11, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 11, self.input)
 
                         raise nvae
 
@@ -10754,7 +10747,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 12, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 12, self.input)
 
                         raise nvae
 
@@ -10770,7 +10763,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 13, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 13, self.input)
 
                         raise nvae
 
@@ -10786,7 +10779,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 14, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 14, self.input)
 
                         raise nvae
 
@@ -10802,7 +10795,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 15, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 15, self.input)
 
                         raise nvae
 
@@ -10818,7 +10811,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 16, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 16, self.input)
 
                         raise nvae
 
@@ -10834,7 +10827,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 17, self.input)
+                        nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 17, self.input)
 
                         raise nvae
 
@@ -10845,20 +10838,20 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("329:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 0, self.input)
+                    nvae = NoViableAltException("330:1: assignmentExpressionNoIn : ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn ) | conditionalExpressionNoIn );", 180, 0, self.input)
 
                     raise nvae
 
                 if alt180 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn
-                    self.following.append(self.FOLLOW_leftHandSideExpression_in_assignmentExpressionNoIn2139)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn
+                    self.following.append(self.FOLLOW_leftHandSideExpression_in_assignmentExpressionNoIn2140)
                     leftHandSideExpression357 = self.leftHandSideExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_leftHandSideExpression.add(leftHandSideExpression357.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:27: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:27: ( LT )*
                     while True: #loop178
                         alt178 = 2
                         LA178_0 = self.input.LA(1)
@@ -10870,7 +10863,7 @@ class JavaScriptParser(Parser):
                         if alt178 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT358 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpressionNoIn2141)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpressionNoIn2142)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -10881,14 +10874,14 @@ class JavaScriptParser(Parser):
                             break #loop178
 
 
-                    self.following.append(self.FOLLOW_assignmentOperator_in_assignmentExpressionNoIn2144)
+                    self.following.append(self.FOLLOW_assignmentOperator_in_assignmentExpressionNoIn2145)
                     assignmentOperator359 = self.assignmentOperator()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_assignmentOperator.add(assignmentOperator359.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:50: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:50: ( LT )*
                     while True: #loop179
                         alt179 = 2
                         LA179_0 = self.input.LA(1)
@@ -10905,7 +10898,7 @@ class JavaScriptParser(Parser):
                         if alt179 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT360 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpressionNoIn2146)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_assignmentExpressionNoIn2147)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -10916,7 +10909,7 @@ class JavaScriptParser(Parser):
                             break #loop179
 
 
-                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_assignmentExpressionNoIn2149)
+                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_assignmentExpressionNoIn2150)
                     assignmentExpressionNoIn361 = self.assignmentExpressionNoIn()
                     self.following.pop()
                     if self.failed:
@@ -10924,7 +10917,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_assignmentExpressionNoIn.add(assignmentExpressionNoIn361.tree)
                     # AST Rewrite
-                    # elements: assignmentOperator, assignmentExpressionNoIn, leftHandSideExpression
+                    # elements: leftHandSideExpression, assignmentExpressionNoIn, assignmentOperator
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -10940,8 +10933,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 331:3: -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:6: ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn )
+                        # 332:3: -> ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:332:6: ^( ASSIGN leftHandSideExpression assignmentOperator assignmentExpressionNoIn )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ASSIGN, "ASSIGN"), root_1)
 
@@ -10956,10 +10949,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt180 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:332:4: conditionalExpressionNoIn
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:333:4: conditionalExpressionNoIn
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_conditionalExpressionNoIn_in_assignmentExpressionNoIn2168)
+                    self.following.append(self.FOLLOW_conditionalExpressionNoIn_in_assignmentExpressionNoIn2169)
                     conditionalExpressionNoIn362 = self.conditionalExpressionNoIn()
                     self.following.pop()
                     if self.failed:
@@ -10997,7 +10990,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start leftHandSideExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:335:1: leftHandSideExpression : ( callExpression | newExpression );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:336:1: leftHandSideExpression : ( callExpression | newExpression );
     def leftHandSideExpression(self, ):
 
         retval = self.leftHandSideExpression_return()
@@ -11016,7 +11009,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 56):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:336:2: ( callExpression | newExpression )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:337:2: ( callExpression | newExpression )
                 alt181 = 2
                 LA181 = self.input.LA(1)
                 if LA181 == 138:
@@ -11031,7 +11024,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 1, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 1, self.input)
 
                         raise nvae
 
@@ -11047,7 +11040,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 2, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 2, self.input)
 
                         raise nvae
 
@@ -11063,7 +11056,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 3, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 3, self.input)
 
                         raise nvae
 
@@ -11079,7 +11072,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 4, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 4, self.input)
 
                         raise nvae
 
@@ -11095,7 +11088,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 5, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 5, self.input)
 
                         raise nvae
 
@@ -11111,7 +11104,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 6, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 6, self.input)
 
                         raise nvae
 
@@ -11127,7 +11120,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 7, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 7, self.input)
 
                         raise nvae
 
@@ -11143,7 +11136,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 8, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 8, self.input)
 
                         raise nvae
 
@@ -11159,7 +11152,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 9, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 9, self.input)
 
                         raise nvae
 
@@ -11175,7 +11168,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 10, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 10, self.input)
 
                         raise nvae
 
@@ -11191,7 +11184,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 11, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 11, self.input)
 
                         raise nvae
 
@@ -11207,7 +11200,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 12, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 12, self.input)
 
                         raise nvae
 
@@ -11223,7 +11216,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 13, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 13, self.input)
 
                         raise nvae
 
@@ -11239,7 +11232,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 14, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 14, self.input)
 
                         raise nvae
 
@@ -11255,7 +11248,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 15, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 15, self.input)
 
                         raise nvae
 
@@ -11271,7 +11264,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 16, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 16, self.input)
 
                         raise nvae
 
@@ -11287,7 +11280,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 17, self.input)
+                        nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 17, self.input)
 
                         raise nvae
 
@@ -11296,15 +11289,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("335:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 0, self.input)
+                    nvae = NoViableAltException("336:1: leftHandSideExpression : ( callExpression | newExpression );", 181, 0, self.input)
 
                     raise nvae
 
                 if alt181 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:336:4: callExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:337:4: callExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_callExpression_in_leftHandSideExpression2180)
+                    self.following.append(self.FOLLOW_callExpression_in_leftHandSideExpression2181)
                     callExpression363 = self.callExpression()
                     self.following.pop()
                     if self.failed:
@@ -11314,10 +11307,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt181 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:337:4: newExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:338:4: newExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_newExpression_in_leftHandSideExpression2185)
+                    self.following.append(self.FOLLOW_newExpression_in_leftHandSideExpression2186)
                     newExpression364 = self.newExpression()
                     self.following.pop()
                     if self.failed:
@@ -11355,7 +11348,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start newExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:340:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:341:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );
     def newExpression(self, ):
 
         retval = self.newExpression_return()
@@ -11380,7 +11373,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 57):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:341:2: ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:2: ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) )
                 alt183 = 2
                 LA183_0 = self.input.LA(1)
 
@@ -11398,7 +11391,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("340:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );", 183, 17, self.input)
+                        nvae = NoViableAltException("341:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );", 183, 17, self.input)
 
                         raise nvae
 
@@ -11407,15 +11400,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("340:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );", 183, 0, self.input)
+                    nvae = NoViableAltException("341:1: newExpression : ( memberExpression | 'new' ( LT )* newExpression -> ^( NEW newExpression ) );", 183, 0, self.input)
 
                     raise nvae
 
                 if alt183 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:341:4: memberExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:4: memberExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_memberExpression_in_newExpression2197)
+                    self.following.append(self.FOLLOW_memberExpression_in_newExpression2198)
                     memberExpression365 = self.memberExpression()
                     self.following.pop()
                     if self.failed:
@@ -11425,14 +11418,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt183 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:4: 'new' ( LT )* newExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:343:4: 'new' ( LT )* newExpression
                     string_literal366 = self.input.LT(1)
-                    self.match(self.input, 99, self.FOLLOW_99_in_newExpression2202)
+                    self.match(self.input, 99, self.FOLLOW_99_in_newExpression2203)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_99.add(string_literal366)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:10: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:343:10: ( LT )*
                     while True: #loop182
                         alt182 = 2
                         LA182_0 = self.input.LA(1)
@@ -11449,7 +11442,7 @@ class JavaScriptParser(Parser):
                         if alt182 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT367 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_newExpression2204)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_newExpression2205)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -11460,7 +11453,7 @@ class JavaScriptParser(Parser):
                             break #loop182
 
 
-                    self.following.append(self.FOLLOW_newExpression_in_newExpression2207)
+                    self.following.append(self.FOLLOW_newExpression_in_newExpression2208)
                     newExpression368 = self.newExpression()
                     self.following.pop()
                     if self.failed:
@@ -11484,8 +11477,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 343:3: -> ^( NEW newExpression )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:343:6: ^( NEW newExpression )
+                        # 344:3: -> ^( NEW newExpression )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:344:6: ^( NEW newExpression )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(NEW, "NEW"), root_1)
 
@@ -11526,7 +11519,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start memberExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:346:1: memberExpression : ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:1: memberExpression : ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) );
     def memberExpression(self, ):
 
         retval = self.memberExpression_return()
@@ -11572,7 +11565,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 58):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:2: ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:2: ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) )
                 alt192 = 3
                 LA192 = self.input.LA(1)
                 if LA192 == LT or LA192 == StringLiteral or LA192 == XMLComment or LA192 == NumericLiteral or LA192 == Identifier or LA192 == RegularExpressionHacks or LA192 == 61 or LA192 == 63 or LA192 == 67 or LA192 == 70 or LA192 == 73 or LA192 == 74 or LA192 == 75 or LA192 == 81 or LA192 == 88 or LA192 == 138 or LA192 == 139 or LA192 == 140 or LA192 == 141 or LA192 == 142 or LA192 == 143:
@@ -11586,20 +11579,20 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("346:1: memberExpression : ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) );", 192, 0, self.input)
+                    nvae = NoViableAltException("347:1: memberExpression : ( primaryExpression ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* ) | functionExpression ( ( LT )* memberExpressionSuffix )* | 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )* -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* ) );", 192, 0, self.input)
 
                     raise nvae
 
                 if alt192 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:4: primaryExpression ( ( LT )* memberExpressionSuffix )*
-                    self.following.append(self.FOLLOW_primaryExpression_in_memberExpression2229)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:4: primaryExpression ( ( LT )* memberExpressionSuffix )*
+                    self.following.append(self.FOLLOW_primaryExpression_in_memberExpression2230)
                     primaryExpression369 = self.primaryExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_primaryExpression.add(primaryExpression369.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:22: ( ( LT )* memberExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:22: ( ( LT )* memberExpressionSuffix )*
                     while True: #loop185
                         alt185 = 2
                         LA185 = self.input.LA(1)
@@ -11611,21 +11604,21 @@ class JavaScriptParser(Parser):
 
 
                         elif LA185 == 81:
-                            LA185_20 = self.input.LA(2)
+                            LA185_16 = self.input.LA(2)
 
                             if (self.synpred216()) :
                                 alt185 = 1
 
 
                         elif LA185 == 100:
-                            LA185_21 = self.input.LA(2)
+                            LA185_17 = self.input.LA(2)
 
                             if (self.synpred216()) :
                                 alt185 = 1
 
 
                         elif LA185 == 64:
-                            LA185_22 = self.input.LA(2)
+                            LA185_18 = self.input.LA(2)
 
                             if (self.synpred216()) :
                                 alt185 = 1
@@ -11633,8 +11626,8 @@ class JavaScriptParser(Parser):
 
 
                         if alt185 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:23: ( LT )* memberExpressionSuffix
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:23: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:23: ( LT )* memberExpressionSuffix
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:23: ( LT )*
                             while True: #loop184
                                 alt184 = 2
                                 LA184_0 = self.input.LA(1)
@@ -11646,7 +11639,7 @@ class JavaScriptParser(Parser):
                                 if alt184 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT370 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2232)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2233)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -11657,7 +11650,7 @@ class JavaScriptParser(Parser):
                                     break #loop184
 
 
-                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2235)
+                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2236)
                             memberExpressionSuffix371 = self.memberExpressionSuffix()
                             self.following.pop()
                             if self.failed:
@@ -11687,13 +11680,13 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 348:3: -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:6: ^( VEXPR primaryExpression ( memberExpressionSuffix )* )
+                        # 349:3: -> ^( VEXPR primaryExpression ( memberExpressionSuffix )* )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:6: ^( VEXPR primaryExpression ( memberExpressionSuffix )* )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VEXPR, "VEXPR"), root_1)
 
                         self.adaptor.addChild(root_1, stream_primaryExpression.next())
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:32: ( memberExpressionSuffix )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:32: ( memberExpressionSuffix )*
                         while stream_memberExpressionSuffix.hasNext():
                             self.adaptor.addChild(root_1, stream_memberExpressionSuffix.next())
 
@@ -11707,17 +11700,17 @@ class JavaScriptParser(Parser):
 
 
                 elif alt192 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:4: functionExpression ( ( LT )* memberExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:4: functionExpression ( ( LT )* memberExpressionSuffix )*
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_functionExpression_in_memberExpression2255)
+                    self.following.append(self.FOLLOW_functionExpression_in_memberExpression2256)
                     functionExpression372 = self.functionExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, functionExpression372.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:23: ( ( LT )* memberExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:23: ( ( LT )* memberExpressionSuffix )*
                     while True: #loop187
                         alt187 = 2
                         LA187 = self.input.LA(1)
@@ -11751,8 +11744,8 @@ class JavaScriptParser(Parser):
 
 
                         if alt187 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:24: ( LT )* memberExpressionSuffix
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:26: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:24: ( LT )* memberExpressionSuffix
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:26: ( LT )*
                             while True: #loop186
                                 alt186 = 2
                                 LA186_0 = self.input.LA(1)
@@ -11764,7 +11757,7 @@ class JavaScriptParser(Parser):
                                 if alt186 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT373 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2258)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2259)
                                     if self.failed:
                                         return retval
 
@@ -11773,7 +11766,7 @@ class JavaScriptParser(Parser):
                                     break #loop186
 
 
-                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2262)
+                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2263)
                             memberExpressionSuffix374 = self.memberExpressionSuffix()
                             self.following.pop()
                             if self.failed:
@@ -11789,14 +11782,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt192 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:4: 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:4: 'new' ( LT )* memberExpression ( LT )* arguments ( ( LT )* memberExpressionSuffix )*
                     string_literal375 = self.input.LT(1)
-                    self.match(self.input, 99, self.FOLLOW_99_in_memberExpression2269)
+                    self.match(self.input, 99, self.FOLLOW_99_in_memberExpression2270)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_99.add(string_literal375)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:10: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:10: ( LT )*
                     while True: #loop188
                         alt188 = 2
                         LA188_0 = self.input.LA(1)
@@ -11813,7 +11806,7 @@ class JavaScriptParser(Parser):
                         if alt188 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT376 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2271)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2272)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -11824,14 +11817,14 @@ class JavaScriptParser(Parser):
                             break #loop188
 
 
-                    self.following.append(self.FOLLOW_memberExpression_in_memberExpression2274)
+                    self.following.append(self.FOLLOW_memberExpression_in_memberExpression2275)
                     memberExpression377 = self.memberExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_memberExpression.add(memberExpression377.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:31: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:31: ( LT )*
                     while True: #loop189
                         alt189 = 2
                         LA189_0 = self.input.LA(1)
@@ -11843,7 +11836,7 @@ class JavaScriptParser(Parser):
                         if alt189 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT378 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2276)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2277)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -11854,14 +11847,14 @@ class JavaScriptParser(Parser):
                             break #loop189
 
 
-                    self.following.append(self.FOLLOW_arguments_in_memberExpression2279)
+                    self.following.append(self.FOLLOW_arguments_in_memberExpression2280)
                     arguments379 = self.arguments()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_arguments.add(arguments379.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:45: ( ( LT )* memberExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:45: ( ( LT )* memberExpressionSuffix )*
                     while True: #loop191
                         alt191 = 2
                         LA191 = self.input.LA(1)
@@ -11873,21 +11866,21 @@ class JavaScriptParser(Parser):
 
 
                         elif LA191 == 81:
-                            LA191_20 = self.input.LA(2)
+                            LA191_16 = self.input.LA(2)
 
                             if (self.synpred224()) :
                                 alt191 = 1
 
 
                         elif LA191 == 100:
-                            LA191_21 = self.input.LA(2)
+                            LA191_17 = self.input.LA(2)
 
                             if (self.synpred224()) :
                                 alt191 = 1
 
 
                         elif LA191 == 64:
-                            LA191_22 = self.input.LA(2)
+                            LA191_18 = self.input.LA(2)
 
                             if (self.synpred224()) :
                                 alt191 = 1
@@ -11895,8 +11888,8 @@ class JavaScriptParser(Parser):
 
 
                         if alt191 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:46: ( LT )* memberExpressionSuffix
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:46: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:46: ( LT )* memberExpressionSuffix
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:46: ( LT )*
                             while True: #loop190
                                 alt190 = 2
                                 LA190_0 = self.input.LA(1)
@@ -11908,7 +11901,7 @@ class JavaScriptParser(Parser):
                                 if alt190 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT380 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2282)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_memberExpression2283)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -11919,7 +11912,7 @@ class JavaScriptParser(Parser):
                                     break #loop190
 
 
-                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2285)
+                            self.following.append(self.FOLLOW_memberExpressionSuffix_in_memberExpression2286)
                             memberExpressionSuffix381 = self.memberExpressionSuffix()
                             self.following.pop()
                             if self.failed:
@@ -11933,7 +11926,7 @@ class JavaScriptParser(Parser):
 
 
                     # AST Rewrite
-                    # elements: memberExpressionSuffix, memberExpression, arguments
+                    # elements: memberExpression, memberExpressionSuffix, arguments
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -11949,16 +11942,16 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 351:3: -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:6: ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* )
+                        # 352:3: -> ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:352:6: ^( VEXPR ^( NEW ^( CALL memberExpression arguments ) ) ( memberExpressionSuffix )* )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VEXPR, "VEXPR"), root_1)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:14: ^( NEW ^( CALL memberExpression arguments ) )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:352:14: ^( NEW ^( CALL memberExpression arguments ) )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(NEW, "NEW"), root_2)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:20: ^( CALL memberExpression arguments )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:352:20: ^( CALL memberExpression arguments )
                         root_3 = self.adaptor.nil()
                         root_3 = self.adaptor.becomeRoot(self.adaptor.createFromType(CALL, "CALL"), root_3)
 
@@ -11968,7 +11961,7 @@ class JavaScriptParser(Parser):
                         self.adaptor.addChild(root_2, root_3)
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:56: ( memberExpressionSuffix )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:352:56: ( memberExpressionSuffix )*
                         while stream_memberExpressionSuffix.hasNext():
                             self.adaptor.addChild(root_1, stream_memberExpressionSuffix.next())
 
@@ -12010,7 +12003,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start memberExpressionSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:354:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:355:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );
     def memberExpressionSuffix(self, ):
 
         retval = self.memberExpressionSuffix_return()
@@ -12033,7 +12026,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 59):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:355:2: ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:356:2: ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix )
                 alt193 = 4
                 LA193 = self.input.LA(1)
                 if LA193 == 81:
@@ -12050,7 +12043,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("354:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 193, 2, self.input)
+                        nvae = NoViableAltException("355:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 193, 2, self.input)
 
                         raise nvae
 
@@ -12061,15 +12054,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("354:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 193, 0, self.input)
+                    nvae = NoViableAltException("355:1: memberExpressionSuffix : ( indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 193, 0, self.input)
 
                     raise nvae
 
                 if alt193 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:355:4: indexSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:356:4: indexSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_indexSuffix_in_memberExpressionSuffix2322)
+                    self.following.append(self.FOLLOW_indexSuffix_in_memberExpressionSuffix2323)
                     indexSuffix382 = self.indexSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12079,10 +12072,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt193 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:356:4: propertyReferenceSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:357:4: propertyReferenceSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_propertyReferenceSuffix_in_memberExpressionSuffix2327)
+                    self.following.append(self.FOLLOW_propertyReferenceSuffix_in_memberExpressionSuffix2328)
                     propertyReferenceSuffix383 = self.propertyReferenceSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12092,10 +12085,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt193 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:357:4: descendentSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:358:4: descendentSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_descendentSuffix_in_memberExpressionSuffix2332)
+                    self.following.append(self.FOLLOW_descendentSuffix_in_memberExpressionSuffix2333)
                     descendentSuffix384 = self.descendentSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12105,10 +12098,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt193 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:358:4: namespaceSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:359:4: namespaceSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_namespaceSuffix_in_memberExpressionSuffix2338)
+                    self.following.append(self.FOLLOW_namespaceSuffix_in_memberExpressionSuffix2339)
                     namespaceSuffix385 = self.namespaceSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12146,7 +12139,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start callExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:364:1: callExpression : memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )* -> ^( CALL memberExpression arguments ( callExpressionSuffix )* ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:1: callExpression : memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )* -> ^( CALL memberExpression arguments ( callExpressionSuffix )* ) ;
     def callExpression(self, ):
 
         retval = self.callExpression_return()
@@ -12179,16 +12172,16 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 60):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:2: ( memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )* -> ^( CALL memberExpression arguments ( callExpressionSuffix )* ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:4: memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )*
-                self.following.append(self.FOLLOW_memberExpression_in_callExpression2353)
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:2: ( memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )* -> ^( CALL memberExpression arguments ( callExpressionSuffix )* ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:4: memberExpression ( LT )* ( '.' )? ( LT )* arguments ( ( LT )* callExpressionSuffix )*
+                self.following.append(self.FOLLOW_memberExpression_in_callExpression2354)
                 memberExpression386 = self.memberExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_memberExpression.add(memberExpression386.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:21: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:21: ( LT )*
                 while True: #loop194
                     alt194 = 2
                     LA194_0 = self.input.LA(1)
@@ -12205,7 +12198,7 @@ class JavaScriptParser(Parser):
                     if alt194 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT387 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2355)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2356)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -12216,7 +12209,7 @@ class JavaScriptParser(Parser):
                         break #loop194
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:25: ( '.' )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:25: ( '.' )?
                 alt195 = 2
                 LA195_0 = self.input.LA(1)
 
@@ -12225,7 +12218,7 @@ class JavaScriptParser(Parser):
                 if alt195 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: '.'
                     char_literal388 = self.input.LT(1)
-                    self.match(self.input, 100, self.FOLLOW_100_in_callExpression2358)
+                    self.match(self.input, 100, self.FOLLOW_100_in_callExpression2359)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -12233,7 +12226,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:30: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:30: ( LT )*
                 while True: #loop196
                     alt196 = 2
                     LA196_0 = self.input.LA(1)
@@ -12245,7 +12238,7 @@ class JavaScriptParser(Parser):
                     if alt196 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT389 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2361)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2362)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -12256,14 +12249,14 @@ class JavaScriptParser(Parser):
                         break #loop196
 
 
-                self.following.append(self.FOLLOW_arguments_in_callExpression2364)
+                self.following.append(self.FOLLOW_arguments_in_callExpression2365)
                 arguments390 = self.arguments()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_arguments.add(arguments390.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:44: ( ( LT )* callExpressionSuffix )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:44: ( ( LT )* callExpressionSuffix )*
                 while True: #loop198
                     alt198 = 2
                     LA198 = self.input.LA(1)
@@ -12275,28 +12268,28 @@ class JavaScriptParser(Parser):
 
 
                     elif LA198 == 81:
-                        LA198_20 = self.input.LA(2)
+                        LA198_16 = self.input.LA(2)
 
                         if (self.synpred232()) :
                             alt198 = 1
 
 
                     elif LA198 == 100:
-                        LA198_21 = self.input.LA(2)
+                        LA198_17 = self.input.LA(2)
 
                         if (self.synpred232()) :
                             alt198 = 1
 
 
                     elif LA198 == 64:
-                        LA198_22 = self.input.LA(2)
+                        LA198_18 = self.input.LA(2)
 
                         if (self.synpred232()) :
                             alt198 = 1
 
 
                     elif LA198 == 70:
-                        LA198_23 = self.input.LA(2)
+                        LA198_19 = self.input.LA(2)
 
                         if (self.synpred232()) :
                             alt198 = 1
@@ -12304,8 +12297,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt198 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:45: ( LT )* callExpressionSuffix
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:45: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:45: ( LT )* callExpressionSuffix
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:45: ( LT )*
                         while True: #loop197
                             alt197 = 2
                             LA197_0 = self.input.LA(1)
@@ -12317,7 +12310,7 @@ class JavaScriptParser(Parser):
                             if alt197 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT391 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2367)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_callExpression2368)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -12328,7 +12321,7 @@ class JavaScriptParser(Parser):
                                 break #loop197
 
 
-                        self.following.append(self.FOLLOW_callExpressionSuffix_in_callExpression2370)
+                        self.following.append(self.FOLLOW_callExpressionSuffix_in_callExpression2371)
                         callExpressionSuffix392 = self.callExpressionSuffix()
                         self.following.pop()
                         if self.failed:
@@ -12342,7 +12335,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: arguments, callExpressionSuffix, memberExpression
+                # elements: arguments, memberExpression, callExpressionSuffix
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -12358,14 +12351,14 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 366:3: -> ^( CALL memberExpression arguments ( callExpressionSuffix )* )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:6: ^( CALL memberExpression arguments ( callExpressionSuffix )* )
+                    # 367:3: -> ^( CALL memberExpression arguments ( callExpressionSuffix )* )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:367:6: ^( CALL memberExpression arguments ( callExpressionSuffix )* )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(CALL, "CALL"), root_1)
 
                     self.adaptor.addChild(root_1, stream_memberExpression.next())
                     self.adaptor.addChild(root_1, stream_arguments.next())
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:40: ( callExpressionSuffix )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:367:40: ( callExpressionSuffix )*
                     while stream_callExpressionSuffix.hasNext():
                         self.adaptor.addChild(root_1, stream_callExpressionSuffix.next())
 
@@ -12408,7 +12401,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start callExpressionSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:369:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:370:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );
     def callExpressionSuffix(self, ):
 
         retval = self.callExpressionSuffix_return()
@@ -12433,7 +12426,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 61):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:370:2: ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:371:2: ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix )
                 alt199 = 5
                 LA199 = self.input.LA(1)
                 if LA199 == 70:
@@ -12452,7 +12445,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("369:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 199, 3, self.input)
+                        nvae = NoViableAltException("370:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 199, 3, self.input)
 
                         raise nvae
 
@@ -12463,15 +12456,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("369:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 199, 0, self.input)
+                    nvae = NoViableAltException("370:1: callExpressionSuffix : ( arguments | indexSuffix | propertyReferenceSuffix | descendentSuffix | namespaceSuffix );", 199, 0, self.input)
 
                     raise nvae
 
                 if alt199 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:370:4: arguments
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:371:4: arguments
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_arguments_in_callExpressionSuffix2399)
+                    self.following.append(self.FOLLOW_arguments_in_callExpressionSuffix2400)
                     arguments393 = self.arguments()
                     self.following.pop()
                     if self.failed:
@@ -12481,10 +12474,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt199 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:371:4: indexSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:372:4: indexSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_indexSuffix_in_callExpressionSuffix2404)
+                    self.following.append(self.FOLLOW_indexSuffix_in_callExpressionSuffix2405)
                     indexSuffix394 = self.indexSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12494,10 +12487,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt199 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:372:4: propertyReferenceSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:373:4: propertyReferenceSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_propertyReferenceSuffix_in_callExpressionSuffix2409)
+                    self.following.append(self.FOLLOW_propertyReferenceSuffix_in_callExpressionSuffix2410)
                     propertyReferenceSuffix395 = self.propertyReferenceSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12507,10 +12500,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt199 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:373:4: descendentSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:374:4: descendentSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_descendentSuffix_in_callExpressionSuffix2414)
+                    self.following.append(self.FOLLOW_descendentSuffix_in_callExpressionSuffix2415)
                     descendentSuffix396 = self.descendentSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12520,10 +12513,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt199 == 5:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:374:4: namespaceSuffix
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:375:4: namespaceSuffix
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_namespaceSuffix_in_callExpressionSuffix2420)
+                    self.following.append(self.FOLLOW_namespaceSuffix_in_callExpressionSuffix2421)
                     namespaceSuffix397 = self.namespaceSuffix()
                     self.following.pop()
                     if self.failed:
@@ -12561,7 +12554,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start arguments
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:380:1: arguments : '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')' -> ^( ARGS ( assignmentExpression )* ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:1: arguments : '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')' -> ^( ARGS ( assignmentExpression )* ) ;
     def arguments(self, ):
 
         retval = self.arguments_return()
@@ -12600,20 +12593,20 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 62):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:2: ( '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')' -> ^( ARGS ( assignmentExpression )* ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:4: '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:2: ( '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')' -> ^( ARGS ( assignmentExpression )* ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:4: '(' ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )? ( LT )* ')'
                 char_literal398 = self.input.LT(1)
-                self.match(self.input, 70, self.FOLLOW_70_in_arguments2435)
+                self.match(self.input, 70, self.FOLLOW_70_in_arguments2436)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_70.add(char_literal398)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:8: ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:8: ( ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )* )?
                 alt205 = 2
                 alt205 = self.dfa205.predict(self.input)
                 if alt205 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:9: ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )*
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:9: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:9: ( LT )* assignmentExpression ( LT )* ( ',' ( LT )* assignmentExpression ( LT )* )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:9: ( LT )*
                     while True: #loop200
                         alt200 = 2
                         LA200_0 = self.input.LA(1)
@@ -12630,7 +12623,7 @@ class JavaScriptParser(Parser):
                         if alt200 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT399 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arguments2438)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arguments2439)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -12641,14 +12634,14 @@ class JavaScriptParser(Parser):
                             break #loop200
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_arguments2441)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_arguments2442)
                     assignmentExpression400 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_assignmentExpression.add(assignmentExpression400.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:34: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:34: ( LT )*
                     while True: #loop201
                         alt201 = 2
                         LA201_0 = self.input.LA(1)
@@ -12665,7 +12658,7 @@ class JavaScriptParser(Parser):
                         if alt201 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT401 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arguments2443)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arguments2444)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -12676,7 +12669,7 @@ class JavaScriptParser(Parser):
                             break #loop201
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:38: ( ',' ( LT )* assignmentExpression ( LT )* )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:38: ( ',' ( LT )* assignmentExpression ( LT )* )*
                     while True: #loop204
                         alt204 = 2
                         LA204_0 = self.input.LA(1)
@@ -12686,14 +12679,14 @@ class JavaScriptParser(Parser):
 
 
                         if alt204 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:39: ',' ( LT )* assignmentExpression ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:39: ',' ( LT )* assignmentExpression ( LT )*
                             char_literal402 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_arguments2447)
+                            self.match(self.input, 71, self.FOLLOW_71_in_arguments2448)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_71.add(char_literal402)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:43: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:43: ( LT )*
                             while True: #loop202
                                 alt202 = 2
                                 LA202_0 = self.input.LA(1)
@@ -12710,7 +12703,7 @@ class JavaScriptParser(Parser):
                                 if alt202 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT403 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_arguments2449)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_arguments2450)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -12721,14 +12714,14 @@ class JavaScriptParser(Parser):
                                     break #loop202
 
 
-                            self.following.append(self.FOLLOW_assignmentExpression_in_arguments2452)
+                            self.following.append(self.FOLLOW_assignmentExpression_in_arguments2453)
                             assignmentExpression404 = self.assignmentExpression()
                             self.following.pop()
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_assignmentExpression.add(assignmentExpression404.tree)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:68: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:68: ( LT )*
                             while True: #loop203
                                 alt203 = 2
                                 LA203_0 = self.input.LA(1)
@@ -12745,7 +12738,7 @@ class JavaScriptParser(Parser):
                                 if alt203 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT405 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_arguments2454)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_arguments2455)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -12765,7 +12758,7 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:76: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:76: ( LT )*
                 while True: #loop206
                     alt206 = 2
                     LA206_0 = self.input.LA(1)
@@ -12777,7 +12770,7 @@ class JavaScriptParser(Parser):
                     if alt206 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT406 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_arguments2461)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_arguments2462)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -12789,7 +12782,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal407 = self.input.LT(1)
-                self.match(self.input, 72, self.FOLLOW_72_in_arguments2464)
+                self.match(self.input, 72, self.FOLLOW_72_in_arguments2465)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
@@ -12811,12 +12804,12 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 382:3: -> ^( ARGS ( assignmentExpression )* )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:6: ^( ARGS ( assignmentExpression )* )
+                    # 383:3: -> ^( ARGS ( assignmentExpression )* )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:383:6: ^( ARGS ( assignmentExpression )* )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ARGS, "ARGS"), root_1)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:13: ( assignmentExpression )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:383:13: ( assignmentExpression )*
                     while stream_assignmentExpression.hasNext():
                         self.adaptor.addChild(root_1, stream_assignmentExpression.next())
 
@@ -12859,7 +12852,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start indexSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:385:1: indexSuffix : '[' ( LT )* expression ( LT )* ']' -> ^( INDEXREF expression ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:1: indexSuffix : '[' ( LT )* expression ( LT )* ']' -> ^( INDEXREF expression ) ;
     def indexSuffix(self, ):
 
         retval = self.indexSuffix_return()
@@ -12887,15 +12880,15 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 63):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:2: ( '[' ( LT )* expression ( LT )* ']' -> ^( INDEXREF expression ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:4: '[' ( LT )* expression ( LT )* ']'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:2: ( '[' ( LT )* expression ( LT )* ']' -> ^( INDEXREF expression ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:4: '[' ( LT )* expression ( LT )* ']'
                 char_literal408 = self.input.LT(1)
-                self.match(self.input, 81, self.FOLLOW_81_in_indexSuffix2487)
+                self.match(self.input, 81, self.FOLLOW_81_in_indexSuffix2488)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_81.add(char_literal408)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:8: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:8: ( LT )*
                 while True: #loop207
                     alt207 = 2
                     LA207_0 = self.input.LA(1)
@@ -12912,7 +12905,7 @@ class JavaScriptParser(Parser):
                     if alt207 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT409 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_indexSuffix2489)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_indexSuffix2490)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -12923,14 +12916,14 @@ class JavaScriptParser(Parser):
                         break #loop207
 
 
-                self.following.append(self.FOLLOW_expression_in_indexSuffix2492)
+                self.following.append(self.FOLLOW_expression_in_indexSuffix2493)
                 expression410 = self.expression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_expression.add(expression410.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:23: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:23: ( LT )*
                 while True: #loop208
                     alt208 = 2
                     LA208_0 = self.input.LA(1)
@@ -12942,7 +12935,7 @@ class JavaScriptParser(Parser):
                     if alt208 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT411 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_indexSuffix2494)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_indexSuffix2495)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -12954,7 +12947,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal412 = self.input.LT(1)
-                self.match(self.input, 82, self.FOLLOW_82_in_indexSuffix2497)
+                self.match(self.input, 82, self.FOLLOW_82_in_indexSuffix2498)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
@@ -12976,8 +12969,8 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 387:3: -> ^( INDEXREF expression )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:6: ^( INDEXREF expression )
+                    # 388:3: -> ^( INDEXREF expression )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:388:6: ^( INDEXREF expression )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(INDEXREF, "INDEXREF"), root_1)
 
@@ -13019,7 +13012,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start propertyReferenceSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:390:1: propertyReferenceSuffix : '.' ( LT )* e4xIdentifier -> ^( PROPREF e4xIdentifier ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:391:1: propertyReferenceSuffix : '.' ( LT )* e4xIdentifier -> ^( PROPREF e4xIdentifier ) ;
     def propertyReferenceSuffix(self, ):
 
         retval = self.propertyReferenceSuffix_return()
@@ -13042,15 +13035,15 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 64):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:391:2: ( '.' ( LT )* e4xIdentifier -> ^( PROPREF e4xIdentifier ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:391:4: '.' ( LT )* e4xIdentifier
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:392:2: ( '.' ( LT )* e4xIdentifier -> ^( PROPREF e4xIdentifier ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:392:4: '.' ( LT )* e4xIdentifier
                 char_literal413 = self.input.LT(1)
-                self.match(self.input, 100, self.FOLLOW_100_in_propertyReferenceSuffix2520)
+                self.match(self.input, 100, self.FOLLOW_100_in_propertyReferenceSuffix2521)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_100.add(char_literal413)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:391:8: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:392:8: ( LT )*
                 while True: #loop209
                     alt209 = 2
                     LA209_0 = self.input.LA(1)
@@ -13062,7 +13055,7 @@ class JavaScriptParser(Parser):
                     if alt209 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT414 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_propertyReferenceSuffix2522)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_propertyReferenceSuffix2523)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -13073,7 +13066,7 @@ class JavaScriptParser(Parser):
                         break #loop209
 
 
-                self.following.append(self.FOLLOW_e4xIdentifier_in_propertyReferenceSuffix2525)
+                self.following.append(self.FOLLOW_e4xIdentifier_in_propertyReferenceSuffix2526)
                 e4xIdentifier415 = self.e4xIdentifier()
                 self.following.pop()
                 if self.failed:
@@ -13097,8 +13090,8 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 392:3: -> ^( PROPREF e4xIdentifier )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:392:6: ^( PROPREF e4xIdentifier )
+                    # 393:3: -> ^( PROPREF e4xIdentifier )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:393:6: ^( PROPREF e4xIdentifier )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(PROPREF, "PROPREF"), root_1)
 
@@ -13140,7 +13133,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start descendentSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:395:1: descendentSuffix : '.' '.' ( LT )* e4xIdentifier -> ^( DESCREF e4xIdentifier ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:396:1: descendentSuffix : '.' '.' ( LT )* e4xIdentifier -> ^( DESCREF e4xIdentifier ) ;
     def descendentSuffix(self, ):
 
         retval = self.descendentSuffix_return()
@@ -13165,21 +13158,21 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 65):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:396:2: ( '.' '.' ( LT )* e4xIdentifier -> ^( DESCREF e4xIdentifier ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:396:4: '.' '.' ( LT )* e4xIdentifier
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:397:2: ( '.' '.' ( LT )* e4xIdentifier -> ^( DESCREF e4xIdentifier ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:397:4: '.' '.' ( LT )* e4xIdentifier
                 char_literal416 = self.input.LT(1)
-                self.match(self.input, 100, self.FOLLOW_100_in_descendentSuffix2546)
+                self.match(self.input, 100, self.FOLLOW_100_in_descendentSuffix2547)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_100.add(char_literal416)
                 char_literal417 = self.input.LT(1)
-                self.match(self.input, 100, self.FOLLOW_100_in_descendentSuffix2548)
+                self.match(self.input, 100, self.FOLLOW_100_in_descendentSuffix2549)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_100.add(char_literal417)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:396:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:397:12: ( LT )*
                 while True: #loop210
                     alt210 = 2
                     LA210_0 = self.input.LA(1)
@@ -13191,7 +13184,7 @@ class JavaScriptParser(Parser):
                     if alt210 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT418 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_descendentSuffix2550)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_descendentSuffix2551)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -13202,7 +13195,7 @@ class JavaScriptParser(Parser):
                         break #loop210
 
 
-                self.following.append(self.FOLLOW_e4xIdentifier_in_descendentSuffix2553)
+                self.following.append(self.FOLLOW_e4xIdentifier_in_descendentSuffix2554)
                 e4xIdentifier419 = self.e4xIdentifier()
                 self.following.pop()
                 if self.failed:
@@ -13226,8 +13219,8 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 397:3: -> ^( DESCREF e4xIdentifier )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:397:6: ^( DESCREF e4xIdentifier )
+                    # 398:3: -> ^( DESCREF e4xIdentifier )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:398:6: ^( DESCREF e4xIdentifier )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(DESCREF, "DESCREF"), root_1)
 
@@ -13269,7 +13262,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start namespaceSuffix
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:400:1: namespaceSuffix : ':' ':' ( LT )* ( e4xIdentifier )? -> ^( NSREF ( e4xIdentifier )? ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:1: namespaceSuffix : ':' ':' ( LT )* ( e4xIdentifier )? -> ^( NSREF ( e4xIdentifier )? ) ;
     def namespaceSuffix(self, ):
 
         retval = self.namespaceSuffix_return()
@@ -13294,21 +13287,21 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 66):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:2: ( ':' ':' ( LT )* ( e4xIdentifier )? -> ^( NSREF ( e4xIdentifier )? ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:4: ':' ':' ( LT )* ( e4xIdentifier )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:2: ( ':' ':' ( LT )* ( e4xIdentifier )? -> ^( NSREF ( e4xIdentifier )? ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:4: ':' ':' ( LT )* ( e4xIdentifier )?
                 char_literal420 = self.input.LT(1)
-                self.match(self.input, 64, self.FOLLOW_64_in_namespaceSuffix2574)
+                self.match(self.input, 64, self.FOLLOW_64_in_namespaceSuffix2575)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_64.add(char_literal420)
                 char_literal421 = self.input.LT(1)
-                self.match(self.input, 64, self.FOLLOW_64_in_namespaceSuffix2576)
+                self.match(self.input, 64, self.FOLLOW_64_in_namespaceSuffix2577)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_64.add(char_literal421)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:12: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:12: ( LT )*
                 while True: #loop211
                     alt211 = 2
                     LA211_0 = self.input.LA(1)
@@ -13325,7 +13318,7 @@ class JavaScriptParser(Parser):
                     if alt211 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT422 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_namespaceSuffix2578)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_namespaceSuffix2579)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -13336,7 +13329,7 @@ class JavaScriptParser(Parser):
                         break #loop211
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:16: ( e4xIdentifier )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:16: ( e4xIdentifier )?
                 alt212 = 2
                 LA212_0 = self.input.LA(1)
 
@@ -13349,7 +13342,7 @@ class JavaScriptParser(Parser):
                         alt212 = 1
                 if alt212 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: e4xIdentifier
-                    self.following.append(self.FOLLOW_e4xIdentifier_in_namespaceSuffix2581)
+                    self.following.append(self.FOLLOW_e4xIdentifier_in_namespaceSuffix2582)
                     e4xIdentifier423 = self.e4xIdentifier()
                     self.following.pop()
                     if self.failed:
@@ -13376,12 +13369,12 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 402:3: -> ^( NSREF ( e4xIdentifier )? )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:6: ^( NSREF ( e4xIdentifier )? )
+                    # 403:3: -> ^( NSREF ( e4xIdentifier )? )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:403:6: ^( NSREF ( e4xIdentifier )? )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(NSREF, "NSREF"), root_1)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:14: ( e4xIdentifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:403:14: ( e4xIdentifier )?
                     if stream_e4xIdentifier.hasNext():
                         self.adaptor.addChild(root_1, stream_e4xIdentifier.next())
 
@@ -13424,7 +13417,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start e4xIdentifier
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:405:1: e4xIdentifier : ( identifier | '*' );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:406:1: e4xIdentifier : ( identifier | '*' );
     def e4xIdentifier(self, ):
 
         retval = self.e4xIdentifier_return()
@@ -13443,7 +13436,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 67):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:406:2: ( identifier | '*' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:407:2: ( identifier | '*' )
                 alt213 = 2
                 LA213_0 = self.input.LA(1)
 
@@ -13456,15 +13449,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("405:1: e4xIdentifier : ( identifier | '*' );", 213, 0, self.input)
+                    nvae = NoViableAltException("406:1: e4xIdentifier : ( identifier | '*' );", 213, 0, self.input)
 
                     raise nvae
 
                 if alt213 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:406:4: identifier
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:407:4: identifier
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_identifier_in_e4xIdentifier2604)
+                    self.following.append(self.FOLLOW_identifier_in_e4xIdentifier2605)
                     identifier424 = self.identifier()
                     self.following.pop()
                     if self.failed:
@@ -13474,11 +13467,11 @@ class JavaScriptParser(Parser):
 
 
                 elif alt213 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:407:4: '*'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:408:4: '*'
                     root_0 = self.adaptor.nil()
 
                     char_literal425 = self.input.LT(1)
-                    self.match(self.input, 101, self.FOLLOW_101_in_e4xIdentifier2609)
+                    self.match(self.input, 101, self.FOLLOW_101_in_e4xIdentifier2610)
                     if self.failed:
                         return retval
 
@@ -13516,7 +13509,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start assignmentOperator
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:410:1: assignmentOperator : ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:411:1: assignmentOperator : ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' );
     def assignmentOperator(self, ):
 
         retval = self.assignmentOperator_return()
@@ -13533,7 +13526,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 68):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:411:2: ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:412:2: ( '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' )
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
                 root_0 = self.adaptor.nil()
 
@@ -13589,7 +13582,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start conditionalExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:414:1: conditionalExpression : logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:1: conditionalExpression : logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )? ;
     def conditionalExpression(self, ):
 
         retval = self.conditionalExpression_return()
@@ -13622,18 +13615,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 69):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:2: ( logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:4: logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:2: ( logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:4: logicalORExpression ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_logicalORExpression_in_conditionalExpression2676)
+                self.following.append(self.FOLLOW_logicalORExpression_in_conditionalExpression2677)
                 logicalORExpression427 = self.logicalORExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, logicalORExpression427.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:24: ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:24: ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )?
                 alt218 = 2
                 LA218_0 = self.input.LA(1)
 
@@ -13648,8 +13641,8 @@ class JavaScriptParser(Parser):
                     if (self.synpred266()) :
                         alt218 = 1
                 if alt218 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:25: ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:27: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:25: ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:27: ( LT )*
                     while True: #loop214
                         alt214 = 2
                         LA214_0 = self.input.LA(1)
@@ -13661,7 +13654,7 @@ class JavaScriptParser(Parser):
                         if alt214 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT428 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2679)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2680)
                             if self.failed:
                                 return retval
 
@@ -13671,14 +13664,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal429 = self.input.LT(1)
-                    self.match(self.input, 113, self.FOLLOW_113_in_conditionalExpression2683)
+                    self.match(self.input, 113, self.FOLLOW_113_in_conditionalExpression2684)
                     if self.failed:
                         return retval
 
                     char_literal429_tree = self.adaptor.createWithPayload(char_literal429)
                     self.adaptor.addChild(root_0, char_literal429_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:36: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:36: ( LT )*
                     while True: #loop215
                         alt215 = 2
                         LA215_0 = self.input.LA(1)
@@ -13695,7 +13688,7 @@ class JavaScriptParser(Parser):
                         if alt215 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT430 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2685)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2686)
                             if self.failed:
                                 return retval
 
@@ -13704,14 +13697,14 @@ class JavaScriptParser(Parser):
                             break #loop215
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_conditionalExpression2689)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_conditionalExpression2690)
                     assignmentExpression431 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, assignmentExpression431.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:62: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:62: ( LT )*
                     while True: #loop216
                         alt216 = 2
                         LA216_0 = self.input.LA(1)
@@ -13723,7 +13716,7 @@ class JavaScriptParser(Parser):
                         if alt216 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT432 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2691)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2692)
                             if self.failed:
                                 return retval
 
@@ -13733,14 +13726,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal433 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_conditionalExpression2695)
+                    self.match(self.input, 64, self.FOLLOW_64_in_conditionalExpression2696)
                     if self.failed:
                         return retval
 
                     char_literal433_tree = self.adaptor.createWithPayload(char_literal433)
                     self.adaptor.addChild(root_0, char_literal433_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:71: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:71: ( LT )*
                     while True: #loop217
                         alt217 = 2
                         LA217_0 = self.input.LA(1)
@@ -13757,7 +13750,7 @@ class JavaScriptParser(Parser):
                         if alt217 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT434 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2697)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpression2698)
                             if self.failed:
                                 return retval
 
@@ -13766,7 +13759,7 @@ class JavaScriptParser(Parser):
                             break #loop217
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_conditionalExpression2701)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_conditionalExpression2702)
                     assignmentExpression435 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
@@ -13808,7 +13801,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start conditionalExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:418:1: conditionalExpressionNoIn : logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:1: conditionalExpressionNoIn : logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )? ;
     def conditionalExpressionNoIn(self, ):
 
         retval = self.conditionalExpressionNoIn_return()
@@ -13841,23 +13834,23 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 70):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:2: ( logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:4: logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:2: ( logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:4: logicalORExpressionNoIn ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_logicalORExpressionNoIn_in_conditionalExpressionNoIn2714)
+                self.following.append(self.FOLLOW_logicalORExpressionNoIn_in_conditionalExpressionNoIn2715)
                 logicalORExpressionNoIn436 = self.logicalORExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, logicalORExpressionNoIn436.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:28: ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:28: ( ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn )?
                 alt223 = 2
                 alt223 = self.dfa223.predict(self.input)
                 if alt223 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:29: ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:31: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:29: ( LT )* '?' ( LT )* assignmentExpressionNoIn ( LT )* ':' ( LT )* assignmentExpressionNoIn
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:31: ( LT )*
                     while True: #loop219
                         alt219 = 2
                         LA219_0 = self.input.LA(1)
@@ -13869,7 +13862,7 @@ class JavaScriptParser(Parser):
                         if alt219 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT437 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2717)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2718)
                             if self.failed:
                                 return retval
 
@@ -13879,14 +13872,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal438 = self.input.LT(1)
-                    self.match(self.input, 113, self.FOLLOW_113_in_conditionalExpressionNoIn2721)
+                    self.match(self.input, 113, self.FOLLOW_113_in_conditionalExpressionNoIn2722)
                     if self.failed:
                         return retval
 
                     char_literal438_tree = self.adaptor.createWithPayload(char_literal438)
                     self.adaptor.addChild(root_0, char_literal438_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:40: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:40: ( LT )*
                     while True: #loop220
                         alt220 = 2
                         LA220_0 = self.input.LA(1)
@@ -13903,7 +13896,7 @@ class JavaScriptParser(Parser):
                         if alt220 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT439 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2723)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2724)
                             if self.failed:
                                 return retval
 
@@ -13912,14 +13905,14 @@ class JavaScriptParser(Parser):
                             break #loop220
 
 
-                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2727)
+                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2728)
                     assignmentExpressionNoIn440 = self.assignmentExpressionNoIn()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, assignmentExpressionNoIn440.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:70: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:70: ( LT )*
                     while True: #loop221
                         alt221 = 2
                         LA221_0 = self.input.LA(1)
@@ -13931,7 +13924,7 @@ class JavaScriptParser(Parser):
                         if alt221 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT441 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2729)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2730)
                             if self.failed:
                                 return retval
 
@@ -13941,14 +13934,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal442 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_conditionalExpressionNoIn2733)
+                    self.match(self.input, 64, self.FOLLOW_64_in_conditionalExpressionNoIn2734)
                     if self.failed:
                         return retval
 
                     char_literal442_tree = self.adaptor.createWithPayload(char_literal442)
                     self.adaptor.addChild(root_0, char_literal442_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:79: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:79: ( LT )*
                     while True: #loop222
                         alt222 = 2
                         LA222_0 = self.input.LA(1)
@@ -13965,7 +13958,7 @@ class JavaScriptParser(Parser):
                         if alt222 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT443 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2735)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_conditionalExpressionNoIn2736)
                             if self.failed:
                                 return retval
 
@@ -13974,7 +13967,7 @@ class JavaScriptParser(Parser):
                             break #loop222
 
 
-                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2739)
+                    self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2740)
                     assignmentExpressionNoIn444 = self.assignmentExpressionNoIn()
                     self.following.pop()
                     if self.failed:
@@ -14016,7 +14009,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start logicalORExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:422:1: logicalORExpression : logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:1: logicalORExpression : logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )* ;
     def logicalORExpression(self, ):
 
         retval = self.logicalORExpression_return()
@@ -14041,18 +14034,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 71):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:2: ( logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:4: logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:2: ( logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:4: logicalANDExpression ( ( LT )* '||' ( LT )* logicalANDExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_logicalANDExpression_in_logicalORExpression2752)
+                self.following.append(self.FOLLOW_logicalANDExpression_in_logicalORExpression2753)
                 logicalANDExpression445 = self.logicalANDExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, logicalANDExpression445.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:25: ( ( LT )* '||' ( LT )* logicalANDExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:25: ( ( LT )* '||' ( LT )* logicalANDExpression )*
                 while True: #loop226
                     alt226 = 2
                     LA226_0 = self.input.LA(1)
@@ -14074,8 +14067,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt226 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:26: ( LT )* '||' ( LT )* logicalANDExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:28: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:26: ( LT )* '||' ( LT )* logicalANDExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:28: ( LT )*
                         while True: #loop224
                             alt224 = 2
                             LA224_0 = self.input.LA(1)
@@ -14087,7 +14080,7 @@ class JavaScriptParser(Parser):
                             if alt224 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT446 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpression2755)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpression2756)
                                 if self.failed:
                                     return retval
 
@@ -14097,14 +14090,14 @@ class JavaScriptParser(Parser):
 
 
                         string_literal447 = self.input.LT(1)
-                        self.match(self.input, 114, self.FOLLOW_114_in_logicalORExpression2759)
+                        self.match(self.input, 114, self.FOLLOW_114_in_logicalORExpression2760)
                         if self.failed:
                             return retval
 
                         string_literal447_tree = self.adaptor.createWithPayload(string_literal447)
                         self.adaptor.addChild(root_0, string_literal447_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:38: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:38: ( LT )*
                         while True: #loop225
                             alt225 = 2
                             LA225_0 = self.input.LA(1)
@@ -14121,7 +14114,7 @@ class JavaScriptParser(Parser):
                             if alt225 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT448 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpression2761)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpression2762)
                                 if self.failed:
                                     return retval
 
@@ -14130,7 +14123,7 @@ class JavaScriptParser(Parser):
                                 break #loop225
 
 
-                        self.following.append(self.FOLLOW_logicalANDExpression_in_logicalORExpression2765)
+                        self.following.append(self.FOLLOW_logicalANDExpression_in_logicalORExpression2766)
                         logicalANDExpression449 = self.logicalANDExpression()
                         self.following.pop()
                         if self.failed:
@@ -14175,7 +14168,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start logicalORExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:426:1: logicalORExpressionNoIn : logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:1: logicalORExpressionNoIn : logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )* ;
     def logicalORExpressionNoIn(self, ):
 
         retval = self.logicalORExpressionNoIn_return()
@@ -14200,24 +14193,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 72):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:2: ( logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:4: logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:2: ( logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:4: logicalANDExpressionNoIn ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2779)
+                self.following.append(self.FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2780)
                 logicalANDExpressionNoIn450 = self.logicalANDExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, logicalANDExpressionNoIn450.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:29: ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:29: ( ( LT )* '||' ( LT )* logicalANDExpressionNoIn )*
                 while True: #loop229
                     alt229 = 2
                     alt229 = self.dfa229.predict(self.input)
                     if alt229 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:30: ( LT )* '||' ( LT )* logicalANDExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:30: ( LT )* '||' ( LT )* logicalANDExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:32: ( LT )*
                         while True: #loop227
                             alt227 = 2
                             LA227_0 = self.input.LA(1)
@@ -14229,7 +14222,7 @@ class JavaScriptParser(Parser):
                             if alt227 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT451 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpressionNoIn2782)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpressionNoIn2783)
                                 if self.failed:
                                     return retval
 
@@ -14239,14 +14232,14 @@ class JavaScriptParser(Parser):
 
 
                         string_literal452 = self.input.LT(1)
-                        self.match(self.input, 114, self.FOLLOW_114_in_logicalORExpressionNoIn2786)
+                        self.match(self.input, 114, self.FOLLOW_114_in_logicalORExpressionNoIn2787)
                         if self.failed:
                             return retval
 
                         string_literal452_tree = self.adaptor.createWithPayload(string_literal452)
                         self.adaptor.addChild(root_0, string_literal452_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:42: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:42: ( LT )*
                         while True: #loop228
                             alt228 = 2
                             LA228_0 = self.input.LA(1)
@@ -14263,7 +14256,7 @@ class JavaScriptParser(Parser):
                             if alt228 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT453 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpressionNoIn2788)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalORExpressionNoIn2789)
                                 if self.failed:
                                     return retval
 
@@ -14272,7 +14265,7 @@ class JavaScriptParser(Parser):
                                 break #loop228
 
 
-                        self.following.append(self.FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2792)
+                        self.following.append(self.FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2793)
                         logicalANDExpressionNoIn454 = self.logicalANDExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -14317,7 +14310,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start logicalANDExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:430:1: logicalANDExpression : bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:1: logicalANDExpression : bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )* ;
     def logicalANDExpression(self, ):
 
         retval = self.logicalANDExpression_return()
@@ -14342,18 +14335,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 73):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:2: ( bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:4: bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:2: ( bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:4: bitwiseORExpression ( ( LT )* '&&' ( LT )* bitwiseORExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseORExpression_in_logicalANDExpression2806)
+                self.following.append(self.FOLLOW_bitwiseORExpression_in_logicalANDExpression2807)
                 bitwiseORExpression455 = self.bitwiseORExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseORExpression455.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:24: ( ( LT )* '&&' ( LT )* bitwiseORExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:24: ( ( LT )* '&&' ( LT )* bitwiseORExpression )*
                 while True: #loop232
                     alt232 = 2
                     LA232_0 = self.input.LA(1)
@@ -14375,8 +14368,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt232 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:25: ( LT )* '&&' ( LT )* bitwiseORExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:27: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:25: ( LT )* '&&' ( LT )* bitwiseORExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:27: ( LT )*
                         while True: #loop230
                             alt230 = 2
                             LA230_0 = self.input.LA(1)
@@ -14388,7 +14381,7 @@ class JavaScriptParser(Parser):
                             if alt230 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT456 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpression2809)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpression2810)
                                 if self.failed:
                                     return retval
 
@@ -14398,14 +14391,14 @@ class JavaScriptParser(Parser):
 
 
                         string_literal457 = self.input.LT(1)
-                        self.match(self.input, 115, self.FOLLOW_115_in_logicalANDExpression2813)
+                        self.match(self.input, 115, self.FOLLOW_115_in_logicalANDExpression2814)
                         if self.failed:
                             return retval
 
                         string_literal457_tree = self.adaptor.createWithPayload(string_literal457)
                         self.adaptor.addChild(root_0, string_literal457_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:37: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:37: ( LT )*
                         while True: #loop231
                             alt231 = 2
                             LA231_0 = self.input.LA(1)
@@ -14422,7 +14415,7 @@ class JavaScriptParser(Parser):
                             if alt231 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT458 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpression2815)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpression2816)
                                 if self.failed:
                                     return retval
 
@@ -14431,7 +14424,7 @@ class JavaScriptParser(Parser):
                                 break #loop231
 
 
-                        self.following.append(self.FOLLOW_bitwiseORExpression_in_logicalANDExpression2819)
+                        self.following.append(self.FOLLOW_bitwiseORExpression_in_logicalANDExpression2820)
                         bitwiseORExpression459 = self.bitwiseORExpression()
                         self.following.pop()
                         if self.failed:
@@ -14476,7 +14469,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start logicalANDExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:434:1: logicalANDExpressionNoIn : bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:1: logicalANDExpressionNoIn : bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )* ;
     def logicalANDExpressionNoIn(self, ):
 
         retval = self.logicalANDExpressionNoIn_return()
@@ -14501,24 +14494,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 74):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:2: ( bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:4: bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:2: ( bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:4: bitwiseORExpressionNoIn ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2833)
+                self.following.append(self.FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2834)
                 bitwiseORExpressionNoIn460 = self.bitwiseORExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseORExpressionNoIn460.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:28: ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:28: ( ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn )*
                 while True: #loop235
                     alt235 = 2
                     alt235 = self.dfa235.predict(self.input)
                     if alt235 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:29: ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:31: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:29: ( LT )* '&&' ( LT )* bitwiseORExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:31: ( LT )*
                         while True: #loop233
                             alt233 = 2
                             LA233_0 = self.input.LA(1)
@@ -14530,7 +14523,7 @@ class JavaScriptParser(Parser):
                             if alt233 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT461 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpressionNoIn2836)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpressionNoIn2837)
                                 if self.failed:
                                     return retval
 
@@ -14540,14 +14533,14 @@ class JavaScriptParser(Parser):
 
 
                         string_literal462 = self.input.LT(1)
-                        self.match(self.input, 115, self.FOLLOW_115_in_logicalANDExpressionNoIn2840)
+                        self.match(self.input, 115, self.FOLLOW_115_in_logicalANDExpressionNoIn2841)
                         if self.failed:
                             return retval
 
                         string_literal462_tree = self.adaptor.createWithPayload(string_literal462)
                         self.adaptor.addChild(root_0, string_literal462_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:41: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:41: ( LT )*
                         while True: #loop234
                             alt234 = 2
                             LA234_0 = self.input.LA(1)
@@ -14564,7 +14557,7 @@ class JavaScriptParser(Parser):
                             if alt234 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT463 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpressionNoIn2842)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_logicalANDExpressionNoIn2843)
                                 if self.failed:
                                     return retval
 
@@ -14573,7 +14566,7 @@ class JavaScriptParser(Parser):
                                 break #loop234
 
 
-                        self.following.append(self.FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2846)
+                        self.following.append(self.FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2847)
                         bitwiseORExpressionNoIn464 = self.bitwiseORExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -14618,7 +14611,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseORExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:438:1: bitwiseORExpression : bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:1: bitwiseORExpression : bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )* ;
     def bitwiseORExpression(self, ):
 
         retval = self.bitwiseORExpression_return()
@@ -14643,18 +14636,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 75):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:2: ( bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:4: bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:2: ( bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:4: bitwiseXORExpression ( ( LT )* '|' ( LT )* bitwiseXORExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2860)
+                self.following.append(self.FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2861)
                 bitwiseXORExpression465 = self.bitwiseXORExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseXORExpression465.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:25: ( ( LT )* '|' ( LT )* bitwiseXORExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:25: ( ( LT )* '|' ( LT )* bitwiseXORExpression )*
                 while True: #loop238
                     alt238 = 2
                     LA238_0 = self.input.LA(1)
@@ -14676,8 +14669,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt238 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:26: ( LT )* '|' ( LT )* bitwiseXORExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:28: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:26: ( LT )* '|' ( LT )* bitwiseXORExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:28: ( LT )*
                         while True: #loop236
                             alt236 = 2
                             LA236_0 = self.input.LA(1)
@@ -14689,7 +14682,7 @@ class JavaScriptParser(Parser):
                             if alt236 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT466 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpression2863)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpression2864)
                                 if self.failed:
                                     return retval
 
@@ -14699,14 +14692,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal467 = self.input.LT(1)
-                        self.match(self.input, 116, self.FOLLOW_116_in_bitwiseORExpression2867)
+                        self.match(self.input, 116, self.FOLLOW_116_in_bitwiseORExpression2868)
                         if self.failed:
                             return retval
 
                         char_literal467_tree = self.adaptor.createWithPayload(char_literal467)
                         self.adaptor.addChild(root_0, char_literal467_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:37: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:37: ( LT )*
                         while True: #loop237
                             alt237 = 2
                             LA237_0 = self.input.LA(1)
@@ -14723,7 +14716,7 @@ class JavaScriptParser(Parser):
                             if alt237 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT468 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpression2869)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpression2870)
                                 if self.failed:
                                     return retval
 
@@ -14732,7 +14725,7 @@ class JavaScriptParser(Parser):
                                 break #loop237
 
 
-                        self.following.append(self.FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2873)
+                        self.following.append(self.FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2874)
                         bitwiseXORExpression469 = self.bitwiseXORExpression()
                         self.following.pop()
                         if self.failed:
@@ -14777,7 +14770,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseORExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:442:1: bitwiseORExpressionNoIn : bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:1: bitwiseORExpressionNoIn : bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )* ;
     def bitwiseORExpressionNoIn(self, ):
 
         retval = self.bitwiseORExpressionNoIn_return()
@@ -14802,24 +14795,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 76):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:2: ( bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:4: bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:2: ( bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:4: bitwiseXORExpressionNoIn ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2887)
+                self.following.append(self.FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2888)
                 bitwiseXORExpressionNoIn470 = self.bitwiseXORExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseXORExpressionNoIn470.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:29: ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:29: ( ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn )*
                 while True: #loop241
                     alt241 = 2
                     alt241 = self.dfa241.predict(self.input)
                     if alt241 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:30: ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:30: ( LT )* '|' ( LT )* bitwiseXORExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:32: ( LT )*
                         while True: #loop239
                             alt239 = 2
                             LA239_0 = self.input.LA(1)
@@ -14831,7 +14824,7 @@ class JavaScriptParser(Parser):
                             if alt239 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT471 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpressionNoIn2890)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpressionNoIn2891)
                                 if self.failed:
                                     return retval
 
@@ -14841,14 +14834,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal472 = self.input.LT(1)
-                        self.match(self.input, 116, self.FOLLOW_116_in_bitwiseORExpressionNoIn2894)
+                        self.match(self.input, 116, self.FOLLOW_116_in_bitwiseORExpressionNoIn2895)
                         if self.failed:
                             return retval
 
                         char_literal472_tree = self.adaptor.createWithPayload(char_literal472)
                         self.adaptor.addChild(root_0, char_literal472_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:41: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:41: ( LT )*
                         while True: #loop240
                             alt240 = 2
                             LA240_0 = self.input.LA(1)
@@ -14865,7 +14858,7 @@ class JavaScriptParser(Parser):
                             if alt240 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT473 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpressionNoIn2896)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseORExpressionNoIn2897)
                                 if self.failed:
                                     return retval
 
@@ -14874,7 +14867,7 @@ class JavaScriptParser(Parser):
                                 break #loop240
 
 
-                        self.following.append(self.FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2900)
+                        self.following.append(self.FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2901)
                         bitwiseXORExpressionNoIn474 = self.bitwiseXORExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -14919,7 +14912,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseXORExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:446:1: bitwiseXORExpression : bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:1: bitwiseXORExpression : bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )* ;
     def bitwiseXORExpression(self, ):
 
         retval = self.bitwiseXORExpression_return()
@@ -14944,18 +14937,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 77):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:2: ( bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:4: bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:2: ( bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:4: bitwiseANDExpression ( ( LT )* '^' ( LT )* bitwiseANDExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2914)
+                self.following.append(self.FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2915)
                 bitwiseANDExpression475 = self.bitwiseANDExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseANDExpression475.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:25: ( ( LT )* '^' ( LT )* bitwiseANDExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:25: ( ( LT )* '^' ( LT )* bitwiseANDExpression )*
                 while True: #loop244
                     alt244 = 2
                     LA244_0 = self.input.LA(1)
@@ -14977,8 +14970,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt244 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:26: ( LT )* '^' ( LT )* bitwiseANDExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:28: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:26: ( LT )* '^' ( LT )* bitwiseANDExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:28: ( LT )*
                         while True: #loop242
                             alt242 = 2
                             LA242_0 = self.input.LA(1)
@@ -14990,7 +14983,7 @@ class JavaScriptParser(Parser):
                             if alt242 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT476 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpression2917)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpression2918)
                                 if self.failed:
                                     return retval
 
@@ -15000,14 +14993,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal477 = self.input.LT(1)
-                        self.match(self.input, 117, self.FOLLOW_117_in_bitwiseXORExpression2921)
+                        self.match(self.input, 117, self.FOLLOW_117_in_bitwiseXORExpression2922)
                         if self.failed:
                             return retval
 
                         char_literal477_tree = self.adaptor.createWithPayload(char_literal477)
                         self.adaptor.addChild(root_0, char_literal477_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:37: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:37: ( LT )*
                         while True: #loop243
                             alt243 = 2
                             LA243_0 = self.input.LA(1)
@@ -15024,7 +15017,7 @@ class JavaScriptParser(Parser):
                             if alt243 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT478 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpression2923)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpression2924)
                                 if self.failed:
                                     return retval
 
@@ -15033,7 +15026,7 @@ class JavaScriptParser(Parser):
                                 break #loop243
 
 
-                        self.following.append(self.FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2927)
+                        self.following.append(self.FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2928)
                         bitwiseANDExpression479 = self.bitwiseANDExpression()
                         self.following.pop()
                         if self.failed:
@@ -15078,7 +15071,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseXORExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:450:1: bitwiseXORExpressionNoIn : bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:1: bitwiseXORExpressionNoIn : bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )* ;
     def bitwiseXORExpressionNoIn(self, ):
 
         retval = self.bitwiseXORExpressionNoIn_return()
@@ -15103,24 +15096,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 78):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:2: ( bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:4: bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:2: ( bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:4: bitwiseANDExpressionNoIn ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2941)
+                self.following.append(self.FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2942)
                 bitwiseANDExpressionNoIn480 = self.bitwiseANDExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, bitwiseANDExpressionNoIn480.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:29: ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:29: ( ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn )*
                 while True: #loop247
                     alt247 = 2
                     alt247 = self.dfa247.predict(self.input)
                     if alt247 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:30: ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:30: ( LT )* '^' ( LT )* bitwiseANDExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:32: ( LT )*
                         while True: #loop245
                             alt245 = 2
                             LA245_0 = self.input.LA(1)
@@ -15132,7 +15125,7 @@ class JavaScriptParser(Parser):
                             if alt245 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT481 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpressionNoIn2944)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpressionNoIn2945)
                                 if self.failed:
                                     return retval
 
@@ -15142,14 +15135,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal482 = self.input.LT(1)
-                        self.match(self.input, 117, self.FOLLOW_117_in_bitwiseXORExpressionNoIn2948)
+                        self.match(self.input, 117, self.FOLLOW_117_in_bitwiseXORExpressionNoIn2949)
                         if self.failed:
                             return retval
 
                         char_literal482_tree = self.adaptor.createWithPayload(char_literal482)
                         self.adaptor.addChild(root_0, char_literal482_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:41: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:41: ( LT )*
                         while True: #loop246
                             alt246 = 2
                             LA246_0 = self.input.LA(1)
@@ -15166,7 +15159,7 @@ class JavaScriptParser(Parser):
                             if alt246 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT483 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpressionNoIn2950)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseXORExpressionNoIn2951)
                                 if self.failed:
                                     return retval
 
@@ -15175,7 +15168,7 @@ class JavaScriptParser(Parser):
                                 break #loop246
 
 
-                        self.following.append(self.FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2954)
+                        self.following.append(self.FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2955)
                         bitwiseANDExpressionNoIn484 = self.bitwiseANDExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -15220,7 +15213,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseANDExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:454:1: bitwiseANDExpression : equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:1: bitwiseANDExpression : equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )* ;
     def bitwiseANDExpression(self, ):
 
         retval = self.bitwiseANDExpression_return()
@@ -15245,18 +15238,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 79):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:2: ( equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:4: equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:2: ( equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:4: equalityExpression ( ( LT )* '&' ( LT )* equalityExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_equalityExpression_in_bitwiseANDExpression2968)
+                self.following.append(self.FOLLOW_equalityExpression_in_bitwiseANDExpression2969)
                 equalityExpression485 = self.equalityExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, equalityExpression485.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:23: ( ( LT )* '&' ( LT )* equalityExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:23: ( ( LT )* '&' ( LT )* equalityExpression )*
                 while True: #loop250
                     alt250 = 2
                     LA250_0 = self.input.LA(1)
@@ -15278,8 +15271,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt250 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:24: ( LT )* '&' ( LT )* equalityExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:26: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:24: ( LT )* '&' ( LT )* equalityExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:26: ( LT )*
                         while True: #loop248
                             alt248 = 2
                             LA248_0 = self.input.LA(1)
@@ -15291,7 +15284,7 @@ class JavaScriptParser(Parser):
                             if alt248 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT486 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpression2971)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpression2972)
                                 if self.failed:
                                     return retval
 
@@ -15301,14 +15294,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal487 = self.input.LT(1)
-                        self.match(self.input, 118, self.FOLLOW_118_in_bitwiseANDExpression2975)
+                        self.match(self.input, 118, self.FOLLOW_118_in_bitwiseANDExpression2976)
                         if self.failed:
                             return retval
 
                         char_literal487_tree = self.adaptor.createWithPayload(char_literal487)
                         self.adaptor.addChild(root_0, char_literal487_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:35: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:35: ( LT )*
                         while True: #loop249
                             alt249 = 2
                             LA249_0 = self.input.LA(1)
@@ -15325,7 +15318,7 @@ class JavaScriptParser(Parser):
                             if alt249 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT488 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpression2977)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpression2978)
                                 if self.failed:
                                     return retval
 
@@ -15334,7 +15327,7 @@ class JavaScriptParser(Parser):
                                 break #loop249
 
 
-                        self.following.append(self.FOLLOW_equalityExpression_in_bitwiseANDExpression2981)
+                        self.following.append(self.FOLLOW_equalityExpression_in_bitwiseANDExpression2982)
                         equalityExpression489 = self.equalityExpression()
                         self.following.pop()
                         if self.failed:
@@ -15379,7 +15372,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start bitwiseANDExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:458:1: bitwiseANDExpressionNoIn : equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:1: bitwiseANDExpressionNoIn : equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )* ;
     def bitwiseANDExpressionNoIn(self, ):
 
         retval = self.bitwiseANDExpressionNoIn_return()
@@ -15404,24 +15397,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 80):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:2: ( equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:4: equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:2: ( equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:4: equalityExpressionNoIn ( ( LT )* '&' ( LT )* equalityExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn2995)
+                self.following.append(self.FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn2996)
                 equalityExpressionNoIn490 = self.equalityExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, equalityExpressionNoIn490.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:27: ( ( LT )* '&' ( LT )* equalityExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:27: ( ( LT )* '&' ( LT )* equalityExpressionNoIn )*
                 while True: #loop253
                     alt253 = 2
                     alt253 = self.dfa253.predict(self.input)
                     if alt253 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:28: ( LT )* '&' ( LT )* equalityExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:30: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:28: ( LT )* '&' ( LT )* equalityExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:30: ( LT )*
                         while True: #loop251
                             alt251 = 2
                             LA251_0 = self.input.LA(1)
@@ -15433,7 +15426,7 @@ class JavaScriptParser(Parser):
                             if alt251 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT491 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpressionNoIn2998)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpressionNoIn2999)
                                 if self.failed:
                                     return retval
 
@@ -15443,14 +15436,14 @@ class JavaScriptParser(Parser):
 
 
                         char_literal492 = self.input.LT(1)
-                        self.match(self.input, 118, self.FOLLOW_118_in_bitwiseANDExpressionNoIn3002)
+                        self.match(self.input, 118, self.FOLLOW_118_in_bitwiseANDExpressionNoIn3003)
                         if self.failed:
                             return retval
 
                         char_literal492_tree = self.adaptor.createWithPayload(char_literal492)
                         self.adaptor.addChild(root_0, char_literal492_tree)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:39: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:39: ( LT )*
                         while True: #loop252
                             alt252 = 2
                             LA252_0 = self.input.LA(1)
@@ -15467,7 +15460,7 @@ class JavaScriptParser(Parser):
                             if alt252 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT493 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpressionNoIn3004)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_bitwiseANDExpressionNoIn3005)
                                 if self.failed:
                                     return retval
 
@@ -15476,7 +15469,7 @@ class JavaScriptParser(Parser):
                                 break #loop252
 
 
-                        self.following.append(self.FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn3008)
+                        self.following.append(self.FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn3009)
                         equalityExpressionNoIn494 = self.equalityExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -15521,7 +15514,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start equalityExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:462:1: equalityExpression : relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:1: equalityExpression : relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )* ;
     def equalityExpression(self, ):
 
         retval = self.equalityExpression_return()
@@ -15546,18 +15539,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 81):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:2: ( relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:4: relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:2: ( relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:4: relationalExpression ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_relationalExpression_in_equalityExpression3022)
+                self.following.append(self.FOLLOW_relationalExpression_in_equalityExpression3023)
                 relationalExpression495 = self.relationalExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, relationalExpression495.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:25: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:25: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )*
                 while True: #loop256
                     alt256 = 2
                     LA256_0 = self.input.LA(1)
@@ -15579,8 +15572,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt256 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:26: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:28: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:26: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:28: ( LT )*
                         while True: #loop254
                             alt254 = 2
                             LA254_0 = self.input.LA(1)
@@ -15592,7 +15585,7 @@ class JavaScriptParser(Parser):
                             if alt254 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT496 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpression3025)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpression3026)
                                 if self.failed:
                                     return retval
 
@@ -15616,12 +15609,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_equalityExpression3029
+                                self.input, mse, self.FOLLOW_set_in_equalityExpression3030
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:63: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:63: ( LT )*
                         while True: #loop255
                             alt255 = 2
                             LA255_0 = self.input.LA(1)
@@ -15638,7 +15631,7 @@ class JavaScriptParser(Parser):
                             if alt255 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT498 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpression3045)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpression3046)
                                 if self.failed:
                                     return retval
 
@@ -15647,7 +15640,7 @@ class JavaScriptParser(Parser):
                                 break #loop255
 
 
-                        self.following.append(self.FOLLOW_relationalExpression_in_equalityExpression3049)
+                        self.following.append(self.FOLLOW_relationalExpression_in_equalityExpression3050)
                         relationalExpression499 = self.relationalExpression()
                         self.following.pop()
                         if self.failed:
@@ -15692,7 +15685,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start equalityExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:466:1: equalityExpressionNoIn : relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:1: equalityExpressionNoIn : relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )* ;
     def equalityExpressionNoIn(self, ):
 
         retval = self.equalityExpressionNoIn_return()
@@ -15717,24 +15710,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 82):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:2: ( relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:4: relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:2: ( relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:4: relationalExpressionNoIn ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3062)
+                self.following.append(self.FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3063)
                 relationalExpressionNoIn500 = self.relationalExpressionNoIn()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, relationalExpressionNoIn500.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:29: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:29: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn )*
                 while True: #loop259
                     alt259 = 2
                     alt259 = self.dfa259.predict(self.input)
                     if alt259 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:30: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:30: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpressionNoIn
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:32: ( LT )*
                         while True: #loop257
                             alt257 = 2
                             LA257_0 = self.input.LA(1)
@@ -15746,7 +15739,7 @@ class JavaScriptParser(Parser):
                             if alt257 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT501 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpressionNoIn3065)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpressionNoIn3066)
                                 if self.failed:
                                     return retval
 
@@ -15770,12 +15763,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_equalityExpressionNoIn3069
+                                self.input, mse, self.FOLLOW_set_in_equalityExpressionNoIn3070
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:67: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:67: ( LT )*
                         while True: #loop258
                             alt258 = 2
                             LA258_0 = self.input.LA(1)
@@ -15792,7 +15785,7 @@ class JavaScriptParser(Parser):
                             if alt258 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT503 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpressionNoIn3085)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_equalityExpressionNoIn3086)
                                 if self.failed:
                                     return retval
 
@@ -15801,7 +15794,7 @@ class JavaScriptParser(Parser):
                                 break #loop258
 
 
-                        self.following.append(self.FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3089)
+                        self.following.append(self.FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3090)
                         relationalExpressionNoIn504 = self.relationalExpressionNoIn()
                         self.following.pop()
                         if self.failed:
@@ -15846,7 +15839,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start relationalExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:470:1: relationalExpression : shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:1: relationalExpression : shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )* ;
     def relationalExpression(self, ):
 
         retval = self.relationalExpression_return()
@@ -15871,18 +15864,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 83):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:2: ( shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:4: shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:2: ( shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:4: shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_shiftExpression_in_relationalExpression3103)
+                self.following.append(self.FOLLOW_shiftExpression_in_relationalExpression3104)
                 shiftExpression505 = self.shiftExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, shiftExpression505.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:20: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:20: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )*
                 while True: #loop262
                     alt262 = 2
                     LA262 = self.input.LA(1)
@@ -15909,8 +15902,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt262 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:23: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:23: ( LT )*
                         while True: #loop260
                             alt260 = 2
                             LA260_0 = self.input.LA(1)
@@ -15922,7 +15915,7 @@ class JavaScriptParser(Parser):
                             if alt260 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT506 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpression3106)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpression3107)
                                 if self.failed:
                                     return retval
 
@@ -15946,12 +15939,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_relationalExpression3110
+                                self.input, mse, self.FOLLOW_set_in_relationalExpression3111
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:76: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:76: ( LT )*
                         while True: #loop261
                             alt261 = 2
                             LA261_0 = self.input.LA(1)
@@ -15968,7 +15961,7 @@ class JavaScriptParser(Parser):
                             if alt261 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT508 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpression3134)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpression3135)
                                 if self.failed:
                                     return retval
 
@@ -15977,7 +15970,7 @@ class JavaScriptParser(Parser):
                                 break #loop261
 
 
-                        self.following.append(self.FOLLOW_shiftExpression_in_relationalExpression3138)
+                        self.following.append(self.FOLLOW_shiftExpression_in_relationalExpression3139)
                         shiftExpression509 = self.shiftExpression()
                         self.following.pop()
                         if self.failed:
@@ -16022,7 +16015,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start relationalExpressionNoIn
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:474:1: relationalExpressionNoIn : shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:1: relationalExpressionNoIn : shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )* ;
     def relationalExpressionNoIn(self, ):
 
         retval = self.relationalExpressionNoIn_return()
@@ -16047,24 +16040,24 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 84):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:2: ( shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:4: shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:2: ( shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:4: shiftExpression ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_shiftExpression_in_relationalExpressionNoIn3151)
+                self.following.append(self.FOLLOW_shiftExpression_in_relationalExpressionNoIn3152)
                 shiftExpression510 = self.shiftExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, shiftExpression510.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:20: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:20: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression )*
                 while True: #loop265
                     alt265 = 2
                     alt265 = self.dfa265.predict(self.input)
                     if alt265 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:23: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' ) ( LT )* shiftExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:23: ( LT )*
                         while True: #loop263
                             alt263 = 2
                             LA263_0 = self.input.LA(1)
@@ -16076,7 +16069,7 @@ class JavaScriptParser(Parser):
                             if alt263 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT511 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpressionNoIn3154)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpressionNoIn3155)
                                 if self.failed:
                                     return retval
 
@@ -16100,12 +16093,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_relationalExpressionNoIn3158
+                                self.input, mse, self.FOLLOW_set_in_relationalExpressionNoIn3159
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:69: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:69: ( LT )*
                         while True: #loop264
                             alt264 = 2
                             LA264_0 = self.input.LA(1)
@@ -16122,7 +16115,7 @@ class JavaScriptParser(Parser):
                             if alt264 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT513 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpressionNoIn3178)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_relationalExpressionNoIn3179)
                                 if self.failed:
                                     return retval
 
@@ -16131,7 +16124,7 @@ class JavaScriptParser(Parser):
                                 break #loop264
 
 
-                        self.following.append(self.FOLLOW_shiftExpression_in_relationalExpressionNoIn3182)
+                        self.following.append(self.FOLLOW_shiftExpression_in_relationalExpressionNoIn3183)
                         shiftExpression514 = self.shiftExpression()
                         self.following.pop()
                         if self.failed:
@@ -16176,7 +16169,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start shiftExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:478:1: shiftExpression : additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:1: shiftExpression : additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )* ;
     def shiftExpression(self, ):
 
         retval = self.shiftExpression_return()
@@ -16201,18 +16194,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 85):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:2: ( additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:4: additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:2: ( additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:4: additiveExpression ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_additiveExpression_in_shiftExpression3195)
+                self.following.append(self.FOLLOW_additiveExpression_in_shiftExpression3196)
                 additiveExpression515 = self.additiveExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, additiveExpression515.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:23: ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:23: ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )*
                 while True: #loop268
                     alt268 = 2
                     LA268_0 = self.input.LA(1)
@@ -16234,8 +16227,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt268 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:24: ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:26: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:24: ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:26: ( LT )*
                         while True: #loop266
                             alt266 = 2
                             LA266_0 = self.input.LA(1)
@@ -16247,7 +16240,7 @@ class JavaScriptParser(Parser):
                             if alt266 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT516 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_shiftExpression3198)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_shiftExpression3199)
                                 if self.failed:
                                     return retval
 
@@ -16271,12 +16264,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_shiftExpression3202
+                                self.input, mse, self.FOLLOW_set_in_shiftExpression3203
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:53: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:53: ( LT )*
                         while True: #loop267
                             alt267 = 2
                             LA267_0 = self.input.LA(1)
@@ -16293,7 +16286,7 @@ class JavaScriptParser(Parser):
                             if alt267 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT518 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_shiftExpression3214)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_shiftExpression3215)
                                 if self.failed:
                                     return retval
 
@@ -16302,7 +16295,7 @@ class JavaScriptParser(Parser):
                                 break #loop267
 
 
-                        self.following.append(self.FOLLOW_additiveExpression_in_shiftExpression3218)
+                        self.following.append(self.FOLLOW_additiveExpression_in_shiftExpression3219)
                         additiveExpression519 = self.additiveExpression()
                         self.following.pop()
                         if self.failed:
@@ -16347,7 +16340,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start additiveExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:482:1: additiveExpression : multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:1: additiveExpression : multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )* ;
     def additiveExpression(self, ):
 
         retval = self.additiveExpression_return()
@@ -16372,18 +16365,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 86):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:2: ( multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:4: multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:2: ( multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:4: multiplicativeExpression ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_multiplicativeExpression_in_additiveExpression3231)
+                self.following.append(self.FOLLOW_multiplicativeExpression_in_additiveExpression3232)
                 multiplicativeExpression520 = self.multiplicativeExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, multiplicativeExpression520.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:29: ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:29: ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )*
                 while True: #loop271
                     alt271 = 2
                     LA271_0 = self.input.LA(1)
@@ -16405,8 +16398,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt271 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:30: ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:32: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:30: ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:32: ( LT )*
                         while True: #loop269
                             alt269 = 2
                             LA269_0 = self.input.LA(1)
@@ -16418,7 +16411,7 @@ class JavaScriptParser(Parser):
                             if alt269 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT521 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_additiveExpression3234)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_additiveExpression3235)
                                 if self.failed:
                                     return retval
 
@@ -16442,12 +16435,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_additiveExpression3238
+                                self.input, mse, self.FOLLOW_set_in_additiveExpression3239
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:49: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:49: ( LT )*
                         while True: #loop270
                             alt270 = 2
                             LA270_0 = self.input.LA(1)
@@ -16464,7 +16457,7 @@ class JavaScriptParser(Parser):
                             if alt270 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT523 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_additiveExpression3246)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_additiveExpression3247)
                                 if self.failed:
                                     return retval
 
@@ -16473,7 +16466,7 @@ class JavaScriptParser(Parser):
                                 break #loop270
 
 
-                        self.following.append(self.FOLLOW_multiplicativeExpression_in_additiveExpression3250)
+                        self.following.append(self.FOLLOW_multiplicativeExpression_in_additiveExpression3251)
                         multiplicativeExpression524 = self.multiplicativeExpression()
                         self.following.pop()
                         if self.failed:
@@ -16518,7 +16511,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start multiplicativeExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:486:1: multiplicativeExpression : unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )* ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:1: multiplicativeExpression : unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )* ;
     def multiplicativeExpression(self, ):
 
         retval = self.multiplicativeExpression_return()
@@ -16543,18 +16536,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 87):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:2: ( unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )* )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:4: unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:2: ( unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )* )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:4: unaryExpression ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_unaryExpression_in_multiplicativeExpression3263)
+                self.following.append(self.FOLLOW_unaryExpression_in_multiplicativeExpression3264)
                 unaryExpression525 = self.unaryExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, unaryExpression525.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:20: ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:20: ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )*
                 while True: #loop274
                     alt274 = 2
                     LA274_0 = self.input.LA(1)
@@ -16576,8 +16569,8 @@ class JavaScriptParser(Parser):
 
 
                     if alt274 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:21: ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:23: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:21: ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:23: ( LT )*
                         while True: #loop272
                             alt272 = 2
                             LA272_0 = self.input.LA(1)
@@ -16589,7 +16582,7 @@ class JavaScriptParser(Parser):
                             if alt272 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT526 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_multiplicativeExpression3266)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_multiplicativeExpression3267)
                                 if self.failed:
                                     return retval
 
@@ -16613,12 +16606,12 @@ class JavaScriptParser(Parser):
 
                             mse = MismatchedSetException(None, self.input)
                             self.recoverFromMismatchedSet(
-                                self.input, mse, self.FOLLOW_set_in_multiplicativeExpression3270
+                                self.input, mse, self.FOLLOW_set_in_multiplicativeExpression3271
                                 )
                             raise mse
 
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:46: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:46: ( LT )*
                         while True: #loop273
                             alt273 = 2
                             LA273_0 = self.input.LA(1)
@@ -16635,7 +16628,7 @@ class JavaScriptParser(Parser):
                             if alt273 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT528 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_multiplicativeExpression3282)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_multiplicativeExpression3283)
                                 if self.failed:
                                     return retval
 
@@ -16644,7 +16637,7 @@ class JavaScriptParser(Parser):
                                 break #loop273
 
 
-                        self.following.append(self.FOLLOW_unaryExpression_in_multiplicativeExpression3286)
+                        self.following.append(self.FOLLOW_unaryExpression_in_multiplicativeExpression3287)
                         unaryExpression529 = self.unaryExpression()
                         self.following.pop()
                         if self.failed:
@@ -16689,7 +16682,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start unaryExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:490:1: unaryExpression : ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:491:1: unaryExpression : ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression );
     def unaryExpression(self, ):
 
         retval = self.unaryExpression_return()
@@ -16710,7 +16703,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 88):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:491:2: ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:492:2: ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression )
                 alt275 = 2
                 LA275_0 = self.input.LA(1)
 
@@ -16723,15 +16716,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("490:1: unaryExpression : ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression );", 275, 0, self.input)
+                    nvae = NoViableAltException("491:1: unaryExpression : ( postfixExpression | ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression );", 275, 0, self.input)
 
                     raise nvae
 
                 if alt275 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:491:4: postfixExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:492:4: postfixExpression
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_postfixExpression_in_unaryExpression3299)
+                    self.following.append(self.FOLLOW_postfixExpression_in_unaryExpression3300)
                     postfixExpression530 = self.postfixExpression()
                     self.following.pop()
                     if self.failed:
@@ -16741,7 +16734,7 @@ class JavaScriptParser(Parser):
 
 
                 elif alt275 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:492:4: ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:493:4: ( 'delete' | 'void' | 'typeof' | '++' | '--' | '+' | '-' | '~' | '!' ) unaryExpression
                     root_0 = self.adaptor.nil()
 
                     set531 = self.input.LT(1)
@@ -16759,12 +16752,12 @@ class JavaScriptParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_unaryExpression3304
+                            self.input, mse, self.FOLLOW_set_in_unaryExpression3305
                             )
                         raise mse
 
 
-                    self.following.append(self.FOLLOW_unaryExpression_in_unaryExpression3340)
+                    self.following.append(self.FOLLOW_unaryExpression_in_unaryExpression3341)
                     unaryExpression532 = self.unaryExpression()
                     self.following.pop()
                     if self.failed:
@@ -16802,7 +16795,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start postfixExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:495:1: postfixExpression : leftHandSideExpression ( '++' | '--' )? ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:496:1: postfixExpression : leftHandSideExpression ( '++' | '--' )? ;
     def postfixExpression(self, ):
 
         retval = self.postfixExpression_return()
@@ -16821,18 +16814,18 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 89):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:496:2: ( leftHandSideExpression ( '++' | '--' )? )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:496:4: leftHandSideExpression ( '++' | '--' )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:497:2: ( leftHandSideExpression ( '++' | '--' )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:497:4: leftHandSideExpression ( '++' | '--' )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_leftHandSideExpression_in_postfixExpression3352)
+                self.following.append(self.FOLLOW_leftHandSideExpression_in_postfixExpression3353)
                 leftHandSideExpression533 = self.leftHandSideExpression()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     self.adaptor.addChild(root_0, leftHandSideExpression533.tree)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:496:27: ( '++' | '--' )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:497:27: ( '++' | '--' )?
                 alt276 = 2
                 LA276_0 = self.input.LA(1)
 
@@ -16855,7 +16848,7 @@ class JavaScriptParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_postfixExpression3354
+                            self.input, mse, self.FOLLOW_set_in_postfixExpression3355
                             )
                         raise mse
 
@@ -16895,7 +16888,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start primaryExpression
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:499:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:500:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );
     def primaryExpression(self, ):
 
         retval = self.primaryExpression_return()
@@ -16932,7 +16925,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 90):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:500:2: ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:2: ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' )
                 alt279 = 7
                 LA279_0 = self.input.LA(1)
 
@@ -16954,7 +16947,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("499:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );", 279, 4, self.input)
+                        nvae = NoViableAltException("500:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );", 279, 4, self.input)
 
                         raise nvae
 
@@ -16973,16 +16966,16 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("499:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );", 279, 0, self.input)
+                    nvae = NoViableAltException("500:1: primaryExpression : ( 'this' | ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral | identifier -> ^( VARREF identifier ) | literal | arrayLiteral | objectLiteral | '(' ( LT )* expression ( LT )* ')' );", 279, 0, self.input)
 
                     raise nvae
 
                 if alt279 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:500:4: 'this'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:4: 'this'
                     root_0 = self.adaptor.nil()
 
                     string_literal535 = self.input.LT(1)
-                    self.match(self.input, 138, self.FOLLOW_138_in_primaryExpression3372)
+                    self.match(self.input, 138, self.FOLLOW_138_in_primaryExpression3373)
                     if self.failed:
                         return retval
 
@@ -16992,10 +16985,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:4: ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:502:4: ( ( LT )* ( '<' | XMLComment ) )=> xmlLiteral
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_xmlLiteral_in_primaryExpression3389)
+                    self.following.append(self.FOLLOW_xmlLiteral_in_primaryExpression3390)
                     xmlLiteral536 = self.xmlLiteral()
                     self.following.pop()
                     if self.failed:
@@ -17005,8 +16998,8 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:502:4: identifier
-                    self.following.append(self.FOLLOW_identifier_in_primaryExpression3394)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:503:4: identifier
+                    self.following.append(self.FOLLOW_identifier_in_primaryExpression3395)
                     identifier537 = self.identifier()
                     self.following.pop()
                     if self.failed:
@@ -17030,8 +17023,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 503:3: -> ^( VARREF identifier )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:503:6: ^( VARREF identifier )
+                        # 504:3: -> ^( VARREF identifier )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:504:6: ^( VARREF identifier )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(VARREF, "VARREF"), root_1)
 
@@ -17044,10 +17037,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:504:4: literal
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:505:4: literal
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_literal_in_primaryExpression3409)
+                    self.following.append(self.FOLLOW_literal_in_primaryExpression3410)
                     literal538 = self.literal()
                     self.following.pop()
                     if self.failed:
@@ -17057,10 +17050,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 5:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:505:4: arrayLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:506:4: arrayLiteral
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_arrayLiteral_in_primaryExpression3414)
+                    self.following.append(self.FOLLOW_arrayLiteral_in_primaryExpression3415)
                     arrayLiteral539 = self.arrayLiteral()
                     self.following.pop()
                     if self.failed:
@@ -17070,10 +17063,10 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 6:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:506:4: objectLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:4: objectLiteral
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_objectLiteral_in_primaryExpression3419)
+                    self.following.append(self.FOLLOW_objectLiteral_in_primaryExpression3420)
                     objectLiteral540 = self.objectLiteral()
                     self.following.pop()
                     if self.failed:
@@ -17083,18 +17076,18 @@ class JavaScriptParser(Parser):
 
 
                 elif alt279 == 7:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:4: '(' ( LT )* expression ( LT )* ')'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:508:4: '(' ( LT )* expression ( LT )* ')'
                     root_0 = self.adaptor.nil()
 
                     char_literal541 = self.input.LT(1)
-                    self.match(self.input, 70, self.FOLLOW_70_in_primaryExpression3424)
+                    self.match(self.input, 70, self.FOLLOW_70_in_primaryExpression3425)
                     if self.failed:
                         return retval
 
                     char_literal541_tree = self.adaptor.createWithPayload(char_literal541)
                     self.adaptor.addChild(root_0, char_literal541_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:10: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:508:10: ( LT )*
                     while True: #loop277
                         alt277 = 2
                         LA277_0 = self.input.LA(1)
@@ -17111,7 +17104,7 @@ class JavaScriptParser(Parser):
                         if alt277 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT542 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_primaryExpression3426)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_primaryExpression3427)
                             if self.failed:
                                 return retval
 
@@ -17120,14 +17113,14 @@ class JavaScriptParser(Parser):
                             break #loop277
 
 
-                    self.following.append(self.FOLLOW_expression_in_primaryExpression3430)
+                    self.following.append(self.FOLLOW_expression_in_primaryExpression3431)
                     expression543 = self.expression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         self.adaptor.addChild(root_0, expression543.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:26: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:508:26: ( LT )*
                     while True: #loop278
                         alt278 = 2
                         LA278_0 = self.input.LA(1)
@@ -17139,7 +17132,7 @@ class JavaScriptParser(Parser):
                         if alt278 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT544 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_primaryExpression3432)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_primaryExpression3433)
                             if self.failed:
                                 return retval
 
@@ -17149,7 +17142,7 @@ class JavaScriptParser(Parser):
 
 
                     char_literal545 = self.input.LT(1)
-                    self.match(self.input, 72, self.FOLLOW_72_in_primaryExpression3436)
+                    self.match(self.input, 72, self.FOLLOW_72_in_primaryExpression3437)
                     if self.failed:
                         return retval
 
@@ -17187,7 +17180,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start arrayLiteral
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:511:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );
     def arrayLiteral(self, ):
 
         retval = self.arrayLiteral_return()
@@ -17273,7 +17266,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 91):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:2: ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:2: ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) )
                 alt299 = 2
                 LA299_0 = self.input.LA(1)
 
@@ -17289,7 +17282,7 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("511:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );", 299, 1, self.input)
+                        nvae = NoViableAltException("512:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );", 299, 1, self.input)
 
                         raise nvae
 
@@ -17298,19 +17291,19 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("511:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );", 299, 0, self.input)
+                    nvae = NoViableAltException("512:1: arrayLiteral : ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' -> ^( ARRAY ( assignmentExpression )* ) | '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']' -> ^( ARRAYCOMP $evalexpr $init $genexpr) );", 299, 0, self.input)
 
                     raise nvae
 
                 if alt299 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:4: '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:4: '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']'
                     char_literal546 = self.input.LT(1)
-                    self.match(self.input, 81, self.FOLLOW_81_in_arrayLiteral3449)
+                    self.match(self.input, 81, self.FOLLOW_81_in_arrayLiteral3450)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_81.add(char_literal546)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:8: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:8: ( LT )*
                     while True: #loop280
                         alt280 = 2
                         LA280_0 = self.input.LA(1)
@@ -17327,7 +17320,7 @@ class JavaScriptParser(Parser):
                         if alt280 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT547 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3451)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3452)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17338,12 +17331,12 @@ class JavaScriptParser(Parser):
                             break #loop280
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:12: ( assignmentExpression )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:12: ( assignmentExpression )?
                     alt281 = 2
                     alt281 = self.dfa281.predict(self.input)
                     if alt281 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: assignmentExpression
-                        self.following.append(self.FOLLOW_assignmentExpression_in_arrayLiteral3454)
+                        self.following.append(self.FOLLOW_assignmentExpression_in_arrayLiteral3455)
                         assignmentExpression548 = self.assignmentExpression()
                         self.following.pop()
                         if self.failed:
@@ -17353,13 +17346,13 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*
                     while True: #loop285
                         alt285 = 2
                         alt285 = self.dfa285.predict(self.input)
                         if alt285 == 1:
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )*
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )*
                             while True: #loop282
                                 alt282 = 2
                                 LA282_0 = self.input.LA(1)
@@ -17371,7 +17364,7 @@ class JavaScriptParser(Parser):
                                 if alt282 == 1:
                                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                     LT549 = self.input.LT(1)
-                                    self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3458)
+                                    self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3459)
                                     if self.failed:
                                         return retval
                                     if self.backtracking == 0:
@@ -17383,17 +17376,17 @@ class JavaScriptParser(Parser):
 
 
                             char_literal550 = self.input.LT(1)
-                            self.match(self.input, 71, self.FOLLOW_71_in_arrayLiteral3461)
+                            self.match(self.input, 71, self.FOLLOW_71_in_arrayLiteral3462)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
                                 stream_71.add(char_literal550)
-                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:43: ( ( LT )* assignmentExpression )?
+                            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:43: ( ( LT )* assignmentExpression )?
                             alt284 = 2
                             alt284 = self.dfa284.predict(self.input)
                             if alt284 == 1:
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )* assignmentExpression
-                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )*
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )* assignmentExpression
+                                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )*
                                 while True: #loop283
                                     alt283 = 2
                                     LA283_0 = self.input.LA(1)
@@ -17410,7 +17403,7 @@ class JavaScriptParser(Parser):
                                     if alt283 == 1:
                                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                         LT551 = self.input.LT(1)
-                                        self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3464)
+                                        self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3465)
                                         if self.failed:
                                             return retval
                                         if self.backtracking == 0:
@@ -17421,7 +17414,7 @@ class JavaScriptParser(Parser):
                                         break #loop283
 
 
-                                self.following.append(self.FOLLOW_assignmentExpression_in_arrayLiteral3467)
+                                self.following.append(self.FOLLOW_assignmentExpression_in_arrayLiteral3468)
                                 assignmentExpression552 = self.assignmentExpression()
                                 self.following.pop()
                                 if self.failed:
@@ -17437,7 +17430,7 @@ class JavaScriptParser(Parser):
                             break #loop285
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:73: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:73: ( LT )*
                     while True: #loop286
                         alt286 = 2
                         LA286_0 = self.input.LA(1)
@@ -17449,7 +17442,7 @@ class JavaScriptParser(Parser):
                         if alt286 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT553 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3473)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3474)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17460,21 +17453,21 @@ class JavaScriptParser(Parser):
                             break #loop286
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:77: ( ',' ( LT )* )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:77: ( ',' ( LT )* )?
                     alt288 = 2
                     LA288_0 = self.input.LA(1)
 
                     if (LA288_0 == 71) :
                         alt288 = 1
                     if alt288 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:78: ',' ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:78: ',' ( LT )*
                         char_literal554 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_arrayLiteral3477)
+                        self.match(self.input, 71, self.FOLLOW_71_in_arrayLiteral3478)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
                             stream_71.add(char_literal554)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:82: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:82: ( LT )*
                         while True: #loop287
                             alt287 = 2
                             LA287_0 = self.input.LA(1)
@@ -17486,7 +17479,7 @@ class JavaScriptParser(Parser):
                             if alt287 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT555 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3479)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3480)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -17501,7 +17494,7 @@ class JavaScriptParser(Parser):
 
 
                     char_literal556 = self.input.LT(1)
-                    self.match(self.input, 82, self.FOLLOW_82_in_arrayLiteral3484)
+                    self.match(self.input, 82, self.FOLLOW_82_in_arrayLiteral3485)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -17523,12 +17516,12 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 513:3: -> ^( ARRAY ( assignmentExpression )* )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:6: ^( ARRAY ( assignmentExpression )* )
+                        # 514:3: -> ^( ARRAY ( assignmentExpression )* )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:6: ^( ARRAY ( assignmentExpression )* )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ARRAY, "ARRAY"), root_1)
 
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:14: ( assignmentExpression )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:14: ( assignmentExpression )*
                         while stream_assignmentExpression.hasNext():
                             self.adaptor.addChild(root_1, stream_assignmentExpression.next())
 
@@ -17542,14 +17535,14 @@ class JavaScriptParser(Parser):
 
 
                 elif alt299 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:4: '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:4: '[' ( LT )* evalexpr= expression ( LT )* 'for' ( LT )* ( 'each' )? ( LT )* '(' ( LT )* init= forInStatementInitialiserPart ( LT )* 'in' ( LT )* genexpr= expression ( LT )* ')' ( LT )* ']'
                     char_literal557 = self.input.LT(1)
-                    self.match(self.input, 81, self.FOLLOW_81_in_arrayLiteral3500)
+                    self.match(self.input, 81, self.FOLLOW_81_in_arrayLiteral3501)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_81.add(char_literal557)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:8: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:8: ( LT )*
                     while True: #loop289
                         alt289 = 2
                         LA289_0 = self.input.LA(1)
@@ -17566,7 +17559,7 @@ class JavaScriptParser(Parser):
                         if alt289 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT558 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3502)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3503)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17577,14 +17570,14 @@ class JavaScriptParser(Parser):
                             break #loop289
 
 
-                    self.following.append(self.FOLLOW_expression_in_arrayLiteral3507)
+                    self.following.append(self.FOLLOW_expression_in_arrayLiteral3508)
                     evalexpr = self.expression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_expression.add(evalexpr.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:32: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:32: ( LT )*
                     while True: #loop290
                         alt290 = 2
                         LA290_0 = self.input.LA(1)
@@ -17596,7 +17589,7 @@ class JavaScriptParser(Parser):
                         if alt290 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT559 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3509)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3510)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17608,12 +17601,12 @@ class JavaScriptParser(Parser):
 
 
                     string_literal560 = self.input.LT(1)
-                    self.match(self.input, 87, self.FOLLOW_87_in_arrayLiteral3512)
+                    self.match(self.input, 87, self.FOLLOW_87_in_arrayLiteral3513)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_87.add(string_literal560)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:42: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:42: ( LT )*
                     while True: #loop291
                         alt291 = 2
                         LA291_0 = self.input.LA(1)
@@ -17630,7 +17623,7 @@ class JavaScriptParser(Parser):
                         if alt291 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT561 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3514)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3515)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17641,7 +17634,7 @@ class JavaScriptParser(Parser):
                             break #loop291
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:46: ( 'each' )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:46: ( 'each' )?
                     alt292 = 2
                     LA292_0 = self.input.LA(1)
 
@@ -17650,7 +17643,7 @@ class JavaScriptParser(Parser):
                     if alt292 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: 'each'
                         string_literal562 = self.input.LT(1)
-                        self.match(self.input, 88, self.FOLLOW_88_in_arrayLiteral3517)
+                        self.match(self.input, 88, self.FOLLOW_88_in_arrayLiteral3518)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -17658,7 +17651,7 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:54: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:54: ( LT )*
                     while True: #loop293
                         alt293 = 2
                         LA293_0 = self.input.LA(1)
@@ -17670,7 +17663,7 @@ class JavaScriptParser(Parser):
                         if alt293 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT563 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3520)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3521)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17682,12 +17675,12 @@ class JavaScriptParser(Parser):
 
 
                     char_literal564 = self.input.LT(1)
-                    self.match(self.input, 70, self.FOLLOW_70_in_arrayLiteral3523)
+                    self.match(self.input, 70, self.FOLLOW_70_in_arrayLiteral3524)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_70.add(char_literal564)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:62: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:62: ( LT )*
                     while True: #loop294
                         alt294 = 2
                         LA294_0 = self.input.LA(1)
@@ -17704,7 +17697,7 @@ class JavaScriptParser(Parser):
                         if alt294 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT565 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3525)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3526)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17715,14 +17708,14 @@ class JavaScriptParser(Parser):
                             break #loop294
 
 
-                    self.following.append(self.FOLLOW_forInStatementInitialiserPart_in_arrayLiteral3530)
+                    self.following.append(self.FOLLOW_forInStatementInitialiserPart_in_arrayLiteral3531)
                     init = self.forInStatementInitialiserPart()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_forInStatementInitialiserPart.add(init.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:101: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:101: ( LT )*
                     while True: #loop295
                         alt295 = 2
                         LA295_0 = self.input.LA(1)
@@ -17734,7 +17727,7 @@ class JavaScriptParser(Parser):
                         if alt295 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT566 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3532)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3533)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17746,12 +17739,12 @@ class JavaScriptParser(Parser):
 
 
                     string_literal567 = self.input.LT(1)
-                    self.match(self.input, 89, self.FOLLOW_89_in_arrayLiteral3535)
+                    self.match(self.input, 89, self.FOLLOW_89_in_arrayLiteral3536)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_89.add(string_literal567)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:110: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:110: ( LT )*
                     while True: #loop296
                         alt296 = 2
                         LA296_0 = self.input.LA(1)
@@ -17768,7 +17761,7 @@ class JavaScriptParser(Parser):
                         if alt296 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT568 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3537)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3538)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17779,14 +17772,14 @@ class JavaScriptParser(Parser):
                             break #loop296
 
 
-                    self.following.append(self.FOLLOW_expression_in_arrayLiteral3542)
+                    self.following.append(self.FOLLOW_expression_in_arrayLiteral3543)
                     genexpr = self.expression()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_expression.add(genexpr.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:133: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:133: ( LT )*
                     while True: #loop297
                         alt297 = 2
                         LA297_0 = self.input.LA(1)
@@ -17798,7 +17791,7 @@ class JavaScriptParser(Parser):
                         if alt297 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT569 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3544)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3545)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17810,12 +17803,12 @@ class JavaScriptParser(Parser):
 
 
                     char_literal570 = self.input.LT(1)
-                    self.match(self.input, 72, self.FOLLOW_72_in_arrayLiteral3547)
+                    self.match(self.input, 72, self.FOLLOW_72_in_arrayLiteral3548)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_72.add(char_literal570)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:141: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:141: ( LT )*
                     while True: #loop298
                         alt298 = 2
                         LA298_0 = self.input.LA(1)
@@ -17827,7 +17820,7 @@ class JavaScriptParser(Parser):
                         if alt298 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT571 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3549)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_arrayLiteral3550)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -17839,13 +17832,13 @@ class JavaScriptParser(Parser):
 
 
                     char_literal572 = self.input.LT(1)
-                    self.match(self.input, 82, self.FOLLOW_82_in_arrayLiteral3552)
+                    self.match(self.input, 82, self.FOLLOW_82_in_arrayLiteral3553)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_82.add(char_literal572)
                     # AST Rewrite
-                    # elements: init, evalexpr, genexpr
+                    # elements: genexpr, evalexpr, init
                     # token labels: 
                     # rule labels: retval, evalexpr, genexpr, init
                     # token list labels: 
@@ -17879,8 +17872,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 515:3: -> ^( ARRAYCOMP $evalexpr $init $genexpr)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:6: ^( ARRAYCOMP $evalexpr $init $genexpr)
+                        # 516:3: -> ^( ARRAYCOMP $evalexpr $init $genexpr)
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:516:6: ^( ARRAYCOMP $evalexpr $init $genexpr)
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ARRAYCOMP, "ARRAYCOMP"), root_1)
 
@@ -17923,7 +17916,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start objectLiteral
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:519:1: objectLiteral : '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}' -> ^( OBJ ( propertyNameAndValue )* ) ;
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:1: objectLiteral : '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}' -> ^( OBJ ( propertyNameAndValue )* ) ;
     def objectLiteral(self, ):
 
         retval = self.objectLiteral_return()
@@ -17964,15 +17957,15 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 92):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:2: ( '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}' -> ^( OBJ ( propertyNameAndValue )* ) )
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:4: '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}'
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:2: ( '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}' -> ^( OBJ ( propertyNameAndValue )* ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:4: '{' ( LT )* ( propertyNameAndValue )? ( ( LT )* ',' ( LT )* propertyNameAndValue )* ( LT )* ( ',' ( LT )* )? '}'
                 char_literal573 = self.input.LT(1)
-                self.match(self.input, 67, self.FOLLOW_67_in_objectLiteral3588)
+                self.match(self.input, 67, self.FOLLOW_67_in_objectLiteral3589)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
                     stream_67.add(char_literal573)
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:8: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:8: ( LT )*
                 while True: #loop300
                     alt300 = 2
                     LA300_0 = self.input.LA(1)
@@ -17989,7 +17982,7 @@ class JavaScriptParser(Parser):
                     if alt300 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT574 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3590)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3591)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18000,7 +17993,7 @@ class JavaScriptParser(Parser):
                         break #loop300
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:12: ( propertyNameAndValue )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:12: ( propertyNameAndValue )?
                 alt301 = 2
                 LA301_0 = self.input.LA(1)
 
@@ -18008,7 +18001,7 @@ class JavaScriptParser(Parser):
                     alt301 = 1
                 if alt301 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: propertyNameAndValue
-                    self.following.append(self.FOLLOW_propertyNameAndValue_in_objectLiteral3593)
+                    self.following.append(self.FOLLOW_propertyNameAndValue_in_objectLiteral3594)
                     propertyNameAndValue575 = self.propertyNameAndValue()
                     self.following.pop()
                     if self.failed:
@@ -18018,13 +18011,13 @@ class JavaScriptParser(Parser):
 
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:34: ( ( LT )* ',' ( LT )* propertyNameAndValue )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:34: ( ( LT )* ',' ( LT )* propertyNameAndValue )*
                 while True: #loop304
                     alt304 = 2
                     alt304 = self.dfa304.predict(self.input)
                     if alt304 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:35: ( LT )* ',' ( LT )* propertyNameAndValue
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:35: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:35: ( LT )* ',' ( LT )* propertyNameAndValue
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:35: ( LT )*
                         while True: #loop302
                             alt302 = 2
                             LA302_0 = self.input.LA(1)
@@ -18036,7 +18029,7 @@ class JavaScriptParser(Parser):
                             if alt302 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT576 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3597)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3598)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -18048,12 +18041,12 @@ class JavaScriptParser(Parser):
 
 
                         char_literal577 = self.input.LT(1)
-                        self.match(self.input, 71, self.FOLLOW_71_in_objectLiteral3600)
+                        self.match(self.input, 71, self.FOLLOW_71_in_objectLiteral3601)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
                             stream_71.add(char_literal577)
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:43: ( LT )*
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:43: ( LT )*
                         while True: #loop303
                             alt303 = 2
                             LA303_0 = self.input.LA(1)
@@ -18065,7 +18058,7 @@ class JavaScriptParser(Parser):
                             if alt303 == 1:
                                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                                 LT578 = self.input.LT(1)
-                                self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3602)
+                                self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3603)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
@@ -18076,7 +18069,7 @@ class JavaScriptParser(Parser):
                                 break #loop303
 
 
-                        self.following.append(self.FOLLOW_propertyNameAndValue_in_objectLiteral3605)
+                        self.following.append(self.FOLLOW_propertyNameAndValue_in_objectLiteral3606)
                         propertyNameAndValue579 = self.propertyNameAndValue()
                         self.following.pop()
                         if self.failed:
@@ -18089,7 +18082,7 @@ class JavaScriptParser(Parser):
                         break #loop304
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:70: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:70: ( LT )*
                 while True: #loop305
                     alt305 = 2
                     LA305_0 = self.input.LA(1)
@@ -18101,7 +18094,7 @@ class JavaScriptParser(Parser):
                     if alt305 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                         LT580 = self.input.LT(1)
-                        self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3609)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3610)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18112,21 +18105,21 @@ class JavaScriptParser(Parser):
                         break #loop305
 
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:74: ( ',' ( LT )* )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:74: ( ',' ( LT )* )?
                 alt307 = 2
                 LA307_0 = self.input.LA(1)
 
                 if (LA307_0 == 71) :
                     alt307 = 1
                 if alt307 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:75: ',' ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:75: ',' ( LT )*
                     char_literal581 = self.input.LT(1)
-                    self.match(self.input, 71, self.FOLLOW_71_in_objectLiteral3613)
+                    self.match(self.input, 71, self.FOLLOW_71_in_objectLiteral3614)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_71.add(char_literal581)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:79: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:79: ( LT )*
                     while True: #loop306
                         alt306 = 2
                         LA306_0 = self.input.LA(1)
@@ -18138,7 +18131,7 @@ class JavaScriptParser(Parser):
                         if alt306 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT582 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3615)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_objectLiteral3616)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18153,7 +18146,7 @@ class JavaScriptParser(Parser):
 
 
                 char_literal583 = self.input.LT(1)
-                self.match(self.input, 68, self.FOLLOW_68_in_objectLiteral3620)
+                self.match(self.input, 68, self.FOLLOW_68_in_objectLiteral3621)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
@@ -18175,12 +18168,12 @@ class JavaScriptParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 521:3: -> ^( OBJ ( propertyNameAndValue )* )
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:6: ^( OBJ ( propertyNameAndValue )* )
+                    # 522:3: -> ^( OBJ ( propertyNameAndValue )* )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:522:6: ^( OBJ ( propertyNameAndValue )* )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(OBJ, "OBJ"), root_1)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:12: ( propertyNameAndValue )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:522:12: ( propertyNameAndValue )*
                     while stream_propertyNameAndValue.hasNext():
                         self.adaptor.addChild(root_1, stream_propertyNameAndValue.next())
 
@@ -18223,7 +18216,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start propertyNameAndValue
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:524:1: propertyNameAndValue : ( propertyName ( LT )* ':' ( LT )* assignmentExpression -> ^( PROP propertyName PROP assignmentExpression ) | (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) ) | (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:1: propertyNameAndValue : ( propertyName ( LT )* ':' ( LT )* assignmentExpression -> ^( PROP propertyName PROP assignmentExpression ) | (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) ) | (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) ) );
     def propertyNameAndValue(self, ):
 
         retval = self.propertyNameAndValue_return()
@@ -18282,19 +18275,19 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 93):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:2: ( propertyName ( LT )* ':' ( LT )* assignmentExpression -> ^( PROP propertyName PROP assignmentExpression ) | (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) ) | (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:2: ( propertyName ( LT )* ':' ( LT )* assignmentExpression -> ^( PROP propertyName PROP assignmentExpression ) | (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) ) | (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) ) )
                 alt318 = 3
                 alt318 = self.dfa318.predict(self.input)
                 if alt318 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:4: propertyName ( LT )* ':' ( LT )* assignmentExpression
-                    self.following.append(self.FOLLOW_propertyName_in_propertyNameAndValue3644)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:4: propertyName ( LT )* ':' ( LT )* assignmentExpression
+                    self.following.append(self.FOLLOW_propertyName_in_propertyNameAndValue3645)
                     propertyName584 = self.propertyName()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_propertyName.add(propertyName584.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:17: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:17: ( LT )*
                     while True: #loop308
                         alt308 = 2
                         LA308_0 = self.input.LA(1)
@@ -18306,7 +18299,7 @@ class JavaScriptParser(Parser):
                         if alt308 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT585 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3646)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3647)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18318,12 +18311,12 @@ class JavaScriptParser(Parser):
 
 
                     char_literal586 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_propertyNameAndValue3649)
+                    self.match(self.input, 64, self.FOLLOW_64_in_propertyNameAndValue3650)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_64.add(char_literal586)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:25: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:25: ( LT )*
                     while True: #loop309
                         alt309 = 2
                         LA309_0 = self.input.LA(1)
@@ -18340,7 +18333,7 @@ class JavaScriptParser(Parser):
                         if alt309 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT587 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3651)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3652)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18351,7 +18344,7 @@ class JavaScriptParser(Parser):
                             break #loop309
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_propertyNameAndValue3654)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_propertyNameAndValue3655)
                     assignmentExpression588 = self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
@@ -18375,8 +18368,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 526:3: -> ^( PROP propertyName PROP assignmentExpression )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:6: ^( PROP propertyName PROP assignmentExpression )
+                        # 527:3: -> ^( PROP propertyName PROP assignmentExpression )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:6: ^( PROP propertyName PROP assignmentExpression )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(PROP, "PROP"), root_1)
 
@@ -18391,8 +18384,8 @@ class JavaScriptParser(Parser):
 
 
                 elif alt318 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:4: (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:4: (action= 'get' | action= 'set' )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:4: (action= 'get' | action= 'set' ) propname= identifier ( LT )* funcname= identifier ( LT )* formalParameterList ( LT )* statementBlock
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:4: (action= 'get' | action= 'set' )
                     alt310 = 2
                     LA310_0 = self.input.LA(1)
 
@@ -18405,14 +18398,14 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("527:4: (action= 'get' | action= 'set' )", 310, 0, self.input)
+                        nvae = NoViableAltException("528:4: (action= 'get' | action= 'set' )", 310, 0, self.input)
 
                         raise nvae
 
                     if alt310 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:5: action= 'get'
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:5: action= 'get'
                         action = self.input.LT(1)
-                        self.match(self.input, 139, self.FOLLOW_139_in_propertyNameAndValue3676)
+                        self.match(self.input, 139, self.FOLLOW_139_in_propertyNameAndValue3677)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18420,9 +18413,9 @@ class JavaScriptParser(Parser):
 
 
                     elif alt310 == 2:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:18: action= 'set'
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:18: action= 'set'
                         action = self.input.LT(1)
-                        self.match(self.input, 140, self.FOLLOW_140_in_propertyNameAndValue3680)
+                        self.match(self.input, 140, self.FOLLOW_140_in_propertyNameAndValue3681)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18430,14 +18423,14 @@ class JavaScriptParser(Parser):
 
 
 
-                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3685)
+                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3686)
                     propname = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(propname.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:52: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:52: ( LT )*
                     while True: #loop311
                         alt311 = 2
                         LA311_0 = self.input.LA(1)
@@ -18449,7 +18442,7 @@ class JavaScriptParser(Parser):
                         if alt311 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT589 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3687)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3688)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18460,14 +18453,14 @@ class JavaScriptParser(Parser):
                             break #loop311
 
 
-                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3692)
+                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3693)
                     funcname = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(funcname.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:76: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:76: ( LT )*
                     while True: #loop312
                         alt312 = 2
                         LA312_0 = self.input.LA(1)
@@ -18479,7 +18472,7 @@ class JavaScriptParser(Parser):
                         if alt312 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT590 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3694)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3695)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18490,14 +18483,14 @@ class JavaScriptParser(Parser):
                             break #loop312
 
 
-                    self.following.append(self.FOLLOW_formalParameterList_in_propertyNameAndValue3697)
+                    self.following.append(self.FOLLOW_formalParameterList_in_propertyNameAndValue3698)
                     formalParameterList591 = self.formalParameterList()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_formalParameterList.add(formalParameterList591.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:527:100: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:100: ( LT )*
                     while True: #loop313
                         alt313 = 2
                         LA313_0 = self.input.LA(1)
@@ -18509,7 +18502,7 @@ class JavaScriptParser(Parser):
                         if alt313 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT592 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3699)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3700)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18520,7 +18513,7 @@ class JavaScriptParser(Parser):
                             break #loop313
 
 
-                    self.following.append(self.FOLLOW_statementBlock_in_propertyNameAndValue3702)
+                    self.following.append(self.FOLLOW_statementBlock_in_propertyNameAndValue3703)
                     statementBlock593 = self.statementBlock()
                     self.following.pop()
                     if self.failed:
@@ -18528,7 +18521,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock593.tree)
                     # AST Rewrite
-                    # elements: propname, statementBlock, formalParameterList, funcname, action
+                    # elements: action, propname, statementBlock, funcname, formalParameterList
                     # token labels: action
                     # rule labels: propname, retval, funcname
                     # token list labels: 
@@ -18557,14 +18550,14 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 528:3: -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:6: ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) )
+                        # 529:3: -> ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:6: ^( PROP $propname $action ^( FUNC $funcname formalParameterList statementBlock ) )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(PROP, "PROP"), root_1)
 
                         self.adaptor.addChild(root_1, stream_propname.next())
                         self.adaptor.addChild(root_1, stream_action.next())
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:528:31: ^( FUNC $funcname formalParameterList statementBlock )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:31: ^( FUNC $funcname formalParameterList statementBlock )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNC, "FUNC"), root_2)
 
@@ -18581,8 +18574,8 @@ class JavaScriptParser(Parser):
 
 
                 elif alt318 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:4: (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:4: (action= 'get' | action= 'set' )
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:4: (action= 'get' | action= 'set' ) ( LT )* propname= identifier ( LT )* formalParameterList ( LT )* statementBlock
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:4: (action= 'get' | action= 'set' )
                     alt314 = 2
                     LA314_0 = self.input.LA(1)
 
@@ -18595,14 +18588,14 @@ class JavaScriptParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("529:4: (action= 'get' | action= 'set' )", 314, 0, self.input)
+                        nvae = NoViableAltException("530:4: (action= 'get' | action= 'set' )", 314, 0, self.input)
 
                         raise nvae
 
                     if alt314 == 1:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:5: action= 'get'
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:5: action= 'get'
                         action = self.input.LT(1)
-                        self.match(self.input, 139, self.FOLLOW_139_in_propertyNameAndValue3735)
+                        self.match(self.input, 139, self.FOLLOW_139_in_propertyNameAndValue3736)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18610,9 +18603,9 @@ class JavaScriptParser(Parser):
 
 
                     elif alt314 == 2:
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:18: action= 'set'
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:18: action= 'set'
                         action = self.input.LT(1)
-                        self.match(self.input, 140, self.FOLLOW_140_in_propertyNameAndValue3739)
+                        self.match(self.input, 140, self.FOLLOW_140_in_propertyNameAndValue3740)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
@@ -18620,7 +18613,7 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:32: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:32: ( LT )*
                     while True: #loop315
                         alt315 = 2
                         LA315_0 = self.input.LA(1)
@@ -18632,7 +18625,7 @@ class JavaScriptParser(Parser):
                         if alt315 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT594 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3742)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3743)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18643,14 +18636,14 @@ class JavaScriptParser(Parser):
                             break #loop315
 
 
-                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3747)
+                    self.following.append(self.FOLLOW_identifier_in_propertyNameAndValue3748)
                     propname = self.identifier()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_identifier.add(propname.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:56: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:56: ( LT )*
                     while True: #loop316
                         alt316 = 2
                         LA316_0 = self.input.LA(1)
@@ -18662,7 +18655,7 @@ class JavaScriptParser(Parser):
                         if alt316 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT595 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3749)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3750)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18673,14 +18666,14 @@ class JavaScriptParser(Parser):
                             break #loop316
 
 
-                    self.following.append(self.FOLLOW_formalParameterList_in_propertyNameAndValue3752)
+                    self.following.append(self.FOLLOW_formalParameterList_in_propertyNameAndValue3753)
                     formalParameterList596 = self.formalParameterList()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
                         stream_formalParameterList.add(formalParameterList596.tree)
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:529:80: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:80: ( LT )*
                     while True: #loop317
                         alt317 = 2
                         LA317_0 = self.input.LA(1)
@@ -18692,7 +18685,7 @@ class JavaScriptParser(Parser):
                         if alt317 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
                             LT597 = self.input.LT(1)
-                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3754)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_propertyNameAndValue3755)
                             if self.failed:
                                 return retval
                             if self.backtracking == 0:
@@ -18703,7 +18696,7 @@ class JavaScriptParser(Parser):
                             break #loop317
 
 
-                    self.following.append(self.FOLLOW_statementBlock_in_propertyNameAndValue3757)
+                    self.following.append(self.FOLLOW_statementBlock_in_propertyNameAndValue3758)
                     statementBlock598 = self.statementBlock()
                     self.following.pop()
                     if self.failed:
@@ -18711,7 +18704,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock598.tree)
                     # AST Rewrite
-                    # elements: action, statementBlock, propname, formalParameterList
+                    # elements: formalParameterList, action, propname, statementBlock
                     # token labels: action
                     # rule labels: propname, retval
                     # token list labels: 
@@ -18734,14 +18727,14 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 530:3: -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:6: ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) )
+                        # 531:3: -> ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:531:6: ^( PROP $propname $action ^( FUNC ANONYMOUS formalParameterList statementBlock ) )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(PROP, "PROP"), root_1)
 
                         self.adaptor.addChild(root_1, stream_propname.next())
                         self.adaptor.addChild(root_1, stream_action.next())
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:530:31: ^( FUNC ANONYMOUS formalParameterList statementBlock )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:531:31: ^( FUNC ANONYMOUS formalParameterList statementBlock )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(FUNC, "FUNC"), root_2)
 
@@ -18786,7 +18779,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start propertyName
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:533:1: propertyName : ( identifier | StringLiteral | NumericLiteral );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:534:1: propertyName : ( identifier | StringLiteral | NumericLiteral );
     def propertyName(self, ):
 
         retval = self.propertyName_return()
@@ -18807,7 +18800,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 94):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:534:2: ( identifier | StringLiteral | NumericLiteral )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:535:2: ( identifier | StringLiteral | NumericLiteral )
                 alt319 = 3
                 LA319 = self.input.LA(1)
                 if LA319 == Identifier or LA319 == 73 or LA319 == 74 or LA319 == 75 or LA319 == 88 or LA319 == 139 or LA319 == 140:
@@ -18821,15 +18814,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("533:1: propertyName : ( identifier | StringLiteral | NumericLiteral );", 319, 0, self.input)
+                    nvae = NoViableAltException("534:1: propertyName : ( identifier | StringLiteral | NumericLiteral );", 319, 0, self.input)
 
                     raise nvae
 
                 if alt319 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:534:4: identifier
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:535:4: identifier
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_identifier_in_propertyName3792)
+                    self.following.append(self.FOLLOW_identifier_in_propertyName3793)
                     identifier599 = self.identifier()
                     self.following.pop()
                     if self.failed:
@@ -18839,11 +18832,11 @@ class JavaScriptParser(Parser):
 
 
                 elif alt319 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:535:4: StringLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:536:4: StringLiteral
                     root_0 = self.adaptor.nil()
 
                     StringLiteral600 = self.input.LT(1)
-                    self.match(self.input, StringLiteral, self.FOLLOW_StringLiteral_in_propertyName3797)
+                    self.match(self.input, StringLiteral, self.FOLLOW_StringLiteral_in_propertyName3798)
                     if self.failed:
                         return retval
 
@@ -18853,11 +18846,11 @@ class JavaScriptParser(Parser):
 
 
                 elif alt319 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:536:4: NumericLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:537:4: NumericLiteral
                     root_0 = self.adaptor.nil()
 
                     NumericLiteral601 = self.input.LT(1)
-                    self.match(self.input, NumericLiteral, self.FOLLOW_NumericLiteral_in_propertyName3802)
+                    self.match(self.input, NumericLiteral, self.FOLLOW_NumericLiteral_in_propertyName3803)
                     if self.failed:
                         return retval
 
@@ -18895,7 +18888,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start literal
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:540:1: literal : ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:541:1: literal : ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) );
     def literal(self, ):
 
         retval = self.literal_return()
@@ -18927,7 +18920,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 95):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:541:2: ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:542:2: ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) )
                 alt320 = 6
                 LA320 = self.input.LA(1)
                 if LA320 == 141:
@@ -18947,14 +18940,14 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("540:1: literal : ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) );", 320, 0, self.input)
+                    nvae = NoViableAltException("541:1: literal : ( 'null' -> NULL | 'true' -> TRUE | 'false' -> FALSE | StringLiteral -> ^( STRING StringLiteral ) | NumericLiteral -> ^( NUMBER NumericLiteral ) | regularExpressionLiteral -> ^( REGEX regularExpressionLiteral ) );", 320, 0, self.input)
 
                     raise nvae
 
                 if alt320 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:541:4: 'null'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:542:4: 'null'
                     string_literal602 = self.input.LT(1)
-                    self.match(self.input, 141, self.FOLLOW_141_in_literal3814)
+                    self.match(self.input, 141, self.FOLLOW_141_in_literal3815)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -18976,7 +18969,7 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 541:11: -> NULL
+                        # 542:11: -> NULL
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(NULL, "NULL"))
 
 
@@ -18984,9 +18977,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt320 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:542:4: 'true'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:543:4: 'true'
                     string_literal603 = self.input.LT(1)
-                    self.match(self.input, 142, self.FOLLOW_142_in_literal3823)
+                    self.match(self.input, 142, self.FOLLOW_142_in_literal3824)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -19008,7 +19001,7 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 542:11: -> TRUE
+                        # 543:11: -> TRUE
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(TRUE, "TRUE"))
 
 
@@ -19016,9 +19009,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt320 == 3:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:543:4: 'false'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:544:4: 'false'
                     string_literal604 = self.input.LT(1)
-                    self.match(self.input, 143, self.FOLLOW_143_in_literal3832)
+                    self.match(self.input, 143, self.FOLLOW_143_in_literal3833)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -19040,7 +19033,7 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 543:12: -> FALSE
+                        # 544:12: -> FALSE
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(FALSE, "FALSE"))
 
 
@@ -19048,9 +19041,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt320 == 4:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:544:4: StringLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:545:4: StringLiteral
                     StringLiteral605 = self.input.LT(1)
-                    self.match(self.input, StringLiteral, self.FOLLOW_StringLiteral_in_literal3841)
+                    self.match(self.input, StringLiteral, self.FOLLOW_StringLiteral_in_literal3842)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -19072,8 +19065,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 544:18: -> ^( STRING StringLiteral )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:544:21: ^( STRING StringLiteral )
+                        # 545:18: -> ^( STRING StringLiteral )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:545:21: ^( STRING StringLiteral )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(STRING, "STRING"), root_1)
 
@@ -19086,9 +19079,9 @@ class JavaScriptParser(Parser):
 
 
                 elif alt320 == 5:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:545:4: NumericLiteral
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:546:4: NumericLiteral
                     NumericLiteral606 = self.input.LT(1)
-                    self.match(self.input, NumericLiteral, self.FOLLOW_NumericLiteral_in_literal3854)
+                    self.match(self.input, NumericLiteral, self.FOLLOW_NumericLiteral_in_literal3855)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -19110,8 +19103,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 545:19: -> ^( NUMBER NumericLiteral )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:545:22: ^( NUMBER NumericLiteral )
+                        # 546:19: -> ^( NUMBER NumericLiteral )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:546:22: ^( NUMBER NumericLiteral )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(NUMBER, "NUMBER"), root_1)
 
@@ -19124,8 +19117,8 @@ class JavaScriptParser(Parser):
 
 
                 elif alt320 == 6:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:546:4: regularExpressionLiteral
-                    self.following.append(self.FOLLOW_regularExpressionLiteral_in_literal3867)
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:547:4: regularExpressionLiteral
+                    self.following.append(self.FOLLOW_regularExpressionLiteral_in_literal3868)
                     regularExpressionLiteral607 = self.regularExpressionLiteral()
                     self.following.pop()
                     if self.failed:
@@ -19149,8 +19142,8 @@ class JavaScriptParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 546:29: -> ^( REGEX regularExpressionLiteral )
-                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:546:32: ^( REGEX regularExpressionLiteral )
+                        # 547:29: -> ^( REGEX regularExpressionLiteral )
+                        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:547:32: ^( REGEX regularExpressionLiteral )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(REGEX, "REGEX"), root_1)
 
@@ -19191,7 +19184,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start reFirstChar
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:556:1: reFirstChar : ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'let' | 'instanceof' | 'namespace' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | 'xml' | StringLiteral | NumericLiteral | Identifier );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:557:1: reFirstChar : ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'let' | 'instanceof' | 'namespace' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | 'xml' | StringLiteral | NumericLiteral | Identifier );
     def reFirstChar(self, ):
 
         retval = self.reFirstChar_return()
@@ -19208,7 +19201,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 96):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:557:2: ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'let' | 'instanceof' | 'namespace' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | 'xml' | StringLiteral | NumericLiteral | Identifier )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:558:2: ( ';' | ',' | '.' | ':' | '[' | ']' | '(' | ')' | '{' | '}' | '?' | '=' | '*=' | '/=' | '%=' | '+=' | '-=' | '<<=' | '>>=' | '>>>=' | '&=' | '^=' | '|=' | '<' | '>' | '<=' | '>=' | '<<' | '>>' | '>>>' | '|' | '||' | '&' | '&&' | '!' | '#' | '%' | '^' | '++' | '--' | '+' | '-' | '~' | 'break' | 'case' | 'catch' | 'const' | 'continue' | 'default' | 'delete' | 'do' | 'each' | 'else' | 'false' | 'finally' | 'for' | 'function' | 'get' | 'if' | 'in' | 'let' | 'instanceof' | 'namespace' | 'new' | 'null' | 'return' | 'set' | 'switch' | 'this' | 'throw' | 'true' | 'try' | 'typeof' | 'while' | 'with' | 'var' | 'void' | 'xml' | StringLiteral | NumericLiteral | Identifier )
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
                 root_0 = self.adaptor.nil()
 
@@ -19264,7 +19257,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start reChars
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:575:1: reChars : ( reFirstChar | '*' );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:576:1: reChars : ( reFirstChar | '*' );
     def reChars(self, ):
 
         retval = self.reChars_return()
@@ -19283,7 +19276,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 97):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:576:2: ( reFirstChar | '*' )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:577:2: ( reFirstChar | '*' )
                 alt321 = 2
                 LA321_0 = self.input.LA(1)
 
@@ -19296,15 +19289,15 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("575:1: reChars : ( reFirstChar | '*' );", 321, 0, self.input)
+                    nvae = NoViableAltException("576:1: reChars : ( reFirstChar | '*' );", 321, 0, self.input)
 
                     raise nvae
 
                 if alt321 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:576:4: reFirstChar
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:577:4: reFirstChar
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_reFirstChar_in_reChars4268)
+                    self.following.append(self.FOLLOW_reFirstChar_in_reChars4269)
                     reFirstChar609 = self.reFirstChar()
                     self.following.pop()
                     if self.failed:
@@ -19314,11 +19307,11 @@ class JavaScriptParser(Parser):
 
 
                 elif alt321 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:577:4: '*'
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:578:4: '*'
                     root_0 = self.adaptor.nil()
 
                     char_literal610 = self.input.LT(1)
-                    self.match(self.input, 101, self.FOLLOW_101_in_reChars4273)
+                    self.match(self.input, 101, self.FOLLOW_101_in_reChars4274)
                     if self.failed:
                         return retval
 
@@ -19356,7 +19349,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start regularExpressionLiteral
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:583:1: regularExpressionLiteral : ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:1: regularExpressionLiteral : ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? );
     def regularExpressionLiteral(self, ):
 
         retval = self.regularExpressionLiteral_return()
@@ -19385,7 +19378,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 98):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:2: ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:2: ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? )
                 alt326 = 2
                 LA326_0 = self.input.LA(1)
 
@@ -19398,23 +19391,23 @@ class JavaScriptParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("583:1: regularExpressionLiteral : ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? );", 326, 0, self.input)
+                    nvae = NoViableAltException("584:1: regularExpressionLiteral : ( '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )? | RegularExpressionHacks ( Identifier )? );", 326, 0, self.input)
 
                     raise nvae
 
                 if alt326 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:4: '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:4: '/' ( reFirstChar )? ( reChars )* '/' ( Identifier )?
                     root_0 = self.adaptor.nil()
 
                     char_literal611 = self.input.LT(1)
-                    self.match(self.input, 63, self.FOLLOW_63_in_regularExpressionLiteral4287)
+                    self.match(self.input, 63, self.FOLLOW_63_in_regularExpressionLiteral4288)
                     if self.failed:
                         return retval
 
                     char_literal611_tree = self.adaptor.createWithPayload(char_literal611)
                     self.adaptor.addChild(root_0, char_literal611_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:8: ( reFirstChar )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:8: ( reFirstChar )?
                     alt322 = 2
                     LA322_0 = self.input.LA(1)
 
@@ -19425,7 +19418,7 @@ class JavaScriptParser(Parser):
                             alt322 = 1
                     if alt322 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: reFirstChar
-                        self.following.append(self.FOLLOW_reFirstChar_in_regularExpressionLiteral4289)
+                        self.following.append(self.FOLLOW_reFirstChar_in_regularExpressionLiteral4290)
                         reFirstChar612 = self.reFirstChar()
                         self.following.pop()
                         if self.failed:
@@ -19435,7 +19428,7 @@ class JavaScriptParser(Parser):
 
 
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:21: ( reChars )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:21: ( reChars )*
                     while True: #loop323
                         alt323 = 2
                         LA323_0 = self.input.LA(1)
@@ -19446,7 +19439,7 @@ class JavaScriptParser(Parser):
 
                         if alt323 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: reChars
-                            self.following.append(self.FOLLOW_reChars_in_regularExpressionLiteral4292)
+                            self.following.append(self.FOLLOW_reChars_in_regularExpressionLiteral4293)
                             reChars613 = self.reChars()
                             self.following.pop()
                             if self.failed:
@@ -19460,14 +19453,14 @@ class JavaScriptParser(Parser):
 
 
                     char_literal614 = self.input.LT(1)
-                    self.match(self.input, 63, self.FOLLOW_63_in_regularExpressionLiteral4295)
+                    self.match(self.input, 63, self.FOLLOW_63_in_regularExpressionLiteral4296)
                     if self.failed:
                         return retval
 
                     char_literal614_tree = self.adaptor.createWithPayload(char_literal614)
                     self.adaptor.addChild(root_0, char_literal614_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:34: ( Identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:34: ( Identifier )?
                     alt324 = 2
                     LA324_0 = self.input.LA(1)
 
@@ -19476,7 +19469,7 @@ class JavaScriptParser(Parser):
                     if alt324 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: Identifier
                         Identifier615 = self.input.LT(1)
-                        self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral4297)
+                        self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral4298)
                         if self.failed:
                             return retval
 
@@ -19489,18 +19482,18 @@ class JavaScriptParser(Parser):
 
 
                 elif alt326 == 2:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:4: RegularExpressionHacks ( Identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:586:4: RegularExpressionHacks ( Identifier )?
                     root_0 = self.adaptor.nil()
 
                     RegularExpressionHacks616 = self.input.LT(1)
-                    self.match(self.input, RegularExpressionHacks, self.FOLLOW_RegularExpressionHacks_in_regularExpressionLiteral4303)
+                    self.match(self.input, RegularExpressionHacks, self.FOLLOW_RegularExpressionHacks_in_regularExpressionLiteral4304)
                     if self.failed:
                         return retval
 
                     RegularExpressionHacks616_tree = self.adaptor.createWithPayload(RegularExpressionHacks616)
                     self.adaptor.addChild(root_0, RegularExpressionHacks616_tree)
 
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:27: ( Identifier )?
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:586:27: ( Identifier )?
                     alt325 = 2
                     LA325_0 = self.input.LA(1)
 
@@ -19509,7 +19502,7 @@ class JavaScriptParser(Parser):
                     if alt325 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: Identifier
                         Identifier617 = self.input.LT(1)
-                        self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral4305)
+                        self.match(self.input, Identifier, self.FOLLOW_Identifier_in_regularExpressionLiteral4306)
                         if self.failed:
                             return retval
 
@@ -19550,7 +19543,7 @@ class JavaScriptParser(Parser):
 
 
     # $ANTLR start identifier
-    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:590:1: identifier : ( 'get' | 'set' | 'each' | 'default' | 'xml' | 'namespace' | Identifier );
+    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:591:1: identifier : ( 'get' | 'set' | 'each' | 'default' | 'xml' | 'namespace' | Identifier );
     def identifier(self, ):
 
         retval = self.identifier_return()
@@ -19567,7 +19560,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking > 0 and self.alreadyParsedRule(self.input, 99):
                     return retval
 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:591:2: ( 'get' | 'set' | 'each' | 'default' | 'xml' | 'namespace' | Identifier )
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:592:2: ( 'get' | 'set' | 'each' | 'default' | 'xml' | 'namespace' | Identifier )
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:
                 root_0 = self.adaptor.nil()
 
@@ -19735,12 +19728,12 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred29
     def synpred29_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:4: ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:4: 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock
-        self.match(self.input, 69, self.FOLLOW_69_in_synpred29539)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:4: ( 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:4: 'function' ( LT )* identifier ( LT )* formalParameterList ( LT )* statementBlock
+        self.match(self.input, 69, self.FOLLOW_69_in_synpred29540)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:15: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:15: ( LT )*
         while True: #loop331
             alt331 = 2
             LA331_0 = self.input.LA(1)
@@ -19751,7 +19744,7 @@ class JavaScriptParser(Parser):
 
             if alt331 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29541)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29542)
                 if self.failed:
                     return 
 
@@ -19760,12 +19753,12 @@ class JavaScriptParser(Parser):
                 break #loop331
 
 
-        self.following.append(self.FOLLOW_identifier_in_synpred29544)
+        self.following.append(self.FOLLOW_identifier_in_synpred29545)
         self.identifier()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:30: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:30: ( LT )*
         while True: #loop332
             alt332 = 2
             LA332_0 = self.input.LA(1)
@@ -19776,7 +19769,7 @@ class JavaScriptParser(Parser):
 
             if alt332 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29546)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29547)
                 if self.failed:
                     return 
 
@@ -19785,12 +19778,12 @@ class JavaScriptParser(Parser):
                 break #loop332
 
 
-        self.following.append(self.FOLLOW_formalParameterList_in_synpred29549)
+        self.following.append(self.FOLLOW_formalParameterList_in_synpred29550)
         self.formalParameterList()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:128:54: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:129:54: ( LT )*
         while True: #loop333
             alt333 = 2
             LA333_0 = self.input.LA(1)
@@ -19801,7 +19794,7 @@ class JavaScriptParser(Parser):
 
             if alt333 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29551)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred29552)
                 if self.failed:
                     return 
 
@@ -19810,7 +19803,7 @@ class JavaScriptParser(Parser):
                 break #loop333
 
 
-        self.following.append(self.FOLLOW_statementBlock_in_synpred29554)
+        self.following.append(self.FOLLOW_statementBlock_in_synpred29555)
         self.statementBlock()
         self.following.pop()
         if self.failed:
@@ -19823,12 +19816,12 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred32
     def synpred32_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:4: ( 'function' ( LT )* formalParameterList ( LT )* statementBlock )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:4: 'function' ( LT )* formalParameterList ( LT )* statementBlock
-        self.match(self.input, 69, self.FOLLOW_69_in_synpred32575)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:4: ( 'function' ( LT )* formalParameterList ( LT )* statementBlock )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:4: 'function' ( LT )* formalParameterList ( LT )* statementBlock
+        self.match(self.input, 69, self.FOLLOW_69_in_synpred32576)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:20: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:20: ( LT )*
         while True: #loop334
             alt334 = 2
             LA334_0 = self.input.LA(1)
@@ -19839,7 +19832,7 @@ class JavaScriptParser(Parser):
 
             if alt334 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred32577)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred32578)
                 if self.failed:
                     return 
 
@@ -19848,12 +19841,12 @@ class JavaScriptParser(Parser):
                 break #loop334
 
 
-        self.following.append(self.FOLLOW_formalParameterList_in_synpred32580)
+        self.following.append(self.FOLLOW_formalParameterList_in_synpred32581)
         self.formalParameterList()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:130:44: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:131:44: ( LT )*
         while True: #loop335
             alt335 = 2
             LA335_0 = self.input.LA(1)
@@ -19864,7 +19857,7 @@ class JavaScriptParser(Parser):
 
             if alt335 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred32582)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred32583)
                 if self.failed:
                     return 
 
@@ -19873,7 +19866,7 @@ class JavaScriptParser(Parser):
                 break #loop335
 
 
-        self.following.append(self.FOLLOW_statementBlock_in_synpred32585)
+        self.following.append(self.FOLLOW_statementBlock_in_synpred32586)
         self.statementBlock()
         self.following.pop()
         if self.failed:
@@ -19886,9 +19879,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred34
     def synpred34_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:44: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:132:44: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred34614)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:44: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:133:44: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred34615)
         if self.failed:
             return 
 
@@ -19899,9 +19892,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred41
     def synpred41_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:143:4: ( statementBlock )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:143:4: statementBlock
-        self.following.append(self.FOLLOW_statementBlock_in_synpred41693)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: ( statementBlock )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: statementBlock
+        self.following.append(self.FOLLOW_statementBlock_in_synpred41694)
         self.statementBlock()
         self.following.pop()
         if self.failed:
@@ -19914,9 +19907,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred42
     def synpred42_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: ( variableStatement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:144:4: variableStatement
-        self.following.append(self.FOLLOW_variableStatement_in_synpred42698)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:145:4: ( variableStatement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:145:4: variableStatement
+        self.following.append(self.FOLLOW_variableStatement_in_synpred42699)
         self.variableStatement()
         self.following.pop()
         if self.failed:
@@ -19929,9 +19922,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred44
     def synpred44_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:146:4: ( expressionStatement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:146:4: expressionStatement
-        self.following.append(self.FOLLOW_expressionStatement_in_synpred44708)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:147:4: ( expressionStatement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:147:4: expressionStatement
+        self.following.append(self.FOLLOW_expressionStatement_in_synpred44709)
         self.expressionStatement()
         self.following.pop()
         if self.failed:
@@ -19944,9 +19937,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred51
     def synpred51_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:153:4: ( letStatement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:153:4: letStatement
-        self.following.append(self.FOLLOW_letStatement_in_synpred51743)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: ( letStatement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: letStatement
+        self.following.append(self.FOLLOW_letStatement_in_synpred51744)
         self.letStatement()
         self.following.pop()
         if self.failed:
@@ -19959,9 +19952,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred52
     def synpred52_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: ( labelledStatement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:154:4: labelledStatement
-        self.following.append(self.FOLLOW_labelledStatement_in_synpred52748)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:155:4: ( labelledStatement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:155:4: labelledStatement
+        self.following.append(self.FOLLOW_labelledStatement_in_synpred52749)
         self.labelledStatement()
         self.following.pop()
         if self.failed:
@@ -19974,9 +19967,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred59
     def synpred59_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred59824)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred59825)
         if self.failed:
             return 
 
@@ -19987,12 +19980,12 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred62
     def synpred62_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:4: ( '{' ( LT )* ( statementList )? ( LT )* '}' )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:4: '{' ( LT )* ( statementList )? ( LT )* '}'
-        self.match(self.input, 67, self.FOLLOW_67_in_synpred62822)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:4: ( '{' ( LT )* ( statementList )? ( LT )* '}' )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:4: '{' ( LT )* ( statementList )? ( LT )* '}'
+        self.match(self.input, 67, self.FOLLOW_67_in_synpred62823)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:10: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:10: ( LT )*
         while True: #loop342
             alt342 = 2
             LA342_0 = self.input.LA(1)
@@ -20008,7 +20001,7 @@ class JavaScriptParser(Parser):
 
             if alt342 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred62824)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred62825)
                 if self.failed:
                     return 
 
@@ -20017,12 +20010,12 @@ class JavaScriptParser(Parser):
                 break #loop342
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:13: ( statementList )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:13: ( statementList )?
         alt343 = 2
         alt343 = self.dfa343.predict(self.input)
         if alt343 == 1:
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: statementList
-            self.following.append(self.FOLLOW_statementList_in_synpred62828)
+            self.following.append(self.FOLLOW_statementList_in_synpred62829)
             self.statementList()
             self.following.pop()
             if self.failed:
@@ -20030,7 +20023,7 @@ class JavaScriptParser(Parser):
 
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:167:30: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:168:30: ( LT )*
         while True: #loop344
             alt344 = 2
             LA344_0 = self.input.LA(1)
@@ -20041,7 +20034,7 @@ class JavaScriptParser(Parser):
 
             if alt344 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred62831)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred62832)
                 if self.failed:
                     return 
 
@@ -20050,7 +20043,7 @@ class JavaScriptParser(Parser):
                 break #loop344
 
 
-        self.match(self.input, 68, self.FOLLOW_68_in_synpred62835)
+        self.match(self.input, 68, self.FOLLOW_68_in_synpred62836)
         if self.failed:
             return 
 
@@ -20061,9 +20054,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred64
     def synpred64_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:15: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:15: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred64863)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:15: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:15: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred64864)
         if self.failed:
             return 
 
@@ -20074,9 +20067,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred65
     def synpred65_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:15: ( ( LT )* statement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:15: ( LT )* statement
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:172:17: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:15: ( ( LT )* statement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:15: ( LT )* statement
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:173:17: ( LT )*
         while True: #loop345
             alt345 = 2
             LA345_0 = self.input.LA(1)
@@ -20092,7 +20085,7 @@ class JavaScriptParser(Parser):
 
             if alt345 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred65863)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred65864)
                 if self.failed:
                     return 
 
@@ -20101,7 +20094,7 @@ class JavaScriptParser(Parser):
                 break #loop345
 
 
-        self.following.append(self.FOLLOW_statement_in_synpred65867)
+        self.following.append(self.FOLLOW_statement_in_synpred65868)
         self.statement()
         self.following.pop()
         if self.failed:
@@ -20114,9 +20107,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred79
     def synpred79_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred791011)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred791012)
         if self.failed:
             return 
 
@@ -20127,9 +20120,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred84
     def synpred84_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:25: ( ( LT )* ',' ( ( LT )* identifier )? )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:25: ( LT )* ',' ( ( LT )* identifier )?
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:25: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:25: ( ( LT )* ',' ( ( LT )* identifier )? )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:25: ( LT )* ',' ( ( LT )* identifier )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:25: ( LT )*
         while True: #loop354
             alt354 = 2
             LA354_0 = self.input.LA(1)
@@ -20140,7 +20133,7 @@ class JavaScriptParser(Parser):
 
             if alt354 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred841018)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred841019)
                 if self.failed:
                     return 
 
@@ -20149,18 +20142,18 @@ class JavaScriptParser(Parser):
                 break #loop354
 
 
-        self.match(self.input, 71, self.FOLLOW_71_in_synpred841021)
+        self.match(self.input, 71, self.FOLLOW_71_in_synpred841022)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:33: ( ( LT )* identifier )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:33: ( ( LT )* identifier )?
         alt356 = 2
         LA356_0 = self.input.LA(1)
 
         if (LA356_0 == LT or LA356_0 == Identifier or (73 <= LA356_0 <= 75) or LA356_0 == 88 or (139 <= LA356_0 <= 140)) :
             alt356 = 1
         if alt356 == 1:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:34: ( LT )* identifier
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:191:34: ( LT )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:34: ( LT )* identifier
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:192:34: ( LT )*
             while True: #loop355
                 alt355 = 2
                 LA355_0 = self.input.LA(1)
@@ -20171,7 +20164,7 @@ class JavaScriptParser(Parser):
 
                 if alt355 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred841024)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred841025)
                     if self.failed:
                         return 
 
@@ -20180,7 +20173,7 @@ class JavaScriptParser(Parser):
                     break #loop355
 
 
-            self.following.append(self.FOLLOW_identifier_in_synpred841027)
+            self.following.append(self.FOLLOW_identifier_in_synpred841028)
             self.identifier()
             self.following.pop()
             if self.failed:
@@ -20196,9 +20189,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred93
     def synpred93_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred931110)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred931111)
         if self.failed:
             return 
 
@@ -20209,9 +20202,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred98
     def synpred98_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:25: ( ( LT )* ',' ( ( LT )* identifier )? )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:25: ( LT )* ',' ( ( LT )* identifier )?
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:25: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:25: ( ( LT )* ',' ( ( LT )* identifier )? )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:25: ( LT )* ',' ( ( LT )* identifier )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:25: ( LT )*
         while True: #loop363
             alt363 = 2
             LA363_0 = self.input.LA(1)
@@ -20222,7 +20215,7 @@ class JavaScriptParser(Parser):
 
             if alt363 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred981117)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred981118)
                 if self.failed:
                     return 
 
@@ -20231,18 +20224,18 @@ class JavaScriptParser(Parser):
                 break #loop363
 
 
-        self.match(self.input, 71, self.FOLLOW_71_in_synpred981120)
+        self.match(self.input, 71, self.FOLLOW_71_in_synpred981121)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:33: ( ( LT )* identifier )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:33: ( ( LT )* identifier )?
         alt365 = 2
         LA365_0 = self.input.LA(1)
 
         if (LA365_0 == LT or LA365_0 == Identifier or (73 <= LA365_0 <= 75) or LA365_0 == 88 or (139 <= LA365_0 <= 140)) :
             alt365 = 1
         if alt365 == 1:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:34: ( LT )* identifier
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:198:34: ( LT )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:34: ( LT )* identifier
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:199:34: ( LT )*
             while True: #loop364
                 alt364 = 2
                 LA364_0 = self.input.LA(1)
@@ -20253,7 +20246,7 @@ class JavaScriptParser(Parser):
 
                 if alt364 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred981123)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred981124)
                     if self.failed:
                         return 
 
@@ -20262,7 +20255,7 @@ class JavaScriptParser(Parser):
                     break #loop364
 
 
-            self.following.append(self.FOLLOW_identifier_in_synpred981126)
+            self.following.append(self.FOLLOW_identifier_in_synpred981127)
             self.identifier()
             self.following.pop()
             if self.failed:
@@ -20278,9 +20271,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred104
     def synpred104_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:203:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1041183)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:204:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:204:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1041184)
         if self.failed:
             return 
 
@@ -20291,9 +20284,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred105
     def synpred105_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:208:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1051206)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:209:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:209:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1051207)
         if self.failed:
             return 
 
@@ -20304,9 +20297,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred108
     def synpred108_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:18: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:18: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1081268)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:18: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:18: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1081269)
         if self.failed:
             return 
 
@@ -20317,9 +20310,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred110
     def synpred110_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:43: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:43: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1101280)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:43: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:43: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1101281)
         if self.failed:
             return 
 
@@ -20330,9 +20323,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred112
     def synpred112_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:71: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:71: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1121293)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:71: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:71: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1121294)
         if self.failed:
             return 
 
@@ -20343,9 +20336,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred113
     def synpred113_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:59: ( ( LT )* 'else' ( LT )* statement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:59: ( LT )* 'else' ( LT )* statement
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:61: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:59: ( ( LT )* 'else' ( LT )* statement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:59: ( LT )* 'else' ( LT )* statement
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:61: ( LT )*
         while True: #loop368
             alt368 = 2
             LA368_0 = self.input.LA(1)
@@ -20356,7 +20349,7 @@ class JavaScriptParser(Parser):
 
             if alt368 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1131287)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1131288)
                 if self.failed:
                     return 
 
@@ -20365,10 +20358,10 @@ class JavaScriptParser(Parser):
                 break #loop368
 
 
-        self.match(self.input, 84, self.FOLLOW_84_in_synpred1131291)
+        self.match(self.input, 84, self.FOLLOW_84_in_synpred1131292)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:221:73: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:222:73: ( LT )*
         while True: #loop369
             alt369 = 2
             LA369_0 = self.input.LA(1)
@@ -20384,7 +20377,7 @@ class JavaScriptParser(Parser):
 
             if alt369 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1131293)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1131294)
                 if self.failed:
                     return 
 
@@ -20393,7 +20386,7 @@ class JavaScriptParser(Parser):
                 break #loop369
 
 
-        self.following.append(self.FOLLOW_statement_in_synpred1131297)
+        self.following.append(self.FOLLOW_statement_in_synpred1131298)
         self.statement()
         self.following.pop()
         if self.failed:
@@ -20406,9 +20399,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred116
     def synpred116_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:227:4: ( forStatement )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:227:4: forStatement
-        self.following.append(self.FOLLOW_forStatement_in_synpred1161321)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:228:4: ( forStatement )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:228:4: forStatement
+        self.following.append(self.FOLLOW_forStatement_in_synpred1161322)
         self.forStatement()
         self.following.pop()
         if self.failed:
@@ -20421,9 +20414,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred117
     def synpred117_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:9: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:232:9: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1171340)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:9: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:233:9: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1171341)
         if self.failed:
             return 
 
@@ -20434,9 +20427,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred122
     def synpred122_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:21: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:21: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1221389)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:21: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:21: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1221390)
         if self.failed:
             return 
 
@@ -20447,9 +20440,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred124
     def synpred124_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:46: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:236:46: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1241401)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:46: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:237:46: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1241402)
         if self.failed:
             return 
 
@@ -20460,9 +20453,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred126
     def synpred126_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:20: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:20: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1261426)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:20: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:20: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1261427)
         if self.failed:
             return 
 
@@ -20473,9 +20466,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred129
     def synpred129_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:65: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:65: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1291441)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:65: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:65: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1291442)
         if self.failed:
             return 
 
@@ -20486,9 +20479,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred132
     def synpred132_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:93: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:93: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1321456)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:93: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:93: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1321457)
         if self.failed:
             return 
 
@@ -20499,9 +20492,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred135
     def synpred135_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:120: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:240:120: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1351470)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:120: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:241:120: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1351471)
         if self.failed:
             return 
 
@@ -20512,9 +20505,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred139
     def synpred139_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:10: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:10: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1391515)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:10: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:10: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1391516)
         if self.failed:
             return 
 
@@ -20525,9 +20518,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred142
     def synpred142_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:32: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:32: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1421528)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:32: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:32: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1421529)
         if self.failed:
             return 
 
@@ -20538,9 +20531,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred144
     def synpred144_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:77: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:77: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1441540)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:77: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:77: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1441541)
         if self.failed:
             return 
 
@@ -20551,9 +20544,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred146
     def synpred146_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:102: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:249:102: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1461552)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:102: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:250:102: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1461553)
         if self.failed:
             return 
 
@@ -20564,9 +20557,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred154
     def synpred154_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:13: ( expression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:266:13: expression
-        self.following.append(self.FOLLOW_expression_in_synpred1541642)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:267:13: ( expression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:267:13: expression
+        self.following.append(self.FOLLOW_expression_in_synpred1541643)
         self.expression()
         self.following.pop()
         if self.failed:
@@ -20579,9 +20572,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred157
     def synpred157_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:20: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:20: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1571672)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:20: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:20: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1571673)
         if self.failed:
             return 
 
@@ -20592,9 +20585,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred159
     def synpred159_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:45: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:270:45: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1591684)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:45: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:271:45: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1591685)
         if self.failed:
             return 
 
@@ -20605,9 +20598,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred161
     def synpred161_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:19: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:19: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1611707)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:19: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:19: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1611708)
         if self.failed:
             return 
 
@@ -20618,9 +20611,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred163
     def synpred163_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:44: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:274:44: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1631719)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:44: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:275:44: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1631720)
         if self.failed:
             return 
 
@@ -20631,9 +20624,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred165
     def synpred165_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:24: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:278:24: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1651742)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:24: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:279:24: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1651743)
         if self.failed:
             return 
 
@@ -20644,9 +20637,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred167
     def synpred167_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:22: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:282:22: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1671766)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:22: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:283:22: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1671767)
         if self.failed:
             return 
 
@@ -20657,9 +20650,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred177
     def synpred177_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:11: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:11: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1771840)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:11: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:11: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1771841)
         if self.failed:
             return 
 
@@ -20670,9 +20663,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred179
     def synpred179_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:36: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:36: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1791852)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:36: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:36: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1791853)
         if self.failed:
             return 
 
@@ -20683,9 +20676,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred180
     def synpred180_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:41: ( statementList )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:290:41: statementList
-        self.following.append(self.FOLLOW_statementList_in_synpred1801856)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:41: ( statementList )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:291:41: statementList
+        self.following.append(self.FOLLOW_statementList_in_synpred1801857)
         self.statementList()
         self.following.pop()
         if self.failed:
@@ -20698,9 +20691,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred182
     def synpred182_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:23: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:294:23: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1821877)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:23: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:295:23: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1821878)
         if self.failed:
             return 
 
@@ -20711,9 +20704,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred196
     def synpred196_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:35: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:35: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1962024)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:35: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:35: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred1962025)
         if self.failed:
             return 
 
@@ -20722,74 +20715,11 @@ class JavaScriptParser(Parser):
 
 
 
-    # $ANTLR start synpred197
-    def synpred197_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:26: ( ( LT )* ',' ( LT )* assignmentExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:26: ( LT )* ',' ( LT )* assignmentExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:28: ( LT )*
-        while True: #loop379
-            alt379 = 2
-            LA379_0 = self.input.LA(1)
-
-            if (LA379_0 == LT) :
-                alt379 = 1
-
-
-            if alt379 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1972018)
-                if self.failed:
-                    return 
-
-
-            else:
-                break #loop379
-
-
-        self.match(self.input, 71, self.FOLLOW_71_in_synpred1972022)
-        if self.failed:
-            return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:315:37: ( LT )*
-        while True: #loop380
-            alt380 = 2
-            LA380_0 = self.input.LA(1)
-
-            if (LA380_0 == LT) :
-                LA380_2 = self.input.LA(2)
-
-                if (self.synpred196()) :
-                    alt380 = 1
-
-
-
-
-            if alt380 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred1972024)
-                if self.failed:
-                    return 
-
-
-            else:
-                break #loop380
-
-
-        self.following.append(self.FOLLOW_assignmentExpression_in_synpred1972028)
-        self.assignmentExpression()
-        self.following.pop()
-        if self.failed:
-            return 
-
-
-    # $ANTLR end synpred197
-
-
-
     # $ANTLR start synpred200
     def synpred200_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:19: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:19: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2002043)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:19: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:19: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2002044)
         if self.failed:
             return 
 
@@ -20800,9 +20730,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred202
     def synpred202_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:54: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:316:54: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2022055)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:54: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:317:54: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2022056)
         if self.failed:
             return 
 
@@ -20813,9 +20743,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred204
     def synpred204_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:39: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:320:39: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2042080)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:39: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:321:39: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2042081)
         if self.failed:
             return 
 
@@ -20826,9 +20756,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred207
     def synpred207_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:50: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:50: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2072105)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:50: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:50: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2072106)
         if self.failed:
             return 
 
@@ -20839,14 +20769,14 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred208
     def synpred208_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:4: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression
-        self.following.append(self.FOLLOW_leftHandSideExpression_in_synpred2082098)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:4: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpression
+        self.following.append(self.FOLLOW_leftHandSideExpression_in_synpred2082099)
         self.leftHandSideExpression()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:27: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:27: ( LT )*
         while True: #loop386
             alt386 = 2
             LA386_0 = self.input.LA(1)
@@ -20857,7 +20787,7 @@ class JavaScriptParser(Parser):
 
             if alt386 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2082100)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2082101)
                 if self.failed:
                     return 
 
@@ -20866,12 +20796,12 @@ class JavaScriptParser(Parser):
                 break #loop386
 
 
-        self.following.append(self.FOLLOW_assignmentOperator_in_synpred2082103)
+        self.following.append(self.FOLLOW_assignmentOperator_in_synpred2082104)
         self.assignmentOperator()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:324:50: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:325:50: ( LT )*
         while True: #loop387
             alt387 = 2
             LA387_0 = self.input.LA(1)
@@ -20887,7 +20817,7 @@ class JavaScriptParser(Parser):
 
             if alt387 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2082105)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2082106)
                 if self.failed:
                     return 
 
@@ -20896,7 +20826,7 @@ class JavaScriptParser(Parser):
                 break #loop387
 
 
-        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2082108)
+        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2082109)
         self.assignmentExpression()
         self.following.pop()
         if self.failed:
@@ -20909,9 +20839,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred210
     def synpred210_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:50: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:50: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2102146)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:50: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:50: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2102147)
         if self.failed:
             return 
 
@@ -20922,14 +20852,14 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred211
     def synpred211_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:4: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn
-        self.following.append(self.FOLLOW_leftHandSideExpression_in_synpred2112139)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:4: ( leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:4: leftHandSideExpression ( LT )* assignmentOperator ( LT )* assignmentExpressionNoIn
+        self.following.append(self.FOLLOW_leftHandSideExpression_in_synpred2112140)
         self.leftHandSideExpression()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:27: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:27: ( LT )*
         while True: #loop388
             alt388 = 2
             LA388_0 = self.input.LA(1)
@@ -20940,7 +20870,7 @@ class JavaScriptParser(Parser):
 
             if alt388 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2112141)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2112142)
                 if self.failed:
                     return 
 
@@ -20949,12 +20879,12 @@ class JavaScriptParser(Parser):
                 break #loop388
 
 
-        self.following.append(self.FOLLOW_assignmentOperator_in_synpred2112144)
+        self.following.append(self.FOLLOW_assignmentOperator_in_synpred2112145)
         self.assignmentOperator()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:330:50: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:331:50: ( LT )*
         while True: #loop389
             alt389 = 2
             LA389_0 = self.input.LA(1)
@@ -20970,7 +20900,7 @@ class JavaScriptParser(Parser):
 
             if alt389 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2112146)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2112147)
                 if self.failed:
                     return 
 
@@ -20979,7 +20909,7 @@ class JavaScriptParser(Parser):
                 break #loop389
 
 
-        self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_synpred2112149)
+        self.following.append(self.FOLLOW_assignmentExpressionNoIn_in_synpred2112150)
         self.assignmentExpressionNoIn()
         self.following.pop()
         if self.failed:
@@ -20992,9 +20922,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred212
     def synpred212_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:336:4: ( callExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:336:4: callExpression
-        self.following.append(self.FOLLOW_callExpression_in_synpred2122180)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:337:4: ( callExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:337:4: callExpression
+        self.following.append(self.FOLLOW_callExpression_in_synpred2122181)
         self.callExpression()
         self.following.pop()
         if self.failed:
@@ -21007,9 +20937,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred213
     def synpred213_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:341:4: ( memberExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:341:4: memberExpression
-        self.following.append(self.FOLLOW_memberExpression_in_synpred2132197)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:4: ( memberExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:4: memberExpression
+        self.following.append(self.FOLLOW_memberExpression_in_synpred2132198)
         self.memberExpression()
         self.following.pop()
         if self.failed:
@@ -21022,9 +20952,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred214
     def synpred214_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:10: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:342:10: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2142204)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:343:10: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:343:10: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2142205)
         if self.failed:
             return 
 
@@ -21035,9 +20965,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred216
     def synpred216_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:23: ( ( LT )* memberExpressionSuffix )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:23: ( LT )* memberExpressionSuffix
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:347:23: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:23: ( ( LT )* memberExpressionSuffix )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:23: ( LT )* memberExpressionSuffix
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:348:23: ( LT )*
         while True: #loop390
             alt390 = 2
             LA390_0 = self.input.LA(1)
@@ -21048,7 +20978,7 @@ class JavaScriptParser(Parser):
 
             if alt390 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2162232)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2162233)
                 if self.failed:
                     return 
 
@@ -21057,7 +20987,7 @@ class JavaScriptParser(Parser):
                 break #loop390
 
 
-        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2162235)
+        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2162236)
         self.memberExpressionSuffix()
         self.following.pop()
         if self.failed:
@@ -21070,9 +21000,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred219
     def synpred219_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:24: ( ( LT )* memberExpressionSuffix )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:24: ( LT )* memberExpressionSuffix
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:349:26: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:24: ( ( LT )* memberExpressionSuffix )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:24: ( LT )* memberExpressionSuffix
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:26: ( LT )*
         while True: #loop393
             alt393 = 2
             LA393_0 = self.input.LA(1)
@@ -21083,7 +21013,7 @@ class JavaScriptParser(Parser):
 
             if alt393 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2192258)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2192259)
                 if self.failed:
                     return 
 
@@ -21092,7 +21022,7 @@ class JavaScriptParser(Parser):
                 break #loop393
 
 
-        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2192262)
+        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2192263)
         self.memberExpressionSuffix()
         self.following.pop()
         if self.failed:
@@ -21105,9 +21035,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred221
     def synpred221_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:10: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:10: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2212271)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:10: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:10: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2212272)
         if self.failed:
             return 
 
@@ -21118,9 +21048,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred224
     def synpred224_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:46: ( ( LT )* memberExpressionSuffix )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:46: ( LT )* memberExpressionSuffix
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:350:46: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:46: ( ( LT )* memberExpressionSuffix )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:46: ( LT )* memberExpressionSuffix
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:351:46: ( LT )*
         while True: #loop396
             alt396 = 2
             LA396_0 = self.input.LA(1)
@@ -21131,7 +21061,7 @@ class JavaScriptParser(Parser):
 
             if alt396 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2242282)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2242283)
                 if self.failed:
                     return 
 
@@ -21140,7 +21070,7 @@ class JavaScriptParser(Parser):
                 break #loop396
 
 
-        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2242285)
+        self.following.append(self.FOLLOW_memberExpressionSuffix_in_synpred2242286)
         self.memberExpressionSuffix()
         self.following.pop()
         if self.failed:
@@ -21153,9 +21083,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred228
     def synpred228_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:21: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:21: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2282355)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:21: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:21: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2282356)
         if self.failed:
             return 
 
@@ -21166,9 +21096,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred232
     def synpred232_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:45: ( ( LT )* callExpressionSuffix )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:45: ( LT )* callExpressionSuffix
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:365:45: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:45: ( ( LT )* callExpressionSuffix )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:45: ( LT )* callExpressionSuffix
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:366:45: ( LT )*
         while True: #loop397
             alt397 = 2
             LA397_0 = self.input.LA(1)
@@ -21179,7 +21109,7 @@ class JavaScriptParser(Parser):
 
             if alt397 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2322367)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2322368)
                 if self.failed:
                     return 
 
@@ -21188,7 +21118,7 @@ class JavaScriptParser(Parser):
                 break #loop397
 
 
-        self.following.append(self.FOLLOW_callExpressionSuffix_in_synpred2322370)
+        self.following.append(self.FOLLOW_callExpressionSuffix_in_synpred2322371)
         self.callExpressionSuffix()
         self.following.pop()
         if self.failed:
@@ -21201,9 +21131,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred237
     def synpred237_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:9: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:9: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2372438)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:9: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:9: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2372439)
         if self.failed:
             return 
 
@@ -21214,9 +21144,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred238
     def synpred238_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:34: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:34: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2382443)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:34: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:34: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2382444)
         if self.failed:
             return 
 
@@ -21227,9 +21157,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred239
     def synpred239_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:43: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:43: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2392449)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:43: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:43: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2392450)
         if self.failed:
             return 
 
@@ -21240,9 +21170,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred240
     def synpred240_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:68: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:381:68: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2402454)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:68: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:382:68: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2402455)
         if self.failed:
             return 
 
@@ -21253,9 +21183,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred244
     def synpred244_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:386:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2442489)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:387:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2442490)
         if self.failed:
             return 
 
@@ -21266,9 +21196,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred248
     def synpred248_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:12: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:12: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2482578)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:12: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:12: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2482579)
         if self.failed:
             return 
 
@@ -21279,9 +21209,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred249
     def synpred249_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:16: ( e4xIdentifier )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:401:16: e4xIdentifier
-        self.following.append(self.FOLLOW_e4xIdentifier_in_synpred2492581)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:16: ( e4xIdentifier )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:402:16: e4xIdentifier
+        self.following.append(self.FOLLOW_e4xIdentifier_in_synpred2492582)
         self.e4xIdentifier()
         self.following.pop()
         if self.failed:
@@ -21294,9 +21224,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred263
     def synpred263_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:34: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:34: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2632685)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:34: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:34: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2632686)
         if self.failed:
             return 
 
@@ -21307,9 +21237,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred265
     def synpred265_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:69: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:69: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2652697)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:69: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:69: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2652698)
         if self.failed:
             return 
 
@@ -21320,9 +21250,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred266
     def synpred266_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:25: ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:25: ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:27: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:25: ( ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:25: ( LT )* '?' ( LT )* assignmentExpression ( LT )* ':' ( LT )* assignmentExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:27: ( LT )*
         while True: #loop405
             alt405 = 2
             LA405_0 = self.input.LA(1)
@@ -21333,7 +21263,7 @@ class JavaScriptParser(Parser):
 
             if alt405 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662679)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662680)
                 if self.failed:
                     return 
 
@@ -21342,10 +21272,10 @@ class JavaScriptParser(Parser):
                 break #loop405
 
 
-        self.match(self.input, 113, self.FOLLOW_113_in_synpred2662683)
+        self.match(self.input, 113, self.FOLLOW_113_in_synpred2662684)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:36: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:36: ( LT )*
         while True: #loop406
             alt406 = 2
             LA406_0 = self.input.LA(1)
@@ -21361,7 +21291,7 @@ class JavaScriptParser(Parser):
 
             if alt406 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662685)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662686)
                 if self.failed:
                     return 
 
@@ -21370,12 +21300,12 @@ class JavaScriptParser(Parser):
                 break #loop406
 
 
-        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2662689)
+        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2662690)
         self.assignmentExpression()
         self.following.pop()
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:62: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:62: ( LT )*
         while True: #loop407
             alt407 = 2
             LA407_0 = self.input.LA(1)
@@ -21386,7 +21316,7 @@ class JavaScriptParser(Parser):
 
             if alt407 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662691)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662692)
                 if self.failed:
                     return 
 
@@ -21395,10 +21325,10 @@ class JavaScriptParser(Parser):
                 break #loop407
 
 
-        self.match(self.input, 64, self.FOLLOW_64_in_synpred2662695)
+        self.match(self.input, 64, self.FOLLOW_64_in_synpred2662696)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:415:71: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:416:71: ( LT )*
         while True: #loop408
             alt408 = 2
             LA408_0 = self.input.LA(1)
@@ -21414,7 +21344,7 @@ class JavaScriptParser(Parser):
 
             if alt408 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662697)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2662698)
                 if self.failed:
                     return 
 
@@ -21423,7 +21353,7 @@ class JavaScriptParser(Parser):
                 break #loop408
 
 
-        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2662701)
+        self.following.append(self.FOLLOW_assignmentExpression_in_synpred2662702)
         self.assignmentExpression()
         self.following.pop()
         if self.failed:
@@ -21436,9 +21366,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred268
     def synpred268_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:38: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:38: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2682723)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:38: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:38: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2682724)
         if self.failed:
             return 
 
@@ -21449,9 +21379,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred270
     def synpred270_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:77: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:419:77: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2702735)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:77: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:420:77: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2702736)
         if self.failed:
             return 
 
@@ -21462,9 +21392,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred273
     def synpred273_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:36: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:36: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2732761)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:36: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:36: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2732762)
         if self.failed:
             return 
 
@@ -21475,9 +21405,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred274
     def synpred274_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:26: ( ( LT )* '||' ( LT )* logicalANDExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:26: ( LT )* '||' ( LT )* logicalANDExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:28: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:26: ( ( LT )* '||' ( LT )* logicalANDExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:26: ( LT )* '||' ( LT )* logicalANDExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:28: ( LT )*
         while True: #loop413
             alt413 = 2
             LA413_0 = self.input.LA(1)
@@ -21488,7 +21418,7 @@ class JavaScriptParser(Parser):
 
             if alt413 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2742755)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2742756)
                 if self.failed:
                     return 
 
@@ -21497,10 +21427,10 @@ class JavaScriptParser(Parser):
                 break #loop413
 
 
-        self.match(self.input, 114, self.FOLLOW_114_in_synpred2742759)
+        self.match(self.input, 114, self.FOLLOW_114_in_synpred2742760)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:423:38: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:424:38: ( LT )*
         while True: #loop414
             alt414 = 2
             LA414_0 = self.input.LA(1)
@@ -21516,7 +21446,7 @@ class JavaScriptParser(Parser):
 
             if alt414 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2742761)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2742762)
                 if self.failed:
                     return 
 
@@ -21525,7 +21455,7 @@ class JavaScriptParser(Parser):
                 break #loop414
 
 
-        self.following.append(self.FOLLOW_logicalANDExpression_in_synpred2742765)
+        self.following.append(self.FOLLOW_logicalANDExpression_in_synpred2742766)
         self.logicalANDExpression()
         self.following.pop()
         if self.failed:
@@ -21538,9 +21468,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred276
     def synpred276_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:40: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:427:40: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2762788)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:40: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:428:40: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2762789)
         if self.failed:
             return 
 
@@ -21551,9 +21481,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred279
     def synpred279_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:35: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:35: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2792815)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:35: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:35: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2792816)
         if self.failed:
             return 
 
@@ -21564,9 +21494,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred280
     def synpred280_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:25: ( ( LT )* '&&' ( LT )* bitwiseORExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:25: ( LT )* '&&' ( LT )* bitwiseORExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:27: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:25: ( ( LT )* '&&' ( LT )* bitwiseORExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:25: ( LT )* '&&' ( LT )* bitwiseORExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:27: ( LT )*
         while True: #loop417
             alt417 = 2
             LA417_0 = self.input.LA(1)
@@ -21577,7 +21507,7 @@ class JavaScriptParser(Parser):
 
             if alt417 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2802809)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2802810)
                 if self.failed:
                     return 
 
@@ -21586,10 +21516,10 @@ class JavaScriptParser(Parser):
                 break #loop417
 
 
-        self.match(self.input, 115, self.FOLLOW_115_in_synpred2802813)
+        self.match(self.input, 115, self.FOLLOW_115_in_synpred2802814)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:431:37: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:432:37: ( LT )*
         while True: #loop418
             alt418 = 2
             LA418_0 = self.input.LA(1)
@@ -21605,7 +21535,7 @@ class JavaScriptParser(Parser):
 
             if alt418 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2802815)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2802816)
                 if self.failed:
                     return 
 
@@ -21614,7 +21544,7 @@ class JavaScriptParser(Parser):
                 break #loop418
 
 
-        self.following.append(self.FOLLOW_bitwiseORExpression_in_synpred2802819)
+        self.following.append(self.FOLLOW_bitwiseORExpression_in_synpred2802820)
         self.bitwiseORExpression()
         self.following.pop()
         if self.failed:
@@ -21627,9 +21557,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred282
     def synpred282_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:39: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:435:39: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2822842)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:39: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:436:39: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2822843)
         if self.failed:
             return 
 
@@ -21640,9 +21570,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred285
     def synpred285_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:35: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:35: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2852869)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:35: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:35: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2852870)
         if self.failed:
             return 
 
@@ -21653,9 +21583,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred286
     def synpred286_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:26: ( ( LT )* '|' ( LT )* bitwiseXORExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:26: ( LT )* '|' ( LT )* bitwiseXORExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:28: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:26: ( ( LT )* '|' ( LT )* bitwiseXORExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:26: ( LT )* '|' ( LT )* bitwiseXORExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:28: ( LT )*
         while True: #loop421
             alt421 = 2
             LA421_0 = self.input.LA(1)
@@ -21666,7 +21596,7 @@ class JavaScriptParser(Parser):
 
             if alt421 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2862863)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2862864)
                 if self.failed:
                     return 
 
@@ -21675,10 +21605,10 @@ class JavaScriptParser(Parser):
                 break #loop421
 
 
-        self.match(self.input, 116, self.FOLLOW_116_in_synpred2862867)
+        self.match(self.input, 116, self.FOLLOW_116_in_synpred2862868)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:439:37: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:440:37: ( LT )*
         while True: #loop422
             alt422 = 2
             LA422_0 = self.input.LA(1)
@@ -21694,7 +21624,7 @@ class JavaScriptParser(Parser):
 
             if alt422 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2862869)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2862870)
                 if self.failed:
                     return 
 
@@ -21703,7 +21633,7 @@ class JavaScriptParser(Parser):
                 break #loop422
 
 
-        self.following.append(self.FOLLOW_bitwiseXORExpression_in_synpred2862873)
+        self.following.append(self.FOLLOW_bitwiseXORExpression_in_synpred2862874)
         self.bitwiseXORExpression()
         self.following.pop()
         if self.failed:
@@ -21716,9 +21646,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred288
     def synpred288_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:39: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:443:39: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2882896)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:39: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:444:39: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2882897)
         if self.failed:
             return 
 
@@ -21729,9 +21659,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred291
     def synpred291_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:35: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:35: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2912923)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:35: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:35: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2912924)
         if self.failed:
             return 
 
@@ -21742,9 +21672,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred292
     def synpred292_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:26: ( ( LT )* '^' ( LT )* bitwiseANDExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:26: ( LT )* '^' ( LT )* bitwiseANDExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:28: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:26: ( ( LT )* '^' ( LT )* bitwiseANDExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:26: ( LT )* '^' ( LT )* bitwiseANDExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:28: ( LT )*
         while True: #loop425
             alt425 = 2
             LA425_0 = self.input.LA(1)
@@ -21755,7 +21685,7 @@ class JavaScriptParser(Parser):
 
             if alt425 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2922917)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2922918)
                 if self.failed:
                     return 
 
@@ -21764,10 +21694,10 @@ class JavaScriptParser(Parser):
                 break #loop425
 
 
-        self.match(self.input, 117, self.FOLLOW_117_in_synpred2922921)
+        self.match(self.input, 117, self.FOLLOW_117_in_synpred2922922)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:447:37: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:448:37: ( LT )*
         while True: #loop426
             alt426 = 2
             LA426_0 = self.input.LA(1)
@@ -21783,7 +21713,7 @@ class JavaScriptParser(Parser):
 
             if alt426 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2922923)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2922924)
                 if self.failed:
                     return 
 
@@ -21792,7 +21722,7 @@ class JavaScriptParser(Parser):
                 break #loop426
 
 
-        self.following.append(self.FOLLOW_bitwiseANDExpression_in_synpred2922927)
+        self.following.append(self.FOLLOW_bitwiseANDExpression_in_synpred2922928)
         self.bitwiseANDExpression()
         self.following.pop()
         if self.failed:
@@ -21805,9 +21735,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred294
     def synpred294_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:39: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:451:39: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2942950)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:39: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:452:39: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2942951)
         if self.failed:
             return 
 
@@ -21818,9 +21748,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred297
     def synpred297_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:33: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:33: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2972977)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:33: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:33: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred2972978)
         if self.failed:
             return 
 
@@ -21831,9 +21761,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred298
     def synpred298_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:24: ( ( LT )* '&' ( LT )* equalityExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:24: ( LT )* '&' ( LT )* equalityExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:26: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:24: ( ( LT )* '&' ( LT )* equalityExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:24: ( LT )* '&' ( LT )* equalityExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:26: ( LT )*
         while True: #loop429
             alt429 = 2
             LA429_0 = self.input.LA(1)
@@ -21844,7 +21774,7 @@ class JavaScriptParser(Parser):
 
             if alt429 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2982971)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2982972)
                 if self.failed:
                     return 
 
@@ -21853,10 +21783,10 @@ class JavaScriptParser(Parser):
                 break #loop429
 
 
-        self.match(self.input, 118, self.FOLLOW_118_in_synpred2982975)
+        self.match(self.input, 118, self.FOLLOW_118_in_synpred2982976)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:455:35: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:456:35: ( LT )*
         while True: #loop430
             alt430 = 2
             LA430_0 = self.input.LA(1)
@@ -21872,7 +21802,7 @@ class JavaScriptParser(Parser):
 
             if alt430 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2982977)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred2982978)
                 if self.failed:
                     return 
 
@@ -21881,7 +21811,7 @@ class JavaScriptParser(Parser):
                 break #loop430
 
 
-        self.following.append(self.FOLLOW_equalityExpression_in_synpred2982981)
+        self.following.append(self.FOLLOW_equalityExpression_in_synpred2982982)
         self.equalityExpression()
         self.following.pop()
         if self.failed:
@@ -21894,9 +21824,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred300
     def synpred300_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:37: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:459:37: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3003004)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:37: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:460:37: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3003005)
         if self.failed:
             return 
 
@@ -21907,9 +21837,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred306
     def synpred306_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:61: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:61: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3063045)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:61: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:61: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3063046)
         if self.failed:
             return 
 
@@ -21920,9 +21850,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred307
     def synpred307_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:26: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:26: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:28: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:26: ( ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:26: ( LT )* ( '==' | '!=' | '===' | '!==' ) ( LT )* relationalExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:28: ( LT )*
         while True: #loop433
             alt433 = 2
             LA433_0 = self.input.LA(1)
@@ -21933,7 +21863,7 @@ class JavaScriptParser(Parser):
 
             if alt433 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3073025)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3073026)
                 if self.failed:
                     return 
 
@@ -21954,12 +21884,12 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3073029
+                self.input, mse, self.FOLLOW_set_in_synpred3073030
                 )
             raise mse
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:463:63: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:464:63: ( LT )*
         while True: #loop434
             alt434 = 2
             LA434_0 = self.input.LA(1)
@@ -21975,7 +21905,7 @@ class JavaScriptParser(Parser):
 
             if alt434 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3073045)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3073046)
                 if self.failed:
                     return 
 
@@ -21984,7 +21914,7 @@ class JavaScriptParser(Parser):
                 break #loop434
 
 
-        self.following.append(self.FOLLOW_relationalExpression_in_synpred3073049)
+        self.following.append(self.FOLLOW_relationalExpression_in_synpred3073050)
         self.relationalExpression()
         self.following.pop()
         if self.failed:
@@ -21997,9 +21927,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred312
     def synpred312_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:65: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:467:65: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3123085)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:65: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:468:65: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3123086)
         if self.failed:
             return 
 
@@ -22010,9 +21940,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred320
     def synpred320_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:74: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:74: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3203134)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:74: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:74: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3203135)
         if self.failed:
             return 
 
@@ -22023,9 +21953,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred321
     def synpred321_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:21: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:23: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:21: ( ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:21: ( LT )* ( '<' | '>' | '<=' | '>=' | 'instanceof' | 'in' ) ( LT )* shiftExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:23: ( LT )*
         while True: #loop437
             alt437 = 2
             LA437_0 = self.input.LA(1)
@@ -22036,7 +21966,7 @@ class JavaScriptParser(Parser):
 
             if alt437 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3213106)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3213107)
                 if self.failed:
                     return 
 
@@ -22057,12 +21987,12 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3213110
+                self.input, mse, self.FOLLOW_set_in_synpred3213111
                 )
             raise mse
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:471:76: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:472:76: ( LT )*
         while True: #loop438
             alt438 = 2
             LA438_0 = self.input.LA(1)
@@ -22078,7 +22008,7 @@ class JavaScriptParser(Parser):
 
             if alt438 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3213134)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3213135)
                 if self.failed:
                     return 
 
@@ -22087,7 +22017,7 @@ class JavaScriptParser(Parser):
                 break #loop438
 
 
-        self.following.append(self.FOLLOW_shiftExpression_in_synpred3213138)
+        self.following.append(self.FOLLOW_shiftExpression_in_synpred3213139)
         self.shiftExpression()
         self.following.pop()
         if self.failed:
@@ -22100,9 +22030,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred327
     def synpred327_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:67: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:475:67: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3273178)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:67: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:476:67: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3273179)
         if self.failed:
             return 
 
@@ -22113,9 +22043,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred332
     def synpred332_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:51: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:51: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3323214)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:51: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:51: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3323215)
         if self.failed:
             return 
 
@@ -22126,9 +22056,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred333
     def synpred333_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:24: ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:24: ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:26: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:24: ( ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:24: ( LT )* ( '<<' | '>>' | '>>>' ) ( LT )* additiveExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:26: ( LT )*
         while True: #loop441
             alt441 = 2
             LA441_0 = self.input.LA(1)
@@ -22139,7 +22069,7 @@ class JavaScriptParser(Parser):
 
             if alt441 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3333198)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3333199)
                 if self.failed:
                     return 
 
@@ -22160,12 +22090,12 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3333202
+                self.input, mse, self.FOLLOW_set_in_synpred3333203
                 )
             raise mse
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:479:53: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:480:53: ( LT )*
         while True: #loop442
             alt442 = 2
             LA442_0 = self.input.LA(1)
@@ -22181,7 +22111,7 @@ class JavaScriptParser(Parser):
 
             if alt442 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3333214)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3333215)
                 if self.failed:
                     return 
 
@@ -22190,7 +22120,7 @@ class JavaScriptParser(Parser):
                 break #loop442
 
 
-        self.following.append(self.FOLLOW_additiveExpression_in_synpred3333218)
+        self.following.append(self.FOLLOW_additiveExpression_in_synpred3333219)
         self.additiveExpression()
         self.following.pop()
         if self.failed:
@@ -22203,9 +22133,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred336
     def synpred336_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:47: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:47: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3363246)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:47: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:47: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3363247)
         if self.failed:
             return 
 
@@ -22216,9 +22146,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred337
     def synpred337_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:30: ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:30: ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:32: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:30: ( ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:30: ( LT )* ( '+' | '-' ) ( LT )* multiplicativeExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:32: ( LT )*
         while True: #loop443
             alt443 = 2
             LA443_0 = self.input.LA(1)
@@ -22229,7 +22159,7 @@ class JavaScriptParser(Parser):
 
             if alt443 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3373234)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3373235)
                 if self.failed:
                     return 
 
@@ -22250,12 +22180,12 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3373238
+                self.input, mse, self.FOLLOW_set_in_synpred3373239
                 )
             raise mse
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:483:49: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:484:49: ( LT )*
         while True: #loop444
             alt444 = 2
             LA444_0 = self.input.LA(1)
@@ -22271,7 +22201,7 @@ class JavaScriptParser(Parser):
 
             if alt444 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3373246)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3373247)
                 if self.failed:
                     return 
 
@@ -22280,7 +22210,7 @@ class JavaScriptParser(Parser):
                 break #loop444
 
 
-        self.following.append(self.FOLLOW_multiplicativeExpression_in_synpred3373250)
+        self.following.append(self.FOLLOW_multiplicativeExpression_in_synpred3373251)
         self.multiplicativeExpression()
         self.following.pop()
         if self.failed:
@@ -22293,9 +22223,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred341
     def synpred341_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:44: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:44: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3413282)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:44: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:44: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3413283)
         if self.failed:
             return 
 
@@ -22306,9 +22236,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred342
     def synpred342_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:21: ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:21: ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:23: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:21: ( ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:21: ( LT )* ( '*' | '/' | '%' ) ( LT )* unaryExpression
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:23: ( LT )*
         while True: #loop445
             alt445 = 2
             LA445_0 = self.input.LA(1)
@@ -22319,7 +22249,7 @@ class JavaScriptParser(Parser):
 
             if alt445 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3423266)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3423267)
                 if self.failed:
                     return 
 
@@ -22340,12 +22270,12 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3423270
+                self.input, mse, self.FOLLOW_set_in_synpred3423271
                 )
             raise mse
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:487:46: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:488:46: ( LT )*
         while True: #loop446
             alt446 = 2
             LA446_0 = self.input.LA(1)
@@ -22361,7 +22291,7 @@ class JavaScriptParser(Parser):
 
             if alt446 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3423282)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3423283)
                 if self.failed:
                     return 
 
@@ -22370,7 +22300,7 @@ class JavaScriptParser(Parser):
                 break #loop446
 
 
-        self.following.append(self.FOLLOW_unaryExpression_in_synpred3423286)
+        self.following.append(self.FOLLOW_unaryExpression_in_synpred3423287)
         self.unaryExpression()
         self.following.pop()
         if self.failed:
@@ -22383,9 +22313,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred357
     def synpred357_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:4: ( ( LT )* ( '<' | XMLComment ) )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:5: ( LT )* ( '<' | XMLComment )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:501:5: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:502:4: ( ( LT )* ( '<' | XMLComment ) )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:502:5: ( LT )* ( '<' | XMLComment )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:502:5: ( LT )*
         while True: #loop447
             alt447 = 2
             LA447_0 = self.input.LA(1)
@@ -22396,7 +22326,7 @@ class JavaScriptParser(Parser):
 
             if alt447 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3573378)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3573379)
                 if self.failed:
                     return 
 
@@ -22417,7 +22347,7 @@ class JavaScriptParser(Parser):
 
             mse = MismatchedSetException(None, self.input)
             self.recoverFromMismatchedSet(
-                self.input, mse, self.FOLLOW_set_in_synpred3573381
+                self.input, mse, self.FOLLOW_set_in_synpred3573382
                 )
             raise mse
 
@@ -22430,9 +22360,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred361
     def synpred361_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:506:4: ( objectLiteral )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:506:4: objectLiteral
-        self.following.append(self.FOLLOW_objectLiteral_in_synpred3613419)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:4: ( objectLiteral )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:4: objectLiteral
+        self.following.append(self.FOLLOW_objectLiteral_in_synpred3613420)
         self.objectLiteral()
         self.following.pop()
         if self.failed:
@@ -22445,9 +22375,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred362
     def synpred362_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:507:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3623426)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:508:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:508:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3623427)
         if self.failed:
             return 
 
@@ -22458,9 +22388,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred364
     def synpred364_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3643451)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3643452)
         if self.failed:
             return 
 
@@ -22471,9 +22401,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred367
     def synpred367_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3673464)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3673465)
         if self.failed:
             return 
 
@@ -22484,9 +22414,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred369
     def synpred369_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )*
         while True: #loop449
             alt449 = 2
             LA449_0 = self.input.LA(1)
@@ -22497,7 +22427,7 @@ class JavaScriptParser(Parser):
 
             if alt449 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3693458)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3693459)
                 if self.failed:
                     return 
 
@@ -22506,18 +22436,18 @@ class JavaScriptParser(Parser):
                 break #loop449
 
 
-        self.match(self.input, 71, self.FOLLOW_71_in_synpred3693461)
+        self.match(self.input, 71, self.FOLLOW_71_in_synpred3693462)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:43: ( ( LT )* assignmentExpression )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:43: ( ( LT )* assignmentExpression )?
         alt451 = 2
         LA451_0 = self.input.LA(1)
 
         if ((LT <= LA451_0 <= RegularExpressionHacks) or LA451_0 == 61 or LA451_0 == 63 or LA451_0 == 65 or LA451_0 == 67 or (69 <= LA451_0 <= 70) or (73 <= LA451_0 <= 75) or LA451_0 == 81 or LA451_0 == 88 or LA451_0 == 99 or LA451_0 == 129 or (131 <= LA451_0 <= 143)) :
             alt451 = 1
         if alt451 == 1:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )* assignmentExpression
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )* assignmentExpression
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )*
             while True: #loop450
                 alt450 = 2
                 LA450_0 = self.input.LA(1)
@@ -22533,7 +22463,7 @@ class JavaScriptParser(Parser):
 
                 if alt450 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred3693464)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred3693465)
                     if self.failed:
                         return 
 
@@ -22542,7 +22472,7 @@ class JavaScriptParser(Parser):
                     break #loop450
 
 
-            self.following.append(self.FOLLOW_assignmentExpression_in_synpred3693467)
+            self.following.append(self.FOLLOW_assignmentExpression_in_synpred3693468)
             self.assignmentExpression()
             self.following.pop()
             if self.failed:
@@ -22558,12 +22488,12 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred373
     def synpred373_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:4: ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:4: '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']'
-        self.match(self.input, 81, self.FOLLOW_81_in_synpred3733449)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:4: ( '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']' )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:4: '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ( ',' ( LT )* )? ']'
+        self.match(self.input, 81, self.FOLLOW_81_in_synpred3733450)
         if self.failed:
             return 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:8: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:8: ( LT )*
         while True: #loop453
             alt453 = 2
             LA453_0 = self.input.LA(1)
@@ -22579,7 +22509,7 @@ class JavaScriptParser(Parser):
 
             if alt453 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733451)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733452)
                 if self.failed:
                     return 
 
@@ -22588,12 +22518,12 @@ class JavaScriptParser(Parser):
                 break #loop453
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:12: ( assignmentExpression )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:12: ( assignmentExpression )?
         alt454 = 2
         alt454 = self.dfa454.predict(self.input)
         if alt454 == 1:
             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: assignmentExpression
-            self.following.append(self.FOLLOW_assignmentExpression_in_synpred3733454)
+            self.following.append(self.FOLLOW_assignmentExpression_in_synpred3733455)
             self.assignmentExpression()
             self.following.pop()
             if self.failed:
@@ -22601,13 +22531,13 @@ class JavaScriptParser(Parser):
 
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*
         while True: #loop458
             alt458 = 2
             alt458 = self.dfa458.predict(self.input)
             if alt458 == 1:
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:35: ( LT )*
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )* ',' ( ( LT )* assignmentExpression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:35: ( LT )*
                 while True: #loop455
                     alt455 = 2
                     LA455_0 = self.input.LA(1)
@@ -22618,7 +22548,7 @@ class JavaScriptParser(Parser):
 
                     if alt455 == 1:
                         # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733458)
+                        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733459)
                         if self.failed:
                             return 
 
@@ -22627,15 +22557,15 @@ class JavaScriptParser(Parser):
                         break #loop455
 
 
-                self.match(self.input, 71, self.FOLLOW_71_in_synpred3733461)
+                self.match(self.input, 71, self.FOLLOW_71_in_synpred3733462)
                 if self.failed:
                     return 
-                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:43: ( ( LT )* assignmentExpression )?
+                # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:43: ( ( LT )* assignmentExpression )?
                 alt457 = 2
                 alt457 = self.dfa457.predict(self.input)
                 if alt457 == 1:
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )* assignmentExpression
-                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:44: ( LT )*
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )* assignmentExpression
+                    # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:44: ( LT )*
                     while True: #loop456
                         alt456 = 2
                         LA456_0 = self.input.LA(1)
@@ -22651,7 +22581,7 @@ class JavaScriptParser(Parser):
 
                         if alt456 == 1:
                             # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                            self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733464)
+                            self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733465)
                             if self.failed:
                                 return 
 
@@ -22660,7 +22590,7 @@ class JavaScriptParser(Parser):
                             break #loop456
 
 
-                    self.following.append(self.FOLLOW_assignmentExpression_in_synpred3733467)
+                    self.following.append(self.FOLLOW_assignmentExpression_in_synpred3733468)
                     self.assignmentExpression()
                     self.following.pop()
                     if self.failed:
@@ -22674,7 +22604,7 @@ class JavaScriptParser(Parser):
                 break #loop458
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:73: ( LT )*
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:73: ( LT )*
         while True: #loop459
             alt459 = 2
             LA459_0 = self.input.LA(1)
@@ -22685,7 +22615,7 @@ class JavaScriptParser(Parser):
 
             if alt459 == 1:
                 # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733473)
+                self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733474)
                 if self.failed:
                     return 
 
@@ -22694,18 +22624,18 @@ class JavaScriptParser(Parser):
                 break #loop459
 
 
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:77: ( ',' ( LT )* )?
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:77: ( ',' ( LT )* )?
         alt461 = 2
         LA461_0 = self.input.LA(1)
 
         if (LA461_0 == 71) :
             alt461 = 1
         if alt461 == 1:
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:78: ',' ( LT )*
-            self.match(self.input, 71, self.FOLLOW_71_in_synpred3733477)
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:78: ',' ( LT )*
+            self.match(self.input, 71, self.FOLLOW_71_in_synpred3733478)
             if self.failed:
                 return 
-            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:512:82: ( LT )*
+            # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:513:82: ( LT )*
             while True: #loop460
                 alt460 = 2
                 LA460_0 = self.input.LA(1)
@@ -22716,7 +22646,7 @@ class JavaScriptParser(Parser):
 
                 if alt460 == 1:
                     # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:0:0: LT
-                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733479)
+                    self.match(self.input, LT, self.FOLLOW_LT_in_synpred3733480)
                     if self.failed:
                         return 
 
@@ -22728,7 +22658,7 @@ class JavaScriptParser(Parser):
 
 
 
-        self.match(self.input, 82, self.FOLLOW_82_in_synpred3733484)
+        self.match(self.input, 82, self.FOLLOW_82_in_synpred3733485)
         if self.failed:
             return 
 
@@ -22739,9 +22669,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred374
     def synpred374_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3743502)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3743503)
         if self.failed:
             return 
 
@@ -22752,9 +22682,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred376
     def synpred376_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:42: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:42: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3763514)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:42: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:42: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3763515)
         if self.failed:
             return 
 
@@ -22765,9 +22695,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred379
     def synpred379_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:62: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:62: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3793525)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:62: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:62: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3793526)
         if self.failed:
             return 
 
@@ -22778,9 +22708,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred381
     def synpred381_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:110: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:514:110: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3813537)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:110: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:515:110: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3813538)
         if self.failed:
             return 
 
@@ -22791,9 +22721,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred384
     def synpred384_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:8: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:520:8: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3843590)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:8: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:521:8: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3843591)
         if self.failed:
             return 
 
@@ -22804,9 +22734,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred393
     def synpred393_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:25: ( LT )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:525:25: LT
-        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3933651)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:25: ( LT )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:526:25: LT
+        self.match(self.input, LT, self.FOLLOW_LT_in_synpred3933652)
         if self.failed:
             return 
 
@@ -22817,9 +22747,9 @@ class JavaScriptParser(Parser):
 
     # $ANTLR start synpred492
     def synpred492_fragment(self, ):
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:8: ( reFirstChar )
-        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:584:8: reFirstChar
-        self.following.append(self.FOLLOW_reFirstChar_in_synpred4924289)
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:8: ( reFirstChar )
+        # /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g:585:8: reFirstChar
+        self.following.append(self.FOLLOW_reFirstChar_in_synpred4924290)
         self.reFirstChar()
         self.following.pop()
         if self.failed:
@@ -23674,16 +23604,6 @@ class JavaScriptParser(Parser):
         self.backtracking += 1
         start = self.input.mark()
         self.synpred196_fragment()
-        success = not self.failed
-        self.input.rewind(start)
-        self.backtracking -= 1
-        self.failed = False
-        return success
-
-    def synpred197(self):
-        self.backtracking += 1
-        start = self.input.mark()
-        self.synpred197_fragment()
         success = not self.failed
         self.input.rewind(start)
         self.backtracking -= 1
@@ -25165,6 +25085,47 @@ class JavaScriptParser(Parser):
     # class definition for DFA #157
 
     DFA157 = DFA
+    # lookup tables for DFA #166
+
+    DFA166_eot = DFA.unpack(
+        u"\5\uffff"
+        )
+
+    DFA166_eof = DFA.unpack(
+        u"\1\1\1\uffff\1\1\1\uffff\1\1"
+        )
+
+    DFA166_min = DFA.unpack(
+        u"\1\36\1\uffff\1\36\1\uffff\1\36"
+        )
+
+    DFA166_max = DFA.unpack(
+        u"\1\127\1\uffff\1\u008f\1\uffff\1\u008f"
+        )
+
+    DFA166_accept = DFA.unpack(
+        u"\1\uffff\1\2\1\uffff\1\1\1\uffff"
+        )
+
+    DFA166_special = DFA.unpack(
+        u"\5\uffff"
+        )
+
+            
+    DFA166_transition = [
+        DFA.unpack(u"\1\2\41\uffff\1\1\3\uffff\1\1\2\uffff\1\3\1\1\3\uffff"
+        u"\1\1\5\uffff\1\1\4\uffff\1\1"),
+        DFA.unpack(u""),
+        DFA.unpack(u"\1\4\5\1\31\uffff\1\1\1\uffff\3\1\1\uffff\4\1\1\3\21"
+        u"\1\1\uffff\7\1\2\uffff\1\1\35\uffff\1\1\1\uffff\15\1"),
+        DFA.unpack(u""),
+        DFA.unpack(u"\1\4\5\1\31\uffff\1\1\1\uffff\3\1\1\uffff\4\1\1\3\21"
+        u"\1\1\uffff\7\1\2\uffff\1\1\35\uffff\1\1\1\uffff\15\1")
+    ]
+
+    # class definition for DFA #166
+
+    DFA166 = DFA
     # lookup tables for DFA #174
 
     DFA174_eot = DFA.unpack(
@@ -26045,584 +26006,584 @@ class JavaScriptParser(Parser):
     FOLLOW_formalParameterList_in_functionDeclaration508 = frozenset([30, 67])
     FOLLOW_LT_in_functionDeclaration510 = frozenset([30, 67])
     FOLLOW_statementBlock_in_functionDeclaration513 = frozenset([1])
-    FOLLOW_69_in_functionExpression539 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_functionExpression541 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_functionExpression544 = frozenset([30, 70])
-    FOLLOW_LT_in_functionExpression546 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_functionExpression549 = frozenset([30, 67])
-    FOLLOW_LT_in_functionExpression551 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_functionExpression554 = frozenset([1])
-    FOLLOW_69_in_functionExpression575 = frozenset([30, 70])
-    FOLLOW_LT_in_functionExpression577 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_functionExpression580 = frozenset([30, 67])
-    FOLLOW_LT_in_functionExpression582 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_functionExpression585 = frozenset([1])
-    FOLLOW_69_in_functionExpression607 = frozenset([30, 70])
-    FOLLOW_LT_in_functionExpression609 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_functionExpression612 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_functionExpression614 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_functionExpression617 = frozenset([1])
-    FOLLOW_70_in_formalParameterList644 = frozenset([30, 34, 72, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_formalParameterList647 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_formalParameterList650 = frozenset([30, 71, 72])
-    FOLLOW_LT_in_formalParameterList653 = frozenset([30, 71])
-    FOLLOW_71_in_formalParameterList656 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_formalParameterList658 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_formalParameterList661 = frozenset([30, 71, 72])
-    FOLLOW_LT_in_formalParameterList667 = frozenset([30, 72])
-    FOLLOW_72_in_formalParameterList670 = frozenset([1])
-    FOLLOW_statementBlock_in_statement693 = frozenset([1])
-    FOLLOW_variableStatement_in_statement698 = frozenset([1])
-    FOLLOW_emptyStatement_in_statement703 = frozenset([1])
-    FOLLOW_expressionStatement_in_statement708 = frozenset([1])
-    FOLLOW_ifStatement_in_statement713 = frozenset([1])
-    FOLLOW_iterationStatement_in_statement718 = frozenset([1])
-    FOLLOW_continueStatement_in_statement723 = frozenset([1])
-    FOLLOW_breakStatement_in_statement728 = frozenset([1])
-    FOLLOW_returnStatement_in_statement733 = frozenset([1])
-    FOLLOW_withStatement_in_statement738 = frozenset([1])
-    FOLLOW_letStatement_in_statement743 = frozenset([1])
-    FOLLOW_labelledStatement_in_statement748 = frozenset([1])
-    FOLLOW_switchStatement_in_statement753 = frozenset([1])
-    FOLLOW_throwStatement_in_statement758 = frozenset([1])
-    FOLLOW_tryStatement_in_statement763 = frozenset([1])
-    FOLLOW_defaultXmlNamespaceStatement_in_statement768 = frozenset([1])
-    FOLLOW_73_in_defaultXmlNamespaceStatement779 = frozenset([74])
-    FOLLOW_74_in_defaultXmlNamespaceStatement781 = frozenset([75])
-    FOLLOW_75_in_defaultXmlNamespaceStatement783 = frozenset([30, 66])
-    FOLLOW_LT_in_defaultXmlNamespaceStatement785 = frozenset([30, 66])
-    FOLLOW_66_in_defaultXmlNamespaceStatement788 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_defaultXmlNamespaceStatement790 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_defaultXmlNamespaceStatement793 = frozenset([30, 76])
-    FOLLOW_LT_in_defaultXmlNamespaceStatement796 = frozenset([1])
-    FOLLOW_76_in_defaultXmlNamespaceStatement800 = frozenset([1])
-    FOLLOW_67_in_statementBlock822 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_statementBlock824 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statementList_in_statementBlock828 = frozenset([30, 68])
-    FOLLOW_LT_in_statementBlock831 = frozenset([30, 68])
-    FOLLOW_68_in_statementBlock835 = frozenset([1])
-    FOLLOW_67_in_statementBlock840 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 77, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_77_in_statementBlock842 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_statementBlock845 = frozenset([68])
-    FOLLOW_68_in_statementBlock847 = frozenset([1])
-    FOLLOW_statement_in_statementList860 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_statementList863 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statement_in_statementList867 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_78_in_variableStatement883 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_79_in_variableStatement887 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_80_in_variableStatement891 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_LT_in_variableStatement894 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_variableDeclarationList_in_variableStatement897 = frozenset([30, 76])
-    FOLLOW_LT_in_variableStatement900 = frozenset([1])
-    FOLLOW_76_in_variableStatement904 = frozenset([1])
-    FOLLOW_variableDeclaration_in_variableDeclarationList929 = frozenset([1, 30, 71])
-    FOLLOW_LT_in_variableDeclarationList932 = frozenset([30, 71])
-    FOLLOW_71_in_variableDeclarationList936 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclarationList938 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_variableDeclaration_in_variableDeclarationList942 = frozenset([1, 30, 71])
-    FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn956 = frozenset([1, 30, 71])
-    FOLLOW_LT_in_variableDeclarationListNoIn959 = frozenset([30, 71])
-    FOLLOW_71_in_variableDeclarationListNoIn963 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclarationListNoIn965 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn969 = frozenset([1, 30, 71])
-    FOLLOW_identifier_in_variableDeclaration983 = frozenset([1, 30, 66])
-    FOLLOW_LT_in_variableDeclaration986 = frozenset([30, 66])
-    FOLLOW_initialiser_in_variableDeclaration989 = frozenset([1])
-    FOLLOW_81_in_variableDeclaration1009 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclaration1011 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_identifier_in_variableDeclaration1014 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_variableDeclaration1018 = frozenset([30, 71])
-    FOLLOW_71_in_variableDeclaration1021 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclaration1024 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_variableDeclaration1027 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_variableDeclaration1033 = frozenset([30, 71, 82])
-    FOLLOW_71_in_variableDeclaration1037 = frozenset([30, 82])
-    FOLLOW_LT_in_variableDeclaration1039 = frozenset([30, 82])
-    FOLLOW_82_in_variableDeclaration1044 = frozenset([1, 30, 66])
-    FOLLOW_LT_in_variableDeclaration1047 = frozenset([30, 66])
-    FOLLOW_initialiser_in_variableDeclaration1050 = frozenset([1])
-    FOLLOW_identifier_in_variableDeclarationNoIn1082 = frozenset([1, 30, 66])
-    FOLLOW_LT_in_variableDeclarationNoIn1085 = frozenset([30, 66])
-    FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1088 = frozenset([1])
-    FOLLOW_81_in_variableDeclarationNoIn1108 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclarationNoIn1110 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_identifier_in_variableDeclarationNoIn1113 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_variableDeclarationNoIn1117 = frozenset([30, 71])
-    FOLLOW_71_in_variableDeclarationNoIn1120 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
-    FOLLOW_LT_in_variableDeclarationNoIn1123 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_variableDeclarationNoIn1126 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_variableDeclarationNoIn1132 = frozenset([30, 71, 82])
-    FOLLOW_71_in_variableDeclarationNoIn1136 = frozenset([30, 82])
-    FOLLOW_LT_in_variableDeclarationNoIn1138 = frozenset([30, 82])
-    FOLLOW_82_in_variableDeclarationNoIn1143 = frozenset([1, 30, 66])
-    FOLLOW_LT_in_variableDeclarationNoIn1146 = frozenset([30, 66])
-    FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1149 = frozenset([1])
-    FOLLOW_66_in_initialiser1181 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_initialiser1183 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_initialiser1186 = frozenset([1])
-    FOLLOW_66_in_initialiserNoIn1204 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_initialiserNoIn1206 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_initialiserNoIn1209 = frozenset([1])
-    FOLLOW_76_in_emptyStatement1227 = frozenset([1])
-    FOLLOW_expression_in_expressionStatement1239 = frozenset([30, 76])
-    FOLLOW_set_in_expressionStatement1241 = frozenset([1])
-    FOLLOW_83_in_ifStatement1260 = frozenset([30, 70])
-    FOLLOW_LT_in_ifStatement1262 = frozenset([1])
-    FOLLOW_70_in_ifStatement1266 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_ifStatement1268 = frozenset([1])
-    FOLLOW_expression_in_ifStatement1272 = frozenset([30, 72])
-    FOLLOW_LT_in_ifStatement1274 = frozenset([1])
-    FOLLOW_72_in_ifStatement1278 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_ifStatement1280 = frozenset([1])
-    FOLLOW_statement_in_ifStatement1284 = frozenset([1, 30, 84])
-    FOLLOW_LT_in_ifStatement1287 = frozenset([30, 84])
-    FOLLOW_84_in_ifStatement1291 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_ifStatement1293 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statement_in_ifStatement1297 = frozenset([1])
-    FOLLOW_doWhileStatement_in_iterationStatement1311 = frozenset([1])
-    FOLLOW_whileStatement_in_iterationStatement1316 = frozenset([1])
-    FOLLOW_forStatement_in_iterationStatement1321 = frozenset([1])
-    FOLLOW_forInStatement_in_iterationStatement1326 = frozenset([1])
-    FOLLOW_85_in_doWhileStatement1338 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_doWhileStatement1340 = frozenset([1])
-    FOLLOW_statement_in_doWhileStatement1344 = frozenset([30, 86])
-    FOLLOW_LT_in_doWhileStatement1346 = frozenset([1])
-    FOLLOW_86_in_doWhileStatement1350 = frozenset([30, 70])
-    FOLLOW_LT_in_doWhileStatement1352 = frozenset([1])
-    FOLLOW_70_in_doWhileStatement1356 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_doWhileStatement1358 = frozenset([72])
-    FOLLOW_72_in_doWhileStatement1360 = frozenset([30, 76])
-    FOLLOW_set_in_doWhileStatement1362 = frozenset([1])
-    FOLLOW_86_in_whileStatement1381 = frozenset([30, 70])
-    FOLLOW_LT_in_whileStatement1383 = frozenset([1])
-    FOLLOW_70_in_whileStatement1387 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_whileStatement1389 = frozenset([1])
-    FOLLOW_expression_in_whileStatement1393 = frozenset([30, 72])
-    FOLLOW_LT_in_whileStatement1395 = frozenset([1])
-    FOLLOW_72_in_whileStatement1399 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_whileStatement1401 = frozenset([1])
-    FOLLOW_statement_in_whileStatement1405 = frozenset([1])
-    FOLLOW_87_in_forStatement1417 = frozenset([30, 70])
-    FOLLOW_LT_in_forStatement1419 = frozenset([1])
-    FOLLOW_70_in_forStatement1423 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forStatement1426 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_forStatementInitialiserPart_in_forStatement1430 = frozenset([30, 76])
-    FOLLOW_LT_in_forStatement1434 = frozenset([1])
-    FOLLOW_76_in_forStatement1438 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forStatement1441 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_forStatement1445 = frozenset([30, 76])
-    FOLLOW_LT_in_forStatement1449 = frozenset([1])
-    FOLLOW_76_in_forStatement1453 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 72, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forStatement1456 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_forStatement1460 = frozenset([30, 72])
-    FOLLOW_LT_in_forStatement1464 = frozenset([1])
-    FOLLOW_72_in_forStatement1468 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forStatement1470 = frozenset([1])
-    FOLLOW_statement_in_forStatement1474 = frozenset([1])
-    FOLLOW_expressionNoIn_in_forStatementInitialiserPart1486 = frozenset([1])
-    FOLLOW_set_in_forStatementInitialiserPart1491 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_LT_in_forStatementInitialiserPart1497 = frozenset([1])
-    FOLLOW_variableDeclarationListNoIn_in_forStatementInitialiserPart1501 = frozenset([1])
-    FOLLOW_87_in_forInStatement1513 = frozenset([30, 70, 88])
-    FOLLOW_LT_in_forInStatement1515 = frozenset([1])
-    FOLLOW_88_in_forInStatement1519 = frozenset([30, 70])
-    FOLLOW_LT_in_forInStatement1522 = frozenset([1])
-    FOLLOW_70_in_forInStatement1526 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forInStatement1528 = frozenset([1])
-    FOLLOW_forInStatementInitialiserPart_in_forInStatement1532 = frozenset([30, 89])
-    FOLLOW_LT_in_forInStatement1534 = frozenset([1])
-    FOLLOW_89_in_forInStatement1538 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forInStatement1540 = frozenset([1])
-    FOLLOW_expression_in_forInStatement1544 = frozenset([30, 72])
-    FOLLOW_LT_in_forInStatement1546 = frozenset([1])
-    FOLLOW_72_in_forInStatement1550 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_forInStatement1552 = frozenset([1])
-    FOLLOW_statement_in_forInStatement1556 = frozenset([1])
-    FOLLOW_leftHandSideExpression_in_forInStatementInitialiserPart1568 = frozenset([1])
-    FOLLOW_set_in_forInStatementInitialiserPart1573 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
-    FOLLOW_LT_in_forInStatementInitialiserPart1579 = frozenset([1])
-    FOLLOW_variableDeclarationNoIn_in_forInStatementInitialiserPart1583 = frozenset([1])
-    FOLLOW_90_in_continueStatement1594 = frozenset([30, 34, 73, 74, 75, 76, 88, 139, 140])
-    FOLLOW_identifier_in_continueStatement1596 = frozenset([30, 76])
-    FOLLOW_set_in_continueStatement1599 = frozenset([1])
-    FOLLOW_91_in_breakStatement1617 = frozenset([30, 34, 73, 74, 75, 76, 88, 139, 140])
-    FOLLOW_identifier_in_breakStatement1619 = frozenset([30, 76])
-    FOLLOW_set_in_breakStatement1622 = frozenset([1])
-    FOLLOW_77_in_returnStatement1640 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_returnStatement1642 = frozenset([30, 76])
-    FOLLOW_set_in_returnStatement1645 = frozenset([1])
-    FOLLOW_92_in_withStatement1664 = frozenset([30, 70])
-    FOLLOW_LT_in_withStatement1666 = frozenset([1])
-    FOLLOW_70_in_withStatement1670 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_withStatement1672 = frozenset([1])
-    FOLLOW_expression_in_withStatement1676 = frozenset([30, 72])
-    FOLLOW_LT_in_withStatement1678 = frozenset([1])
-    FOLLOW_72_in_withStatement1682 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_withStatement1684 = frozenset([1])
-    FOLLOW_statement_in_withStatement1688 = frozenset([1])
-    FOLLOW_80_in_letStatement1699 = frozenset([30, 70])
-    FOLLOW_LT_in_letStatement1701 = frozenset([1])
-    FOLLOW_70_in_letStatement1705 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_letStatement1707 = frozenset([1])
-    FOLLOW_expression_in_letStatement1711 = frozenset([30, 72])
-    FOLLOW_LT_in_letStatement1713 = frozenset([1])
-    FOLLOW_72_in_letStatement1717 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_letStatement1719 = frozenset([1])
-    FOLLOW_statement_in_letStatement1723 = frozenset([1])
-    FOLLOW_identifier_in_labelledStatement1734 = frozenset([30, 64])
-    FOLLOW_LT_in_labelledStatement1736 = frozenset([1])
-    FOLLOW_64_in_labelledStatement1740 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_labelledStatement1742 = frozenset([1])
-    FOLLOW_statement_in_labelledStatement1746 = frozenset([1])
-    FOLLOW_93_in_switchStatement1758 = frozenset([30, 70])
-    FOLLOW_LT_in_switchStatement1760 = frozenset([1])
-    FOLLOW_70_in_switchStatement1764 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_switchStatement1766 = frozenset([1])
-    FOLLOW_expression_in_switchStatement1770 = frozenset([30, 72])
-    FOLLOW_LT_in_switchStatement1772 = frozenset([1])
-    FOLLOW_72_in_switchStatement1776 = frozenset([30, 67])
-    FOLLOW_LT_in_switchStatement1778 = frozenset([1])
-    FOLLOW_caseBlock_in_switchStatement1782 = frozenset([1])
-    FOLLOW_67_in_caseBlock1794 = frozenset([30, 68, 73, 94])
-    FOLLOW_LT_in_caseBlock1797 = frozenset([30, 94])
-    FOLLOW_caseClause_in_caseBlock1801 = frozenset([30, 68, 73, 94])
-    FOLLOW_LT_in_caseBlock1806 = frozenset([30, 73])
-    FOLLOW_defaultClause_in_caseBlock1810 = frozenset([30, 68, 94])
-    FOLLOW_LT_in_caseBlock1813 = frozenset([30, 94])
-    FOLLOW_caseClause_in_caseBlock1817 = frozenset([30, 68, 94])
-    FOLLOW_LT_in_caseBlock1823 = frozenset([1])
-    FOLLOW_68_in_caseBlock1827 = frozenset([1])
-    FOLLOW_94_in_caseClause1838 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_caseClause1840 = frozenset([1])
-    FOLLOW_expression_in_caseClause1844 = frozenset([30, 64])
-    FOLLOW_LT_in_caseClause1846 = frozenset([1])
-    FOLLOW_64_in_caseClause1850 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_caseClause1852 = frozenset([1])
-    FOLLOW_statementList_in_caseClause1856 = frozenset([1])
-    FOLLOW_73_in_defaultClause1869 = frozenset([30, 64])
-    FOLLOW_LT_in_defaultClause1871 = frozenset([1])
-    FOLLOW_64_in_defaultClause1875 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_defaultClause1877 = frozenset([1])
-    FOLLOW_statementList_in_defaultClause1881 = frozenset([1])
-    FOLLOW_95_in_throwStatement1894 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_throwStatement1896 = frozenset([30, 76])
-    FOLLOW_set_in_throwStatement1898 = frozenset([1])
-    FOLLOW_96_in_tryStatement1916 = frozenset([30, 67])
-    FOLLOW_LT_in_tryStatement1918 = frozenset([1])
-    FOLLOW_statementBlock_in_tryStatement1922 = frozenset([30, 97, 98])
-    FOLLOW_LT_in_tryStatement1924 = frozenset([1])
-    FOLLOW_finallyClause_in_tryStatement1929 = frozenset([1])
-    FOLLOW_catchClause_in_tryStatement1933 = frozenset([1, 30, 98])
-    FOLLOW_LT_in_tryStatement1936 = frozenset([30, 98])
-    FOLLOW_finallyClause_in_tryStatement1940 = frozenset([1])
-    FOLLOW_97_in_catchClause1961 = frozenset([30, 70])
-    FOLLOW_LT_in_catchClause1963 = frozenset([1])
-    FOLLOW_70_in_catchClause1967 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_catchClause1969 = frozenset([1])
-    FOLLOW_identifier_in_catchClause1973 = frozenset([30, 72])
-    FOLLOW_LT_in_catchClause1975 = frozenset([1])
-    FOLLOW_72_in_catchClause1979 = frozenset([30, 67])
-    FOLLOW_LT_in_catchClause1981 = frozenset([1])
-    FOLLOW_statementBlock_in_catchClause1985 = frozenset([1])
-    FOLLOW_98_in_finallyClause1997 = frozenset([30, 67])
-    FOLLOW_LT_in_finallyClause1999 = frozenset([1])
-    FOLLOW_statementBlock_in_finallyClause2003 = frozenset([1])
-    FOLLOW_assignmentExpression_in_expression2015 = frozenset([1, 30, 71])
-    FOLLOW_LT_in_expression2018 = frozenset([30, 71])
-    FOLLOW_71_in_expression2022 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_expression2024 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_expression2028 = frozenset([1, 30, 71])
-    FOLLOW_80_in_expression2035 = frozenset([30, 70])
-    FOLLOW_LT_in_expression2037 = frozenset([1])
-    FOLLOW_70_in_expression2041 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_expression2043 = frozenset([1])
-    FOLLOW_assignmentExpression_in_expression2047 = frozenset([30, 72])
-    FOLLOW_LT_in_expression2049 = frozenset([1])
-    FOLLOW_72_in_expression2053 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_expression2055 = frozenset([1])
-    FOLLOW_assignmentExpression_in_expression2059 = frozenset([1])
-    FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2071 = frozenset([1, 30, 71])
-    FOLLOW_LT_in_expressionNoIn2074 = frozenset([30, 71])
-    FOLLOW_71_in_expressionNoIn2078 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_expressionNoIn2080 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2084 = frozenset([1, 30, 71])
-    FOLLOW_leftHandSideExpression_in_assignmentExpression2098 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_LT_in_assignmentExpression2100 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_assignmentOperator_in_assignmentExpression2103 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_assignmentExpression2105 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_assignmentExpression2108 = frozenset([1])
-    FOLLOW_conditionalExpression_in_assignmentExpression2127 = frozenset([1])
-    FOLLOW_leftHandSideExpression_in_assignmentExpressionNoIn2139 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_LT_in_assignmentExpressionNoIn2141 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_assignmentOperator_in_assignmentExpressionNoIn2144 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_assignmentExpressionNoIn2146 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_assignmentExpressionNoIn2149 = frozenset([1])
-    FOLLOW_conditionalExpressionNoIn_in_assignmentExpressionNoIn2168 = frozenset([1])
-    FOLLOW_callExpression_in_leftHandSideExpression2180 = frozenset([1])
-    FOLLOW_newExpression_in_leftHandSideExpression2185 = frozenset([1])
-    FOLLOW_memberExpression_in_newExpression2197 = frozenset([1])
-    FOLLOW_99_in_newExpression2202 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_newExpression2204 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_newExpression_in_newExpression2207 = frozenset([1])
-    FOLLOW_primaryExpression_in_memberExpression2229 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_LT_in_memberExpression2232 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_memberExpression2235 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_functionExpression_in_memberExpression2255 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_LT_in_memberExpression2258 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_memberExpression2262 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_99_in_memberExpression2269 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_memberExpression2271 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_memberExpression_in_memberExpression2274 = frozenset([30, 70])
-    FOLLOW_LT_in_memberExpression2276 = frozenset([30, 70])
-    FOLLOW_arguments_in_memberExpression2279 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_LT_in_memberExpression2282 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_memberExpression2285 = frozenset([1, 30, 64, 81, 100])
-    FOLLOW_indexSuffix_in_memberExpressionSuffix2322 = frozenset([1])
-    FOLLOW_propertyReferenceSuffix_in_memberExpressionSuffix2327 = frozenset([1])
-    FOLLOW_descendentSuffix_in_memberExpressionSuffix2332 = frozenset([1])
-    FOLLOW_namespaceSuffix_in_memberExpressionSuffix2338 = frozenset([1])
-    FOLLOW_memberExpression_in_callExpression2353 = frozenset([30, 70, 100])
-    FOLLOW_LT_in_callExpression2355 = frozenset([30, 70, 100])
-    FOLLOW_100_in_callExpression2358 = frozenset([30, 70])
-    FOLLOW_LT_in_callExpression2361 = frozenset([30, 70])
-    FOLLOW_arguments_in_callExpression2364 = frozenset([1, 30, 64, 70, 81, 100])
-    FOLLOW_LT_in_callExpression2367 = frozenset([30, 64, 70, 81, 100])
-    FOLLOW_callExpressionSuffix_in_callExpression2370 = frozenset([1, 30, 64, 70, 81, 100])
-    FOLLOW_arguments_in_callExpressionSuffix2399 = frozenset([1])
-    FOLLOW_indexSuffix_in_callExpressionSuffix2404 = frozenset([1])
-    FOLLOW_propertyReferenceSuffix_in_callExpressionSuffix2409 = frozenset([1])
-    FOLLOW_descendentSuffix_in_callExpressionSuffix2414 = frozenset([1])
-    FOLLOW_namespaceSuffix_in_callExpressionSuffix2420 = frozenset([1])
-    FOLLOW_70_in_arguments2435 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 72, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arguments2438 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_arguments2441 = frozenset([30, 71, 72])
-    FOLLOW_LT_in_arguments2443 = frozenset([30, 71, 72])
-    FOLLOW_71_in_arguments2447 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arguments2449 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_arguments2452 = frozenset([30, 71, 72])
-    FOLLOW_LT_in_arguments2454 = frozenset([30, 71, 72])
-    FOLLOW_LT_in_arguments2461 = frozenset([30, 72])
-    FOLLOW_72_in_arguments2464 = frozenset([1])
-    FOLLOW_81_in_indexSuffix2487 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_indexSuffix2489 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_indexSuffix2492 = frozenset([30, 82])
-    FOLLOW_LT_in_indexSuffix2494 = frozenset([30, 82])
-    FOLLOW_82_in_indexSuffix2497 = frozenset([1])
-    FOLLOW_100_in_propertyReferenceSuffix2520 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_LT_in_propertyReferenceSuffix2522 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_e4xIdentifier_in_propertyReferenceSuffix2525 = frozenset([1])
-    FOLLOW_100_in_descendentSuffix2546 = frozenset([100])
-    FOLLOW_100_in_descendentSuffix2548 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_LT_in_descendentSuffix2550 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_e4xIdentifier_in_descendentSuffix2553 = frozenset([1])
-    FOLLOW_64_in_namespaceSuffix2574 = frozenset([64])
-    FOLLOW_64_in_namespaceSuffix2576 = frozenset([1, 30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_LT_in_namespaceSuffix2578 = frozenset([1, 30, 34, 73, 74, 75, 88, 101, 139, 140])
-    FOLLOW_e4xIdentifier_in_namespaceSuffix2581 = frozenset([1])
-    FOLLOW_identifier_in_e4xIdentifier2604 = frozenset([1])
-    FOLLOW_101_in_e4xIdentifier2609 = frozenset([1])
+    FOLLOW_69_in_functionExpression540 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_functionExpression542 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_functionExpression545 = frozenset([30, 70])
+    FOLLOW_LT_in_functionExpression547 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_functionExpression550 = frozenset([30, 67])
+    FOLLOW_LT_in_functionExpression552 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_functionExpression555 = frozenset([1])
+    FOLLOW_69_in_functionExpression576 = frozenset([30, 70])
+    FOLLOW_LT_in_functionExpression578 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_functionExpression581 = frozenset([30, 67])
+    FOLLOW_LT_in_functionExpression583 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_functionExpression586 = frozenset([1])
+    FOLLOW_69_in_functionExpression608 = frozenset([30, 70])
+    FOLLOW_LT_in_functionExpression610 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_functionExpression613 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_functionExpression615 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_functionExpression618 = frozenset([1])
+    FOLLOW_70_in_formalParameterList645 = frozenset([30, 34, 72, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_formalParameterList648 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_formalParameterList651 = frozenset([30, 71, 72])
+    FOLLOW_LT_in_formalParameterList654 = frozenset([30, 71])
+    FOLLOW_71_in_formalParameterList657 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_formalParameterList659 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_formalParameterList662 = frozenset([30, 71, 72])
+    FOLLOW_LT_in_formalParameterList668 = frozenset([30, 72])
+    FOLLOW_72_in_formalParameterList671 = frozenset([1])
+    FOLLOW_statementBlock_in_statement694 = frozenset([1])
+    FOLLOW_variableStatement_in_statement699 = frozenset([1])
+    FOLLOW_emptyStatement_in_statement704 = frozenset([1])
+    FOLLOW_expressionStatement_in_statement709 = frozenset([1])
+    FOLLOW_ifStatement_in_statement714 = frozenset([1])
+    FOLLOW_iterationStatement_in_statement719 = frozenset([1])
+    FOLLOW_continueStatement_in_statement724 = frozenset([1])
+    FOLLOW_breakStatement_in_statement729 = frozenset([1])
+    FOLLOW_returnStatement_in_statement734 = frozenset([1])
+    FOLLOW_withStatement_in_statement739 = frozenset([1])
+    FOLLOW_letStatement_in_statement744 = frozenset([1])
+    FOLLOW_labelledStatement_in_statement749 = frozenset([1])
+    FOLLOW_switchStatement_in_statement754 = frozenset([1])
+    FOLLOW_throwStatement_in_statement759 = frozenset([1])
+    FOLLOW_tryStatement_in_statement764 = frozenset([1])
+    FOLLOW_defaultXmlNamespaceStatement_in_statement769 = frozenset([1])
+    FOLLOW_73_in_defaultXmlNamespaceStatement780 = frozenset([74])
+    FOLLOW_74_in_defaultXmlNamespaceStatement782 = frozenset([75])
+    FOLLOW_75_in_defaultXmlNamespaceStatement784 = frozenset([30, 66])
+    FOLLOW_LT_in_defaultXmlNamespaceStatement786 = frozenset([30, 66])
+    FOLLOW_66_in_defaultXmlNamespaceStatement789 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_defaultXmlNamespaceStatement791 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_defaultXmlNamespaceStatement794 = frozenset([30, 76])
+    FOLLOW_LT_in_defaultXmlNamespaceStatement797 = frozenset([1])
+    FOLLOW_76_in_defaultXmlNamespaceStatement801 = frozenset([1])
+    FOLLOW_67_in_statementBlock823 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_statementBlock825 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statementList_in_statementBlock829 = frozenset([30, 68])
+    FOLLOW_LT_in_statementBlock832 = frozenset([30, 68])
+    FOLLOW_68_in_statementBlock836 = frozenset([1])
+    FOLLOW_67_in_statementBlock841 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 77, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_77_in_statementBlock843 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_statementBlock846 = frozenset([68])
+    FOLLOW_68_in_statementBlock848 = frozenset([1])
+    FOLLOW_statement_in_statementList861 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_statementList864 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statement_in_statementList868 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_78_in_variableStatement884 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_79_in_variableStatement888 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_80_in_variableStatement892 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_LT_in_variableStatement895 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_variableDeclarationList_in_variableStatement898 = frozenset([30, 76])
+    FOLLOW_LT_in_variableStatement901 = frozenset([1])
+    FOLLOW_76_in_variableStatement905 = frozenset([1])
+    FOLLOW_variableDeclaration_in_variableDeclarationList930 = frozenset([1, 30, 71])
+    FOLLOW_LT_in_variableDeclarationList933 = frozenset([30, 71])
+    FOLLOW_71_in_variableDeclarationList937 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclarationList939 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_variableDeclaration_in_variableDeclarationList943 = frozenset([1, 30, 71])
+    FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn957 = frozenset([1, 30, 71])
+    FOLLOW_LT_in_variableDeclarationListNoIn960 = frozenset([30, 71])
+    FOLLOW_71_in_variableDeclarationListNoIn964 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclarationListNoIn966 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_variableDeclarationNoIn_in_variableDeclarationListNoIn970 = frozenset([1, 30, 71])
+    FOLLOW_identifier_in_variableDeclaration984 = frozenset([1, 30, 66])
+    FOLLOW_LT_in_variableDeclaration987 = frozenset([30, 66])
+    FOLLOW_initialiser_in_variableDeclaration990 = frozenset([1])
+    FOLLOW_81_in_variableDeclaration1010 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclaration1012 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_identifier_in_variableDeclaration1015 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_variableDeclaration1019 = frozenset([30, 71])
+    FOLLOW_71_in_variableDeclaration1022 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclaration1025 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_variableDeclaration1028 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_variableDeclaration1034 = frozenset([30, 71, 82])
+    FOLLOW_71_in_variableDeclaration1038 = frozenset([30, 82])
+    FOLLOW_LT_in_variableDeclaration1040 = frozenset([30, 82])
+    FOLLOW_82_in_variableDeclaration1045 = frozenset([1, 30, 66])
+    FOLLOW_LT_in_variableDeclaration1048 = frozenset([30, 66])
+    FOLLOW_initialiser_in_variableDeclaration1051 = frozenset([1])
+    FOLLOW_identifier_in_variableDeclarationNoIn1083 = frozenset([1, 30, 66])
+    FOLLOW_LT_in_variableDeclarationNoIn1086 = frozenset([30, 66])
+    FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1089 = frozenset([1])
+    FOLLOW_81_in_variableDeclarationNoIn1109 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclarationNoIn1111 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_identifier_in_variableDeclarationNoIn1114 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_variableDeclarationNoIn1118 = frozenset([30, 71])
+    FOLLOW_71_in_variableDeclarationNoIn1121 = frozenset([30, 34, 71, 73, 74, 75, 82, 88, 139, 140])
+    FOLLOW_LT_in_variableDeclarationNoIn1124 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_variableDeclarationNoIn1127 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_variableDeclarationNoIn1133 = frozenset([30, 71, 82])
+    FOLLOW_71_in_variableDeclarationNoIn1137 = frozenset([30, 82])
+    FOLLOW_LT_in_variableDeclarationNoIn1139 = frozenset([30, 82])
+    FOLLOW_82_in_variableDeclarationNoIn1144 = frozenset([1, 30, 66])
+    FOLLOW_LT_in_variableDeclarationNoIn1147 = frozenset([30, 66])
+    FOLLOW_initialiserNoIn_in_variableDeclarationNoIn1150 = frozenset([1])
+    FOLLOW_66_in_initialiser1182 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_initialiser1184 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_initialiser1187 = frozenset([1])
+    FOLLOW_66_in_initialiserNoIn1205 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_initialiserNoIn1207 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_initialiserNoIn1210 = frozenset([1])
+    FOLLOW_76_in_emptyStatement1228 = frozenset([1])
+    FOLLOW_expression_in_expressionStatement1240 = frozenset([30, 76])
+    FOLLOW_set_in_expressionStatement1242 = frozenset([1])
+    FOLLOW_83_in_ifStatement1261 = frozenset([30, 70])
+    FOLLOW_LT_in_ifStatement1263 = frozenset([1])
+    FOLLOW_70_in_ifStatement1267 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_ifStatement1269 = frozenset([1])
+    FOLLOW_expression_in_ifStatement1273 = frozenset([30, 72])
+    FOLLOW_LT_in_ifStatement1275 = frozenset([1])
+    FOLLOW_72_in_ifStatement1279 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_ifStatement1281 = frozenset([1])
+    FOLLOW_statement_in_ifStatement1285 = frozenset([1, 30, 84])
+    FOLLOW_LT_in_ifStatement1288 = frozenset([30, 84])
+    FOLLOW_84_in_ifStatement1292 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_ifStatement1294 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statement_in_ifStatement1298 = frozenset([1])
+    FOLLOW_doWhileStatement_in_iterationStatement1312 = frozenset([1])
+    FOLLOW_whileStatement_in_iterationStatement1317 = frozenset([1])
+    FOLLOW_forStatement_in_iterationStatement1322 = frozenset([1])
+    FOLLOW_forInStatement_in_iterationStatement1327 = frozenset([1])
+    FOLLOW_85_in_doWhileStatement1339 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_doWhileStatement1341 = frozenset([1])
+    FOLLOW_statement_in_doWhileStatement1345 = frozenset([30, 86])
+    FOLLOW_LT_in_doWhileStatement1347 = frozenset([1])
+    FOLLOW_86_in_doWhileStatement1351 = frozenset([30, 70])
+    FOLLOW_LT_in_doWhileStatement1353 = frozenset([1])
+    FOLLOW_70_in_doWhileStatement1357 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_doWhileStatement1359 = frozenset([72])
+    FOLLOW_72_in_doWhileStatement1361 = frozenset([30, 76])
+    FOLLOW_set_in_doWhileStatement1363 = frozenset([1])
+    FOLLOW_86_in_whileStatement1382 = frozenset([30, 70])
+    FOLLOW_LT_in_whileStatement1384 = frozenset([1])
+    FOLLOW_70_in_whileStatement1388 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_whileStatement1390 = frozenset([1])
+    FOLLOW_expression_in_whileStatement1394 = frozenset([30, 72])
+    FOLLOW_LT_in_whileStatement1396 = frozenset([1])
+    FOLLOW_72_in_whileStatement1400 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_whileStatement1402 = frozenset([1])
+    FOLLOW_statement_in_whileStatement1406 = frozenset([1])
+    FOLLOW_87_in_forStatement1418 = frozenset([30, 70])
+    FOLLOW_LT_in_forStatement1420 = frozenset([1])
+    FOLLOW_70_in_forStatement1424 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forStatement1427 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_forStatementInitialiserPart_in_forStatement1431 = frozenset([30, 76])
+    FOLLOW_LT_in_forStatement1435 = frozenset([1])
+    FOLLOW_76_in_forStatement1439 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forStatement1442 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_forStatement1446 = frozenset([30, 76])
+    FOLLOW_LT_in_forStatement1450 = frozenset([1])
+    FOLLOW_76_in_forStatement1454 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 72, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forStatement1457 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_forStatement1461 = frozenset([30, 72])
+    FOLLOW_LT_in_forStatement1465 = frozenset([1])
+    FOLLOW_72_in_forStatement1469 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forStatement1471 = frozenset([1])
+    FOLLOW_statement_in_forStatement1475 = frozenset([1])
+    FOLLOW_expressionNoIn_in_forStatementInitialiserPart1487 = frozenset([1])
+    FOLLOW_set_in_forStatementInitialiserPart1492 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_LT_in_forStatementInitialiserPart1498 = frozenset([1])
+    FOLLOW_variableDeclarationListNoIn_in_forStatementInitialiserPart1502 = frozenset([1])
+    FOLLOW_87_in_forInStatement1514 = frozenset([30, 70, 88])
+    FOLLOW_LT_in_forInStatement1516 = frozenset([1])
+    FOLLOW_88_in_forInStatement1520 = frozenset([30, 70])
+    FOLLOW_LT_in_forInStatement1523 = frozenset([1])
+    FOLLOW_70_in_forInStatement1527 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forInStatement1529 = frozenset([1])
+    FOLLOW_forInStatementInitialiserPart_in_forInStatement1533 = frozenset([30, 89])
+    FOLLOW_LT_in_forInStatement1535 = frozenset([1])
+    FOLLOW_89_in_forInStatement1539 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forInStatement1541 = frozenset([1])
+    FOLLOW_expression_in_forInStatement1545 = frozenset([30, 72])
+    FOLLOW_LT_in_forInStatement1547 = frozenset([1])
+    FOLLOW_72_in_forInStatement1551 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_forInStatement1553 = frozenset([1])
+    FOLLOW_statement_in_forInStatement1557 = frozenset([1])
+    FOLLOW_leftHandSideExpression_in_forInStatementInitialiserPart1569 = frozenset([1])
+    FOLLOW_set_in_forInStatementInitialiserPart1574 = frozenset([30, 34, 73, 74, 75, 81, 88, 139, 140])
+    FOLLOW_LT_in_forInStatementInitialiserPart1580 = frozenset([1])
+    FOLLOW_variableDeclarationNoIn_in_forInStatementInitialiserPart1584 = frozenset([1])
+    FOLLOW_90_in_continueStatement1595 = frozenset([30, 34, 73, 74, 75, 76, 88, 139, 140])
+    FOLLOW_identifier_in_continueStatement1597 = frozenset([30, 76])
+    FOLLOW_set_in_continueStatement1600 = frozenset([1])
+    FOLLOW_91_in_breakStatement1618 = frozenset([30, 34, 73, 74, 75, 76, 88, 139, 140])
+    FOLLOW_identifier_in_breakStatement1620 = frozenset([30, 76])
+    FOLLOW_set_in_breakStatement1623 = frozenset([1])
+    FOLLOW_77_in_returnStatement1641 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_returnStatement1643 = frozenset([30, 76])
+    FOLLOW_set_in_returnStatement1646 = frozenset([1])
+    FOLLOW_92_in_withStatement1665 = frozenset([30, 70])
+    FOLLOW_LT_in_withStatement1667 = frozenset([1])
+    FOLLOW_70_in_withStatement1671 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_withStatement1673 = frozenset([1])
+    FOLLOW_expression_in_withStatement1677 = frozenset([30, 72])
+    FOLLOW_LT_in_withStatement1679 = frozenset([1])
+    FOLLOW_72_in_withStatement1683 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_withStatement1685 = frozenset([1])
+    FOLLOW_statement_in_withStatement1689 = frozenset([1])
+    FOLLOW_80_in_letStatement1700 = frozenset([30, 70])
+    FOLLOW_LT_in_letStatement1702 = frozenset([1])
+    FOLLOW_70_in_letStatement1706 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_letStatement1708 = frozenset([1])
+    FOLLOW_expression_in_letStatement1712 = frozenset([30, 72])
+    FOLLOW_LT_in_letStatement1714 = frozenset([1])
+    FOLLOW_72_in_letStatement1718 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_letStatement1720 = frozenset([1])
+    FOLLOW_statement_in_letStatement1724 = frozenset([1])
+    FOLLOW_identifier_in_labelledStatement1735 = frozenset([30, 64])
+    FOLLOW_LT_in_labelledStatement1737 = frozenset([1])
+    FOLLOW_64_in_labelledStatement1741 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_labelledStatement1743 = frozenset([1])
+    FOLLOW_statement_in_labelledStatement1747 = frozenset([1])
+    FOLLOW_93_in_switchStatement1759 = frozenset([30, 70])
+    FOLLOW_LT_in_switchStatement1761 = frozenset([1])
+    FOLLOW_70_in_switchStatement1765 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_switchStatement1767 = frozenset([1])
+    FOLLOW_expression_in_switchStatement1771 = frozenset([30, 72])
+    FOLLOW_LT_in_switchStatement1773 = frozenset([1])
+    FOLLOW_72_in_switchStatement1777 = frozenset([30, 67])
+    FOLLOW_LT_in_switchStatement1779 = frozenset([1])
+    FOLLOW_caseBlock_in_switchStatement1783 = frozenset([1])
+    FOLLOW_67_in_caseBlock1795 = frozenset([30, 68, 73, 94])
+    FOLLOW_LT_in_caseBlock1798 = frozenset([30, 94])
+    FOLLOW_caseClause_in_caseBlock1802 = frozenset([30, 68, 73, 94])
+    FOLLOW_LT_in_caseBlock1807 = frozenset([30, 73])
+    FOLLOW_defaultClause_in_caseBlock1811 = frozenset([30, 68, 94])
+    FOLLOW_LT_in_caseBlock1814 = frozenset([30, 94])
+    FOLLOW_caseClause_in_caseBlock1818 = frozenset([30, 68, 94])
+    FOLLOW_LT_in_caseBlock1824 = frozenset([1])
+    FOLLOW_68_in_caseBlock1828 = frozenset([1])
+    FOLLOW_94_in_caseClause1839 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_caseClause1841 = frozenset([1])
+    FOLLOW_expression_in_caseClause1845 = frozenset([30, 64])
+    FOLLOW_LT_in_caseClause1847 = frozenset([1])
+    FOLLOW_64_in_caseClause1851 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_caseClause1853 = frozenset([1])
+    FOLLOW_statementList_in_caseClause1857 = frozenset([1])
+    FOLLOW_73_in_defaultClause1870 = frozenset([30, 64])
+    FOLLOW_LT_in_defaultClause1872 = frozenset([1])
+    FOLLOW_64_in_defaultClause1876 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_defaultClause1878 = frozenset([1])
+    FOLLOW_statementList_in_defaultClause1882 = frozenset([1])
+    FOLLOW_95_in_throwStatement1895 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_throwStatement1897 = frozenset([30, 76])
+    FOLLOW_set_in_throwStatement1899 = frozenset([1])
+    FOLLOW_96_in_tryStatement1917 = frozenset([30, 67])
+    FOLLOW_LT_in_tryStatement1919 = frozenset([1])
+    FOLLOW_statementBlock_in_tryStatement1923 = frozenset([30, 97, 98])
+    FOLLOW_LT_in_tryStatement1925 = frozenset([1])
+    FOLLOW_finallyClause_in_tryStatement1930 = frozenset([1])
+    FOLLOW_catchClause_in_tryStatement1934 = frozenset([1, 30, 98])
+    FOLLOW_LT_in_tryStatement1937 = frozenset([30, 98])
+    FOLLOW_finallyClause_in_tryStatement1941 = frozenset([1])
+    FOLLOW_97_in_catchClause1962 = frozenset([30, 70])
+    FOLLOW_LT_in_catchClause1964 = frozenset([1])
+    FOLLOW_70_in_catchClause1968 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_catchClause1970 = frozenset([1])
+    FOLLOW_identifier_in_catchClause1974 = frozenset([30, 72])
+    FOLLOW_LT_in_catchClause1976 = frozenset([1])
+    FOLLOW_72_in_catchClause1980 = frozenset([30, 67])
+    FOLLOW_LT_in_catchClause1982 = frozenset([1])
+    FOLLOW_statementBlock_in_catchClause1986 = frozenset([1])
+    FOLLOW_98_in_finallyClause1998 = frozenset([30, 67])
+    FOLLOW_LT_in_finallyClause2000 = frozenset([1])
+    FOLLOW_statementBlock_in_finallyClause2004 = frozenset([1])
+    FOLLOW_assignmentExpression_in_expression2016 = frozenset([1, 30, 71])
+    FOLLOW_LT_in_expression2019 = frozenset([30, 71])
+    FOLLOW_71_in_expression2023 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_expression2025 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_expression2029 = frozenset([1, 30, 71])
+    FOLLOW_80_in_expression2036 = frozenset([30, 70])
+    FOLLOW_LT_in_expression2038 = frozenset([1])
+    FOLLOW_70_in_expression2042 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_expression2044 = frozenset([1])
+    FOLLOW_assignmentExpression_in_expression2048 = frozenset([30, 72])
+    FOLLOW_LT_in_expression2050 = frozenset([1])
+    FOLLOW_72_in_expression2054 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_expression2056 = frozenset([1])
+    FOLLOW_assignmentExpression_in_expression2060 = frozenset([1])
+    FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2072 = frozenset([1, 30, 71])
+    FOLLOW_LT_in_expressionNoIn2075 = frozenset([30, 71])
+    FOLLOW_71_in_expressionNoIn2079 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_expressionNoIn2081 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_expressionNoIn2085 = frozenset([1, 30, 71])
+    FOLLOW_leftHandSideExpression_in_assignmentExpression2099 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_LT_in_assignmentExpression2101 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_assignmentOperator_in_assignmentExpression2104 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_assignmentExpression2106 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_assignmentExpression2109 = frozenset([1])
+    FOLLOW_conditionalExpression_in_assignmentExpression2128 = frozenset([1])
+    FOLLOW_leftHandSideExpression_in_assignmentExpressionNoIn2140 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_LT_in_assignmentExpressionNoIn2142 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_assignmentOperator_in_assignmentExpressionNoIn2145 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_assignmentExpressionNoIn2147 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_assignmentExpressionNoIn2150 = frozenset([1])
+    FOLLOW_conditionalExpressionNoIn_in_assignmentExpressionNoIn2169 = frozenset([1])
+    FOLLOW_callExpression_in_leftHandSideExpression2181 = frozenset([1])
+    FOLLOW_newExpression_in_leftHandSideExpression2186 = frozenset([1])
+    FOLLOW_memberExpression_in_newExpression2198 = frozenset([1])
+    FOLLOW_99_in_newExpression2203 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_newExpression2205 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_newExpression_in_newExpression2208 = frozenset([1])
+    FOLLOW_primaryExpression_in_memberExpression2230 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_LT_in_memberExpression2233 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_memberExpression2236 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_functionExpression_in_memberExpression2256 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_LT_in_memberExpression2259 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_memberExpression2263 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_99_in_memberExpression2270 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_memberExpression2272 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_memberExpression_in_memberExpression2275 = frozenset([30, 70])
+    FOLLOW_LT_in_memberExpression2277 = frozenset([30, 70])
+    FOLLOW_arguments_in_memberExpression2280 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_LT_in_memberExpression2283 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_memberExpression2286 = frozenset([1, 30, 64, 81, 100])
+    FOLLOW_indexSuffix_in_memberExpressionSuffix2323 = frozenset([1])
+    FOLLOW_propertyReferenceSuffix_in_memberExpressionSuffix2328 = frozenset([1])
+    FOLLOW_descendentSuffix_in_memberExpressionSuffix2333 = frozenset([1])
+    FOLLOW_namespaceSuffix_in_memberExpressionSuffix2339 = frozenset([1])
+    FOLLOW_memberExpression_in_callExpression2354 = frozenset([30, 70, 100])
+    FOLLOW_LT_in_callExpression2356 = frozenset([30, 70, 100])
+    FOLLOW_100_in_callExpression2359 = frozenset([30, 70])
+    FOLLOW_LT_in_callExpression2362 = frozenset([30, 70])
+    FOLLOW_arguments_in_callExpression2365 = frozenset([1, 30, 64, 70, 81, 100])
+    FOLLOW_LT_in_callExpression2368 = frozenset([30, 64, 70, 81, 100])
+    FOLLOW_callExpressionSuffix_in_callExpression2371 = frozenset([1, 30, 64, 70, 81, 100])
+    FOLLOW_arguments_in_callExpressionSuffix2400 = frozenset([1])
+    FOLLOW_indexSuffix_in_callExpressionSuffix2405 = frozenset([1])
+    FOLLOW_propertyReferenceSuffix_in_callExpressionSuffix2410 = frozenset([1])
+    FOLLOW_descendentSuffix_in_callExpressionSuffix2415 = frozenset([1])
+    FOLLOW_namespaceSuffix_in_callExpressionSuffix2421 = frozenset([1])
+    FOLLOW_70_in_arguments2436 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 72, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arguments2439 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_arguments2442 = frozenset([30, 71, 72])
+    FOLLOW_LT_in_arguments2444 = frozenset([30, 71, 72])
+    FOLLOW_71_in_arguments2448 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arguments2450 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_arguments2453 = frozenset([30, 71, 72])
+    FOLLOW_LT_in_arguments2455 = frozenset([30, 71, 72])
+    FOLLOW_LT_in_arguments2462 = frozenset([30, 72])
+    FOLLOW_72_in_arguments2465 = frozenset([1])
+    FOLLOW_81_in_indexSuffix2488 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_indexSuffix2490 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_indexSuffix2493 = frozenset([30, 82])
+    FOLLOW_LT_in_indexSuffix2495 = frozenset([30, 82])
+    FOLLOW_82_in_indexSuffix2498 = frozenset([1])
+    FOLLOW_100_in_propertyReferenceSuffix2521 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_LT_in_propertyReferenceSuffix2523 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_e4xIdentifier_in_propertyReferenceSuffix2526 = frozenset([1])
+    FOLLOW_100_in_descendentSuffix2547 = frozenset([100])
+    FOLLOW_100_in_descendentSuffix2549 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_LT_in_descendentSuffix2551 = frozenset([30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_e4xIdentifier_in_descendentSuffix2554 = frozenset([1])
+    FOLLOW_64_in_namespaceSuffix2575 = frozenset([64])
+    FOLLOW_64_in_namespaceSuffix2577 = frozenset([1, 30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_LT_in_namespaceSuffix2579 = frozenset([1, 30, 34, 73, 74, 75, 88, 101, 139, 140])
+    FOLLOW_e4xIdentifier_in_namespaceSuffix2582 = frozenset([1])
+    FOLLOW_identifier_in_e4xIdentifier2605 = frozenset([1])
+    FOLLOW_101_in_e4xIdentifier2610 = frozenset([1])
     FOLLOW_set_in_assignmentOperator0 = frozenset([1])
-    FOLLOW_logicalORExpression_in_conditionalExpression2676 = frozenset([1, 30, 113])
-    FOLLOW_LT_in_conditionalExpression2679 = frozenset([30, 113])
-    FOLLOW_113_in_conditionalExpression2683 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_conditionalExpression2685 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_conditionalExpression2689 = frozenset([30, 64])
-    FOLLOW_LT_in_conditionalExpression2691 = frozenset([30, 64])
-    FOLLOW_64_in_conditionalExpression2695 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_conditionalExpression2697 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_conditionalExpression2701 = frozenset([1])
-    FOLLOW_logicalORExpressionNoIn_in_conditionalExpressionNoIn2714 = frozenset([1, 30, 113])
-    FOLLOW_LT_in_conditionalExpressionNoIn2717 = frozenset([30, 113])
-    FOLLOW_113_in_conditionalExpressionNoIn2721 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_conditionalExpressionNoIn2723 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2727 = frozenset([30, 64])
-    FOLLOW_LT_in_conditionalExpressionNoIn2729 = frozenset([30, 64])
-    FOLLOW_64_in_conditionalExpressionNoIn2733 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_conditionalExpressionNoIn2735 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2739 = frozenset([1])
-    FOLLOW_logicalANDExpression_in_logicalORExpression2752 = frozenset([1, 30, 114])
-    FOLLOW_LT_in_logicalORExpression2755 = frozenset([30, 114])
-    FOLLOW_114_in_logicalORExpression2759 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_logicalORExpression2761 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_logicalANDExpression_in_logicalORExpression2765 = frozenset([1, 30, 114])
-    FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2779 = frozenset([1, 30, 114])
-    FOLLOW_LT_in_logicalORExpressionNoIn2782 = frozenset([30, 114])
-    FOLLOW_114_in_logicalORExpressionNoIn2786 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_logicalORExpressionNoIn2788 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2792 = frozenset([1, 30, 114])
-    FOLLOW_bitwiseORExpression_in_logicalANDExpression2806 = frozenset([1, 30, 115])
-    FOLLOW_LT_in_logicalANDExpression2809 = frozenset([30, 115])
-    FOLLOW_115_in_logicalANDExpression2813 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_logicalANDExpression2815 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseORExpression_in_logicalANDExpression2819 = frozenset([1, 30, 115])
-    FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2833 = frozenset([1, 30, 115])
-    FOLLOW_LT_in_logicalANDExpressionNoIn2836 = frozenset([30, 115])
-    FOLLOW_115_in_logicalANDExpressionNoIn2840 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_logicalANDExpressionNoIn2842 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2846 = frozenset([1, 30, 115])
-    FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2860 = frozenset([1, 30, 116])
-    FOLLOW_LT_in_bitwiseORExpression2863 = frozenset([30, 116])
-    FOLLOW_116_in_bitwiseORExpression2867 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseORExpression2869 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2873 = frozenset([1, 30, 116])
-    FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2887 = frozenset([1, 30, 116])
-    FOLLOW_LT_in_bitwiseORExpressionNoIn2890 = frozenset([30, 116])
-    FOLLOW_116_in_bitwiseORExpressionNoIn2894 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseORExpressionNoIn2896 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2900 = frozenset([1, 30, 116])
-    FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2914 = frozenset([1, 30, 117])
-    FOLLOW_LT_in_bitwiseXORExpression2917 = frozenset([30, 117])
-    FOLLOW_117_in_bitwiseXORExpression2921 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseXORExpression2923 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2927 = frozenset([1, 30, 117])
-    FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2941 = frozenset([1, 30, 117])
-    FOLLOW_LT_in_bitwiseXORExpressionNoIn2944 = frozenset([30, 117])
-    FOLLOW_117_in_bitwiseXORExpressionNoIn2948 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseXORExpressionNoIn2950 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2954 = frozenset([1, 30, 117])
-    FOLLOW_equalityExpression_in_bitwiseANDExpression2968 = frozenset([1, 30, 118])
-    FOLLOW_LT_in_bitwiseANDExpression2971 = frozenset([30, 118])
-    FOLLOW_118_in_bitwiseANDExpression2975 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseANDExpression2977 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_equalityExpression_in_bitwiseANDExpression2981 = frozenset([1, 30, 118])
-    FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn2995 = frozenset([1, 30, 118])
-    FOLLOW_LT_in_bitwiseANDExpressionNoIn2998 = frozenset([30, 118])
-    FOLLOW_118_in_bitwiseANDExpressionNoIn3002 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_bitwiseANDExpressionNoIn3004 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn3008 = frozenset([1, 30, 118])
-    FOLLOW_relationalExpression_in_equalityExpression3022 = frozenset([1, 30, 119, 120, 121, 122])
-    FOLLOW_LT_in_equalityExpression3025 = frozenset([30, 119, 120, 121, 122])
-    FOLLOW_set_in_equalityExpression3029 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_equalityExpression3045 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_relationalExpression_in_equalityExpression3049 = frozenset([1, 30, 119, 120, 121, 122])
-    FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3062 = frozenset([1, 30, 119, 120, 121, 122])
-    FOLLOW_LT_in_equalityExpressionNoIn3065 = frozenset([30, 119, 120, 121, 122])
-    FOLLOW_set_in_equalityExpressionNoIn3069 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_equalityExpressionNoIn3085 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3089 = frozenset([1, 30, 119, 120, 121, 122])
-    FOLLOW_shiftExpression_in_relationalExpression3103 = frozenset([1, 30, 61, 62, 89, 123, 124, 125])
-    FOLLOW_LT_in_relationalExpression3106 = frozenset([30, 61, 62, 89, 123, 124, 125])
-    FOLLOW_set_in_relationalExpression3110 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_relationalExpression3134 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_shiftExpression_in_relationalExpression3138 = frozenset([1, 30, 61, 62, 89, 123, 124, 125])
-    FOLLOW_shiftExpression_in_relationalExpressionNoIn3151 = frozenset([1, 30, 61, 62, 123, 124, 125])
-    FOLLOW_LT_in_relationalExpressionNoIn3154 = frozenset([30, 61, 62, 123, 124, 125])
-    FOLLOW_set_in_relationalExpressionNoIn3158 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_relationalExpressionNoIn3178 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_shiftExpression_in_relationalExpressionNoIn3182 = frozenset([1, 30, 61, 62, 123, 124, 125])
-    FOLLOW_additiveExpression_in_shiftExpression3195 = frozenset([1, 30, 126, 127, 128])
-    FOLLOW_LT_in_shiftExpression3198 = frozenset([30, 126, 127, 128])
-    FOLLOW_set_in_shiftExpression3202 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_shiftExpression3214 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_additiveExpression_in_shiftExpression3218 = frozenset([1, 30, 126, 127, 128])
-    FOLLOW_multiplicativeExpression_in_additiveExpression3231 = frozenset([1, 30, 65, 129])
-    FOLLOW_LT_in_additiveExpression3234 = frozenset([30, 65, 129])
-    FOLLOW_set_in_additiveExpression3238 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_additiveExpression3246 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_multiplicativeExpression_in_additiveExpression3250 = frozenset([1, 30, 65, 129])
-    FOLLOW_unaryExpression_in_multiplicativeExpression3263 = frozenset([1, 30, 63, 101, 130])
-    FOLLOW_LT_in_multiplicativeExpression3266 = frozenset([30, 63, 101, 130])
-    FOLLOW_set_in_multiplicativeExpression3270 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_multiplicativeExpression3282 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_unaryExpression_in_multiplicativeExpression3286 = frozenset([1, 30, 63, 101, 130])
-    FOLLOW_postfixExpression_in_unaryExpression3299 = frozenset([1])
-    FOLLOW_set_in_unaryExpression3304 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_unaryExpression_in_unaryExpression3340 = frozenset([1])
-    FOLLOW_leftHandSideExpression_in_postfixExpression3352 = frozenset([1, 134, 135])
-    FOLLOW_set_in_postfixExpression3354 = frozenset([1])
-    FOLLOW_138_in_primaryExpression3372 = frozenset([1])
-    FOLLOW_xmlLiteral_in_primaryExpression3389 = frozenset([1])
-    FOLLOW_identifier_in_primaryExpression3394 = frozenset([1])
-    FOLLOW_literal_in_primaryExpression3409 = frozenset([1])
-    FOLLOW_arrayLiteral_in_primaryExpression3414 = frozenset([1])
-    FOLLOW_objectLiteral_in_primaryExpression3419 = frozenset([1])
-    FOLLOW_70_in_primaryExpression3424 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_primaryExpression3426 = frozenset([1])
-    FOLLOW_expression_in_primaryExpression3430 = frozenset([30, 72])
-    FOLLOW_LT_in_primaryExpression3432 = frozenset([1])
-    FOLLOW_72_in_primaryExpression3436 = frozenset([1])
-    FOLLOW_81_in_arrayLiteral3449 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arrayLiteral3451 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_arrayLiteral3454 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_arrayLiteral3458 = frozenset([30, 71])
-    FOLLOW_71_in_arrayLiteral3461 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arrayLiteral3464 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_arrayLiteral3467 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_arrayLiteral3473 = frozenset([30, 71, 82])
-    FOLLOW_71_in_arrayLiteral3477 = frozenset([30, 82])
-    FOLLOW_LT_in_arrayLiteral3479 = frozenset([30, 82])
-    FOLLOW_82_in_arrayLiteral3484 = frozenset([1])
-    FOLLOW_81_in_arrayLiteral3500 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arrayLiteral3502 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_arrayLiteral3507 = frozenset([30, 87])
-    FOLLOW_LT_in_arrayLiteral3509 = frozenset([30, 87])
-    FOLLOW_87_in_arrayLiteral3512 = frozenset([30, 70, 88])
-    FOLLOW_LT_in_arrayLiteral3514 = frozenset([30, 70, 88])
-    FOLLOW_88_in_arrayLiteral3517 = frozenset([30, 70])
-    FOLLOW_LT_in_arrayLiteral3520 = frozenset([30, 70])
-    FOLLOW_70_in_arrayLiteral3523 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arrayLiteral3525 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
-    FOLLOW_forInStatementInitialiserPart_in_arrayLiteral3530 = frozenset([30, 89])
-    FOLLOW_LT_in_arrayLiteral3532 = frozenset([30, 89])
-    FOLLOW_89_in_arrayLiteral3535 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_arrayLiteral3537 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_expression_in_arrayLiteral3542 = frozenset([30, 72])
-    FOLLOW_LT_in_arrayLiteral3544 = frozenset([30, 72])
-    FOLLOW_72_in_arrayLiteral3547 = frozenset([30, 82])
-    FOLLOW_LT_in_arrayLiteral3549 = frozenset([30, 82])
-    FOLLOW_82_in_arrayLiteral3552 = frozenset([1])
-    FOLLOW_67_in_objectLiteral3588 = frozenset([30, 31, 33, 34, 68, 71, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_objectLiteral3590 = frozenset([30, 31, 33, 34, 68, 71, 73, 74, 75, 88, 139, 140])
-    FOLLOW_propertyNameAndValue_in_objectLiteral3593 = frozenset([30, 68, 71])
-    FOLLOW_LT_in_objectLiteral3597 = frozenset([30, 71])
-    FOLLOW_71_in_objectLiteral3600 = frozenset([30, 31, 33, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_objectLiteral3602 = frozenset([30, 31, 33, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_propertyNameAndValue_in_objectLiteral3605 = frozenset([30, 68, 71])
-    FOLLOW_LT_in_objectLiteral3609 = frozenset([30, 68, 71])
-    FOLLOW_71_in_objectLiteral3613 = frozenset([30, 68])
-    FOLLOW_LT_in_objectLiteral3615 = frozenset([30, 68])
-    FOLLOW_68_in_objectLiteral3620 = frozenset([1])
-    FOLLOW_propertyName_in_propertyNameAndValue3644 = frozenset([30, 64])
-    FOLLOW_LT_in_propertyNameAndValue3646 = frozenset([30, 64])
-    FOLLOW_64_in_propertyNameAndValue3649 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_propertyNameAndValue3651 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_propertyNameAndValue3654 = frozenset([1])
-    FOLLOW_139_in_propertyNameAndValue3676 = frozenset([34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_140_in_propertyNameAndValue3680 = frozenset([34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_propertyNameAndValue3685 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_propertyNameAndValue3687 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_propertyNameAndValue3692 = frozenset([30, 70])
-    FOLLOW_LT_in_propertyNameAndValue3694 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_propertyNameAndValue3697 = frozenset([30, 67])
-    FOLLOW_LT_in_propertyNameAndValue3699 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_propertyNameAndValue3702 = frozenset([1])
-    FOLLOW_139_in_propertyNameAndValue3735 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_140_in_propertyNameAndValue3739 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_propertyNameAndValue3742 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_propertyNameAndValue3747 = frozenset([30, 70])
-    FOLLOW_LT_in_propertyNameAndValue3749 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_propertyNameAndValue3752 = frozenset([30, 67])
-    FOLLOW_LT_in_propertyNameAndValue3754 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_propertyNameAndValue3757 = frozenset([1])
-    FOLLOW_identifier_in_propertyName3792 = frozenset([1])
-    FOLLOW_StringLiteral_in_propertyName3797 = frozenset([1])
-    FOLLOW_NumericLiteral_in_propertyName3802 = frozenset([1])
-    FOLLOW_141_in_literal3814 = frozenset([1])
-    FOLLOW_142_in_literal3823 = frozenset([1])
-    FOLLOW_143_in_literal3832 = frozenset([1])
-    FOLLOW_StringLiteral_in_literal3841 = frozenset([1])
-    FOLLOW_NumericLiteral_in_literal3854 = frozenset([1])
-    FOLLOW_regularExpressionLiteral_in_literal3867 = frozenset([1])
+    FOLLOW_logicalORExpression_in_conditionalExpression2677 = frozenset([1, 30, 113])
+    FOLLOW_LT_in_conditionalExpression2680 = frozenset([30, 113])
+    FOLLOW_113_in_conditionalExpression2684 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_conditionalExpression2686 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_conditionalExpression2690 = frozenset([30, 64])
+    FOLLOW_LT_in_conditionalExpression2692 = frozenset([30, 64])
+    FOLLOW_64_in_conditionalExpression2696 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_conditionalExpression2698 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_conditionalExpression2702 = frozenset([1])
+    FOLLOW_logicalORExpressionNoIn_in_conditionalExpressionNoIn2715 = frozenset([1, 30, 113])
+    FOLLOW_LT_in_conditionalExpressionNoIn2718 = frozenset([30, 113])
+    FOLLOW_113_in_conditionalExpressionNoIn2722 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_conditionalExpressionNoIn2724 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2728 = frozenset([30, 64])
+    FOLLOW_LT_in_conditionalExpressionNoIn2730 = frozenset([30, 64])
+    FOLLOW_64_in_conditionalExpressionNoIn2734 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_conditionalExpressionNoIn2736 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_conditionalExpressionNoIn2740 = frozenset([1])
+    FOLLOW_logicalANDExpression_in_logicalORExpression2753 = frozenset([1, 30, 114])
+    FOLLOW_LT_in_logicalORExpression2756 = frozenset([30, 114])
+    FOLLOW_114_in_logicalORExpression2760 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_logicalORExpression2762 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_logicalANDExpression_in_logicalORExpression2766 = frozenset([1, 30, 114])
+    FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2780 = frozenset([1, 30, 114])
+    FOLLOW_LT_in_logicalORExpressionNoIn2783 = frozenset([30, 114])
+    FOLLOW_114_in_logicalORExpressionNoIn2787 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_logicalORExpressionNoIn2789 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_logicalANDExpressionNoIn_in_logicalORExpressionNoIn2793 = frozenset([1, 30, 114])
+    FOLLOW_bitwiseORExpression_in_logicalANDExpression2807 = frozenset([1, 30, 115])
+    FOLLOW_LT_in_logicalANDExpression2810 = frozenset([30, 115])
+    FOLLOW_115_in_logicalANDExpression2814 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_logicalANDExpression2816 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseORExpression_in_logicalANDExpression2820 = frozenset([1, 30, 115])
+    FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2834 = frozenset([1, 30, 115])
+    FOLLOW_LT_in_logicalANDExpressionNoIn2837 = frozenset([30, 115])
+    FOLLOW_115_in_logicalANDExpressionNoIn2841 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_logicalANDExpressionNoIn2843 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn2847 = frozenset([1, 30, 115])
+    FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2861 = frozenset([1, 30, 116])
+    FOLLOW_LT_in_bitwiseORExpression2864 = frozenset([30, 116])
+    FOLLOW_116_in_bitwiseORExpression2868 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseORExpression2870 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseXORExpression_in_bitwiseORExpression2874 = frozenset([1, 30, 116])
+    FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2888 = frozenset([1, 30, 116])
+    FOLLOW_LT_in_bitwiseORExpressionNoIn2891 = frozenset([30, 116])
+    FOLLOW_116_in_bitwiseORExpressionNoIn2895 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseORExpressionNoIn2897 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn2901 = frozenset([1, 30, 116])
+    FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2915 = frozenset([1, 30, 117])
+    FOLLOW_LT_in_bitwiseXORExpression2918 = frozenset([30, 117])
+    FOLLOW_117_in_bitwiseXORExpression2922 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseXORExpression2924 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseANDExpression_in_bitwiseXORExpression2928 = frozenset([1, 30, 117])
+    FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2942 = frozenset([1, 30, 117])
+    FOLLOW_LT_in_bitwiseXORExpressionNoIn2945 = frozenset([30, 117])
+    FOLLOW_117_in_bitwiseXORExpressionNoIn2949 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseXORExpressionNoIn2951 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn2955 = frozenset([1, 30, 117])
+    FOLLOW_equalityExpression_in_bitwiseANDExpression2969 = frozenset([1, 30, 118])
+    FOLLOW_LT_in_bitwiseANDExpression2972 = frozenset([30, 118])
+    FOLLOW_118_in_bitwiseANDExpression2976 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseANDExpression2978 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_equalityExpression_in_bitwiseANDExpression2982 = frozenset([1, 30, 118])
+    FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn2996 = frozenset([1, 30, 118])
+    FOLLOW_LT_in_bitwiseANDExpressionNoIn2999 = frozenset([30, 118])
+    FOLLOW_118_in_bitwiseANDExpressionNoIn3003 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_bitwiseANDExpressionNoIn3005 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_equalityExpressionNoIn_in_bitwiseANDExpressionNoIn3009 = frozenset([1, 30, 118])
+    FOLLOW_relationalExpression_in_equalityExpression3023 = frozenset([1, 30, 119, 120, 121, 122])
+    FOLLOW_LT_in_equalityExpression3026 = frozenset([30, 119, 120, 121, 122])
+    FOLLOW_set_in_equalityExpression3030 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_equalityExpression3046 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_relationalExpression_in_equalityExpression3050 = frozenset([1, 30, 119, 120, 121, 122])
+    FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3063 = frozenset([1, 30, 119, 120, 121, 122])
+    FOLLOW_LT_in_equalityExpressionNoIn3066 = frozenset([30, 119, 120, 121, 122])
+    FOLLOW_set_in_equalityExpressionNoIn3070 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_equalityExpressionNoIn3086 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_relationalExpressionNoIn_in_equalityExpressionNoIn3090 = frozenset([1, 30, 119, 120, 121, 122])
+    FOLLOW_shiftExpression_in_relationalExpression3104 = frozenset([1, 30, 61, 62, 89, 123, 124, 125])
+    FOLLOW_LT_in_relationalExpression3107 = frozenset([30, 61, 62, 89, 123, 124, 125])
+    FOLLOW_set_in_relationalExpression3111 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_relationalExpression3135 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_shiftExpression_in_relationalExpression3139 = frozenset([1, 30, 61, 62, 89, 123, 124, 125])
+    FOLLOW_shiftExpression_in_relationalExpressionNoIn3152 = frozenset([1, 30, 61, 62, 123, 124, 125])
+    FOLLOW_LT_in_relationalExpressionNoIn3155 = frozenset([30, 61, 62, 123, 124, 125])
+    FOLLOW_set_in_relationalExpressionNoIn3159 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_relationalExpressionNoIn3179 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_shiftExpression_in_relationalExpressionNoIn3183 = frozenset([1, 30, 61, 62, 123, 124, 125])
+    FOLLOW_additiveExpression_in_shiftExpression3196 = frozenset([1, 30, 126, 127, 128])
+    FOLLOW_LT_in_shiftExpression3199 = frozenset([30, 126, 127, 128])
+    FOLLOW_set_in_shiftExpression3203 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_shiftExpression3215 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_additiveExpression_in_shiftExpression3219 = frozenset([1, 30, 126, 127, 128])
+    FOLLOW_multiplicativeExpression_in_additiveExpression3232 = frozenset([1, 30, 65, 129])
+    FOLLOW_LT_in_additiveExpression3235 = frozenset([30, 65, 129])
+    FOLLOW_set_in_additiveExpression3239 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_additiveExpression3247 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_multiplicativeExpression_in_additiveExpression3251 = frozenset([1, 30, 65, 129])
+    FOLLOW_unaryExpression_in_multiplicativeExpression3264 = frozenset([1, 30, 63, 101, 130])
+    FOLLOW_LT_in_multiplicativeExpression3267 = frozenset([30, 63, 101, 130])
+    FOLLOW_set_in_multiplicativeExpression3271 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_multiplicativeExpression3283 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_unaryExpression_in_multiplicativeExpression3287 = frozenset([1, 30, 63, 101, 130])
+    FOLLOW_postfixExpression_in_unaryExpression3300 = frozenset([1])
+    FOLLOW_set_in_unaryExpression3305 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_unaryExpression_in_unaryExpression3341 = frozenset([1])
+    FOLLOW_leftHandSideExpression_in_postfixExpression3353 = frozenset([1, 134, 135])
+    FOLLOW_set_in_postfixExpression3355 = frozenset([1])
+    FOLLOW_138_in_primaryExpression3373 = frozenset([1])
+    FOLLOW_xmlLiteral_in_primaryExpression3390 = frozenset([1])
+    FOLLOW_identifier_in_primaryExpression3395 = frozenset([1])
+    FOLLOW_literal_in_primaryExpression3410 = frozenset([1])
+    FOLLOW_arrayLiteral_in_primaryExpression3415 = frozenset([1])
+    FOLLOW_objectLiteral_in_primaryExpression3420 = frozenset([1])
+    FOLLOW_70_in_primaryExpression3425 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_primaryExpression3427 = frozenset([1])
+    FOLLOW_expression_in_primaryExpression3431 = frozenset([30, 72])
+    FOLLOW_LT_in_primaryExpression3433 = frozenset([1])
+    FOLLOW_72_in_primaryExpression3437 = frozenset([1])
+    FOLLOW_81_in_arrayLiteral3450 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arrayLiteral3452 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_arrayLiteral3455 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_arrayLiteral3459 = frozenset([30, 71])
+    FOLLOW_71_in_arrayLiteral3462 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arrayLiteral3465 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_arrayLiteral3468 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_arrayLiteral3474 = frozenset([30, 71, 82])
+    FOLLOW_71_in_arrayLiteral3478 = frozenset([30, 82])
+    FOLLOW_LT_in_arrayLiteral3480 = frozenset([30, 82])
+    FOLLOW_82_in_arrayLiteral3485 = frozenset([1])
+    FOLLOW_81_in_arrayLiteral3501 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arrayLiteral3503 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_arrayLiteral3508 = frozenset([30, 87])
+    FOLLOW_LT_in_arrayLiteral3510 = frozenset([30, 87])
+    FOLLOW_87_in_arrayLiteral3513 = frozenset([30, 70, 88])
+    FOLLOW_LT_in_arrayLiteral3515 = frozenset([30, 70, 88])
+    FOLLOW_88_in_arrayLiteral3518 = frozenset([30, 70])
+    FOLLOW_LT_in_arrayLiteral3521 = frozenset([30, 70])
+    FOLLOW_70_in_arrayLiteral3524 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arrayLiteral3526 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 138, 139, 140, 141, 142, 143])
+    FOLLOW_forInStatementInitialiserPart_in_arrayLiteral3531 = frozenset([30, 89])
+    FOLLOW_LT_in_arrayLiteral3533 = frozenset([30, 89])
+    FOLLOW_89_in_arrayLiteral3536 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_arrayLiteral3538 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_expression_in_arrayLiteral3543 = frozenset([30, 72])
+    FOLLOW_LT_in_arrayLiteral3545 = frozenset([30, 72])
+    FOLLOW_72_in_arrayLiteral3548 = frozenset([30, 82])
+    FOLLOW_LT_in_arrayLiteral3550 = frozenset([30, 82])
+    FOLLOW_82_in_arrayLiteral3553 = frozenset([1])
+    FOLLOW_67_in_objectLiteral3589 = frozenset([30, 31, 33, 34, 68, 71, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_objectLiteral3591 = frozenset([30, 31, 33, 34, 68, 71, 73, 74, 75, 88, 139, 140])
+    FOLLOW_propertyNameAndValue_in_objectLiteral3594 = frozenset([30, 68, 71])
+    FOLLOW_LT_in_objectLiteral3598 = frozenset([30, 71])
+    FOLLOW_71_in_objectLiteral3601 = frozenset([30, 31, 33, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_objectLiteral3603 = frozenset([30, 31, 33, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_propertyNameAndValue_in_objectLiteral3606 = frozenset([30, 68, 71])
+    FOLLOW_LT_in_objectLiteral3610 = frozenset([30, 68, 71])
+    FOLLOW_71_in_objectLiteral3614 = frozenset([30, 68])
+    FOLLOW_LT_in_objectLiteral3616 = frozenset([30, 68])
+    FOLLOW_68_in_objectLiteral3621 = frozenset([1])
+    FOLLOW_propertyName_in_propertyNameAndValue3645 = frozenset([30, 64])
+    FOLLOW_LT_in_propertyNameAndValue3647 = frozenset([30, 64])
+    FOLLOW_64_in_propertyNameAndValue3650 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_propertyNameAndValue3652 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_propertyNameAndValue3655 = frozenset([1])
+    FOLLOW_139_in_propertyNameAndValue3677 = frozenset([34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_140_in_propertyNameAndValue3681 = frozenset([34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_propertyNameAndValue3686 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_propertyNameAndValue3688 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_propertyNameAndValue3693 = frozenset([30, 70])
+    FOLLOW_LT_in_propertyNameAndValue3695 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_propertyNameAndValue3698 = frozenset([30, 67])
+    FOLLOW_LT_in_propertyNameAndValue3700 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_propertyNameAndValue3703 = frozenset([1])
+    FOLLOW_139_in_propertyNameAndValue3736 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_140_in_propertyNameAndValue3740 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_propertyNameAndValue3743 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_propertyNameAndValue3748 = frozenset([30, 70])
+    FOLLOW_LT_in_propertyNameAndValue3750 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_propertyNameAndValue3753 = frozenset([30, 67])
+    FOLLOW_LT_in_propertyNameAndValue3755 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_propertyNameAndValue3758 = frozenset([1])
+    FOLLOW_identifier_in_propertyName3793 = frozenset([1])
+    FOLLOW_StringLiteral_in_propertyName3798 = frozenset([1])
+    FOLLOW_NumericLiteral_in_propertyName3803 = frozenset([1])
+    FOLLOW_141_in_literal3815 = frozenset([1])
+    FOLLOW_142_in_literal3824 = frozenset([1])
+    FOLLOW_143_in_literal3833 = frozenset([1])
+    FOLLOW_StringLiteral_in_literal3842 = frozenset([1])
+    FOLLOW_NumericLiteral_in_literal3855 = frozenset([1])
+    FOLLOW_regularExpressionLiteral_in_literal3868 = frozenset([1])
     FOLLOW_set_in_reFirstChar0 = frozenset([1])
-    FOLLOW_reFirstChar_in_reChars4268 = frozenset([1])
-    FOLLOW_101_in_reChars4273 = frozenset([1])
-    FOLLOW_63_in_regularExpressionLiteral4287 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
-    FOLLOW_reFirstChar_in_regularExpressionLiteral4289 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
-    FOLLOW_reChars_in_regularExpressionLiteral4292 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
-    FOLLOW_63_in_regularExpressionLiteral4295 = frozenset([1, 34])
-    FOLLOW_Identifier_in_regularExpressionLiteral4297 = frozenset([1])
-    FOLLOW_RegularExpressionHacks_in_regularExpressionLiteral4303 = frozenset([1, 34])
-    FOLLOW_Identifier_in_regularExpressionLiteral4305 = frozenset([1])
+    FOLLOW_reFirstChar_in_reChars4269 = frozenset([1])
+    FOLLOW_101_in_reChars4274 = frozenset([1])
+    FOLLOW_63_in_regularExpressionLiteral4288 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
+    FOLLOW_reFirstChar_in_regularExpressionLiteral4290 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
+    FOLLOW_reChars_in_regularExpressionLiteral4293 = frozenset([31, 33, 34, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144])
+    FOLLOW_63_in_regularExpressionLiteral4296 = frozenset([1, 34])
+    FOLLOW_Identifier_in_regularExpressionLiteral4298 = frozenset([1])
+    FOLLOW_RegularExpressionHacks_in_regularExpressionLiteral4304 = frozenset([1, 34])
+    FOLLOW_Identifier_in_regularExpressionLiteral4306 = frozenset([1])
     FOLLOW_set_in_identifier0 = frozenset([1])
     FOLLOW_LT_in_synpred1150 = frozenset([1])
     FOLLOW_LT_in_synpred3176 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
@@ -26632,210 +26593,206 @@ class JavaScriptParser(Parser):
     FOLLOW_xmlStartTag_in_synpred19457 = frozenset([1])
     FOLLOW_LT_in_synpred22480 = frozenset([30, 32, 61, 67])
     FOLLOW_xmlPayload_in_synpred22483 = frozenset([1])
-    FOLLOW_69_in_synpred29539 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_synpred29541 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_synpred29544 = frozenset([30, 70])
-    FOLLOW_LT_in_synpred29546 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_synpred29549 = frozenset([30, 67])
-    FOLLOW_LT_in_synpred29551 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_synpred29554 = frozenset([1])
-    FOLLOW_69_in_synpred32575 = frozenset([30, 70])
-    FOLLOW_LT_in_synpred32577 = frozenset([30, 70])
-    FOLLOW_formalParameterList_in_synpred32580 = frozenset([30, 67])
-    FOLLOW_LT_in_synpred32582 = frozenset([30, 67])
-    FOLLOW_statementBlock_in_synpred32585 = frozenset([1])
-    FOLLOW_LT_in_synpred34614 = frozenset([1])
-    FOLLOW_statementBlock_in_synpred41693 = frozenset([1])
-    FOLLOW_variableStatement_in_synpred42698 = frozenset([1])
-    FOLLOW_expressionStatement_in_synpred44708 = frozenset([1])
-    FOLLOW_letStatement_in_synpred51743 = frozenset([1])
-    FOLLOW_labelledStatement_in_synpred52748 = frozenset([1])
-    FOLLOW_LT_in_synpred59824 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_67_in_synpred62822 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred62824 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statementList_in_synpred62828 = frozenset([30, 68])
-    FOLLOW_LT_in_synpred62831 = frozenset([30, 68])
-    FOLLOW_68_in_synpred62835 = frozenset([1])
-    FOLLOW_LT_in_synpred64863 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred65863 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statement_in_synpred65867 = frozenset([1])
-    FOLLOW_LT_in_synpred791011 = frozenset([1])
-    FOLLOW_LT_in_synpred841018 = frozenset([30, 71])
-    FOLLOW_71_in_synpred841021 = frozenset([1, 30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_synpred841024 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_synpred841027 = frozenset([1])
-    FOLLOW_LT_in_synpred931110 = frozenset([1])
-    FOLLOW_LT_in_synpred981117 = frozenset([30, 71])
-    FOLLOW_71_in_synpred981120 = frozenset([1, 30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_LT_in_synpred981123 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
-    FOLLOW_identifier_in_synpred981126 = frozenset([1])
-    FOLLOW_LT_in_synpred1041183 = frozenset([1])
-    FOLLOW_LT_in_synpred1051206 = frozenset([1])
-    FOLLOW_LT_in_synpred1081268 = frozenset([1])
-    FOLLOW_LT_in_synpred1101280 = frozenset([1])
-    FOLLOW_LT_in_synpred1121293 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1131287 = frozenset([30, 84])
-    FOLLOW_84_in_synpred1131291 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1131293 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_statement_in_synpred1131297 = frozenset([1])
-    FOLLOW_forStatement_in_synpred1161321 = frozenset([1])
-    FOLLOW_LT_in_synpred1171340 = frozenset([1])
-    FOLLOW_LT_in_synpred1221389 = frozenset([1])
-    FOLLOW_LT_in_synpred1241401 = frozenset([1])
-    FOLLOW_LT_in_synpred1261426 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1291441 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1321456 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1351470 = frozenset([1])
-    FOLLOW_LT_in_synpred1391515 = frozenset([1])
-    FOLLOW_LT_in_synpred1421528 = frozenset([1])
-    FOLLOW_LT_in_synpred1441540 = frozenset([1])
-    FOLLOW_LT_in_synpred1461552 = frozenset([1])
-    FOLLOW_expression_in_synpred1541642 = frozenset([1])
-    FOLLOW_LT_in_synpred1571672 = frozenset([1])
-    FOLLOW_LT_in_synpred1591684 = frozenset([1])
-    FOLLOW_LT_in_synpred1611707 = frozenset([1])
-    FOLLOW_LT_in_synpred1631719 = frozenset([1])
-    FOLLOW_LT_in_synpred1651742 = frozenset([1])
-    FOLLOW_LT_in_synpred1671766 = frozenset([1])
-    FOLLOW_LT_in_synpred1771840 = frozenset([1])
-    FOLLOW_LT_in_synpred1791852 = frozenset([1])
-    FOLLOW_statementList_in_synpred1801856 = frozenset([1])
-    FOLLOW_LT_in_synpred1821877 = frozenset([1])
-    FOLLOW_LT_in_synpred1962024 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1972018 = frozenset([30, 71])
-    FOLLOW_71_in_synpred1972022 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred1972024 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred1972028 = frozenset([1])
-    FOLLOW_LT_in_synpred2002043 = frozenset([1])
-    FOLLOW_LT_in_synpred2022055 = frozenset([1])
-    FOLLOW_LT_in_synpred2042080 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2072105 = frozenset([1])
-    FOLLOW_leftHandSideExpression_in_synpred2082098 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_LT_in_synpred2082100 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_assignmentOperator_in_synpred2082103 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2082105 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred2082108 = frozenset([1])
-    FOLLOW_LT_in_synpred2102146 = frozenset([1])
-    FOLLOW_leftHandSideExpression_in_synpred2112139 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_LT_in_synpred2112141 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
-    FOLLOW_assignmentOperator_in_synpred2112144 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2112146 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpressionNoIn_in_synpred2112149 = frozenset([1])
-    FOLLOW_callExpression_in_synpred2122180 = frozenset([1])
-    FOLLOW_memberExpression_in_synpred2132197 = frozenset([1])
-    FOLLOW_LT_in_synpred2142204 = frozenset([1])
-    FOLLOW_LT_in_synpred2162232 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_synpred2162235 = frozenset([1])
-    FOLLOW_LT_in_synpred2192258 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_synpred2192262 = frozenset([1])
-    FOLLOW_LT_in_synpred2212271 = frozenset([1])
-    FOLLOW_LT_in_synpred2242282 = frozenset([30, 64, 81, 100])
-    FOLLOW_memberExpressionSuffix_in_synpred2242285 = frozenset([1])
-    FOLLOW_LT_in_synpred2282355 = frozenset([1])
-    FOLLOW_LT_in_synpred2322367 = frozenset([30, 64, 70, 81, 100])
-    FOLLOW_callExpressionSuffix_in_synpred2322370 = frozenset([1])
-    FOLLOW_LT_in_synpred2372438 = frozenset([1])
-    FOLLOW_LT_in_synpred2382443 = frozenset([1])
-    FOLLOW_LT_in_synpred2392449 = frozenset([1])
-    FOLLOW_LT_in_synpred2402454 = frozenset([1])
-    FOLLOW_LT_in_synpred2442489 = frozenset([1])
-    FOLLOW_LT_in_synpred2482578 = frozenset([1])
-    FOLLOW_e4xIdentifier_in_synpred2492581 = frozenset([1])
-    FOLLOW_LT_in_synpred2632685 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2652697 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2662679 = frozenset([30, 113])
-    FOLLOW_113_in_synpred2662683 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2662685 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred2662689 = frozenset([30, 64])
-    FOLLOW_LT_in_synpred2662691 = frozenset([30, 64])
-    FOLLOW_64_in_synpred2662695 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2662697 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred2662701 = frozenset([1])
-    FOLLOW_LT_in_synpred2682723 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2702735 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2732761 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2742755 = frozenset([30, 114])
-    FOLLOW_114_in_synpred2742759 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2742761 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_logicalANDExpression_in_synpred2742765 = frozenset([1])
-    FOLLOW_LT_in_synpred2762788 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2792815 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2802809 = frozenset([30, 115])
-    FOLLOW_115_in_synpred2802813 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2802815 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseORExpression_in_synpred2802819 = frozenset([1])
-    FOLLOW_LT_in_synpred2822842 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2852869 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2862863 = frozenset([30, 116])
-    FOLLOW_116_in_synpred2862867 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2862869 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseXORExpression_in_synpred2862873 = frozenset([1])
-    FOLLOW_LT_in_synpred2882896 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2912923 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2922917 = frozenset([30, 117])
-    FOLLOW_117_in_synpred2922921 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2922923 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_bitwiseANDExpression_in_synpred2922927 = frozenset([1])
-    FOLLOW_LT_in_synpred2942950 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2972977 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2982971 = frozenset([30, 118])
-    FOLLOW_118_in_synpred2982975 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred2982977 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_equalityExpression_in_synpred2982981 = frozenset([1])
-    FOLLOW_LT_in_synpred3003004 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3063045 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3073025 = frozenset([30, 119, 120, 121, 122])
-    FOLLOW_set_in_synpred3073029 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3073045 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_relationalExpression_in_synpred3073049 = frozenset([1])
-    FOLLOW_LT_in_synpred3123085 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3203134 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3213106 = frozenset([30, 61, 62, 89, 123, 124, 125])
-    FOLLOW_set_in_synpred3213110 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3213134 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_shiftExpression_in_synpred3213138 = frozenset([1])
-    FOLLOW_LT_in_synpred3273178 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3323214 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3333198 = frozenset([30, 126, 127, 128])
-    FOLLOW_set_in_synpred3333202 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3333214 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_additiveExpression_in_synpred3333218 = frozenset([1])
-    FOLLOW_LT_in_synpred3363246 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3373234 = frozenset([30, 65, 129])
-    FOLLOW_set_in_synpred3373238 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3373246 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_multiplicativeExpression_in_synpred3373250 = frozenset([1])
-    FOLLOW_LT_in_synpred3413282 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3423266 = frozenset([30, 63, 101, 130])
-    FOLLOW_set_in_synpred3423270 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3423282 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_unaryExpression_in_synpred3423286 = frozenset([1])
-    FOLLOW_LT_in_synpred3573378 = frozenset([30, 32, 61])
-    FOLLOW_set_in_synpred3573381 = frozenset([1])
-    FOLLOW_objectLiteral_in_synpred3613419 = frozenset([1])
-    FOLLOW_LT_in_synpred3623426 = frozenset([1])
-    FOLLOW_LT_in_synpred3643451 = frozenset([1])
-    FOLLOW_LT_in_synpred3673464 = frozenset([1])
-    FOLLOW_LT_in_synpred3693458 = frozenset([30, 71])
-    FOLLOW_71_in_synpred3693461 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3693464 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred3693467 = frozenset([1])
-    FOLLOW_81_in_synpred3733449 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3733451 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred3733454 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_synpred3733458 = frozenset([30, 71])
-    FOLLOW_71_in_synpred3733461 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_LT_in_synpred3733464 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
-    FOLLOW_assignmentExpression_in_synpred3733467 = frozenset([30, 71, 82])
-    FOLLOW_LT_in_synpred3733473 = frozenset([30, 71, 82])
-    FOLLOW_71_in_synpred3733477 = frozenset([30, 82])
-    FOLLOW_LT_in_synpred3733479 = frozenset([30, 82])
-    FOLLOW_82_in_synpred3733484 = frozenset([1])
-    FOLLOW_LT_in_synpred3743502 = frozenset([1])
-    FOLLOW_LT_in_synpred3763514 = frozenset([1])
-    FOLLOW_LT_in_synpred3793525 = frozenset([1])
-    FOLLOW_LT_in_synpred3813537 = frozenset([1])
-    FOLLOW_LT_in_synpred3843590 = frozenset([1])
-    FOLLOW_LT_in_synpred3933651 = frozenset([1])
-    FOLLOW_reFirstChar_in_synpred4924289 = frozenset([1])
+    FOLLOW_69_in_synpred29540 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_synpred29542 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_synpred29545 = frozenset([30, 70])
+    FOLLOW_LT_in_synpred29547 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_synpred29550 = frozenset([30, 67])
+    FOLLOW_LT_in_synpred29552 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_synpred29555 = frozenset([1])
+    FOLLOW_69_in_synpred32576 = frozenset([30, 70])
+    FOLLOW_LT_in_synpred32578 = frozenset([30, 70])
+    FOLLOW_formalParameterList_in_synpred32581 = frozenset([30, 67])
+    FOLLOW_LT_in_synpred32583 = frozenset([30, 67])
+    FOLLOW_statementBlock_in_synpred32586 = frozenset([1])
+    FOLLOW_LT_in_synpred34615 = frozenset([1])
+    FOLLOW_statementBlock_in_synpred41694 = frozenset([1])
+    FOLLOW_variableStatement_in_synpred42699 = frozenset([1])
+    FOLLOW_expressionStatement_in_synpred44709 = frozenset([1])
+    FOLLOW_letStatement_in_synpred51744 = frozenset([1])
+    FOLLOW_labelledStatement_in_synpred52749 = frozenset([1])
+    FOLLOW_LT_in_synpred59825 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_67_in_synpred62823 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred62825 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 68, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statementList_in_synpred62829 = frozenset([30, 68])
+    FOLLOW_LT_in_synpred62832 = frozenset([30, 68])
+    FOLLOW_68_in_synpred62836 = frozenset([1])
+    FOLLOW_LT_in_synpred64864 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred65864 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statement_in_synpred65868 = frozenset([1])
+    FOLLOW_LT_in_synpred791012 = frozenset([1])
+    FOLLOW_LT_in_synpred841019 = frozenset([30, 71])
+    FOLLOW_71_in_synpred841022 = frozenset([1, 30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_synpred841025 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_synpred841028 = frozenset([1])
+    FOLLOW_LT_in_synpred931111 = frozenset([1])
+    FOLLOW_LT_in_synpred981118 = frozenset([30, 71])
+    FOLLOW_71_in_synpred981121 = frozenset([1, 30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_LT_in_synpred981124 = frozenset([30, 34, 73, 74, 75, 88, 139, 140])
+    FOLLOW_identifier_in_synpred981127 = frozenset([1])
+    FOLLOW_LT_in_synpred1041184 = frozenset([1])
+    FOLLOW_LT_in_synpred1051207 = frozenset([1])
+    FOLLOW_LT_in_synpred1081269 = frozenset([1])
+    FOLLOW_LT_in_synpred1101281 = frozenset([1])
+    FOLLOW_LT_in_synpred1121294 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred1131288 = frozenset([30, 84])
+    FOLLOW_84_in_synpred1131292 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred1131294 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 76, 77, 78, 79, 80, 81, 83, 85, 86, 87, 88, 90, 91, 92, 93, 95, 96, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_statement_in_synpred1131298 = frozenset([1])
+    FOLLOW_forStatement_in_synpred1161322 = frozenset([1])
+    FOLLOW_LT_in_synpred1171341 = frozenset([1])
+    FOLLOW_LT_in_synpred1221390 = frozenset([1])
+    FOLLOW_LT_in_synpred1241402 = frozenset([1])
+    FOLLOW_LT_in_synpred1261427 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 78, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred1291442 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred1321457 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 80, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred1351471 = frozenset([1])
+    FOLLOW_LT_in_synpred1391516 = frozenset([1])
+    FOLLOW_LT_in_synpred1421529 = frozenset([1])
+    FOLLOW_LT_in_synpred1441541 = frozenset([1])
+    FOLLOW_LT_in_synpred1461553 = frozenset([1])
+    FOLLOW_expression_in_synpred1541643 = frozenset([1])
+    FOLLOW_LT_in_synpred1571673 = frozenset([1])
+    FOLLOW_LT_in_synpred1591685 = frozenset([1])
+    FOLLOW_LT_in_synpred1611708 = frozenset([1])
+    FOLLOW_LT_in_synpred1631720 = frozenset([1])
+    FOLLOW_LT_in_synpred1651743 = frozenset([1])
+    FOLLOW_LT_in_synpred1671767 = frozenset([1])
+    FOLLOW_LT_in_synpred1771841 = frozenset([1])
+    FOLLOW_LT_in_synpred1791853 = frozenset([1])
+    FOLLOW_statementList_in_synpred1801857 = frozenset([1])
+    FOLLOW_LT_in_synpred1821878 = frozenset([1])
+    FOLLOW_LT_in_synpred1962025 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2002044 = frozenset([1])
+    FOLLOW_LT_in_synpred2022056 = frozenset([1])
+    FOLLOW_LT_in_synpred2042081 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2072106 = frozenset([1])
+    FOLLOW_leftHandSideExpression_in_synpred2082099 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_LT_in_synpred2082101 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_assignmentOperator_in_synpred2082104 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2082106 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred2082109 = frozenset([1])
+    FOLLOW_LT_in_synpred2102147 = frozenset([1])
+    FOLLOW_leftHandSideExpression_in_synpred2112140 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_LT_in_synpred2112142 = frozenset([30, 66, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112])
+    FOLLOW_assignmentOperator_in_synpred2112145 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2112147 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpressionNoIn_in_synpred2112150 = frozenset([1])
+    FOLLOW_callExpression_in_synpred2122181 = frozenset([1])
+    FOLLOW_memberExpression_in_synpred2132198 = frozenset([1])
+    FOLLOW_LT_in_synpred2142205 = frozenset([1])
+    FOLLOW_LT_in_synpred2162233 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_synpred2162236 = frozenset([1])
+    FOLLOW_LT_in_synpred2192259 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_synpred2192263 = frozenset([1])
+    FOLLOW_LT_in_synpred2212272 = frozenset([1])
+    FOLLOW_LT_in_synpred2242283 = frozenset([30, 64, 81, 100])
+    FOLLOW_memberExpressionSuffix_in_synpred2242286 = frozenset([1])
+    FOLLOW_LT_in_synpred2282356 = frozenset([1])
+    FOLLOW_LT_in_synpred2322368 = frozenset([30, 64, 70, 81, 100])
+    FOLLOW_callExpressionSuffix_in_synpred2322371 = frozenset([1])
+    FOLLOW_LT_in_synpred2372439 = frozenset([1])
+    FOLLOW_LT_in_synpred2382444 = frozenset([1])
+    FOLLOW_LT_in_synpred2392450 = frozenset([1])
+    FOLLOW_LT_in_synpred2402455 = frozenset([1])
+    FOLLOW_LT_in_synpred2442490 = frozenset([1])
+    FOLLOW_LT_in_synpred2482579 = frozenset([1])
+    FOLLOW_e4xIdentifier_in_synpred2492582 = frozenset([1])
+    FOLLOW_LT_in_synpred2632686 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2652698 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2662680 = frozenset([30, 113])
+    FOLLOW_113_in_synpred2662684 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2662686 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred2662690 = frozenset([30, 64])
+    FOLLOW_LT_in_synpred2662692 = frozenset([30, 64])
+    FOLLOW_64_in_synpred2662696 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2662698 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred2662702 = frozenset([1])
+    FOLLOW_LT_in_synpred2682724 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2702736 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2732762 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2742756 = frozenset([30, 114])
+    FOLLOW_114_in_synpred2742760 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2742762 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_logicalANDExpression_in_synpred2742766 = frozenset([1])
+    FOLLOW_LT_in_synpred2762789 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2792816 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2802810 = frozenset([30, 115])
+    FOLLOW_115_in_synpred2802814 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2802816 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseORExpression_in_synpred2802820 = frozenset([1])
+    FOLLOW_LT_in_synpred2822843 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2852870 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2862864 = frozenset([30, 116])
+    FOLLOW_116_in_synpred2862868 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2862870 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseXORExpression_in_synpred2862874 = frozenset([1])
+    FOLLOW_LT_in_synpred2882897 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2912924 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2922918 = frozenset([30, 117])
+    FOLLOW_117_in_synpred2922922 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2922924 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_bitwiseANDExpression_in_synpred2922928 = frozenset([1])
+    FOLLOW_LT_in_synpred2942951 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2972978 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2982972 = frozenset([30, 118])
+    FOLLOW_118_in_synpred2982976 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred2982978 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_equalityExpression_in_synpred2982982 = frozenset([1])
+    FOLLOW_LT_in_synpred3003005 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3063046 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3073026 = frozenset([30, 119, 120, 121, 122])
+    FOLLOW_set_in_synpred3073030 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3073046 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_relationalExpression_in_synpred3073050 = frozenset([1])
+    FOLLOW_LT_in_synpred3123086 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3203135 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3213107 = frozenset([30, 61, 62, 89, 123, 124, 125])
+    FOLLOW_set_in_synpred3213111 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3213135 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_shiftExpression_in_synpred3213139 = frozenset([1])
+    FOLLOW_LT_in_synpred3273179 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3323215 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3333199 = frozenset([30, 126, 127, 128])
+    FOLLOW_set_in_synpred3333203 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3333215 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_additiveExpression_in_synpred3333219 = frozenset([1])
+    FOLLOW_LT_in_synpred3363247 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3373235 = frozenset([30, 65, 129])
+    FOLLOW_set_in_synpred3373239 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3373247 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_multiplicativeExpression_in_synpred3373251 = frozenset([1])
+    FOLLOW_LT_in_synpred3413283 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3423267 = frozenset([30, 63, 101, 130])
+    FOLLOW_set_in_synpred3423271 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3423283 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_unaryExpression_in_synpred3423287 = frozenset([1])
+    FOLLOW_LT_in_synpred3573379 = frozenset([30, 32, 61])
+    FOLLOW_set_in_synpred3573382 = frozenset([1])
+    FOLLOW_objectLiteral_in_synpred3613420 = frozenset([1])
+    FOLLOW_LT_in_synpred3623427 = frozenset([1])
+    FOLLOW_LT_in_synpred3643452 = frozenset([1])
+    FOLLOW_LT_in_synpred3673465 = frozenset([1])
+    FOLLOW_LT_in_synpred3693459 = frozenset([30, 71])
+    FOLLOW_71_in_synpred3693462 = frozenset([1, 30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3693465 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred3693468 = frozenset([1])
+    FOLLOW_81_in_synpred3733450 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3733452 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred3733455 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_synpred3733459 = frozenset([30, 71])
+    FOLLOW_71_in_synpred3733462 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 71, 73, 74, 75, 81, 82, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_LT_in_synpred3733465 = frozenset([30, 31, 32, 33, 34, 35, 61, 63, 65, 67, 69, 70, 73, 74, 75, 81, 88, 99, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143])
+    FOLLOW_assignmentExpression_in_synpred3733468 = frozenset([30, 71, 82])
+    FOLLOW_LT_in_synpred3733474 = frozenset([30, 71, 82])
+    FOLLOW_71_in_synpred3733478 = frozenset([30, 82])
+    FOLLOW_LT_in_synpred3733480 = frozenset([30, 82])
+    FOLLOW_82_in_synpred3733485 = frozenset([1])
+    FOLLOW_LT_in_synpred3743503 = frozenset([1])
+    FOLLOW_LT_in_synpred3763515 = frozenset([1])
+    FOLLOW_LT_in_synpred3793526 = frozenset([1])
+    FOLLOW_LT_in_synpred3813538 = frozenset([1])
+    FOLLOW_LT_in_synpred3843591 = frozenset([1])
+    FOLLOW_LT_in_synpred3933652 = frozenset([1])
+    FOLLOW_reFirstChar_in_synpred4924290 = frozenset([1])
 
