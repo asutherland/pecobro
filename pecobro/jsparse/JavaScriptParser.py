@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-30 18:12:24
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/java-antlr-grammar/JavaScript.g 2008-04-30 20:18:29
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -2149,7 +2149,7 @@ class JavaScriptParser(Parser):
                 if self.backtracking == 0:
                     stream_statementBlock.add(statementBlock54.tree)
                 # AST Rewrite
-                # elements: identifier, statementBlock, formalParameterList
+                # elements: formalParameterList, statementBlock, identifier
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2392,7 +2392,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock61.tree)
                     # AST Rewrite
-                    # elements: formalParameterList, statementBlock, identifier
+                    # elements: identifier, statementBlock, formalParameterList
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -4008,7 +4008,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: mod, variableDeclarationList
+                # elements: variableDeclarationList, mod
                 # token labels: mod
                 # rule labels: retval
                 # token list labels: 
@@ -4460,7 +4460,7 @@ class JavaScriptParser(Parser):
 
 
                     # AST Rewrite
-                    # elements: identifier, initialiser
+                    # elements: initialiser, identifier
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -4928,7 +4928,7 @@ class JavaScriptParser(Parser):
 
 
                     # AST Rewrite
-                    # elements: initialiserNoIn, identifier
+                    # elements: identifier, initialiserNoIn
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -10453,7 +10453,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_assignmentExpression.add(assignmentExpression355.tree)
                     # AST Rewrite
-                    # elements: leftHandSideExpression, assignmentExpression, assignmentOperator
+                    # elements: assignmentOperator, leftHandSideExpression, assignmentExpression
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -11664,7 +11664,7 @@ class JavaScriptParser(Parser):
 
 
                     # AST Rewrite
-                    # elements: primaryExpression, memberExpressionSuffix
+                    # elements: memberExpressionSuffix, primaryExpression
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -12335,7 +12335,7 @@ class JavaScriptParser(Parser):
 
 
                 # AST Rewrite
-                # elements: arguments, memberExpression, callExpressionSuffix
+                # elements: arguments, callExpressionSuffix, memberExpression
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -17838,7 +17838,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_82.add(char_literal572)
                     # AST Rewrite
-                    # elements: genexpr, evalexpr, init
+                    # elements: init, genexpr, evalexpr
                     # token labels: 
                     # rule labels: retval, evalexpr, genexpr, init
                     # token list labels: 
@@ -18521,7 +18521,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock593.tree)
                     # AST Rewrite
-                    # elements: action, propname, statementBlock, funcname, formalParameterList
+                    # elements: formalParameterList, action, statementBlock, propname, funcname
                     # token labels: action
                     # rule labels: propname, retval, funcname
                     # token list labels: 
@@ -18704,7 +18704,7 @@ class JavaScriptParser(Parser):
                     if self.backtracking == 0:
                         stream_statementBlock.add(statementBlock598.tree)
                     # AST Rewrite
-                    # elements: formalParameterList, action, propname, statementBlock
+                    # elements: propname, formalParameterList, action, statementBlock
                     # token labels: action
                     # rule labels: propname, retval
                     # token list labels: 
