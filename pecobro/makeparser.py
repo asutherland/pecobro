@@ -78,6 +78,25 @@ class Literal(object):
     
 EMPTY_STRING = Literal('')
 
+def mfunc_addprefix(nodes, context):
+    prefix = nodes[0].evalInContext(context)
+    names_str = nodes[1].evalInContext(context)
+    
+    prefixed_names = []
+    for name in names_str:
+        prefixed_names.append(prefix + name)
+    return ' '.join(prefixed_names)
+
+
+def mfunc_addsuffix(nodes, context):
+    suffix = nodes[0].evalInContext(context)
+    names_str = nodes[1].evalInContext(context)
+    
+    suffixed_names = []
+    for name in names_str:
+        suffixed_names.append(name + suffix)
+    return ' '.join(suffixed_names)
+
 def mfunc_call(nodes, context):
     variable = nodes[0].evalInContext(context)
     
@@ -88,6 +107,18 @@ def mfunc_call(nodes, context):
         
     rval = context.eval(variable)
     return rval
+
+def mfunc_foreach(nodes, context):
+    var = nodes[0].evalInContext(context)
+    list_str = nodes[1].evalInContext(context)
+    textNode = nodes[2]
+    
+    result_parts = []
+    for word in list_str.split():
+        context[var] = Literal(word)
+        result_parts.append(textNode.evalInContext(context))
+    
+    return ' '.join(result_parts)
 
 def mfunc_filter(nodes, context):
     pattern_str = nodes[0].evalInContext(context)
@@ -109,7 +140,28 @@ def mfunc_filter(nodes, context):
     text_parts = filter(lambda tp: regex.match(tp) is not None, text_str.split())
     rval = ' '.join(text_parts)
     return rval
+
+# cut-paste-modify of filter on the filter lambda... should we parameterize?
+def mfunc_filter_out(nodes, context):
+    pattern_str = nodes[0].evalInContext(context)
+    text_str = nodes[1].evalInContext(context)
     
+    regex_parts = []
+    for pat_str in pattern_str.split():
+        # only the first % is actually wild
+        if '%' in pat_str:
+            idxPercent = pat_str.find('%')
+            regex_part = (re.escape(pat_str[:idxPercent]) + '.*' +
+                            re.escape(pat_str[idxPercent+1:]))
+        else:
+            regex_part = re.escape(pat_str)
+        regex_parts.append('(%s)' % (regex_part,))
+    
+    regex = re.compile('|'.join(regex_parts))
+    
+    text_parts = filter(lambda tp: regex.match(tp) is None, text_str.split())
+    rval = ' '.join(text_parts)
+    return rval
 
 def mfunc_if(nodes, context):
     condition = nodes[0].strip().evalInContext(context)
@@ -127,8 +179,12 @@ def mfunc_subst(nodes, context):
     return text_str.replace(from_str, to_str)
 
 MAKE_FUNCTIONS = {
+    'addprefix': mfunc_addprefix,
+    'addsuffix': mfunc_addsuffix,
     'call': mfunc_call,
     'filter': mfunc_filter,
+    'filter-out': mfunc_filter_out,
+    'foreach': mfunc_foreach,
     'if': mfunc_if,
     'subst': mfunc_subst,
 }

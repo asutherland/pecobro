@@ -132,6 +132,7 @@ class Generator(object):
         
         def check_path(path):
             seen_dirs.add(path)
+            print 'visiting dir', path
             
             # okay, the path is going to be in the build hierarchy, let's get
             #  a corresponding source path
@@ -203,7 +204,11 @@ class Generator(object):
                         self.caboodle.modules.append(abs_module)
 
                 
-                for make_dir in mf.get('DIRS').split():
+                # recurse into DIRS and TOOL_DIRS; also STATIC_DIRS just in case
+                for make_dir in (mf.get('DIRS').split()
+                                 # + mf.get('TOOL_DIRS').split() +
+                                 # + mf.get('STATIC_DIRS').split()
+                                 ):
                     make_path = os.path.join(path, make_dir)
                     if not make_path in seen_dirs:
                         check_path(make_path)
@@ -219,9 +224,9 @@ class Generator(object):
                 print '... (default defines)'
                 jmp.parse(cand_jar_name)
                 
-        
-        for dir in self.caboodle.module_dirs + self.caboodle.locale_dirs:
-            check_path(dir)
+        # since we are now so clever, let's just walk from the root Makefile...
+        # (we used to process caboodle.module_dirs + caboodle.locale_dirs
+        check_path(self.caboodle.moz_build_path)
     
     def find_jars(self):
         '''

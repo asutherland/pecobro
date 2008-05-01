@@ -13,7 +13,8 @@ except:
 
 import antlr3
 # relative
-from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, ASSIGN, FUNC, OBJ, PROP, VARDEFS, VARDEF
+from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, ASSIGN, COND, CODE, FUNC, OBJ, \
+    PROP, RETURN, SCOPE, VARDEFS, VARDEF, VEXPR
 from JavaScriptParser import JavaScriptParser
 
 import pecobro.mozpreproc as mozpreproc
@@ -21,7 +22,9 @@ import pecobro.consts as consts
 
 import pecobro.jsparse.jsgrok as jsgrok
 
-def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
+def scan_and_proc(source_file, ast, depth=0,
+                  cur_property=None, prop_type=None,
+                  report=True):
     '''
     Chew the AST and put info in our core representation.  This type of
     analysis is going to migrate into jsgrok; at some point this should become
@@ -29,6 +32,7 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
     '''
     if ast is None:
         print '*** WARNING, null AST for %s' % (source_file,)
+        return
     for iChild in range(ast.getChildCount()):
         child = ast.getChild(iChild)
         
@@ -57,27 +61,37 @@ def scan_and_proc(source_file, ast, depth=0, cur_property=None, prop_type=None):
                 # this is probably not the best way to fix our position problem
                 funcNode = cur_property
             else:
-                print 'skipping anonymous func at depth %d' % (depth,)
-                continue
+                # it's anonymous!
+                #print 'skipping anonymous func at depth %d' % (depth,)
+                funcName = 'anon:%d:%d' % (funcNode.token.line,
+                                           funcNode.token.charPositionInLine)
             
             func, created = source_file.get_or_create_function(funcName)
             
             func.source_line = funcNode.token.line
             func.source_col  = funcNode.token.charPositionInLine
             
+            func.ast = child
+            
             source_file.add_to_contents(func)
             
             print '%s(%d, %d): %s' % ('  ' * depth,
                                       func.source_line, func.source_col,
                                       funcName)
-        elif child.getType() == OBJ:
-            scan_and_proc(source_file, child, depth+1)
+            # there might be interesting stuff in here...
+            #  but be quiet with the walking so as to avoid being too verbose
+            scan_and_proc(source_file, child.getChild(2), depth+1, report=False)
+            
+        elif child.getType() in (OBJ, VEXPR, RETURN, SCOPE, COND, CODE):
+            scan_and_proc(source_file, child, depth+1, report=report)
         elif child.getType() == PROP:
             scan_and_proc(source_file, child, depth+1,
                           cur_property=child.getChild(0),
-                          prop_type=child.getChild(1))
+                          prop_type=child.getChild(1),
+                          report=report)
         elif child.getType() in (VARDEF, VARDEFS, ASSIGN):
-            scan_and_proc(source_file, child, depth+1)
+            scan_and_proc(source_file, child, depth+1, report=report)
+        # factory functions may return objects... (RETURN (VEXPR (OBJ
             
             
 
@@ -211,7 +225,8 @@ def parse_file(fname, cache_dir=None, force=False):
                 ast = cerealizer.load(f)
                 f.close()
                 
-                return ast
+                if ast is not None:
+                    return ast
             except:
                 pass
         
@@ -237,10 +252,62 @@ def parse_and_proc(fname, cache_dir=None, force=False):
 def sf_process(source_file, cache_dir=None, force=False):
     # Called by generate...
     #try:
+        # if the file managed to get fully cached before, load it!
+        if cache_dir:
+            if not _CACHE_INITED:
+                _init_cache()
+            meta_cache_fname = os.path.join(cache_dir,
+                                            os.path.basename(source_file.path)+
+                                                '.mcache')
+            if os.path.exists(meta_cache_fname) and not force:
+                f = open(meta_cache_fname, 'rb')
+                cached_source_file = cerealizer.load(f)
+                f.close()
+                
+                # restore the links we nuked before in order to de-couple the
+                #  source_file from any global/caboodle context...
+                cached_source_file.caboodle = source_file.caboodle
+                
+                # evil? perhaps.  easy? you betcha!
+                source_file.__dict__ = cached_source_file.__dict__
+                
+                print 'Restored %s from meta-cache.' % (source_file.path,)
+                
+                return
+    
         ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
         source_file.ast = ptree.tree
         scan_and_proc(source_file, ptree.tree)
         grokker.grok_source_file(source_file, ptree.tree)
+        
+        if cache_dir:
+            # break any global/caboodle links to avoid persisting everything
+            saved_caboodle = source_file.caboodle
+            source_file.caboodle = None
+            
+            f = open(meta_cache_fname, 'wb')
+            cerealizer.dump(source_file, f, protocol=-1)
+            f.close()
+            
+            # TODO: consider nuking the AST cache...
+            
+            # restore the global link
+            source_file.caboodle = saved_caboodle
+        
     #except Exception, e:
     #    print '*** EXCEPTION', e
     #    pass
+
+def dbg_load_cached(filename, cache_dir):
+    import pecobro.core as pcore
+    source_file = pcore.SourceFile(filename, '')
+    sf_process(source_file, cache_dir)
+    return source_file
+
+if __name__ == '__main__':
+    from IPython.Shell import IPShellEmbed
+    ipshell = IPShellEmbed(['-pdb'])
+    import sys
+    CACHE_DIR = '/tmp/pecobro_cache/debug'
+    sf = dbg_load_cached(sys.argv[1], CACHE_DIR)
+    ipshell()

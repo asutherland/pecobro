@@ -145,7 +145,7 @@ class JSGrok(object):
                 val = scope.lookup(var_name, who)
                 return val
 
-    def grok_globals(self, source_file, ast):
+    def grok_globals(self, source_file, ast, nested=False):
         '''
         Walk the AST looking for contributions to the global namespace.
         '''
@@ -179,14 +179,18 @@ class JSGrok(object):
                     var_val = self._val_map(source_file, child.getChild(1),
                                             source_file.scope, source_file)
                     source_file.scope.store(var_name, var_val, source_file)
+            # handle top-level logic...
+            elif ctype in (jslex.COND, jslex.CODE):
+                self.grok_globals(source_file, child, nested=True)
         
-        import pprint
-        print 'SOURCE FILE GLOBALS'
-        pprint.pprint(source_file.scope.values)
-        print 'GLOBAL READERS'
-        pprint.pprint(source_file.scope.readers)
-        print 'GLOBAL WRITERS'
-        pprint.pprint(source_file.scope.writers)
+        if not nested:
+            import pprint
+            print 'SOURCE FILE GLOBALS'
+            pprint.pprint(source_file.scope.values)
+            print 'GLOBAL READERS'
+            pprint.pprint(source_file.scope.readers)
+            print 'GLOBAL WRITERS'
+            pprint.pprint(source_file.scope.writers)
     
     def grok_objects(self, source_file, ast):
         '''

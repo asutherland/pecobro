@@ -1,5 +1,10 @@
 import os.path
 
+try:
+    import cerealizer
+except:
+    cerealizer = None
+
 class FuncInvoc(object):
     '''
     Represents the invocation of a function by the timestamp at entry and exit,
@@ -196,7 +201,13 @@ class SourceFile(object):
         return func, created
     
     def get_func_by_line(self, lineno):
-        return self.functions_by_line.get(lineno)
+        '''
+        Return the function that exists at the given line.  We will fudge by
+        a line because it appears that the javascript engine may actually
+        register the function as starting on the line with the brace...
+        '''
+        return (self.functions_by_line.get(lineno) or
+                self.functions_by_line.get(lineno-1))
     
     def def_global(self, var_name, var_value, token):
         self.globals[var_name] = var_value
@@ -273,5 +284,12 @@ class SourceCaboodle(object):
         sortee = filter(lambda x: x.inclusive_weight, self.source_files)
         sortee.sort(key=lambda x:x.base_name)
         return sortee
+
+if cerealizer:
+    cerealizer.register(FuncInvoc)
+    cerealizer.register(Scope)
+    cerealizer.register(Func)
+    cerealizer.register(JSType)
+    cerealizer.register(SourceFile)
 
     
