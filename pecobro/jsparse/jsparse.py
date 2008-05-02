@@ -61,9 +61,10 @@ def scan_and_proc(source_file, ast, depth=0,
     for iChild in range(ast.getChildCount()):
         child = ast.getChild(iChild)
         
-        print '[%.4d %s%s]' % (child.token.line and (child.token.line+adj_line)
-                                   or 0,
-                               '  ' * depth, child.token.text)
+        if report:
+            print '[%.4d %s%s]' % (child.token.line and
+                                   (child.token.line+adj_line) or 0,
+                                   '  ' * depth, child.token.text)
         
         # explicitly process functions
         if child.getType() == FUNC:
@@ -83,7 +84,8 @@ def scan_and_proc(source_file, ast, depth=0,
                 funcName = cur_property.token.text
                 
                 if prop_type and prop_type.getType() != PROP:
-                    print 'considering prop magic', prop_type
+                    if report:
+                        print 'considering prop magic', prop_type
                     funcName = prop_type.token.text + '_' + funcName
                 
                 # this is probably not the best way to fix our position problem
@@ -161,6 +163,7 @@ def parse_snippet(snippet, kind='program'):
 
 def _parse_file(fname, defines=consts.defines):
     sio = None
+    used_codec = None
     for try_codec in TRY_CODECS:
         try:
             f_in = codecs.open(fname, 'r', try_codec)
@@ -172,6 +175,7 @@ def _parse_file(fname, defines=consts.defines):
             f_in.close()
             sio.seek(0)
             # if we got here, we are victorious
+            used_codec = try_codec
             break
         except Exception, e:
             print '(codec %s failed us, trying next)' % (try_codec,)
@@ -191,7 +195,7 @@ def _parse_file(fname, defines=consts.defines):
     parser = JavaScriptParser(token_stream)
     z = parser.program()
     
-    return z
+    return z, used_codec
 
 _CACHE_INITED = False
 
@@ -262,26 +266,31 @@ def parse_file(fname, cache_dir=None, force=False, defines=consts.defines):
                 f.close()
                 
                 if ast is not None:
-                    return ast
+                    # okay, returning None as used_codec is not good...
+                    # luckily most things are meta-cached, but this could turn
+                    #  out very badly...
+                    return ast, None
             except:
                 pass
         
-        ast = _parse_file(fname, defines=defines)
+        ast, used_codec = _parse_file(fname, defines=defines)
         # (no need to try and back-date the mtime to the file's mtime)            
         f = open(cache_fname, 'wb')
         cerealizer.dump(ast, f, protocol=-1) # use highest version
         f.close()
         
-        return ast
+        return ast, used_codec
     else:
         return _parse_file(fname)
 
 grokker = jsgrok.JSGrok(None)
 
 def parse_and_proc(fname, cache_dir=None, force=False, defines=consts.defines):
-    ast = parse_file(fname, cache_dir=cache_dir, force=force, defines=defines)
+    ast, used_codec = parse_file(fname, cache_dir=cache_dir, force=force,
+                                 defines=defines)
     import pecobro.core as pcore
     source_file = pcore.SourceFile(fname, 'js')
+    source_file.used_codec = used_codec
     scan_and_proc(source_file, ast.tree)
     grokker.grok_source_file(source_file, ast.tree)
     return source_file
@@ -326,9 +335,10 @@ def sf_process(source_file, cache_dir=None, force=False, defines=consts.defines)
                 
                 return
     
-        ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force,
-                           defines=defines)
+        ptree, used_codec = parse_file(source_file.path, cache_dir=cache_dir,
+                                       force=force, defines=defines)
         source_file.ast = ptree.tree
+        source_file.used_codec = used_codec
         scan_and_proc(source_file, ptree.tree, report=False)
         grokker.grok_source_file(source_file, ptree.tree)
         

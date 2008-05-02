@@ -216,6 +216,9 @@ class SourceFile(object):
         
         #: if a pure javascript file, the AST associated with it; not for XBL.
         self.ast = None
+        #: the codec we used, if any, to parse this file.  we may lie if our
+        #:  ast was cached but we were not (meta-)cached...
+        self.used_codec = None
         
         # the contents of the file, as they ocurr in the file sequentially.
         self.contents = []

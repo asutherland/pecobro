@@ -111,6 +111,7 @@ class Generator(object):
         
         if root.tag.startswith('{%s}' % XBL_NS):
             print 'Found XBL:', path
+            # we don't need to set used_codec because we didn't use one...
             self.caboodle.append(core.SourceFile(path, 'xbl',
                                                  base_dir=self.caboodle.moz_src_path,
                                                  eRoot=root,
@@ -402,12 +403,32 @@ class Generator(object):
             #  guess we didn't have to full parse it)
             
             print '   - Generating', source_file
-            fcode = open(source_file.path, 'r')
-            code = fcode.read()
-            fcode.close()
+            # okay, we need to pre-process this.  we actually have all the
+            #  ingredients required to reverse the pre-processing to the
+            #  original line numbers so we can show what is in source control,
+            #  but we don't do that.  Also, there are there is the '.in'
+            #  phenomenon to deal with...
+            ## er, looks like maybe we don't need to roll with the codec?
+            if False: # source_file.used_codec:
+                f_in = codecs.open(source_file.path, 'r',
+                                   source_file.used_codec)
+            else:
+                f_in = open(source_file.path, 'r')
+            f_out = StringIO.StringIO()
+            mozpreproc.preprocess(includes=[f_in], defines=source_file.defines,
+                                  output=f_out,
+                                  line_endings='lf',
+                                  # we do not want those //@ line things for XBL
+                                  line_updates=(source_file.filetype != 'xbl'),
+                                  )
+            f_in.close()
+            code = f_out.getvalue()
+            f_out.close()
             
             if source_file.filetype == 'xbl':
                 lexer = codefmt.XmlJsFusionLexer()
+            elif source_file.filetype in ('js', 'jsm'):
+                lexer = pygments.lexers.get_lexer_by_name('javascript')
             else:
                 lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
             formatter = codefmt.CodeFormatter(linenos='inline',
@@ -468,4 +489,4 @@ if __name__ == '__main__':
     print '--- parsing trace ---'
     gen.parse_trace(trace_file)
     print '--- generating output ---'
-    #gen.output_html('/tmp/pecobro')
+    gen.output_html('/tmp/pecobro')
