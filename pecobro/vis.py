@@ -92,14 +92,18 @@ def file_overview(caboodle, file_or_path):
                            linker=link_source_file,
                            width=WIDTH, height=HEIGHT)
 
-def func_time_slices(function, width=640, height=24):
+def func_time_slices(function, width=640, height=24, mode='sparkline'):
   try:
     import visophyte.kora as kr
     import math
     
     max_time_value = float(function.file.caboodle.max_time_value)
     
-    PIX_PER_HORIZ_POINT = 5
+    if mode == 'sparkline':
+        PIX_PER_HORIZ_POINT = 3
+    elif mode == 'smooshline':
+        PIX_PER_HORIZ_POINT = 1
+    
     horiz_points = width / PIX_PER_HORIZ_POINT
     time_per_horiz_point = max_time_value / horiz_points 
     
@@ -128,6 +132,7 @@ def func_time_slices(function, width=640, height=24):
             tr_start = max(r_start, invoc.t_start)
             tr_stop  = min(r_stop, invoc.t_end)
             
+            # slice must be in [0.0, 1.0]
             slice = (tr_stop - tr_start) / time_per_horiz_point
             active_points[cur_range] += slice
             if recursive_invoc:
@@ -137,13 +142,19 @@ def func_time_slices(function, width=640, height=24):
                 cr_start = max(r_start, call.t_start)
                 cr_stop  = min(r_stop, call.t_end)
                 
+                # don't let negatives sneak in...
+                if cr_stop < cr_start:
+                    continue
+                
+                # call_slice must be in [0.0, 1.0]
                 call_slice = (cr_stop - cr_start) / time_per_horiz_point
+                # this transfers from active to inactive; no net increase
                 active_points[cur_range] -= call_slice
                 inactive_points[cur_range] += call_slice
     
     data = zip(active_points, inactive_points)
 
-    vis = kr.vis.BarChart(style='sparkline',
+    vis = kr.vis.BarChart(style=mode,
                           values=(kr.map.constant_scale(height, kr.map.expr('0')),
                                   kr.map.constant_scale(height, kr.map.expr('1'))),
                           positions=('above', 'above'),
