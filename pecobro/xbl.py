@@ -171,6 +171,7 @@ XBL_BINDING = etree.QName(XBL_NS, 'binding')
 XBL_CONTENT = etree.QName(XBL_NS, 'content')
 XBL_IMPLEMENTATION = etree.QName(XBL_NS, 'implementation')
 XBL_CONSTRUCTOR = etree.QName(XBL_NS, 'constructor')
+XBL_DESTRUCTOR = etree.QName(XBL_NS, 'destructor')
 XBL_FIELD = etree.QName(XBL_NS, 'field')
 XBL_PROPERTY = etree.QName(XBL_NS, 'property')
 XBL_GETTER = etree.QName(XBL_NS, 'getter')
@@ -246,6 +247,11 @@ class XBLParser(object):
             if eConstructor is not None:
                 self._make_func(source_file, 'constructor',
                                 eConstructor, eConstructor.text)
+
+            eDestructor = eImpl.find(XBL_DESTRUCTOR.text)
+            if eDestructor is not None:
+                self._make_func(source_file, 'destructor',
+                                eDestructor, eDestructor.text)
             
             for eField in eImpl.findall(XBL_FIELD.text):
                 field_name = eField.get('name')
