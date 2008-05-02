@@ -90,7 +90,9 @@ class TraceParser(object):
             te -= start_ts
 
             # find our function and log this invocation of our function
-            func = get_func(filename, funcname, lineno)
+            # (brutally mis-attribute .xul files for now using the last func)
+            if not filename.endswith('.xul'):
+                func = get_func(filename, funcname, lineno)
             this_invoc = func.log_invoke(ts, te, depth, depth)
             
             # queue up this invocation for later consumption by our parent
