@@ -325,6 +325,8 @@ class SourceCaboodle(object):
         self.source_files = []
         self.base_name_to_file = {}
         self.impl_name_to_file = {}
+        
+        self.path_to_file = {}
 
         #: map chrome paths to file-system paths
         self.chrome_map = {}
@@ -341,6 +343,13 @@ class SourceCaboodle(object):
         source_file.caboodle = self
         self.source_files.append(source_file)
         self.base_name_to_file[source_file.base_name] = source_file
+        self.path_to_file[source_file.path] = source_file
+    
+    def get_file_from_chrome_path(self, chrome_path):
+        if not chrome_path in self.chrome_map:
+            return None
+        defines, file_path = self.chrome_map[chrome_path]
+        return self.path_to_file.get(file_path) 
     
     @property
     def sorted_source_files(self):

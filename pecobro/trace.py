@@ -77,6 +77,23 @@ class TraceParser(object):
 
             line_type = line[0]
             
+            # since we do store the entire path for 'e' cases, we can use this
+            #  to dis-ambiguate duplicate file names (although there are better
+            #  possible solutions; we could probably whittle some files out of
+            #  concern by knowing no .xul file uses it, or just have our probes
+            #  not have to use basename)
+            if line_type == 'e':
+                (line_type, path, lineno_str) = line.split(',')
+                if path.startswith('chrome://'):
+                    chrome_path = path[9:]
+                    sf = self.caboodle.get_file_from_chrome_path(chrome_path)
+                    # er, and we do this by just overwriting the base_name entry
+                    #  for this dude.  this results in a MRU cached entry...
+                    # (only do this if we find a source file... this won't be
+                    #  the case for .xul jerks...)
+                    if sf:
+                        self.caboodle.base_name_to_file[sf.base_name] = sf
+            
             if line_type != 'r':
                 continue
             
