@@ -35,9 +35,15 @@ class FuncInvoc(object):
         invoc_inc_weight = invoc.t_end - invoc.t_start 
         
         func = self.func
+        # ever_called
         func_called, func_inc_weight = func.ever_called.get(invoc.func, (0,0))
         func.ever_called[invoc.func] = (func_called + 1,
                                         func_inc_weight + invoc_inc_weight)
+        # (reverse) ever_called_by
+        called_by_count, called_by_weight = invoc.func.ever_called_by.get(func, (0,0))
+        invoc.func.ever_called_by[func] = (called_by_count + 1,
+                                           called_by_weight + invoc_inc_weight)
+        
         # subtract off the time we spent outside the function
         func.exclusive_weight -= invoc_inc_weight 
 
@@ -46,6 +52,8 @@ class FuncInvoc(object):
         file_called, file_inc_weight = s_file.ever_called.get(c_file, (0,0))
         s_file.ever_called[c_file] = (file_called + 1,
                                       file_inc_weight + invoc_inc_weight)
+        
+        # TODO: (reverse) file ever_called_by 
         
 
 class Scope(object):
@@ -93,7 +101,7 @@ class Scope(object):
         writers.add(who)
 
 class Func(object):
-    def __init__(self, source_file, jstype, func_name):
+    def __init__(self, source_file, jstype, func_name, line=None, col=None):
         #: what file do we come from
         self.file = source_file
         #: the object/javascript type we are a method on
@@ -101,7 +109,8 @@ class Func(object):
         #: function name, preferring explicit over inferred from property 
         self.name = func_name
         #: what is our name identifier, safely used in our html/javascript
-        self.norm_name = func_name.replace('$', '_')
+        self.norm_name = func_name.replace('$', '_') + (
+                            '_%d' % (line or 0,)) 
         
         self.args = None
         
@@ -119,10 +128,13 @@ class Func(object):
         #: dict of every function we have ever called and a tuple of (how many
         #   times, inclusive call length)
         self.ever_called = {}
+        #: dict of every function we have ever been called by and a tuple of
+        #   (how many times, inclusive call length)
+        self.ever_called_by = {}
         
         ## tokeny stuff
-        self.source_line = None
-        self.source_col = None
+        self.source_line = line
+        self.source_col = col
     
     def is_anon(self):
         return self.name.startswith('anon:')
@@ -199,7 +211,11 @@ class SourceFile(object):
         #: implementation names in this file; dtrace may use instead of filename
         self.impl_names = []
         
+        #: function name to Func.  collisions may occur!
         self.functions = {}
+        #: (function name, function line) tuple.  collisions are rather unlikely 
+        self.functions_with_line = {}
+        #: function line to Func.  collisions could happen.
         self.functions_by_line = {}
         #: in case we cleverly rename an anonymous function, help unclever code
         self.anon_function_tombstones = {}
@@ -231,26 +247,28 @@ class SourceFile(object):
         self.scope = Scope('global', None)
         
         # create our synthetic import function
-        self.import_function, trash = self.get_or_create_function('!import')
+        self.import_function, trash = self.get_or_create_function('!import', 0)
         self.import_function.source_line = 0
         self.import_function.source_col = 0
         self.add_to_contents(self.import_function)
 
     def rename_anon(self, func, anon_name, new_name):
         del self.functions[anon_name]
+        del self.functions_with_line[(anon_name, func.source_line)]
         self.anon_function_tombstones[anon_name] = func
         self.functions[new_name] = func
+        self.functions_with_line[(new_name, func.source_line)] = func 
         
         func.name = new_name
 
-    def get_or_create_function(self, funcname):
-        func = self.functions.get(funcname)
+    def get_or_create_function(self, funcname, lineno=None):
+        func = self.functions_with_line.get((funcname, lineno))
         # try an anonymous tombstone (even if not anonymous; no risk)
         if func is None:
             func = self.anon_function_tombstones.get(funcname)
         if func is None:
-            func = Func(self, None, funcname)
-            self.add_function(func)
+            func = Func(self, None, funcname, line=lineno)
+            self.add_function(func, lineno)
             created = True
         else:
             created = False
@@ -279,8 +297,9 @@ class SourceFile(object):
         self.globals[var_name] = var_value
         self.global_tokens[var_name] = token
 
-    def add_function(self, func):
+    def add_function(self, func, lineno):
         self.functions[func.name] = func
+        self.functions_with_line[(func.name, lineno)] = func
         
     def add_field(self, field):
         self.fields[field.name] = field

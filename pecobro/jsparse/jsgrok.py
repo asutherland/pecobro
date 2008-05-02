@@ -112,11 +112,14 @@ class JSGrok(object):
                                                  self.adj_column or 0))
             else:
                 func_name = nName.token.text
-                
-            func, created = source_file.get_or_create_function(func_name)
+            
+            func_line = nName.token.line + self.adj_line
+            
+            func, created = source_file.get_or_create_function(func_name,
+                                                               func_line)
 
             if created or func.source_line is None:
-                func.source_line = nName.token.line + self.adj_line
+                func.source_line = func_line
                 func.source_col  = nName.token.charPositionInLine
                 if nName.token.line == 1:
                     func.source_col += self.adj_column

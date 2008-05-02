@@ -123,6 +123,6 @@ class TraceParser(object):
         
         # fix-up source file weights...
         for source_file in self.caboodle.source_files:
-            for func in source_file.functions.values():
+            for func in source_file.functions_with_line.values():
                 source_file.inclusive_weight += func.inclusive_weight
                 source_file.exclusive_weight += func.exclusive_weight

@@ -184,7 +184,8 @@ XBL_HANDLER = etree.QName(XBL_NS, 'handler')
 
 class XBLParser(object):
     def _make_func(self, source_file, func_name, eNode, code):
-        func, created = source_file.get_or_create_function(func_name)
+        func, created = source_file.get_or_create_function(func_name,
+                                                           eNode.line)
         
         func.source_line = eNode.line
         func.source_col = eNode.column
@@ -217,7 +218,8 @@ class XBLParser(object):
         '''
         #field, created = source_file.get_or_create_field(field_name)
         func_name = 'field_' + field_name
-        field, created = source_file.get_or_create_function(func_name)
+        field, created = source_file.get_or_create_function(func_name,
+                                                            eNode.line)
         
         field.source_line = eNode.line
         field.source_col  = eNode.column

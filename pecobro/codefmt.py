@@ -195,6 +195,26 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                         if nextFunc.invocations:
                             yield 0, vis.func_time_slices(nextFunc)
                         yield 0, '\n'
+                        if nextFunc.ever_called:
+                            display_names = []
+                            ever_called_funcs = nextFunc.ever_called.keys()
+                            ever_called_funcs.sort(key=lambda x:(x.file.base_name, x.name))
+                            for c_func in ever_called_funcs:
+                                display_names.append('%s:%s' % (
+                                    c_func.file.base_name,
+                                    c_func.name))
+                            yield (0, '<span class="fc">Called: %s</span>\n' %
+                                    (', '.join(display_names),))
+                        if nextFunc.ever_called_by:
+                            display_names = []
+                            ever_called_by_funcs = nextFunc.ever_called_by.keys()
+                            ever_called_by_funcs.sort(key=lambda x:(x.file.base_name, x.name))
+                            for cb_func in ever_called_by_funcs:
+                                display_names.append('%s:%s' % (
+                                    cb_func.file.base_name,
+                                    cb_func.name))
+                            yield (0, '<span class="fcb">Called By: %s</span>\n' %
+                                    (', '.join(display_names),))
                     # NOTE: Right now this doesn't actually happen
                     elif isinstance(nextFunc, core.JSObj):
                         yield (0,

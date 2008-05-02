@@ -31,9 +31,11 @@ def _anon_func_name(funcNode, adj_line, adj_column):
 
 def _make_func(source_file, funcNode, funcName, astNode,
                adj_line, adj_column):
-    func, created = source_file.get_or_create_function(funcName)
+    func_line = funcNode.token.line + adj_line 
     
-    func.source_line = funcNode.token.line + adj_line
+    func, created = source_file.get_or_create_function(funcName, func_line)
+    
+    func.source_line = func_line
     func.source_col  = funcNode.token.charPositionInLine
     # only adjust the column if it is the first line...
     if funcNode.token.line == 1:
