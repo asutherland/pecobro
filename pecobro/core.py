@@ -106,6 +106,8 @@ class Func(object):
         self.args = None
         
         self.ast = None
+        #: indicates whether this is a nested AST and therefore not top-level.
+        self.nested_ast = True
         
         #: number of ticks in this function per our simplistic count...
         self.inclusive_weight = 0
@@ -120,7 +122,13 @@ class Func(object):
         
         ## tokeny stuff
         self.source_line = None
-        self.source_col = None        
+        self.source_col = None
+    
+    def is_anon(self):
+        return self.name.startswith('anon:')
+    
+    def rename(self, new_name):
+        self.file.rename_anon(self, self.name, new_name)
 
     def __str__(self):
         return 'Func:%s:%s' % (self.file.base_name, self.name,)
@@ -148,8 +156,31 @@ class JSType(object):
         self.prototype = Scope('prototype')
         self.instance = Scope('instance', self.prototype)
 
+class JSObj(object):
+    '''
+    Created especially to represent fields... a sorta-dubious name/call in the
+    first place, but for now, we have fallen back to actually treating fields
+    as functions because they are evaluated and in their evaluation can cause
+    calls to occur...
+    '''
+    def __init__(self, source_file, name):
+        #: what file do we come from
+        self.file = source_file
+        #: function name, preferring explicit over inferred from property 
+        self.name = name
+        #: what is our name identifier, safely used in our html/javascript
+        self.norm_name = name.replace('$', '_')
+        
+        self.ast = None
+        #: indicates whether this is a nested AST and therefore not top-level.
+        self.nested_ast = True
+        
+        ## tokeny stuff
+        self.source_line = None
+        self.source_col = None        
+
 class SourceFile(object):
-    def __init__(self, path, file_type, base_dir=None, eRoot=None):
+    def __init__(self, path, file_type, base_dir=None, eRoot=None, defines=None):
         self.caboodle = None
         
         self.path     = path
@@ -165,13 +196,25 @@ class SourceFile(object):
         self.base_name = os.path.basename(path)
         self.norm_base_name = os.path.basename(path).replace('.', '_')
         
+        #: implementation names in this file; dtrace may use instead of filename
+        self.impl_names = []
+        
         self.functions = {}
         self.functions_by_line = {}
+        #: in case we cleverly rename an anonymous function, help unclever code
+        self.anon_function_tombstones = {}
+        
+        #: currently unused because we no longer break-out fields specially...
+        self.fields = {}
         
         self.ever_called = {}
         
         self.eRoot = eRoot
         
+        #: defines passed to the preprocessor, although we may not be preproced
+        self.defines = defines
+        
+        #: if a pure javascript file, the AST associated with it; not for XBL.
         self.ast = None
         
         # the contents of the file, as they ocurr in the file sequentially.
@@ -190,8 +233,18 @@ class SourceFile(object):
         self.import_function.source_col = 0
         self.add_to_contents(self.import_function)
 
+    def rename_anon(self, func, anon_name, new_name):
+        del self.functions[anon_name]
+        self.anon_function_tombstones[anon_name] = func
+        self.functions[new_name] = func
+        
+        func.name = new_name
+
     def get_or_create_function(self, funcname):
         func = self.functions.get(funcname)
+        # try an anonymous tombstone (even if not anonymous; no risk)
+        if func is None:
+            func = self.anon_function_tombstones.get(funcname)
         if func is None:
             func = Func(self, None, funcname)
             self.add_function(func)
@@ -199,6 +252,16 @@ class SourceFile(object):
         else:
             created = False
         return func, created
+    
+    def get_or_create_field(self, field_name):
+        field = self.fields.get(field_name)
+        if field is None:
+            field = JSObj(self, field_name)
+            self.add_field(field)
+            created = True
+        else:
+            created = False
+        return field, created
     
     def get_func_by_line(self, lineno):
         '''
@@ -215,11 +278,16 @@ class SourceFile(object):
 
     def add_function(self, func):
         self.functions[func.name] = func
+        
+    def add_field(self, field):
+        self.fields[field.name] = field
     
-    def add_to_contents(self, func):
-        self.contents.append(func)
-        if func.source_line is not None:
-            self.functions_by_line[func.source_line] = func
+    def add_to_contents(self, thing):
+        self.contents.append(thing)
+        if isinstance(thing, Func):
+            func = thing
+            if func.source_line is not None:
+                self.functions_by_line[func.source_line] = func
     
     def __str__(self):
         return 'SourceFile: %s' % (self.path,)
@@ -245,16 +313,18 @@ class SourceCaboodle(object):
     '''
     def __init__(self, moz_src_path, moz_build_path,
                  project,
-                 module_dirs=(), locale_dirs=()):
+                 module_dirs=(), locale_dirs=(), overlay_dirs=()):
         self.moz_src_path = moz_src_path
         self.moz_build_path = moz_build_path
         self.project = project
         
         self.module_dirs = module_dirs
         self.locale_dirs = locale_dirs
+        self.overlay_dirs = overlay_dirs
         
         self.source_files = []
         self.base_name_to_file = {}
+        self.impl_name_to_file = {}
 
         #: map chrome paths to file-system paths
         self.chrome_map = {}
@@ -290,6 +360,7 @@ if cerealizer:
     cerealizer.register(Scope)
     cerealizer.register(Func)
     cerealizer.register(JSType)
+    cerealizer.register(JSObj)
     cerealizer.register(SourceFile)
 
     

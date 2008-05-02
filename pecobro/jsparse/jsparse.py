@@ -13,8 +13,9 @@ except:
 
 import antlr3
 # relative
-from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, ASSIGN, COND, CODE, FUNC, OBJ, \
-    PROP, RETURN, SCOPE, VARDEFS, VARDEF, VEXPR
+from JavaScriptLexer import JavaScriptLexer, ANONYMOUS, CALL, \
+    FUNC, \
+    PROP
 from JavaScriptParser import JavaScriptParser
 
 import pecobro.mozpreproc as mozpreproc
@@ -22,9 +23,33 @@ import pecobro.consts as consts
 
 import pecobro.jsparse.jsgrok as jsgrok
 
+def _anon_func_name(funcNode, adj_line, adj_column):
+    return 'anon:%d:%d' % (funcNode.token.line + adj_line,
+                           funcNode.token.charPositionInLine +
+                           ((funcNode.token.line == 1) and 
+                           adj_column or 0))
+
+def _make_func(source_file, funcNode, funcName, astNode,
+               adj_line, adj_column):
+    func, created = source_file.get_or_create_function(funcName)
+    
+    func.source_line = funcNode.token.line + adj_line
+    func.source_col  = funcNode.token.charPositionInLine
+    # only adjust the column if it is the first line...
+    if funcNode.token.line == 1:
+        func.source_col += adj_column
+    
+    func.ast = astNode
+    
+    source_file.add_to_contents(func)
+
+    print '     (%d, %d): %s' % (func.source_line, func.source_col, funcName)
+   
+    return func
+
 def scan_and_proc(source_file, ast, depth=0,
                   cur_property=None, prop_type=None,
-                  report=True):
+                  report=True, adj_line=0, adj_column=0):
     '''
     Chew the AST and put info in our core representation.  This type of
     analysis is going to migrate into jsgrok; at some point this should become
@@ -36,8 +61,11 @@ def scan_and_proc(source_file, ast, depth=0,
     for iChild in range(ast.getChildCount()):
         child = ast.getChild(iChild)
         
-        print '[%s%s]' % ('  ' * depth, child.token.text)
+        print '[%.4d %s%s]' % (child.token.line and (child.token.line+adj_line)
+                                   or 0,
+                               '  ' * depth, child.token.text)
         
+        # explicitly process functions
         if child.getType() == FUNC:
             funcNode = child.getChild(0)
             
@@ -62,37 +90,43 @@ def scan_and_proc(source_file, ast, depth=0,
                 funcNode = cur_property
             else:
                 # it's anonymous!
-                #print 'skipping anonymous func at depth %d' % (depth,)
-                funcName = 'anon:%d:%d' % (funcNode.token.line,
-                                           funcNode.token.charPositionInLine)
+                funcName = _anon_func_name(funcNode, adj_line, adj_column)
             
-            func, created = source_file.get_or_create_function(funcName)
-            
-            func.source_line = funcNode.token.line
-            func.source_col  = funcNode.token.charPositionInLine
-            
-            func.ast = child
-            
-            source_file.add_to_contents(func)
-            
-            print '%s(%d, %d): %s' % ('  ' * depth,
-                                      func.source_line, func.source_col,
-                                      funcName)
+            func = _make_func(source_file, funcNode, funcName, child,
+                              adj_line, adj_column)
+                        
             # there might be interesting stuff in here...
             #  but be quiet with the walking so as to avoid being too verbose
-            scan_and_proc(source_file, child.getChild(2), depth+1, report=False)
-            
-        elif child.getType() in (OBJ, VEXPR, RETURN, SCOPE, COND, CODE):
-            scan_and_proc(source_file, child, depth+1, report=report)
+            scan_and_proc(source_file, child.getChild(2), depth+1, report=False,
+                          adj_line=adj_line, adj_column=adj_column)
+        # PROPs provide context for naming
         elif child.getType() == PROP:
             scan_and_proc(source_file, child, depth+1,
                           cur_property=child.getChild(0),
                           prop_type=child.getChild(1),
-                          report=report)
-        elif child.getType() in (VARDEF, VARDEFS, ASSIGN):
-            scan_and_proc(source_file, child, depth+1, report=report)
-        # factory functions may return objects... (RETURN (VEXPR (OBJ
-            
+                          report=report,
+                          adj_line=adj_line, adj_column=adj_column)
+        # NEW-ing a Function creates a function, but so just CALLing function,
+        #  so let's only handle the CALL case and leave it to the NEW case to
+        #  recurse into it.
+        # (CALL case)
+        elif child.getType() == CALL:
+            if jsgrok.call_name(child) == 'Function':
+                # CALL -> VEXPR -> VARREF -> 'Function'
+                funcNode = child.children[0].children[0].children[0]
+                # gr, they're creating an anonymous function
+                funcName = _anon_func_name(funcNode, adj_line, adj_column)
+                funcNode = _make_func(source_file, funcNode, funcName, funcNode,
+                                      adj_line, adj_column)
+
+            # recurse no matter what; there could be more functions in there.
+            scan_and_proc(source_file, child, depth+1, report=report,
+                          adj_line=adj_line, adj_column=adj_column)
+        # everything else we simply want to traverse in the hope of finding more
+        #  of the above.
+        else:
+            scan_and_proc(source_file, child, depth+1, report=report,
+                          adj_line=adj_line, adj_column=adj_column)
             
 
 def parse_string(s, dude='program'):
@@ -110,27 +144,29 @@ def parse_string(s, dude='program'):
 
 TRY_CODECS = ['utf-8', 'cp1252']
 
-def parse_snippet(snippet):
+def parse_snippet(snippet, kind='program'):
     ss = antlr3.StringStream(snippet)
     lexer = JavaScriptLexer(ss)
     token_stream = antlr3.CommonTokenStream(lexer)
     parser = JavaScriptParser(token_stream)
-    z = parser.program()
+    if kind in ('program', 'func'):
+        z = parser.program()
+    elif kind in ('field',):
+        z = parser.standaloneExpression()
     
     if z is not None:
         return z.tree
     else:
-        return None
-    
+        return None    
 
-def _parse_file(fname):
+def _parse_file(fname, defines=consts.defines):
     sio = None
     for try_codec in TRY_CODECS:
         try:
             f_in = codecs.open(fname, 'r', try_codec)
             sio = StringIO.StringIO()
             f_out = codecs.getwriter('utf-8')(sio)
-            mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
+            mozpreproc.preprocess(includes=[f_in], defines=defines,
                                   output=f_out,
                                   line_endings='lf')
             f_in.close()
@@ -196,7 +232,7 @@ def _init_cache():
     
     _CACHE_INITED = True
 
-def parse_file(fname, cache_dir=None, force=False):
+def parse_file(fname, cache_dir=None, force=False, defines=consts.defines):
     '''
     Parse the file, caching if cache_dir is supplied (and valid).
     
@@ -230,7 +266,7 @@ def parse_file(fname, cache_dir=None, force=False):
             except:
                 pass
         
-        ast = _parse_file(fname)
+        ast = _parse_file(fname, defines=defines)
         # (no need to try and back-date the mtime to the file's mtime)            
         f = open(cache_fname, 'wb')
         cerealizer.dump(ast, f, protocol=-1) # use highest version
@@ -242,14 +278,29 @@ def parse_file(fname, cache_dir=None, force=False):
 
 grokker = jsgrok.JSGrok(None)
 
-def parse_and_proc(fname, cache_dir=None, force=False):
-    ast = parse_file(fname, cache_dir=cache_dir, force=force)
+def parse_and_proc(fname, cache_dir=None, force=False, defines=consts.defines):
+    ast = parse_file(fname, cache_dir=cache_dir, force=force, defines=defines)
     import pecobro.core as pcore
     source_file = pcore.SourceFile(fname, 'js')
     scan_and_proc(source_file, ast.tree)
     grokker.grok_source_file(source_file, ast.tree)
+    return source_file
 
-def sf_process(source_file, cache_dir=None, force=False):
+def sf_process_snippet(source_file, code, kind='program',
+                       adj_line=0, adj_column=0):
+    tree = parse_snippet(code, kind)
+    if tree:
+        scan_and_proc(source_file, tree, report=False,
+                      adj_line=adj_line, adj_column=adj_column)
+        if kind == 'func':
+            grokker.grok_func(source_file, tree,
+                                     adj_line=adj_line, adj_column=adj_column)        
+        elif kind == 'field':
+            grokker.grok_field(source_file, tree,
+                                     adj_line=adj_line, adj_column=adj_column)
+    return tree
+
+def sf_process(source_file, cache_dir=None, force=False, defines=consts.defines):
     # Called by generate...
     #try:
         # if the file managed to get fully cached before, load it!
@@ -275,9 +326,10 @@ def sf_process(source_file, cache_dir=None, force=False):
                 
                 return
     
-        ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force)
+        ptree = parse_file(source_file.path, cache_dir=cache_dir, force=force,
+                           defines=defines)
         source_file.ast = ptree.tree
-        scan_and_proc(source_file, ptree.tree)
+        scan_and_proc(source_file, ptree.tree, report=False)
         grokker.grok_source_file(source_file, ptree.tree)
         
         if cache_dir:
@@ -303,6 +355,10 @@ def dbg_load_cached(filename, cache_dir):
     source_file = pcore.SourceFile(filename, '')
     sf_process(source_file, cache_dir)
     return source_file
+
+def dbg_reparse(source_file):
+    new_sf = parse_and_proc(source_file.path, defines=source_file.defines)
+    return new_sf
 
 if __name__ == '__main__':
     from IPython.Shell import IPShellEmbed

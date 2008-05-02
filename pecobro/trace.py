@@ -13,6 +13,9 @@ class TraceParser(object):
             
             if not ctupe in func_cache:
                 source_file = self.caboodle.base_name_to_file.get(filename)
+                # try it as an impl
+                if source_file is None:
+                    source_file = self.caboodle.impl_name_to_file.get(filename)
                 if source_file is None:
                     raise Exception('Unable to locate source file: %s' % filename)
                 
@@ -23,7 +26,9 @@ class TraceParser(object):
                     func = source_file.get_func_by_line(lineno)
                 
                 if func is None:
-                    print 'Warning: unable to translate %s,%d to a function (hint: %s)' % (filename, lineno, funcname)
+                    raise Exception('Unable to translate '
+                                    '%s,%d to a function (hint: %s)' %
+                                    (filename, lineno, funcname))
                 
                 func_cache[ctupe] = func
             else:

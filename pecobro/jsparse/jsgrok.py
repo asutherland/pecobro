@@ -27,26 +27,59 @@ GLOBAL_FUNC_NAMES = (
 
 UNDEFINED = None
 
+def as_varref(node):
+    '''
+    If the node in question is a VEXPR starting with a VARREF, return its
+    children and a flag indicating whether there is more than the one
+    child.  (We return the flag for readability of the caller).
+    
+    If the node is not, both return values are None.
+    '''
+    if (node.getType() != jslex.VEXPR
+            or node.getChildCount() < 1
+            or node.getChild(0).getType() != jslex.VARREF):
+        return None, None
+            
+    return node.children, (node.getChildCount() > 1)
+
+def propref_name(node):
+    if node.getType() == jslex.PROPREF:
+        return node.children[0].token.text
+    else:
+        return None
+
+def as_string(node):
+    if node.getType() == jslex.VEXPR:
+        if len(node.children) != 1:
+            return None
+        else:
+            return as_string(node.children[0])
+    elif node.getType() == jslex.STRING:
+        # we need to chop off the quotes
+        return node.children[0].token.text[1:-1]
+    else:
+        return None
+
+def call_name(node):
+    '''
+    If node is a CALL node with a single VARREF VEXPR, returns the name of the
+    VARREF, otherwise None.
+    '''
+    if node.getType() == jslex.CALL:
+        calledNode = node.children[0]
+        if (calledNode.getType() == jslex.VEXPR and
+                len(calledNode.children) == 1):
+            vexprKid = calledNode.children[0]
+            if vexprKid.getType() == jslex.VARREF:
+                return vexprKid.children[0].token.text
+    return None
+
 class JSGrok(object):
     def __init__(self, caboodle):
         self.caboodle = caboodle
     
-    def _as_varref(self, node):
-        '''
-        If the node in question is a VEXPR starting with a VARREF, return its
-        children and a flag indicating whether there is more than the one
-        child.  (We return the flag for readability of the caller).
-        
-        If the node is not, both return values are None.
-        '''
-        if (node.getType() != jslex.VEXPR
-                or node.getChildCount() < 1
-                or node.getChild(0).getType() != jslex.VARREF):
-            return None, None
-                
-        return node.children, (node.getChildCount() > 1)
-
-    def _val_map(self, source_file, node, scope, who, enclosingPropNode=None):
+    def _val_map(self, source_file, node, scope, who, enclosingPropNode=None,
+                 adj_line=0, adj_column=0):
         '''
         Given a token, map it into our value-space...
         '''
@@ -69,21 +102,24 @@ class JSGrok(object):
                     #  pure anonymous function case...)
                     nName = enclosingPropNode.getChild(0)
                 
-                propTypeNode = enclosingPropNode.getChild(1)
-                if propTypeNode.getType() != jslex.PROP:
-                    func_name = propTypeNode.token.text + '_' + func_name
-                
-
-                func_name = 'anon:%d:%d' % (nName.token.line,
-                                            nName.token.charPositionInLine)
+                    propTypeNode = enclosingPropNode.getChild(1)
+                    if propTypeNode.getType() != jslex.PROP:
+                        func_name = propTypeNode.token.text + '_' + func_name
+                else:
+                    func_name = 'anon:%d:%d' % (nName.token.line + self.adj_line,
+                                                nName.token.charPositionInLine +
+                                                ((nName.token.line == 1) and 
+                                                 self.adj_column or 0))
             else:
                 func_name = nName.token.text
                 
             func, created = source_file.get_or_create_function(func_name)
 
             if created or func.source_line is None:
-                func.source_line = nName.token.line
+                func.source_line = nName.token.line + self.adj_line
                 func.source_col  = nName.token.charPositionInLine
+                if nName.token.line == 1:
+                    func.source_col += self.adj_column
                 
                 nArgs = node.getChild(1)
                 func.args = []
@@ -173,7 +209,7 @@ class JSGrok(object):
                     source_file.scope.store(func.name, func, source_file)
             # foo = bar
             elif ctype == jslex.ASSIGN:
-                vexpr, complex = self._as_varref(child.getChild(0))
+                vexpr, complex = as_varref(child.getChild(0))
                 if vexpr and not complex:
                     var_name = vexpr[0].token.text
                     var_val = self._val_map(source_file, child.getChild(1),
@@ -212,12 +248,14 @@ class JSGrok(object):
                 pass
             # assignments may manipulate the prototype
             elif ctype == jslex.ASSIGN:
-                vexpr, complex = self._as_varref(child.getChild(0))
+                # children: left, operator (=/+=/etc.), right)
+                vexpr, complex = as_varref(child.getChild(0))
                 # needs to start with a varref and have multiple kids
                 if vexpr is None or not complex:
                     continue
-                if vexpr[1].token.text != 'prototype':
+                if propref_name(vexpr[1]) != 'prototype':
                     continue
+                
                 # (figure out what they're assigning for subsequent processing)
                 right_node = child.getChild(2)
                 right_val  = self._val_map(source_file, right_node,
@@ -236,9 +274,74 @@ class JSGrok(object):
                     # make sure the variable reference is a function...
                     if not isinstance(right_val, core.Func):
                         continue
+                    func = right_val
+                    
+                    prop_name = propref_name(vexpr[2])
+                    if func.is_anon():
+                        print 'renaming anoymous %s to %s' % (func.name, prop_name)
+                        func.rename(prop_name)
+            # possibility of __defineGetter__ or __defineSetter__... 
+            elif ctype == jslex.CALL:
+                # children: thing being called, arguments
+                vexpr, complex = as_varref(child.children[0])
+                # can't be FOO.prototype.__defineGetter__  if not like so...
+                if vexpr is None or not complex or len(vexpr) != 3:
+                    continue
+                if propref_name(vexpr[1]) != 'prototype':
+                    continue
+                if propref_name(vexpr[2]) not in ('__defineGetter__',
+                                                  '__defineSetter__'):
+                    continue
+                
+                args = child.children[1].children
+                # arguments: property name, function
+
+                prop_name = as_string(args[0])
+                if prop_name is None:
+                    continue
+                
+                should_be_func = self._val_map(source_file, args[1],
+                                               source_file.scope, source_file)
+                if not isinstance(should_be_func, core.Func):
+                    continue
+
+                if should_be_func.is_anon():
+                    if propref_name(vexpr[2]) == '__defineGetter__':
+                        func_name = 'get_' + prop_name
+                    else:
+                        func_name = 'set_' + prop_name
+                    print 'renaming anonymous %s to %s' % (should_be_func.name,
+                                                           func_name)
+                    should_be_func.rename(func_name)
                     
 
-    def grok_source_file(self, source_file, ast):
+    def grok_field(self, source_file, ast,
+                         adj_line=0, adj_column=0):
+        # we can't be used concurrently...
+        self.adj_line = adj_line
+        self.adj_column = adj_column
+        
+        # nothing is currently suitable...
+        
+        ##self.grok_globals(source_file, ast)
+        ##self.grok_objects(source_file, ast)
+
+    def grok_func(self, source_file, ast,
+                         adj_line=0, adj_column=0):
+        # we can't be used concurrently...
+        self.adj_line = adj_line
+        self.adj_column = adj_column
+        
+        # nothing is currently suitable...
+        
+        ##self.grok_globals(source_file, ast)
+        ##self.grok_objects(source_file, ast)
+
+    def grok_source_file(self, source_file, ast,
+                         adj_line=0, adj_column=0):
+        # we can't be used concurrently...
+        self.adj_line = adj_line
+        self.adj_column = adj_column
         
         self.grok_globals(source_file, ast)
         self.grok_objects(source_file, ast)

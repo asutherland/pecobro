@@ -4,6 +4,7 @@ import pygments.token
 import pygments.formatters
 import pygments.formatters.html
 
+import pecobro.core as core
 import pecobro.vis as vis
 
 class XmlJsFusionLexer(pygments.lexer.Lexer):
@@ -187,12 +188,20 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                 cur_line += 1
                 
                 while nextFunc and nextFunc.source_line <= cur_line:
-                    yield 0, '<span id="func|%s" class="fhdr">%s</span>' % (nextFunc.norm_name,
-                                                             nextFunc.name)
-                    if nextFunc.invocations:
-                        yield 0, vis.func_time_slices(nextFunc)
+                    if isinstance(nextFunc, core.Func):
+                        yield (0,
+                               '<span id="func|%s" class="fhdr">%s</span>' %
+                                   (nextFunc.norm_name, nextFunc.name))
+                        if nextFunc.invocations:
+                            yield 0, vis.func_time_slices(nextFunc)
+                        yield 0, '\n'
+                    # NOTE: Right now this doesn't actually happen
+                    elif isinstance(nextFunc, core.JSObj):
+                        yield (0,
+                               '<span id="field|%s" class="fhdr">%s</span>' %
+                                   (nextFunc.norm_name, nextFunc.name))
+                        yield 0, '\n'
                     
-                    yield 0, '\n'
                     nextFunc = next_contents()
                 
                 yield t, line
@@ -249,7 +258,14 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
             
             if nextFunc and nextFunc.source_line <= cur_line:
                 while nextFunc and nextFunc.source_line <= cur_line:
-                    if multi_ast:
+                    # Because functions may be defined inside of functions, we
+                    #  only want to change the AST we are processing if it's
+                    #  actually a top-level/authoritative AST (otherwise we
+                    #  would need to maintain a stack for when we left a
+                    #  function.  This means we ignore nested_ast's (which is
+                    #  everyone by default; the XBL parser sets them to False
+                    #  when it creates top-level things.)
+                    if multi_ast and not nextFunc.nested_ast:
                         # look for our Comment.Preproc marker...
                         sync_ast = True
                         
@@ -261,7 +277,8 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                             
                     nextFunc = next_contents()
             elif ttype == pygments.token.Comment.Preproc and sync_ast:
-                # ast line is zero-based, our line-count is 1-based
+                # ast line is one-based, so we need to subtract one off for the
+                #  adjustment.  (sort of like point/vector reps from lin. alg.) 
                 ast_line_adjust = cur_line - 1
                 ast_pos_adjust = cur_pos + len(value)
                 #print '>>> synced', ast_line_adjust, ast_pos_adjust

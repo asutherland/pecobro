@@ -12,7 +12,7 @@ class JarManifestParser(object):
     def __init__(self, caboodle):
         self.caboodle = caboodle
     
-    def _parse_file(self, f, fname):
+    def _parse_file(self, f, fname, defines=None):
         manifest_dir = os.path.dirname(os.path.abspath(fname))
         
         pkg_name = None
@@ -132,7 +132,7 @@ class JarManifestParser(object):
                         chrome_path = None
                 
                 if chrome_path:
-                    self.caboodle.chrome_map[chrome_path] = path
+                    self.caboodle.chrome_map[chrome_path] = (defines, path)
                 print '  %s -> %s' % (chrome_path, path)
             # -- a jar file
             elif line.endswith(':'):
@@ -154,4 +154,4 @@ class JarManifestParser(object):
         f_in.close()
         sio.seek(0)
         
-        self._parse_file(sio, fname)
+        self._parse_file(sio, fname, defines)

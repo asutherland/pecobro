@@ -67,11 +67,11 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
     def _map_chrome(self, systemId):
         chrome_path = systemId[9:]
         
-        path = self.caboodle.chrome_map.get(chrome_path)
-        if path is None:
+        defines_and_path = self.caboodle.chrome_map.get(chrome_path)
+        if defines_and_path is None:
             raise Exception('Unknown chrome path: %s' % (chrome_path,))
-        
-        return path
+        # path[0] is the defines for preprocessing
+        return defines_and_path
         
         cur_map = CHROME_MAP
         rest_path = chrome_path
@@ -116,13 +116,16 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
         
         return None
 
-    def _do_external_parse(self, filepath, context):
+    def _do_external_parse(self, filepath, context, defines=consts.defines):
         eep = self._parser.ExternalEntityParserCreate(context)
         f_in = open(filepath, 'r') # codecs.open(filepath, 'r', 'utf-8')
         f_out = StringIO.StringIO()
-        mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
+        mozpreproc.preprocess(includes=[f_in], defines=defines,
                               output=f_out,
-                              line_endings='lf')
+                              line_endings='lf',
+                              # we do not want the "//@line" updates...
+                              line_updates=False,
+                              )
         f_in.close()
         f_out.seek(0)
         
@@ -135,9 +138,9 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
         #print 'EXTERNAL ENTITY', context, base, systemId, publicId, ':.'
 
         if systemId and systemId.startswith('chrome://'):
-            filepath = self._map_chrome(systemId)
+            defines, filepath = self._map_chrome(systemId)
             if filepath:
-                self._do_external_parse(filepath, context)
+                self._do_external_parse(filepath, context, defines)
             else:
                 raise Exception("Don't know how to map %s" % (systemId,))
             return 1
@@ -188,26 +191,66 @@ class XBLParser(object):
         # let's add a synthetic newline to trigger the implicit ';'-effect if
         #  we don't think we've got a fully legal statement otherwise...
         # (we're adding a newline instead of a semicolon because the LT isn't
-        #  really a semantic token)
+        #  really a semantic token)parse_and_proc_snippet
         # note: it is possible for code to be None (deprecated function idiom)
         if code:
             if not ';' in code or not '\n' in code:
                 code += '\n'
-            func.ast = jsparse.parse_snippet(code)
+            # although the AST's line numbering is one-based (and columns
+            #  zero-based), so is the XML line numbering, so we need to
+            #  subtract one off for the adjustment. 
+            func.ast = jsparse.sf_process_snippet(source_file, code, 'func',
+                                                  adj_line=eNode.line-1,
+                                                  adj_column=eNode.column)
+            func.nested_ast = False
         
         source_file.add_to_contents(func)
+    
+    def _make_field(self, source_file, field_name, eNode, code):
+        '''
+        Fields are somewhat annoying in that while they are not functions, their
+        evaluation is effectively a function call (per the system), and may
+        in fact result in function calls occurring.  As such, we are rolling
+        back the concept of separate field things for now and only creating a
+        function...
+        '''
+        #field, created = source_file.get_or_create_field(field_name)
+        func_name = 'field_' + field_name
+        field, created = source_file.get_or_create_function(func_name)
+        
+        field.source_line = eNode.line
+        field.source_col  = eNode.column
+        
+        if code:
+            # although the AST's line numbering is one-based (and columns
+            #  zero-based), so is the XML line numbering, so we need to
+            #  subtract one off for the adjustment. 
+            field.ast = jsparse.sf_process_snippet(source_file, code, 'field',
+                                                   adj_line=eNode.line-1,
+                                                   adj_column=eNode.column)
+            field.nested_ast = False
+        
+        source_file.add_to_contents(field)
     
     def parseBinding(self, source_file, eBinding):
         eImpl = eBinding.find(XBL_IMPLEMENTATION.text)
         if eImpl:
+            # implementation can specify a name that apparently can be used in
+            #  lieu of the filename...
+            impl_name = eImpl.get('name')
+            source_file.impl_names.append(impl_name)
+            if source_file.caboodle:
+                source_file.caboodle.impl_name_to_file[impl_name] = source_file
+            
             eConstructor = eImpl.find(XBL_CONSTRUCTOR.text)
             if eConstructor is not None:
                 self._make_func(source_file, 'constructor',
                                 eConstructor, eConstructor.text)
             
             for eField in eImpl.findall(XBL_FIELD.text):
-                # TODO: process fields
-                pass
+                field_name = eField.get('name')
+                self._make_field(source_file, field_name,
+                                 eField, eField.text)
             
             for eProperty in eImpl.findall(XBL_PROPERTY.text):
                 prop_name = eProperty.get('name')
@@ -266,5 +309,3 @@ class XBLParser(object):
         # and is full of 'binding' elements
         for eBinding in eRoot.findall(XBL_BINDING.text):
             self.parseBinding(source_file, eBinding)           
-
-    

@@ -80,6 +80,8 @@ class Preprocessor:
     #  2: #else found
     self.ifStates = []
     self.checkLineNumbers = False
+    #: whether to put in those "//@line" lines  
+    self.lineUpdates = True
     self.writtenLines = 0
     self.filters = []
     self.cmds = {}
@@ -141,9 +143,10 @@ class Preprocessor:
       self.writtenLines += 1
       ln = self.context['LINE']
       if self.writtenLines != ln:
-        self.out.write('//@line %(line)d "%(file)s"%(le)s'%{'line': ln,
-                                                            'file': self.context['FILE'],
-                                                            'le': self.LE})
+        if self.lineUpdates:
+          self.out.write('//@line %(line)d "%(file)s"%(le)s'%{'line': ln,
+                                                              'file': self.context['FILE'],
+                                                              'le': self.LE})
         self.writtenLines = ln
     for f in self.filters:
       aLine = f[1](aLine)
@@ -456,12 +459,14 @@ def main():
 
 def preprocess(includes=[sys.stdin], defines={},
                output = sys.stdout,
-               line_endings='\n', marker='#'):
+               line_endings='\n', marker='#',
+               line_updates=True):
   pp = Preprocessor()
   pp.context.update(defines)
   #pp.setLineEndings(line_endings)
   pp.setMarker(marker)
   pp.out = output
+  pp.lineUpdates = line_updates
   for f in includes:
     pp.do_include(f)
 

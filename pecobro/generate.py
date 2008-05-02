@@ -43,7 +43,8 @@ except:
 class Generator(object):
     def __init__(self, moz_src_path, project, moz_build_path,
                  cache_dir=None,
-                 remote_src_path=None, remote_build_path=None):
+                 remote_src_path=None, remote_build_path=None,
+                 overlay_dirs=()):
         # okay, we actually want to parameterize our cache a little
         if cache_dir:
             cache_dir = os.path.join(cache_dir, '%x' % (abs(hash(moz_build_path)),))
@@ -80,16 +81,23 @@ class Generator(object):
         self.caboodle = core.SourceCaboodle(moz_src_path, moz_build_path,
                                             project,
                                             module_dirs=module_dirs,
-                                            locale_dirs=locale_dirs)
+                                            locale_dirs=locale_dirs,
+                                            overlay_dirs=overlay_dirs)
     
-    def _consider_xml(self, path):
+    def _consider_xml(self, path, defines=None):
+        if defines is None:
+            defines = self.defines 
         print 'CONSIDERING', path
         # grrrrr, we need to preprocess things now...
         f_in = open(path, 'r') #codecs.open(path, 'r', 'utf-8')
         f_out = StringIO.StringIO()
-        mozpreproc.preprocess(includes=[f_in], defines=consts.defines,
+        mozpreproc.preprocess(includes=[f_in], defines=defines,
                               output=f_out,
-                              line_endings='lf')
+                              line_endings='lf',
+                              # we do not want those //@ line things, they
+                              #  screw up our consistency with reality. 
+                              line_updates=False,
+                              )
         f_in.close()
         f_out.seek(0)
         
@@ -105,10 +113,28 @@ class Generator(object):
             print 'Found XBL:', path
             self.caboodle.append(core.SourceFile(path, 'xbl',
                                                  base_dir=self.caboodle.moz_src_path,
-                                                 eRoot=root))
+                                                 eRoot=root,
+                                                 defines=defines))
         else:
             print '  non-XBL:', path
     
+    def _parse_defines(self, *defines_strs):
+        defines = {}
+        for defines_str in defines_strs:
+            for dash_d in defines_str.split():
+                if dash_d.startswith('-D'):
+                    dash_d = dash_d[2:]
+                    if '=' in dash_d:
+                        key, value = dash_d.split('=',1)
+                        # er, I guess quotes would lose their escaping
+                        #  in reality?  or would the quotes bail too?
+                        value = value.replace('\\"', '"')
+                    else:
+                        key = dash_d
+                        value = True
+                    defines[key] = value
+        return defines
+        
     def _find_jars(self):
         '''
         Given the module_dirs and locale_dirs extracted from client.mk (but
@@ -150,23 +176,13 @@ class Generator(object):
                              path_maps=self.path_maps)
                 mf.parse(cand_makefile)
                 
+                defines = self._parse_defines(mf.get('DEFINES'),
+                                              mf.get('ACDEFINES'),
+                                              mf.get('XULPPFLAGS'))
+                
                 if os.path.isfile(cand_jar_name):
                     print 'PARSING', cand_jar_name
                     # use the Makefile's resulting variables...
-                    defines = {}
-                    for dash_d in mf.get('DEFINES').split():
-                        if dash_d.startswith('-D'):
-                            dash_d = dash_d[2:]
-                            if '=' in dash_d:
-                                key, value = dash_d.split('=',1)
-                                # er, I guess quotes would lose their escaping
-                                #  in reality?  or would the quotes bail too?
-                                value = value.replace('\\"', '"')
-                            else:
-                                key = dash_d
-                                value = True
-                            defines[key] = value
-                    
                     print '...', defines
                     jmp.parse(cand_jar_name, defines=defines)
             
@@ -185,7 +201,7 @@ class Generator(object):
                                                               self.caboodle.moz_src_path)
                     if not abs_component in self.caboodle.components:
                         print 'COMPONENT', abs_component
-                        self.caboodle.components.append(abs_component)
+                        self.caboodle.components.append((defines, abs_component))
 
                 # EXTRA_(PP_)JS_MODULES
                 for rel_module in (mf.get('EXTRA_JS_MODULES').split() +
@@ -201,13 +217,13 @@ class Generator(object):
                                                         self.caboodle.moz_src_path)
                     if not abs_module in self.caboodle.modules:
                         print 'MODULE', abs_module
-                        self.caboodle.modules.append(abs_module)
+                        self.caboodle.modules.append((defines, abs_module))
 
                 
                 # recurse into DIRS and TOOL_DIRS; also STATIC_DIRS just in case
                 for make_dir in (mf.get('DIRS').split()
-                                 # + mf.get('TOOL_DIRS').split() +
-                                 # + mf.get('STATIC_DIRS').split()
+                                 + mf.get('TOOL_DIRS').split()
+                                 + mf.get('STATIC_DIRS').split()
                                  ):
                     make_path = os.path.join(path, make_dir)
                     if not make_path in seen_dirs:
@@ -267,7 +283,24 @@ class Generator(object):
         stopped us from going into anything that had 'test' in it.  Now we are
         ever so much more fancy.
         '''
-        for src_abs_filepath in (self.caboodle.components +
+        import glob
+
+        # we want to know the preprocessor defines, so grab them out of
+        #  autoconf.mk.  we could alternatively have stashed them earlier, but
+        #  we know they're in this file, so let's just run with that...
+        mf = makeparser.Makefile(
+                     force={'TOPSRCDIR': self.caboodle.moz_src_path},
+                     path_maps=self.path_maps)
+        mf.parse(os.path.join(self.caboodle.moz_build_path, 'config/autoconf.mk'))
+        self.defines = self._parse_defines(mf.get('ACDEFINES'))
+        
+        overlay_files = []
+        for overlay_dir in self.caboodle.overlay_dirs:
+            for overlay_file in glob.glob(os.path.join(overlay_dir, '*.js')):
+                overlay_files.append((self.defines, overlay_file))
+        
+        for defines, src_abs_filepath in (overlay_files +
+                                 self.caboodle.components +
                                  self.caboodle.modules +
                                  self.caboodle.chrome_map.values()):
             filename = os.path.basename(src_abs_filepath)
@@ -277,10 +310,11 @@ class Generator(object):
                 print 'Found JS:', src_abs_filepath
                 self.caboodle.append(core.SourceFile(src_abs_filepath,
                                                      suffix[1:],
-                                                     base_dir=self.caboodle.moz_src_path))
+                                                     base_dir=self.caboodle.moz_src_path,
+                                                     defines=defines))
                 pass 
             elif suffix in ('.xml',):
-                self._consider_xml(src_abs_filepath)
+                self._consider_xml(src_abs_filepath, defines)
 
     def parse_trace(self, trace_file):
         import jsparse.jsparse as jsparse
@@ -291,12 +325,20 @@ class Generator(object):
             #if not source_file.base_name in ['calDavCalendar.js']: continue
             #if not source_file.base_name in ['aboutDialog.js']: continue
             #if not source_file.base_name in ['calendar-view-core.xml']: continue
+
+            ## DEBUG!!
+            #if source_file.base_name != 'dialog.xml':
+            #    continue
             
             print '   - Parsing', source_file
             if source_file.filetype.startswith('js'):
-                jsparse.sf_process(source_file, cache_dir=self.cache_dir)
+                jsparse.sf_process(source_file, cache_dir=self.cache_dir,
+                                   defines=source_file.defines)
             elif source_file.filetype == 'xbl':
                 xblp.parse(source_file)
+            
+            ## DEBUG!!
+            #ipshell()
 
         parser = trace.TraceParser(self.caboodle)
         parser.parse(trace_file)
@@ -408,15 +450,19 @@ if __name__ == '__main__':
         tb_src_dir = '/home/visbrero/mnt/roisin/rev_control/hg/mozilla/'
         remote_build_dir = '/Users/sombrero/rev_control/hg/mozilla/obj-thunderbird-generic/'
         remote_src_dir = '/Users/sombrero/rev_control/hg/mozilla/'
+        chrome_dir = '/home/visbrero/mnt/roisin/rev_control/hg/mozilla/obj-thunderbird-generic/dist/Thunderbird.app/Contents/MacOS/chrome/'
+        overlay_dirs=[chrome_dir]
     else:
         tb_build_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/obj-thunderbird-generic/'
         tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
         remote_build_dir = remote_src_dir = None
+        overlay_dirs = []
     trace_file = '/home/visbrero/projects/perf/pecobro-tbird.log'
     gen = Generator(tb_src_dir, 'mail', tb_build_dir,
                     cache_dir='/tmp/pecobro_cache',
                     remote_src_path=remote_src_dir,
-                    remote_build_path=remote_build_dir)
+                    remote_build_path=remote_build_dir,
+                    overlay_dirs=overlay_dirs)
     print '--- finding code ---'
     gen.main()
     print '--- parsing trace ---'
