@@ -38,36 +38,41 @@ struct stack_info {
     int run_lineno;
 };
 
-self struct stack_info si[int];
+self int depth[unsigned long];
+self struct stack_info si[unsigned long, int];
 
 javascript$target:::function-info
 {
+    this->cx = arg6;
     /* function-entry probe args: filename, class name, function name */
     /* function-info adds: line number, dfp filename, dfp line number*/
-    self->depth++;
+    self->depth[this->cx]++;
+    this->depth = self->depth[this->cx];
     
-    self->si[self->depth].vtick  = vtimestamp;
-    self->si[self->depth].lineno = arg3;
-    self->si[self->depth].run_filename = basename(copyinstr(arg4));
-    self->si[self->depth].run_lineno = arg5;
+    self->si[this->cx, this->depth].vtick  = vtimestamp;
+    self->si[this->cx, this->depth].lineno = arg3;
+    self->si[this->cx, this->depth].run_filename = basename(copyinstr(arg4));
+    self->si[this->cx, this->depth].run_lineno = arg5;
 }
 
 javascript$target:::function-return
 {
+    this->cx = arg3;
+    this->depth = self->depth[this->cx];
     /* probe args: filename, class name, function name*/
     /* note that non-chrome filenames have some weird symlink-style thing
        going on... basename at least disambiguates this for us. */
     this->filename = basename(copyinstr(arg0));
     this->objname = copyinstr(arg1);
     this->funcname = copyinstr(arg2);
-    printf("r,%x,%x,%x,%s,%s,%s,%d,%s,%d\n", self->depth,
-           self->si[self->depth].vtick, vtimestamp,
+    printf("r,%x,%x,%x,%x,%s,%s,%s,%d,%s,%d\n", this->cx, this->depth,
+           self->si[this->cx, this->depth].vtick, vtimestamp,
            this->filename, this->objname, this->funcname,
-           self->si[self->depth].lineno,
-           self->si[self->depth].run_filename, self->si[self->depth].run_lineno);
+           self->si[this->cx, this->depth].lineno,
+           self->si[this->cx, this->depth].run_filename,
+           self->si[this->cx, this->depth].run_lineno);
     /* clean up */
-    /* self->entered_at[self->depth] = 0; */
-    self->depth--;
+    self->depth[this->cx]--;
 }
 
 wavascript$target:::function-info

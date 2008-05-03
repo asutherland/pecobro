@@ -87,7 +87,8 @@ class TraceParser(object):
             line_type = line[0]
             
             if line_type == 'r':
-                (line_type, depth_str, ts_str, te_str, filename, objname, funcname,
+                (line_type, context_str, depth_str, ts_str, te_str,
+                    filename, objname, funcname,
                     lineno_str, caller_filename, caller_lineno_str
                     ) = line.split(',')
                 depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
@@ -101,8 +102,8 @@ class TraceParser(object):
         
         # because trace events are generated only on function returns, we
         #  need to accumulate things until we hit our parents...
-        MAX_RECURSE_DEPTH = 256
-        deferreds = [list() for i in range(MAX_RECURSE_DEPTH)]
+        MAX_RECURSE_DEPTH = 128
+        context_to_deferreds = {}
         
         self.caboodle.max_time_value = max_te - start_ts
         
@@ -134,7 +135,8 @@ class TraceParser(object):
             if line_type != 'r':
                 continue
             
-            (line_type, depth_str, ts_str, te_str, filename, objname, funcname,
+            (line_type, context_str_, depth_str, ts_str, te_str,
+                filename, objname, funcname,
                 lineno_str, caller_filename, caller_lineno_str
                 ) = line.split(',')
             depth, ts, te = int(depth_str, 16), int(ts_str, 16), int(te_str, 16)
@@ -148,6 +150,12 @@ class TraceParser(object):
             if not filename.endswith('.xul'):
                 func = get_func(filename, funcname, lineno)
             this_invoc = func.log_invoke(ts, te, depth, depth)
+            
+            if context_str in context_to_deferreds:
+                deferreds = context_to_deferreds[context_str]
+            else:
+                deferreds = [list() for i in range(MAX_RECURSE_DEPTH)]
+                context_to_deferreds[context_str] = deferreds
             
             # queue up this invocation for later consumption by our parent
             deferreds[depth-1].append(this_invoc)
