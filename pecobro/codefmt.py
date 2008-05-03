@@ -227,50 +227,55 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                 while nextFunc and nextFunc.source_line <= cur_line:
                     if isinstance(nextFunc, core.Func):
                         # -- function header
-                        yield (0,
-                               '<span id="func|%s" class="fhdr">%s</span>' %
-                                   (nextFunc.norm_name, nextFunc.name))
                         if nextFunc.invocations:
                             yield 0, vis.func_time_slices(nextFunc)
-                            yield 0, '.'
-                        yield 0, '\n'
+                        yield (0,
+                               '<span id="func|%s" class="fhdr">%s</span>\n' %
+                                   (nextFunc.norm_name, nextFunc.name))
                         
                         # -- ever called
                         # TODO: use a genshi template for this.  this is silly.
                         if nextFunc.ever_called:
                             display_names = []
-                            ever_called_funcs = nextFunc.ever_called.items()
-                            ever_called_funcs.sort(key=lambda x:
-                                                    (-x[1][0],
-                                                     x[0].file.base_name,
-                                                     x[0].name))
-                            for c_func, data in ever_called_funcs:
-                                display_names.append('%s:%s (%d calls, %d v-uS)' % (
+                            for c_func, data in nextFunc.sorted_ever_called:
+                                display_names.append((c_func,
+                                                      '%s:%s (%d calls, %d v-uS)' % (
                                     c_func.file.base_name,
-                                    c_func.name, data[0], data[1] / 1000))
-                            yield (0, '<span class="fc">Called: %s\n' %
-                                    (display_names[0],))
-                            for display_name in display_names[1:]:
-                                yield (0, '        %s\n' % (display_name,))
+                                    c_func.name, data[0], data[1] / 1000)))
+                            yield (0, '<span class="fc">Called: ')
+                            yield (0, vis.func_time_slices(display_names[0][0],
+                                                           60, 10,
+                                                           'smooshline'))
+                            yield (0, ' %s\n' % (display_names[0][1],))
+
+                            for c_func, display_name in display_names[1:]:
+                                yield (0, '        ')                            
+                                yield (0, vis.func_time_slices(c_func,
+                                                               60, 10,
+                                                               'smooshline'))
+                                yield (0, ' %s\n' % (display_name,))
                             yield (0, '</span>')
                             
                         # -- ever called by
                         # TODO: use a genshi template for this.  this is silly.
                         if nextFunc.ever_called_by:
                             display_names = []
-                            ever_called_by_funcs = nextFunc.ever_called_by.items()
-                            ever_called_by_funcs.sort(key=lambda x:
-                                                      (-x[1][0],
-                                                       x[0].file.base_name,
-                                                       x[0].name))
-                            for cb_func, data in ever_called_by_funcs:
-                                display_names.append('%s:%s (%d calls, %d v-uS)' % (
-                                    cb_func.file.base_name,
-                                    cb_func.name, data[0], data[1] / 1000))
-                            yield (0, '<span class="fcb">Called By: %s\n' %
-                                    (display_names[0],))
-                            for display_name in display_names[1:]:
-                                yield (0, '            %s\n' % (display_name,))                            
+                            for c_func, data in nextFunc.sorted_ever_called_by:
+                                display_names.append((c_func,
+                                                      '%s:%s (%d calls, %d v-uS)' % (
+                                    c_func.file.base_name,
+                                    c_func.name, data[0], data[1] / 1000)))
+                            yield (0, '<span class="fcb">Called By: ')
+                            yield (0, vis.func_time_slices(display_names[0][0],
+                                                           60, 10,
+                                                           'smooshline'))
+                            yield (0, ' %s\n' % (display_names[0][1],))
+                            for c_func, display_name in display_names[1:]:
+                                yield (0, '           ')                            
+                                yield (0, vis.func_time_slices(c_func,
+                                                               60, 10,
+                                                               'smooshline'))
+                                yield (0, ' %s\n' % (display_name,))
                             yield (0, '</span>')
                     # NOTE: Right now this doesn't actually happen
                     elif isinstance(nextFunc, core.JSObj):

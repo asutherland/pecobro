@@ -44,7 +44,24 @@ class TraceParser(object):
 
     def parse(self, filename):
         func_cache = {}
+        def get_synthetic_func(objname, funcname):
+            '''
+            For native functions, create a synthetic file if it does not exist
+            and a synthetic function in that file if it does not exist.
+            '''
+            synth_file = self.caboodle.base_name_to_file.get(objname)
+            if synth_file is None:
+                synth_file = core.SourceFile(objname, 'synthetic')
+                self.caboodle.append(synth_file)
+            
+            func, created = synth_file.get_or_create_function(funcname)
+            return func
+        
         def get_func(filename, funcname, lineno):
+            '''
+            Given a filename and lineno (and ignoring the funcname), look-up the
+            function in the given file.
+            '''
             ctupe = (filename, lineno)
             func = func_cache.get(ctupe)
             
@@ -145,9 +162,18 @@ class TraceParser(object):
             ts -= start_ts
             te -= start_ts
 
-            # find our function and log this invocation of our function
-            # (brutally mis-attribute .xul files for now using the last func)
-            if not filename.endswith('.xul'):
+            # -- find our function and log this invocation of our function
+            # brutally mis-attribute .xul files for now using the last func
+            if filename.endswith('.xul'):
+                pass
+            # the native function case; use a synthetic function
+            elif filename == '<null>':
+                # okay, so in this case objname is a real thing, and funcname
+                #  is a real function name, but our source_file stuff will know
+                #  nothing about them...
+                func = get_synthetic_func(objname, funcname)
+            # an interpreted function; use our awesome parsing results
+            else:
                 func = get_func(filename, funcname, lineno)
             this_invoc = func.log_invoke(ts, te, depth, depth)
             

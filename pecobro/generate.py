@@ -433,13 +433,27 @@ class Generator(object):
         
         func_list_tmpl = self.loader.load('func_list.html')
         file_index_tmpl = self.loader.load('file_index.html')
+        syn_file_tmpl = self.loader.load('synth_file.html')
         
         for source_file in self.caboodle.source_files:
-            # er, XBL in theory should already be processed, what with us
-            #  having to parse the XML to figure out if it is XML.  (well, I
-            #  guess we didn't have to full parse it)
-            
             print '   - Generating', source_file
+
+            if source_file.filetype == 'synthetic':
+                out_wcode_path = os.path.join(out_path,
+                                              source_file.norm_base_name + '.xml')
+                fweb = codecs.open(out_wcode_path, 'w', 'utf-8')
+                
+                syn_file_stream = syn_file_tmpl.generate(
+                                        source_file=source_file,
+                                        func_time_slices=vis.func_time_slices,
+                                        XML=genshi.XML)
+                fweb.write(syn_file_stream.render())
+                                
+                fweb.close()
+
+                continue
+            
+
             # okay, we need to pre-process this.  we actually have all the
             #  ingredients required to reverse the pre-processing to the
             #  original line numbers so we can show what is in source control,
@@ -515,7 +529,11 @@ if __name__ == '__main__':
         tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
         remote_build_dir = remote_src_dir = None
         overlay_dirs = []
-    trace_file = '/home/visbrero/projects/perf/pecobro-tbird.log'
+    trace_file = '/home/visbrero/projects/perf/bloat-context-script.log'
+    out_dir = '/tmp/pecobro'
+    #trace_file = '/home/visbrero/projects/perf/del.log'
+    #out_dir = '/tmp/pecobro2'
+    
     gen = Generator(tb_src_dir, 'mail', tb_build_dir,
                     cache_dir='/tmp/pecobro_cache',
                     remote_src_path=remote_src_dir,
@@ -526,4 +544,4 @@ if __name__ == '__main__':
     print '--- parsing trace ---'
     gen.parse_trace(trace_file)
     print '--- generating output ---'
-    gen.output_html('/tmp/pecobro')
+    gen.output_html(out_dir)

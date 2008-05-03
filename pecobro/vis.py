@@ -51,7 +51,7 @@ def file_overview(caboodle, file_or_path):
     
     circ = kr.vis.Circle(#fill=kr.map.distinct_color(kr.map.expr('filename'),
                          #                           s=0.2),
-                         fill=kr.map.hsv(hue=kr.map.distinct_value_exclusive(kr.map.expr('base_name')),
+                         fill=kr.map.hsv(hue=kr.map.distinct_value_exclusive(kr.map.expr('filetype')),
                                          saturation=kr.map.linear(kr.map.expr('exclusive_weight'),
                                                                   output_low=0.0,
                                                                   output_high=1.0),
@@ -116,7 +116,7 @@ def file_overview(caboodle, file_or_path):
     kr.render.use_renderer('svg')
     kr.render.contextualize(context, kr.themes.default)
     
-    WIDTH, HEIGHT = 640, 640
+    WIDTH, HEIGHT = 800, 800
     model = vis.topRender(context,
                       width=WIDTH, height=HEIGHT,
                       )
@@ -129,7 +129,7 @@ def file_overview(caboodle, file_or_path):
                            linker=link_source_file,
                            width=WIDTH, height=HEIGHT)
 
-def func_time_slices(function, width=640, height=24, mode='sparkline'):
+def func_time_slices(function, width=384, height=24, mode='sparkline'):
   try:
     import visophyte.kora as kr
     import math

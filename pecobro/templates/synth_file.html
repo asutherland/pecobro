@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<div xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+     xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      ><xi:include href="func_list.html"></xi:include><xi:include href="file_index.html"></xi:include><div>
+    <h1>${source_file.path}</h1>
+    <py:for each="func in source_file.weighted_functions">
+      <py:if test="func.invocations">${XML(func_time_slices(func))}.</py:if><span id="func|${func.norm_name}"
+            class="fhdr">${func.name}</span><br/>
+      <py:if test="func.ever_called">
+        <span class="fc">Ever Called:
+          <ul>
+            <li py:for="c_func, data in func.sorted_ever_called">
+              ${XML(func_time_slices(c_func, 60, 10, 'smooshline'))}
+              ${c_func.file.base_name}:${c_func.name} (${data[0]} calls, ${data[1]/1000} v-uS)
+            </li>
+          </ul>
+        </span>
+      </py:if>
+      <py:if test="func.ever_called_by">
+        <span class="fcb">Ever Called By:
+          <ul>
+            <li py:for="c_func, data in func.sorted_ever_called_by">
+              ${XML(func_time_slices(c_func, 60, 10, 'smooshline'))}
+              ${c_func.file.base_name}:${c_func.name} (${data[0]} calls, ${data[1]/1000} v-uS)
+            </li>
+          </ul>
+        </span>
+      </py:if>
+      <br/>
+    </py:for>    
+  </div>
+</div>

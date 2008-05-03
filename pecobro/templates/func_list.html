@@ -3,7 +3,7 @@
       >
   <ul>
     <py:for each="func in source_file.weighted_functions">
-      <li id="ful|${func.norm_name}">${func.name}<py:if test="func.invocations">${XML(func_time_slices(func, 60, 10, 'smooshline'))}</py:if></li>
+      <li id="ful|${func.norm_name}"><py:if test="func.invocations">${XML(func_time_slices(func, 60, 10, 'smooshline'))}</py:if>${func.name}</li>
     </py:for>
   </ul>
 </div>

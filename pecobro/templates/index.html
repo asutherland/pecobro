@@ -270,7 +270,8 @@
       <div id="sidebar_files">
         <ul>
           <py:for each="code_file in caboodle.sorted_source_files">
-            <li id="${code_file.norm_base_name}">${code_file.base_name}</li>
+            <li id="${code_file.norm_base_name}"
+                py:if="code_file.filetype != 'synthetic'">${code_file.base_name}</li>
           </py:for>
         </ul>
       </div>

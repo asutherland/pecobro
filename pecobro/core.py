@@ -63,6 +63,10 @@ class FuncInvoc(object):
         return self.t_end - self.t_start
     
     def log_call(self, invoc):
+        '''
+        Process a call made from this invocation by our function (self.func) to
+        another function, as defined by the invoc we are passed.
+        '''
         invoc.parent = self
         if self.calls is None:
             self.calls = [invoc]
@@ -194,6 +198,25 @@ class Func(object):
         self.exclusive_weight += weight
         
         return invoc
+    
+    @property
+    def sorted_ever_called(self):
+        ever_called_funcs = self.ever_called.items()
+        ever_called_funcs.sort(key=lambda x:
+                                (-x[1][0],
+                                 x[0].file.base_name,
+                                 x[0].name))
+        return ever_called_funcs
+
+    @property
+    def sorted_ever_called_by(self):
+        ever_called_by_funcs = self.ever_called_by.items()
+        ever_called_by_funcs.sort(key=lambda x:
+                                (-x[1][0],
+                                 x[0].file.base_name,
+                                 x[0].name))
+        return ever_called_by_funcs
+
 
 class JSType(object):
     def __init__(self, name, constructor=None, parent=None):
