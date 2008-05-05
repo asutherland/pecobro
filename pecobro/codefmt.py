@@ -231,7 +231,13 @@ class CodeFormatter(pygments.formatters.HtmlFormatter):
                             yield 0, vis.func_time_slices(nextFunc)
                         yield (0,
                                '<span id="func|%s" class="fhdr">%s</span>\n' %
-                                   (nextFunc.norm_name, nextFunc.name))
+                                   (nextFunc.norm_name, nextFunc.name,
+                                    ))
+                        yield (0, '(%d calls, %d incl. v-uS, %d excl. v-uS)\n' %
+                               (len(nextFunc.invocations),
+                                nextFunc.inclusive_weight / 1000,
+                                nextFunc.exclusive_weight / 1000,
+                                ))
                         
                         # -- ever called
                         # TODO: use a genshi template for this.  this is silly.

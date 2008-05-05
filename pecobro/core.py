@@ -43,6 +43,8 @@ except:
     cerealizer = None
 
 class FuncInvoc(object):
+    __slots__ = ['func', 't_start', 't_end', 'depth', 'cflow',
+                 'calls', 'parent']
     '''
     Represents the invocation of a function by the timestamp at entry and exit,
     the depth of the stack during the invocation, control flow uniqueness value,

@@ -529,10 +529,10 @@ if __name__ == '__main__':
         tb_src_dir = '/home/visbrero/rev_control/hg/moz-mac/mozilla/'
         remote_build_dir = remote_src_dir = None
         overlay_dirs = []
-    trace_file = '/home/visbrero/projects/perf/bloat-context-script.log'
-    out_dir = '/tmp/pecobro'
-    #trace_file = '/home/visbrero/projects/perf/del.log'
-    #out_dir = '/tmp/pecobro2'
+    #trace_file = '/home/visbrero/projects/perf/bloat-context-script.log'
+    #out_dir = '/tmp/pecobro'
+    trace_file = '/home/visbrero/projects/perf/del-trimmed.log'
+    out_dir = '/tmp/pecobro2'
     
     gen = Generator(tb_src_dir, 'mail', tb_build_dir,
                     cache_dir='/tmp/pecobro_cache',
