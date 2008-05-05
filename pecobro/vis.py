@@ -141,11 +141,20 @@ def func_time_slices(function, width=384, height=24, mode='sparkline'):
     elif mode == 'smooshline':
         PIX_PER_HORIZ_POINT = 1
     
+    # how many pixels should we dedicate to our function call count?
+    if height < 24:
+        COUNT_HEIGHT = 2
+    else:
+        COUNT_HEIGHT = 4
+        
+    above_height = height - COUNT_HEIGHT
+    
     horiz_points = width / PIX_PER_HORIZ_POINT
     time_per_horiz_point = max_time_value / horiz_points 
     
     active_points = [0.0] * horiz_points
     inactive_points = [0.0] * horiz_points
+    count_points = [0] * horiz_points
     
     for invoc in function.invocations:
         first_range_beg = int(invoc.t_start / time_per_horiz_point)
@@ -174,6 +183,8 @@ def func_time_slices(function, width=384, height=24, mode='sparkline'):
             active_points[cur_range] += slice
             if recursive_invoc:
                 inactive_points[cur_range] -= slice
+            # count this call during this time range
+            count_points[cur_range] += 1
             
             for call in (invoc.calls or ()):
                 cr_start = max(r_start, call.t_start)
@@ -189,14 +200,34 @@ def func_time_slices(function, width=384, height=24, mode='sparkline'):
                 active_points[cur_range] -= call_slice
                 inactive_points[cur_range] += call_slice
     
-    data = zip(active_points, inactive_points)
+    norm_count_points = [0.0] * horiz_points
+    for i, count_point in enumerate(count_points):
+        if count_point == 0:
+            val = 0.0
+        elif count_point == 1:
+            val = 0.2
+        elif count_point <= 10:
+            val = 0.4
+        elif count_point <= 100:
+            val = 0.6
+        elif count_point <= 1000:
+            val = 0.8
+        else:
+            val = 1.0
+        norm_count_points[i] = val
+    
+    data = zip(active_points, inactive_points, norm_count_points)
 
     vis = kr.vis.BarChart(style=mode,
-                          values=(kr.map.constant_scale(height, kr.map.expr('0')),
-                                  kr.map.constant_scale(height, kr.map.expr('1'))),
-                          positions=('above', 'above'),
+                          above_height=above_height,
+                          values=(kr.map.constant_scale(above_height, kr.map.expr('0')),
+                                  kr.map.constant_scale(above_height, kr.map.expr('1')),
+                                  kr.map.constant_scale(COUNT_HEIGHT, kr.map.expr('2')),
+                                  ),
+                          positions=('above', 'above', 'below'),
                           fill=(kr.raw.color('#ee6666'),
-                                kr.raw.color('#66ee66')),
+                                kr.raw.color('#66ee66'),
+                                kr.raw.color('#6666ee')),
                           )
     
     context = kr.feed.native(data).make_context()
