@@ -56,14 +56,7 @@ import pecobro.core as core
 import jsparse.jsparse as jsparse
 
 BASE_PATH = None
-# okay, this is a hack, we really should just parse whatever the
-#  underlying rdf file is or what not, but this works for now...
-CHROME_MAP = {'calendar' : {'locale': ('calendar/locales/en-US/chrome/calendar',
-                                       'calendar/locales/en-US/chrome/prototypes')},
-              'global' : {'locale': ('dom/locales/en-US/chrome',
-                                     'toolkit/locales/en-US/chrome/global')},
-              }
-# and this is even worse
+# this is a bad hack to get us the DTDs we love so much
 LOCAL_DTD_PATHS = ['/usr/share/4Suite/Schemata']
 
 class ChromeTreeBuilder(etree.XMLTreeBuilder):
@@ -109,25 +102,6 @@ class ChromeTreeBuilder(etree.XMLTreeBuilder):
             raise Exception('Unknown chrome path: %s' % (chrome_path,))
         # path[0] is the defines for preprocessing
         return defines_and_path
-        
-        cur_map = CHROME_MAP
-        rest_path = chrome_path
-        while isinstance(cur_map, dict):
-            cur_part, rest_path = rest_path.split('/', 1)
-            if cur_part in cur_map:
-                cur_map = cur_map[cur_part]
-            else:
-                raise Exception('Unknown chrome path part %s in %s' % 
-                                (cur_part, chrome_path))
-        
-        good_path = None
-        for map_part in cur_map:
-            filepath = os.path.join(self.base_path, map_part, rest_path)
-            if os.path.exists(filepath):
-                good_path = filepath
-                break
-        
-        return good_path
     
     def _entity_decl(self, entityName, is_parameter, value,
                      base, systemId, publicId, notationName):
