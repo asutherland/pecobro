@@ -253,6 +253,131 @@ class JSObj(object):
         self.source_line = None
         self.source_col = None        
 
+class XPAttribute(object):
+    __slots__ = ['interface', 'name', 'type', 'readonly']
+    
+    def __init__(self, interface, name,
+                 readonly=False):
+        self.interface = interface
+        self.name = name
+        self.type = type
+        
+        self.readonly = readonly
+
+class XPMethodArg(object):
+    __slots__ = ['direction', 'type', 'name']
+    def __init__(self, direction, type, name):
+        self.direction = direction
+        self.type = type
+        self.name = name
+    
+    def __str__(self):
+        return '%s %s %s' % (self.direction, self.type, self.name)
+    
+    def __repr__(self):
+        return self.__str__()
+
+class XPMethod(object):
+    '''
+    A method on an XPCOM interface; although semantically different from a
+    function, for all rendering purposes it implements the same fundamental
+    interface.
+    '''
+    EMPTY_MAP = {}
+    
+    __slots__ = ['interface', 'name', 'type', 'scriptable', 'args',
+                 'source_line', 'source_col']
+    def __init__(self, interface, name, type, args=(),
+                 scriptable=True,
+                 source_line=None, source_col=None):
+        self.interface = interface
+        self.name = name
+        self.type = type
+        
+        self.args = args
+        
+        self.scriptable = scriptable
+        
+        self.source_line = source_line
+        self.source_col = source_col
+    
+    def __str__(self):
+        return '%s:%s(%s)' % (self.interface.name, self.name,
+                              ', '.join(map(str, self.args)))
+    
+    def __repr__(self):
+        return self.__str__()
+
+    # the norm_name can be calculated on demand...
+    @property
+    def norm_name(self):
+        return '%s_%s' % (self.interface.name, self.name)
+    
+    ## NOP all the things that functions have but only make sense for them...
+    def is_anon(self):
+        return False
+    @property
+    def ast(self):
+        return None
+    @property
+    def nested_ast(self):
+        return False
+    @property
+    def inclusive_weight(self):
+        return 0
+    @property
+    def exclusive_weight(self):
+        return 0
+    @property
+    def invocations(self):
+        return ()
+    @property
+    def ever_called(self):
+        return XPMethod.EMPTY_MAP
+    @property
+    def sorted_ever_called(self):
+        return ()
+    @property
+    def ever_called_by(self):
+        return XPMethod.EMPTY_MAP
+    @property
+    def sorted_ever_called_by(self):
+        return ()
+
+class XPInterface(object):
+    __slots__ = ['file', 'name',
+                 'scriptable',
+                 'attributes', 'consts', 'methods']
+    def __init__(self, source_file, name, scriptable=False):
+        self.file = source_file
+        self.name = name
+        
+        self.scriptable = scriptable
+        
+        self.attributes = {}
+        self.consts = {}
+        self.methods = {}
+
+    def add_attribute(self, attrib):
+        self.attributes[attrib.name] = attrib
+
+    def def_const(self, name, value):
+        self.consts[name] = value
+    
+    def add_method(self, method):
+        self.methods[method.name] = method
+        
+        if self.file:
+            self.file.add_function(method, method.source_line)
+            self.file.add_to_contents(method)
+            
+
+FILE_TYPE_INTERPRETED = {
+    'idl': False,
+    'js': True, 'jsm': True,
+    'xbl': False, 'xul': False,
+    }
+
 class SourceFile(object):
     def __init__(self, path, file_type, base_dir=None, eRoot=None, defines=None):
         self.caboodle = None
@@ -282,6 +407,8 @@ class SourceFile(object):
         #: in case we cleverly rename an anonymous function, help unclever code
         self.anon_function_tombstones = {}
         
+        self.xpcom_interfaces = {}
+        
         #: currently unused because we no longer break-out fields specially...
         self.fields = {}
         
@@ -309,10 +436,12 @@ class SourceFile(object):
         self.scope = Scope('global', None)
         
         # create our synthetic import function
-        self.import_function, trash = self.get_or_create_function('!import', 0)
-        self.import_function.source_line = 0
-        self.import_function.source_col = 0
-        self.add_to_contents(self.import_function)
+        if FILE_TYPE_INTERPRETED.get(self.filetype):
+            self.import_function, trash = self.get_or_create_function('!import',
+                                                                      0)
+            self.import_function.source_line = 0
+            self.import_function.source_col = 0
+            self.add_to_contents(self.import_function)
 
     def rename_anon(self, func, anon_name, new_name):
         del self.functions[anon_name]
@@ -354,10 +483,6 @@ class SourceFile(object):
         '''
         return (self.functions_by_line.get(lineno) or
                 self.functions_by_line.get(lineno-1))
-    
-    def def_global(self, var_name, var_value, token):
-        self.globals[var_name] = var_value
-        self.global_tokens[var_name] = token
 
     def add_function(self, func, lineno):
         self.functions[func.name] = func
@@ -372,6 +497,9 @@ class SourceFile(object):
             func = thing
             if func.source_line is not None:
                 self.functions_by_line[func.source_line] = func
+    
+    def add_xpcom_interface(self, interface):
+        self.xpcom_interfaces[interface.name] = interface
     
     def __str__(self):
         return 'SourceFile: %s' % (self.path,)
@@ -418,9 +546,6 @@ class SourceCaboodle(object):
         self.components = []
         #: modules (from EXTRA_(PP_)JS_MODULES)
         self.modules = []
-        
-        self.globals = {}
-        self.global_def_locations = {}
         
     
     def append(self, source_file):

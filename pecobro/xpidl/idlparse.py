@@ -36,9 +36,8 @@
 # ***** END LICENSE BLOCK *****
 
 import antlr3
-# relative
-import XPIDLLexer as idllex 
-import XPIDLParser as idlparser
+import pecobro.xpidl.XPIDLLexer as idllex 
+import pecobro.xpidl.XPIDLParser as idlparser
 
 
 def parse_string(snippet, dude='idlFile'):
@@ -50,7 +49,7 @@ def parse_string(snippet, dude='idlFile'):
     duder = getattr(parser, dude)
     z = duder()
     
-    return z
+    return z.tree
     
 if __name__ == '__main__':
     try:
