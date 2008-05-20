@@ -69,6 +69,8 @@ import pecobro.vis as vis
 import pecobro.consts as consts
 import pecobro.makeparser as makeparser
 
+import pecobro.xpidl.pyglex as pyglex
+
 XBL_NS = 'http://www.mozilla.org/xbl'
 
 try:
@@ -81,7 +83,7 @@ class Generator(object):
     def __init__(self, moz_src_path, project, moz_build_path,
                  cache_dir=None,
                  remote_src_path=None, remote_build_path=None,
-                 overlay_dirs=()):
+                 overlay_dirs=(), proc_only=None):
         # okay, we actually want to parameterize our cache a little
         if cache_dir:
             cache_dir = os.path.join(cache_dir, '%x' % (abs(hash(moz_build_path)),))
@@ -91,6 +93,9 @@ class Generator(object):
             except:
                 cache_dir = None
         self.cache_dir = cache_dir
+        
+        #: debugging helper, only process the given files
+        self.proc_only = proc_only
         
         self.path_maps = []
         if remote_build_path:
@@ -382,10 +387,8 @@ class Generator(object):
         xblp = xbl.XBLParser()
 
         for source_file in self.caboodle.source_files:
-            #if not source_file.base_name in ['calUtils.js', 'calEvent.js']: continue
-            #if not source_file.base_name in ['calDavCalendar.js']: continue
-            #if not source_file.base_name in ['aboutDialog.js']: continue
-            #if not source_file.base_name in ['calendar-view-core.xml']: continue
+            if self.proc_only and not source_file.base_name in proc_only:
+                continue
 
             ## DEBUG!!
             #if source_file.base_name != 'dialog.xml':
@@ -399,12 +402,14 @@ class Generator(object):
                 idlparse.sf_process(source_file, cache_dir=self.cache_dir)
             elif source_file.filetype == 'xbl':
                 xblp.parse(source_file)
+            self.caboodle.update_global_info_from(source_file)
             
             ## DEBUG!!
             #ipshell()
 
-        parser = trace.TraceParser(self.caboodle)
-        parser.parse(trace_file)
+        if not self.proc_only:
+            parser = trace.TraceParser(self.caboodle)
+            parser.parse(trace_file)
 
     def generate_index(self):
         formatter = codefmt.CodeFormatter(style='manni')
@@ -418,6 +423,8 @@ class Generator(object):
         f_index = codecs.open(index_path, 'w', 'utf-8')
         f_index.write(index_stream.render())
         f_index.close()
+
+    FILE_TYPES_NO_PREPROC = set(['idl'])
 
     def output_html(self, out_path):
         self.out_path = out_path
@@ -459,8 +466,12 @@ class Generator(object):
         func_list_tmpl = self.loader.load('func_list.html')
         file_index_tmpl = self.loader.load('file_index.html')
         syn_file_tmpl = self.loader.load('synth_file.html')
+        global_scope_tmpl = self.loader.load('global_scope.html')
         
         for source_file in self.caboodle.source_files:
+            if self.proc_only and not source_file.base_name in self.proc_only:
+                continue
+            
             print '   - Generating', source_file
 
             if source_file.filetype == 'synthetic':
@@ -490,21 +501,28 @@ class Generator(object):
                                    source_file.used_codec)
             else:
                 f_in = open(source_file.path, 'r')
-            f_out = StringIO.StringIO()
-            mozpreproc.preprocess(includes=[f_in], defines=source_file.defines,
-                                  output=f_out,
-                                  line_endings='lf',
-                                  # we do not want those //@ line things for XBL
-                                  line_updates=(source_file.filetype != 'xbl'),
-                                  )
-            f_in.close()
-            code = f_out.getvalue()
-            f_out.close()
+            
+            if source_file.filetype in self.FILE_TYPES_NO_PREPROC:
+                code = f_in.read()
+                f_in.close()
+            else:
+                f_out = StringIO.StringIO()
+                mozpreproc.preprocess(includes=[f_in], defines=source_file.defines,
+                                      output=f_out,
+                                      line_endings='lf',
+                                      # we do not want those //@ line things for XBL
+                                      line_updates=(source_file.filetype != 'xbl'),
+                                      )
+                f_in.close()
+                code = f_out.getvalue()
+                f_out.close()
             
             if source_file.filetype == 'xbl':
                 lexer = codefmt.XmlJsFusionLexer()
             elif source_file.filetype in ('js', 'jsm'):
                 lexer = pygments.lexers.get_lexer_by_name('javascript')
+            elif source_file.filetype == 'idl':
+                lexer = pyglex.IDLPygLexer()
             else:
                 lexer = pygments.lexers.get_lexer_for_filename(source_file.path)
             formatter = codefmt.CodeFormatter(linenos='inline',
@@ -527,6 +545,28 @@ class Generator(object):
             fweb.write('<h1>%s</h1>' % (source_file.norm_path,))
             webbed = pygments.highlight(code, lexer, formatter)                        
             fweb.write(webbed)
+            fweb.write('</div>')
+            
+            ## global interactions
+            reads_and_written_by, writes_and_read_by = \
+                    self.caboodle.scope.usage_slice(source_file.scope)
+            
+            # global readers
+            glob_read_stream = global_scope_tmpl.generate(
+                                   av_plural='Reads',
+                                   scope_act_items=sorted(reads_and_written_by),
+                                   )
+            fweb.write('<div>')
+            fweb.write(glob_read_stream.render())
+            fweb.write('</div>')
+            
+            # global writes
+            glob_write_stream = global_scope_tmpl.generate(
+                                   av_plural='Writes',
+                                   scope_act_items=sorted(writes_and_read_by),
+                                   )
+            fweb.write('<div>')
+            fweb.write(glob_write_stream.render())
             fweb.write('</div>')
             
             fweb.write('</div>')
@@ -559,11 +599,17 @@ if __name__ == '__main__':
     trace_file = '/home/visbrero/projects/perf/del-trimmed.log'
     out_dir = '/tmp/pecobro2'
     
+    proc_only = set(['messageWindow.js',
+                     'mailWindow.js',
+                     'nsIFolderListener.idl',
+                     'nsIMsgMailSession.idl'])
+    
     gen = Generator(tb_src_dir, 'mail', tb_build_dir,
                     cache_dir='/tmp/pecobro_cache',
                     remote_src_path=remote_src_dir,
                     remote_build_path=remote_build_dir,
-                    overlay_dirs=overlay_dirs)
+                    overlay_dirs=overlay_dirs,
+                    proc_only=proc_only)
     print '--- finding code ---'
     gen.main()
     print '--- parsing trace ---'

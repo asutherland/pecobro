@@ -57,11 +57,11 @@
                      overview: null, mtab: TAB_OVERVIEW};
 
     function _show_overview_complete(data, status) {
-        var magnetbox = $("#main_overview");
-        magnetbox.empty();
-        
         var adapted = document.adoptNode(data.responseXML.documentElement);
-        magnetbox[0].appendChild(adapted);
+
+        var magnetbox = $("#main_overview");
+        magnetbox.empty();        
+        magnetbox[0].appendChild(adapted);        
         
         // link in to the event party...
         // (I tried to use jQuery's selector on this, but it didn't work...)
@@ -73,6 +73,14 @@
     
     function _show_file_complete(data, status) {
         var adapted = document.adoptNode(data.responseXML.documentElement);
+
+        var gwrites = $("#main_gwrites");
+        gwrites.empty();
+        gwrites[0].appendChild(adapted.childNodes[4]);
+
+        var greads = $("#main_greads");
+        greads.empty();
+        greads[0].appendChild(adapted.childNodes[3]);
         
         var magnetbox = $("#main_view");
         magnetbox.empty();
@@ -253,11 +261,17 @@
       <ul>
         <li><a href="#main_overview"><span>Overview</span></a></li>
         <li><a href="#main_view"><span>View</span></a></li>
+        <li><a href="#main_greads"><span>Global Reads</span></a></li>
+        <li><a href="#main_gwrites"><span>Global Writes</span></a></li>
       </ul>
       <div id="main_overview">
       </div>
       <div id="main_view">
       </div>        
+      <div id="main_greads">
+      </div>
+      <div id="main_gwrites">
+      </div>
     </div>
     
     

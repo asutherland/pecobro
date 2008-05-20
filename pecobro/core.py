@@ -142,6 +142,32 @@ class Scope(object):
         if writers is None:
             writers = self.writers.setdefault(name, set())
         writers.add(who)
+    
+    def merge(self, oscope):
+        for name, o_readers in oscope.readers.items():
+            readers = self.readers.get(name)
+            if readers is None:
+                readers = self.readers.setdefault(name, set())
+            readers.update(o_readers)
+        
+        for name, o_writers in oscope.writers.items():
+            writers = self.writers.get(name)
+            if writers is None:
+                writers = self.writers.setdefault(name, set())
+            writers.update(o_writers)
+    
+    def usage_slice(self, sub_scope):
+        writes_and_read_by = []
+        for name in sub_scope.writers:
+            writes_and_read_by.append((name, self.readers.get(name, ())))
+        writes_and_read_by.sort()
+        
+        reads_and_written_by = []
+        for name in sub_scope.readers:
+            reads_and_written_by.append((name, self.writers.get(name, ())))
+        reads_and_written_by.sort()
+            
+        return reads_and_written_by, writes_and_read_by
 
 class Func(object):
     def __init__(self, source_file, jstype, func_name, line=None, col=None):
@@ -549,6 +575,11 @@ class SourceCaboodle(object):
         #: XPCOM interface definition files
         self.xpcom_idl_files = []
         
+        #: temporary global scope
+        self.scope = Scope('catch-all-global', None)
+        # (there isn't just one global scope, but until we understand XUL, this
+        #  will have to do...)
+        
     
     def append(self, source_file):
         source_file.caboodle = self
@@ -561,6 +592,9 @@ class SourceCaboodle(object):
             return None
         defines, file_path = self.chrome_map[chrome_path]
         return self.path_to_file.get(file_path) 
+    
+    def update_global_info_from(self, source_file):
+        self.scope.merge(source_file.scope)
     
     @property
     def sorted_source_files(self):
