@@ -256,7 +256,7 @@ class JSObj(object):
 class XPAttribute(object):
     __slots__ = ['interface', 'name', 'type', 'readonly']
     
-    def __init__(self, interface, name,
+    def __init__(self, interface, name, type,
                  readonly=False):
         self.interface = interface
         self.name = name
@@ -546,6 +546,8 @@ class SourceCaboodle(object):
         self.components = []
         #: modules (from EXTRA_(PP_)JS_MODULES)
         self.modules = []
+        #: XPCOM interface definition files
+        self.xpcom_idl_files = []
         
     
     def append(self, source_file):

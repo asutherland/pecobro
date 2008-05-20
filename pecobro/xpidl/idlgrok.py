@@ -64,7 +64,7 @@ class IDLGrok(object):
         c_type, c_name = ast.children[:2]
         c_exprs = [n.token.text for n in ast.children[2:]]
         
-        if len(c_exprs) == 1:
+        if len(c_exprs) == 1 and c_exprs[0][0].isdigit():
             if c_exprs[0].startswith('0x') or c_exprs[0].startswith('0X'):
                 val = int(c_exprs[0], 16)
             else:
@@ -80,8 +80,8 @@ class IDLGrok(object):
         interface.def_const(c_name, val)
     
     def _grok_method(self, interface, ast, typedefs={}):
-        # children: type, name, MODIFIERS, PARAMS
-        c_type, c_name, c_modifiers, c_params = ast.children
+        # children: type, name, MODIFIERS, PARAMS, RAISES
+        c_type, c_name, c_modifiers, c_params, c_raises = ast.children
         
         modifiers = [c.token.text for c in c_modifiers.children]
         
@@ -151,6 +151,8 @@ class IDLGrok(object):
             elif ctype == idllex.INTERFACE:
                 self.grok_interface(source_file, child, typedefs)
 
+grokker = IDLGrok()
+
 if __name__ == '__main__':
     try:
         from IPython.Shell import IPShellEmbed
@@ -161,13 +163,10 @@ if __name__ == '__main__':
     import pecobro.xpidl.idlparse as idlparse
     import sys
     fname = sys.argv[1]
-    f = open(fname, 'r')
-    data = f.read()
-    f.close()
-    z = idlparse.parse_string(data)
+    z, used_codec = idlparse.parse_file(fname)
     grokker = IDLGrok()
     sf = core.SourceFile(fname, 'idl')
-    a = grokker.grok_top_level(sf, z)
+    a = grokker.grok_top_level(sf, z.tree)
     if ipshell:
         print 'z: AST'
         print 'sf: source file'

@@ -35,9 +35,18 @@
 #
 # ***** END LICENSE BLOCK *****
 
+import codecs, os, os.path
+
+try:
+    import cStringIO as StringIO
+except:
+    import StringIO
+
 import antlr3
 import pecobro.xpidl.XPIDLLexer as idllex 
 import pecobro.xpidl.XPIDLParser as idlparser
+
+import pecobro.xpidl.idlgrok as idlgrok
 
 
 def parse_string(snippet, dude='idlFile'):
@@ -50,7 +59,46 @@ def parse_string(snippet, dude='idlFile'):
     z = duder()
     
     return z.tree
+
+TRY_CODECS = ['utf-8', 'cp1252']
+
+def parse_file(fname, cache_dir=None):
+    sio = None
+    z = None
+    used_codec = None
+    for try_codec in TRY_CODECS:
+        try:
+            #f_in = codecs.open(fname, 'r', try_codec)
+            f_in = open(fname, 'r')
+
+            ss = antlr3.ANTLRInputStream(f_in, try_codec)
+            lexer = idllex.XPIDLLexer(ss)
+            token_stream = antlr3.CommonTokenStream(lexer)
+            parser = idlparser.XPIDLParser(token_stream)
+            z = parser.idlFile()
+            
+            f_in.close()
+
+            # if we got here, we are victorious
+            used_codec = try_codec
+            break
+        except Exception, e:
+            print '(codec %s failed us, trying next)' % (try_codec,)
+            print '  exception was:', e
     
+    if z is None:
+        raise Exception('All our mighty codecs failed us on %s' % (fname,))
+    
+    return z, used_codec
+
+def sf_process(source_file, cache_dir=None, force=False):
+        ptree, used_codec = parse_file(source_file.path, cache_dir=cache_dir)
+        
+        source_file.ast = ptree.tree
+        source_file.used_codec = used_codec
+
+        idlgrok.grokker.grok_top_level(source_file, ptree.tree)
+
 if __name__ == '__main__':
     try:
         from IPython.Shell import IPShellEmbed

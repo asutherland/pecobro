@@ -49,9 +49,11 @@ tokens
 {
 // semantic tokens
 	ATTR;
+	BINARY_NAME;
 	BODY;
 	CONST;
 	FORWARD;
+	IID_IS;
 	INCLUDE;
 	INLINE;
 	INTERFACE;
@@ -62,6 +64,8 @@ tokens
 	PARAM;
 	PARAMS;
 	PARENTS;
+	RAISES;
+	SIZE_IS;
 	TYPEDEF;
 // type normalization tokens
 	VOID;
@@ -76,6 +80,7 @@ tokens
 	FLOAT;
 	DOUBLE;
 	CHAR;
+	UNSIGNED_CHAR;
 	WCHAR;
 	STRING;
 	WSTRING;
@@ -90,11 +95,16 @@ toplevel
 	| typedef
 	| nativeTypeDecl
 	| include
+	| jerkyPreprocessorDirectives
 	| inline
 	;
 
 include
 	: Include -> ^(INCLUDE Include)
+	;
+
+jerkyPreprocessorDirectives
+	: JerkyPreprocessorLine
 	;
 
 inline
@@ -136,48 +146,39 @@ interfaceBodyItem
 	;
 
 method
-	: methodModifiers? type validId '(' paramList ')' ';'
-		-> ^(METHOD type validId ^(MODIFIERS methodModifiers?) ^(PARAMS paramList))
+	: methodModifiers? type name=validId '(' paramList? ')' ('raises' '(' raises=validId (',' raises=validId)* ')')? ';'
+		-> ^(METHOD type $name ^(MODIFIERS methodModifiers?) ^(PARAMS paramList?) ^(RAISES $raises*))
 	;
 
+// in theory, constType should only be short or long, but that apparently is not true
 const
-	: 'const' constType validId '=' mathExpr ';'
-		-> ^(CONST constType validId mathExpr)
-	;
-
-constType
-	: 'short' -> SHORT
-	| 'long' -> LONG
-	| validId
+	: 'const' type validId '=' mathExpr ';'
+		-> ^(CONST type validId mathExpr)
 	;
 
 attribute
-	: attributeModifiers? 'attribute' type validId ';'
-		-> ^(ATTR type validId ^(MODIFIERS methodModifiers))
-	;
-
-attributeModifiers
-	: '[' attributeModifier (',' attributeModifier)+ ']'
-		-> attributeModifier*
-	;
-
-attributeModifier
-	: 'readonly'
-	| methodModifier
+	: methodModifiers? 'readonly'? 'attribute' type validId ';'
+		-> ^(ATTR type validId ^(MODIFIERS methodModifiers? 'readonly'?))
 	;
 
 methodModifiers
-	: '[' methodModifier (',' methodModifier)+ ']'
+	: '[' methodModifier (',' methodModifier)* ']'
 		-> methodModifier*
 	;
 
 methodModifier
 	: 'noscript'
 	| 'notxpcom'
+	| binaryName
+	;
+
+binaryName
+	: 'binaryname' '(' validId ')'
+		-> ^(BINARY_NAME validId)
 	;
 
 paramList
-	: paramDecl (',' paramDecl)+
+	: paramDecl (',' paramDecl)*
 		-> paramDecl*
 	;
 
@@ -204,14 +205,17 @@ paramModifier
 	| 'retval'
 	| 'const'
 	| 'shared'
+	| 'optional'
 	;
 	
 sizeIs
 	: 'size_is' '(' validId ')'
+		-> ^(SIZE_IS validId)
 	; 
 
 iidIs
-	: IID_IS
+	: 'iid_is' '(' validId ')'
+		-> ^(IID_IS validId)
 	;
 
 nativeTypeDecl
@@ -219,8 +223,28 @@ nativeTypeDecl
 	;
 
 nativeType
-	: typeModifiersDecl 'native' validId
-		-> ^(NATIVE validId typeModifiersDecl)
+	: typeModifiersDecl? 'native' name=validId '(' nativeTypePayload+ ')'
+		-> ^(NATIVE $name ^(MODIFIERS typeModifiersDecl?) nativeTypePayload+)
+	;
+
+nativeTypePayload
+	: 'boolean'
+	| 'void'
+	| 'string'
+	| 'octet'
+	| 'char'
+	| 'short'
+	| 'long'
+	| 'unsigned'
+	| 'float'
+	| 'double'
+	| 'wchar'
+	| 'wstring'
+	| '*'
+	| '&'
+	| '<'
+	| '>'
+	| validId
 	;
 
 typeModifiersDecl
@@ -248,34 +272,56 @@ type
 	| 'void' -> VOID
 	| 'string' -> STRING
 	| 'octet' -> OCTET
+	| 'char' -> CHAR
 	| 'short' -> SHORT
 	| 'long' -> LONG
 	| 'long' 'long' -> LONG_LONG
+	| 'unsigned' 'char' -> UNSIGNED_CHAR
 	| 'unsigned' 'short' -> UNSIGNED_SHORT
 	| 'unsigned' 'long' -> UNSIGNED_LONG
 	| 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG
 	| 'float' -> FLOAT
 	| 'double' -> DOUBLE
-	| 'char' -> CHAR
 	| 'wchar' -> WCHAR
 	| 'wstring' -> WSTRING
 	| validId
 	;
 
 mathExpr
-	: mathMultDiv
+	: mathBitOr
+	;
+	
+mathBitOr
+	: mathBitXor ('|' mathBitXor)*
+	;
+	
+mathBitXor
+	: mathBitAnd ('^' mathBitAnd)*
 	;
 
-mathMultDiv
-	: mathAddSub (('*'|'/') mathAddSub)?
-	;
-
-mathAddSub
-	: mathShift (('+'|'-') mathShift)?
+mathBitAnd
+	: mathShift ('&' mathShift)*
 	;
 
 mathShift
-	: mathVar ('<<' mathVar)?
+	: mathAddSub ('<<' mathAddSub)*
+	;
+
+mathAddSub
+	: mathMultDiv (('+'|'-') mathMultDiv)*
+	;
+
+mathMultDiv
+	: mathUnary (('*'|'/') mathUnary)*
+	;
+
+mathUnary
+	: '-'? mathBottom
+	;
+
+mathBottom
+	: '(' mathExpr ')'
+	| mathVar
 	;
 
 mathVar
@@ -287,8 +333,30 @@ validIdList
 	: validId (',' validId)*
 	;
 
+// making all keywords that live in brackets legal identifiers.
+//  (const is dubious since he is also a real keyword, but this should not cause ambiguity)
+// okay, now we're just adding pretty much everyone...
 validId
 	: Identifier
+	| 'array'
+	| 'astring'
+	| 'const'
+	| 'cstring'
+	| 'domstring'
+	| 'function'
+	| 'iid_is'
+	| 'interface'
+	| 'noscript'
+	| 'notxpcom'
+	| 'nsid'
+	| 'object'
+	| 'optional'
+	| 'ptr'
+	| 'ref'
+	| 'retval'
+	| 'scriptable'
+	| 'shared'
+	| 'utf8string'
 	;
 
 uuid
@@ -306,7 +374,7 @@ fragment HexInteger
 	;
 
 fragment DecimalInteger
-	: DecimalChar+
+	:  DecimalChar+
 	;
 
 fragment DecimalChar
@@ -328,11 +396,7 @@ fragment IdentifierPart
 	;
 
 UUID
-	: 'uuid' WhiteSpace* '(' UUIDPayload ')'
-	;
-
-IID_IS
-	: 'iid_is' WhiteSpace* '(' UUIDPayload ')'
+	: 'uuid' ' '* '(' UUIDPayload ')'
 	;
 
 // really 8-4-4-4-12
@@ -346,16 +410,28 @@ fragment HexChar
 	;	
 
 InlineCHeader
-	: '%{C++' (options {greedy=false;} : .)* '%}' 'C++'?
+	: '%{' WhiteSpace* 'C++' (options {greedy=false;} : .)* '%}' WhiteSpace? 'C++'?
 	;
 
 // since Includes have a specific lexer definition and are basically
 //  preprocessor gunk, handle it at the lexer level.
-// note: we are allowing a little extra whitespace...
+// note: we are allowing a little extra whitespace... at the beginning
+//  and at the end, we eat everything up to the newline, which may include a comment.
 Include
-	: '#include' WhiteSpace* '"' ~('\n' | '"')* '"' WhiteSpace* '\n'
+	: '#include' (' '|'\t')* '"' ~('\n' | '"')* '"' ~('\n')* '\n'
 	;
 
+// nsICiter.idl... seriously, what's up with you?
+JerkyPreprocessorLine
+	: '#' JerkyPreprocessorDirectives ~('\n')* '\n'
+	;
+
+fragment JerkyPreprocessorDirectives
+	: 'ifndef'
+	| 'define'
+	| 'elseif'
+	| 'endif'
+	;
 
 BlockComment
 	: '/*' (options {greedy=false;} : .)* '*/' {$channel=HIDDEN;}

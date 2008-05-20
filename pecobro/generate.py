@@ -256,7 +256,19 @@ class Generator(object):
                     if not abs_module in self.caboodle.modules:
                         print 'MODULE', abs_module
                         self.caboodle.modules.append((defines, abs_module))
-
+                
+                for rel_idl in mf.get('XPIDLSRCS').split():
+                    abs_idl = os.path.join(path, rel_idl)
+                    for path_from, path_to in self.path_maps:
+                        if abs_idl.startswith(path_from):
+                            abs_idl = abs_idl.replace(path_from, path_to)
+                    # flop from the build dir to the source dir if relevant
+                    if not os.path.exists(abs_idl):
+                        abs_idl = abs_idl.replace(self.caboodle.moz_build_path,
+                                                  self.caboodle.moz_src_path)
+                    if not abs_idl in self.caboodle.xpcom_idl_files:
+                        print 'IDL', abs_idl
+                        self.caboodle.xpcom_idl_files.append((defines, abs_idl))
                 
                 # recurse into DIRS and TOOL_DIRS; also STATIC_DIRS just in case
                 for make_dir in (mf.get('DIRS').split()
@@ -297,6 +309,7 @@ class Generator(object):
                 self.caboodle.chrome_map = jar_info['chrome_map']
                 self.caboodle.components = jar_info['components']
                 self.caboodle.modules    = jar_info['modules']
+                self.caboodle.xpcom_idl_files = jar_info['xpcom_idl_files']
                 f.close()
                 return
         
@@ -307,6 +320,7 @@ class Generator(object):
             jar_info = {'chrome_map': self.caboodle.chrome_map,
                         'components': self.caboodle.components,
                         'modules': self.caboodle.modules,
+                        'xpcom_idl_files': self.caboodle.xpcom_idl_files,
                         }
             cerealizer.dump(jar_info, f)
             f.close()
@@ -338,6 +352,7 @@ class Generator(object):
                 overlay_files.append((self.defines, overlay_file))
         
         for defines, src_abs_filepath in (overlay_files +
+                                 self.caboodle.xpcom_idl_files +
                                  self.caboodle.components +
                                  self.caboodle.modules +
                                  self.caboodle.chrome_map.values()):
@@ -350,12 +365,20 @@ class Generator(object):
                                                      suffix[1:],
                                                      base_dir=self.caboodle.moz_src_path,
                                                      defines=defines))
-                pass 
+            elif suffix in ('.idl,'):
+                print 'Found IDL:', src_abs_filepath
+                # (no defines required; IDL doesn't get pre-processed... at
+                #  least I hope not, since IDL has its own bloody include
+                #  directive...)
+                self.caboodle.append(core.SourceFile(src_abs_filepath,
+                                                     suffix[1:],
+                                                     base_dir=self.caboodle.moz_src_path))
             elif suffix in ('.xml',):
                 self._consider_xml(src_abs_filepath, defines)
 
     def parse_trace(self, trace_file):
-        import jsparse.jsparse as jsparse
+        import pecobro.jsparse.jsparse as jsparse
+        import pecobro.xpidl.idlparse as idlparse
         xblp = xbl.XBLParser()
 
         for source_file in self.caboodle.source_files:
@@ -372,6 +395,8 @@ class Generator(object):
             if source_file.filetype.startswith('js'):
                 jsparse.sf_process(source_file, cache_dir=self.cache_dir,
                                    defines=source_file.defines)
+            elif source_file.filetype == 'idl':
+                idlparse.sf_process(source_file, cache_dir=self.cache_dir)
             elif source_file.filetype == 'xbl':
                 xblp.parse(source_file)
             
