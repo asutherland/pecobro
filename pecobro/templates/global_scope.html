@@ -1,11 +1,15 @@
 <div xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude"
       >
-  <h1>Global ${av_plural}</h1>
+  <h1>Global ${av_plural}</h1> <h2>and who they are ${ov_pt} by...</h2>
+  <hr/>
   <py:for each="var, dudes in scope_act_items">
     <h3>${var}</h3>
     <ul>
-      <li py:for="dude in dudes">${dude}</li>
+      <li py:for="dude in dudes">
+        <py:if test="isinstance(dude, core.SourceFile)">Top Level: ${dude.base_name}</py:if>
+        <py:if test="isinstance(dude, core.Func)">Function: ${dude.name} (in ${dude.file.base_name})</py:if>
+      </li>
     </ul>
   </py:for>
 </div>

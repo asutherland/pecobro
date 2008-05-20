@@ -553,8 +553,9 @@ class Generator(object):
             
             # global readers
             glob_read_stream = global_scope_tmpl.generate(
-                                   av_plural='Reads',
+                                   av_plural='Reads', ov_pt='written',
                                    scope_act_items=sorted(reads_and_written_by),
+                                   core=core,
                                    )
             fweb.write('<div>')
             fweb.write(glob_read_stream.render())
@@ -562,8 +563,9 @@ class Generator(object):
             
             # global writes
             glob_write_stream = global_scope_tmpl.generate(
-                                   av_plural='Writes',
+                                   av_plural='Writes', ov_pt='read',
                                    scope_act_items=sorted(writes_and_read_by),
+                                   core=core,
                                    )
             fweb.write('<div>')
             fweb.write(glob_write_stream.render())

@@ -45,6 +45,9 @@ the idea is to keep this stuff orthogonal.
 
 import pecobro.jsparse.JavaScriptLexer as jslex
 
+# TODO: do not hard-code VAR_TOKEN ('var')
+VAR_TOKEN = jslex.T91
+
 import pecobro.core as core
 
 GLOBAL_OBJ_NAMES = (
@@ -168,6 +171,9 @@ class JSGrok(object):
                 
                 source_file.add_to_contents(func)
             
+            # is this brilliant or stupid? (both?)
+            self.grok_function(source_file, func, node)
+            
             return func
         elif ntype == jslex.VEXPR:
             nPrimary = node.getChild(0)
@@ -176,33 +182,33 @@ class JSGrok(object):
             # --- literals ---
             # -- primitives --
             if ptype == jslex.NULL:
-                return None
+                val = None
             elif ptype == jslex.TRUE:
-                return True
+                val = True
             elif ptype == jslex.FALSE:
-                return False
+                val = False
             elif ptype == jslex.STRING:
                 # we need to chop off the quotes
-                return nPrimary.getChild(0).token.text[1:-1]
+                val = nPrimary.getChild(0).token.text[1:-1]
             elif ptype == jslex.NUMBER:
                 nstr = nPrimary.getChild(0).token.text
                 if '.' in nstr:
-                    return float(nstr)
+                    val = float(nstr)
                 elif nstr.startswith('0x') or nstr.startswith('0X'):
-                    return int(nstr, 16)
+                    val = int(nstr, 16)
                 elif nstr.startswith('0'):
-                    return int(nstr, 8)
+                    val = int(nstr, 8)
                 else:
-                    return int(nstr)
+                    val = int(nstr)
             elif ptype == jslex.REGEX:
                 # we just treat these as strings...
-                return nPrimary.toString()
+                val = nPrimary.toString()
             # -- array --
             elif ptype == jslex.ARRAY:
                 arr = []
                 for arrNode in nPrimary.children:
                     arr.append(self._val_map(source_file, arrNode, scope, who))
-                return arr
+                val = arr
             # -- object --
             elif ptype == jslex.OBJ:
                 obj = {}
@@ -213,13 +219,16 @@ class JSGrok(object):
                                         scope, who,
                                         enclosingPropNode=propNode)
                     obj[key] = val
-                return obj
+                val = obj
             # --- lookups ---
             # 
             elif ptype == jslex.VARREF:
-                var_name = nPrimary.getChild(0).token.text
+                var_name = nPrimary.children[0].token.text
                 val = scope.lookup(var_name, who)
-                return val
+            else:
+                val = None
+            
+            return val
 
     def grok_globals(self, source_file, ast, nested=False):
         '''
@@ -239,14 +248,14 @@ class JSGrok(object):
                                                 source_file.scope, source_file)
                     else:
                         var_val = UNDEFINED
-                    source_file.scope.store(var_name, var_val, source_file)
+                    source_file.scope.var_store(var_name, var_val, source_file)
             # function
             elif ctype == jslex.FUNC:
                 tName = child.getChild(0)
                 if tName.getType() != jslex.ANONYMOUS:
                     func = self._val_map(source_file, child,
                                          source_file.scope, source_file)
-                    source_file.scope.store(func.name, func, source_file)
+                    source_file.scope.var_store(func.name, func, source_file)
             # foo = bar
             elif ctype == jslex.ASSIGN:
                 vexpr, complex = as_varref(child.getChild(0))
@@ -254,7 +263,7 @@ class JSGrok(object):
                     var_name = vexpr[0].token.text
                     var_val = self._val_map(source_file, child.getChild(1),
                                             source_file.scope, source_file)
-                    source_file.scope.store(var_name, var_val, source_file)
+                    source_file.scope.var_store(var_name, var_val, source_file)
             # handle top-level logic...
             elif ctype in (jslex.COND, jslex.CODE):
                 self.grok_globals(source_file, child, nested=True)
@@ -386,6 +395,89 @@ class JSGrok(object):
         self.grok_globals(source_file, ast)
         self.grok_objects(source_file, ast)
 
+    def _grok_scope(self, source_file, owner, nodes, scope):
+        for node in nodes:
+            ntype = node.getType()
+
+            # handle scope-y things.
+            if ntype == jslex.SCOPE:
+                # children: scope type, context, stuff...
+                scope_type = node.children[0].token.type
+                sub_scope = core.Scope('blah', scope, scope_type == VAR_TOKEN)
+
+                # we don't need to do anything special for the 'context' guy;
+                #  the AST and we should be workign together such that the
+                #  context guy actually writes into the scope, and since he
+                #  is processed first, this should work out fine.
+                # TODO: verify the above is true about the context...
+                self._grok_scope(source_file, owner, node.children[1:],
+                                 sub_scope)
+            
+            # handle other nesting blocks
+            elif ntype == jslex.CALL:
+                # children: expression (may screw us with +), ARGS
+                # TODO: deal with jerky non-tree expressions
+                c_expr = node.children[0]
+                c_args = node.children[-1]
+                self._val_map(source_file, c_expr, scope, owner)
+                
+                for c_arg in c_args.children:
+                    self._val_map(source_file, c_arg, scope, owner)
+            
+            elif ntype in (jslex.COND, jslex.CONDLOOP):
+                # children: (TEST|CODE)*
+                # (which are both payload-bearing)
+                r_nodes = []
+                for child in node.children:
+                    r_nodes.extend(child.children)
+                    self._grok_scope(source_file, owner, r_nodes, scope)
+            
+            elif ntype == jslex.CATCH:
+                # children: identifier, TEST, SCOPE
+                c_identifier, c_test, c_scope = node.children
+                if c_test.children:
+                    # TODO: create a scope with the exception and grok the test
+                    pass
+                self._grok_scope(source_file, owner, (c_scope,), scope)
+                    
+            elif ntype == jslex.VARDEFS:
+                #: def type, VARDEF+
+                def_type = node.children[0].token.text
+                
+                for c_var in node.children[1:]:
+                    # children: name, value
+                    # TODO: differentiate var/let definitions
+                    c_name = c_var.children[0]
+                    if len(c_var.children) > 1:
+                        c_value = c_var.children[1]
+                        val = self._val_map(source_file, c_value, scope, owner)
+                    else:
+                        val = UNDEFINED
+                    scope.gen_store(def_type, c_name.token.text, val, owner)
+            elif ntype == jslex.IN:
+                # TODO: perhaps understand IN a bit better
+                # for now, just pay attention to the first guy...
+                self._grok_scope(source_file, owner, (node.children[0],), scope)
+            
+            # the left side of a complex assign is a write at its tip, but a
+            #  read at the base. 
+            # a post-fix expression is a read and a write
+            elif ntype == jslex.ASSIGN:
+                # children: left hand, operator, right hand (may be + though)
+                c_left, c_op = node.children[:2]
+                c_rights = node.children[2:]
+                
+                v_kids, v_complex = as_varref(c_left)
+                for c_right in c_rights:
+                    val = self._val_map(source_file, c_right, scope, owner)
+                # straight lexical assignment...
+                if v_kids and not v_complex:
+                    scope.lex_store(v_kids[0].children[0].token.text, val, owner)
+                # grr. complex assignment... first guy is a get though
+                elif v_kids:
+                    # TODO: complete complex assignment lookup
+                    scope.lookup(v_kids[0].children[0].token.text, owner)
+
     def grok_function(self, source_file, func, funcNode):
         '''
         Process a function looking for global references as well as local
@@ -397,10 +489,7 @@ class JSGrok(object):
         Special extras:
         - Detect what Component.classes are accessed (someday)
         '''
-        for child in funcNode.children:
-            pass
-            # the left side of a complex assign is a write at its tip, but a
-            #  read at the base. 
-            # a post-fix expression is a read and a write
-            
+        func_scope = core.Scope('func', source_file.scope, var_scope=True)
+        self._grok_scope(source_file, func, funcNode.children,
+                         func_scope) 
         

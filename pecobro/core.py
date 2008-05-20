@@ -107,11 +107,16 @@ class Scope(object):
     be methods.  The tracking part is that we want to know who is accessing/
     modifying global variables.
     '''
-    def __init__(self, name, parent):
+    __slots__ = ['name', 'parent', 'values', 'readers', 'writers',
+                 'is_var_scope']
+    
+    def __init__(self, name, parent, var_scope=True):
         #: our scope name
         self.name = name
         #: our parent scope, if any
         self.parent = parent
+        #: are we are a var scope or just a let scope?
+        self.is_var_scope = var_scope
         
         #: Our stored values...
         self.values = {}
@@ -126,6 +131,9 @@ class Scope(object):
         who.  Returns a tuple of the lookup result and the scope it came from
         (for local tracking on 'who'). 
         '''
+        if self.parent and not name in self.values:
+            return self.parent.lookup(name, who)
+        
         readers = self.readers.get(name)
         if readers is None:
             readers = self.readers.setdefault(name, set())
@@ -133,15 +141,55 @@ class Scope(object):
 
         return self.values.get(name)
     
-    def store(self, name, value, who):
+    def global_store(self, name, value, who):
+        if self.parent:
+            self.parent.global_store(name, value, who)
+        else:
+            self.var_store(name, value, who)
+    
+    def var_store(self, name, value, who):
         '''
-        Stores the value into name, tracking the request from who  Returns
+        Perform a var store into the nearest var scope.  A var store is one
+        that is the explicit result of a 'var a ='.
+        '''
+        if not self.is_var_scope:
+            return self.parent.var_store(name, value, who)
+        
+        self.values[name] = value
+        writers = self.writers.get(name)
+        if writers is None:
+            writers = self.writers.setdefault(name, set())
+        writers.add(who)
+    
+    def let_store(self, name, value, who):
+        '''
         '''
         self.values[name] = value
         writers = self.writers.get(name)
         if writers is None:
             writers = self.writers.setdefault(name, set())
         writers.add(who)
+    
+    def gen_store(self, store_type, name, value, who):
+        if store_type in ('var', 'const'):
+            self.var_store(name, value, who)
+        else: # let
+            self.let_store(name, value, who)
+    
+    def lex_store(self, name, value, who):
+        '''
+        Assign a value based on lexical context; which is to say, find the first
+        scope with the given variable name.  If we can't find one, then we are
+        effectively a global write.
+        '''
+        if name in self.values:
+            # the use of let store is an 'optimization'; we aren't really a let.
+            self.let_store(name, value, who)
+        elif self.parent:
+            self.parent.lex_store(name, value, who)
+        # no parent means we have reached the global case.  do it.
+        else:
+            self.let_store(name, value, who)
     
     def merge(self, oscope):
         for name, o_readers in oscope.readers.items():
@@ -159,12 +207,12 @@ class Scope(object):
     def usage_slice(self, sub_scope):
         writes_and_read_by = []
         for name in sub_scope.writers:
-            writes_and_read_by.append((name, self.readers.get(name, ())))
+            writes_and_read_by.append((name, sorted(self.readers.get(name, ()))))
         writes_and_read_by.sort()
         
         reads_and_written_by = []
         for name in sub_scope.readers:
-            reads_and_written_by.append((name, self.writers.get(name, ())))
+            reads_and_written_by.append((name, sorted(self.writers.get(name, ()))))
         reads_and_written_by.sort()
             
         return reads_and_written_by, writes_and_read_by
@@ -204,6 +252,17 @@ class Func(object):
         ## tokeny stuff
         self.source_line = line
         self.source_col = col
+    
+    def __cmp__(self, other):
+        if isinstance(other, Func):
+            if self.file == other.file:
+                return cmp(self.name, other.name)
+            else:
+                return cmp(self.file, other.file)
+        elif isinstance(other, SourceFile):
+            return -cmp(other, self)
+        else:
+            return 0
     
     def is_anon(self):
         return self.name.startswith('anon:')
@@ -468,6 +527,14 @@ class SourceFile(object):
             self.import_function.source_line = 0
             self.import_function.source_col = 0
             self.add_to_contents(self.import_function)
+
+    def __cmp__(self, other):
+        if isinstance(other, SourceFile):
+            return cmp(self.path, other.path)
+        elif isinstance(other, Func):
+            return cmp(self.path, other.file.path)
+        else:
+            return 0
 
     def rename_anon(self, func, anon_name, new_name):
         del self.functions[anon_name]
