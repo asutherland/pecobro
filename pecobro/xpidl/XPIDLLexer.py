@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g 2008-05-19 21:53:24
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g 2008-05-19 22:12:29
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -8,29 +8,29 @@ from antlr3.compat import set, frozenset
 HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
-UUIDPayload=44
+UUIDPayload=46
 CONST=6
-CHAR=28
-PARAM=13
+CHAR=30
+PARAM=15
 EOF=-1
-WCHAR=29
-Identifier=36
-BlockComment=45
-HexChar=39
-UNSIGNED_LONG=24
-DOUBLE=27
-WhiteSpace=43
+WCHAR=31
+Identifier=38
+BlockComment=47
+HexChar=41
+UNSIGNED_LONG=26
+INCLUDE=8
+DOUBLE=29
+WhiteSpace=45
 BODY=5
-VOID=17
-UNSIGNED_LONG_LONG=25
-DecimalInteger=37
-IdentifierStart=41
-NATIVE=12
+VOID=19
+UNSIGNED_LONG_LONG=27
+DecimalInteger=39
+IdentifierStart=43
+NATIVE=14
 T49=49
-T48=48
-T47=47
 T50=50
 T59=59
+INLINE=9
 T52=52
 T51=51
 T54=54
@@ -47,63 +47,65 @@ T79=79
 FORWARD=7
 T77=77
 T78=78
-UUID=34
-LONG_LONG=22
-InlineCHeader=33
-LineComment=46
-FLOAT=26
+UUID=36
+LONG_LONG=24
+InlineCHeader=35
+LineComment=48
+FLOAT=28
 T72=72
 T71=71
 T70=70
-MODIFIERS=11
+MODIFIERS=13
 T62=62
 T63=63
 T64=64
 T65=65
-BOOLEAN=18
+BOOLEAN=20
 T66=66
 T67=67
 T68=68
 T69=69
-UNSIGNED_SHORT=23
-HexInteger=38
-WSTRING=31
-IdentifierPart=42
+UNSIGNED_SHORT=25
+HexInteger=40
+WSTRING=33
 ATTR=4
+IdentifierPart=44
 T61=61
-I_UUID=9
-PARAMS=14
+I_UUID=11
+PARAMS=16
 T60=60
+T99=99
 T97=97
-DecimalChar=40
+DecimalChar=42
+T98=98
 T95=95
 T96=96
-TYPEDEF=16
-SHORT=20
+TYPEDEF=18
+SHORT=22
 T94=94
-Tokens=98
+Tokens=100
 T93=93
 T92=92
-Include=32
+Include=34
 T91=91
 T90=90
 T88=88
 T89=89
-PARENTS=15
+PARENTS=17
 T84=84
 T85=85
 T86=86
 T87=87
-INTERFACE=8
+INTERFACE=10
 T81=81
-LONG=21
+LONG=23
 T80=80
 T83=83
-METHOD=10
+METHOD=12
 T82=82
-Integer=35
-OCTET=19
-STRING=30
+Integer=37
+OCTET=21
+STRING=32
 
 class XPIDLLexer(Lexer):
 
@@ -127,60 +129,16 @@ class XPIDLLexer(Lexer):
 
 
 
-    # $ANTLR start T47
-    def mT47(self, ):
-
-        try:
-            self.type = T47
-
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:7:5: ( 'interface' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:7:7: 'interface'
-            self.match("interface")
-
-
-
-
-
-
-        finally:
-
-            pass
-
-    # $ANTLR end T47
-
-
-
-    # $ANTLR start T48
-    def mT48(self, ):
-
-        try:
-            self.type = T48
-
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:8:5: ( ';' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:8:7: ';'
-            self.match(u';')
-
-
-
-
-
-        finally:
-
-            pass
-
-    # $ANTLR end T48
-
-
-
     # $ANTLR start T49
     def mT49(self, ):
 
         try:
             self.type = T49
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:9:5: ( '[' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:9:7: '['
-            self.match(u'[')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:7:5: ( 'interface' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:7:7: 'interface'
+            self.match("interface")
+
 
 
 
@@ -200,9 +158,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T50
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:10:5: ( ',' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:10:7: ','
-            self.match(u',')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:8:5: ( ';' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:8:7: ';'
+            self.match(u';')
 
 
 
@@ -222,9 +180,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T51
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:11:5: ( ']' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:11:7: ']'
-            self.match(u']')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:9:5: ( '[' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:9:7: '['
+            self.match(u'[')
 
 
 
@@ -244,9 +202,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T52
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:12:5: ( ':' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:12:7: ':'
-            self.match(u':')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:10:5: ( ',' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:10:7: ','
+            self.match(u',')
 
 
 
@@ -266,9 +224,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T53
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:13:5: ( '{' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:13:7: '{'
-            self.match(u'{')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:11:5: ( ']' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:11:7: ']'
+            self.match(u']')
 
 
 
@@ -288,9 +246,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T54
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:14:5: ( '}' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:14:7: '}'
-            self.match(u'}')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:12:5: ( ':' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:12:7: ':'
+            self.match(u':')
 
 
 
@@ -310,10 +268,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T55
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:15:5: ( 'scriptable' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:15:7: 'scriptable'
-            self.match("scriptable")
-
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:13:5: ( '{' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:13:7: '{'
+            self.match(u'{')
 
 
 
@@ -333,10 +290,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T56
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:16:5: ( 'function' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:16:7: 'function'
-            self.match("function")
-
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:14:5: ( '}' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:14:7: '}'
+            self.match(u'}')
 
 
 
@@ -356,9 +312,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T57
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:17:5: ( 'object' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:17:7: 'object'
-            self.match("object")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:15:5: ( 'scriptable' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:15:7: 'scriptable'
+            self.match("scriptable")
 
 
 
@@ -379,9 +335,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T58
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:18:5: ( 'notxpcom' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:18:7: 'notxpcom'
-            self.match("notxpcom")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:16:5: ( 'function' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:16:7: 'function'
+            self.match("function")
 
 
 
@@ -402,9 +358,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T59
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:19:5: ( 'noscript' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:19:7: 'noscript'
-            self.match("noscript")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:17:5: ( 'object' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:17:7: 'object'
+            self.match("object")
 
 
 
@@ -425,9 +381,10 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T60
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:20:5: ( '(' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:20:7: '('
-            self.match(u'(')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:18:5: ( 'notxpcom' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:18:7: 'notxpcom'
+            self.match("notxpcom")
+
 
 
 
@@ -447,9 +404,10 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T61
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:21:5: ( ')' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:21:7: ')'
-            self.match(u')')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:19:5: ( 'noscript' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:19:7: 'noscript'
+            self.match("noscript")
+
 
 
 
@@ -469,10 +427,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T62
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:22:5: ( 'const' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:22:7: 'const'
-            self.match("const")
-
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:20:5: ( '(' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:20:7: '('
+            self.match(u'(')
 
 
 
@@ -492,9 +449,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T63
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:23:5: ( '=' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:23:7: '='
-            self.match(u'=')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:21:5: ( ')' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:21:7: ')'
+            self.match(u')')
 
 
 
@@ -514,9 +471,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T64
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:24:5: ( 'short' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:24:7: 'short'
-            self.match("short")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:22:5: ( 'const' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:22:7: 'const'
+            self.match("const")
 
 
 
@@ -537,10 +494,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T65
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:25:5: ( 'long' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:25:7: 'long'
-            self.match("long")
-
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:23:5: ( '=' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:23:7: '='
+            self.match(u'=')
 
 
 
@@ -560,9 +516,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T66
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:26:5: ( 'attribute' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:26:7: 'attribute'
-            self.match("attribute")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:24:5: ( 'short' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:24:7: 'short'
+            self.match("short")
 
 
 
@@ -583,9 +539,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T67
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:27:5: ( 'in' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:27:7: 'in'
-            self.match("in")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:25:5: ( 'long' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:25:7: 'long'
+            self.match("long")
 
 
 
@@ -606,9 +562,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T68
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:28:5: ( 'out' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:28:7: 'out'
-            self.match("out")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:26:5: ( 'attribute' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:26:7: 'attribute'
+            self.match("attribute")
 
 
 
@@ -629,9 +585,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T69
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:29:5: ( 'inout' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:29:7: 'inout'
-            self.match("inout")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:27:5: ( 'in' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:27:7: 'in'
+            self.match("in")
 
 
 
@@ -652,9 +608,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T70
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:30:5: ( 'array' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:30:7: 'array'
-            self.match("array")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:28:5: ( 'out' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:28:7: 'out'
+            self.match("out")
 
 
 
@@ -675,9 +631,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T71
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:31:5: ( 'retval' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:31:7: 'retval'
-            self.match("retval")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:29:5: ( 'inout' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:29:7: 'inout'
+            self.match("inout")
 
 
 
@@ -698,9 +654,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T72
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:32:5: ( 'shared' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:32:7: 'shared'
-            self.match("shared")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:30:5: ( 'array' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:30:7: 'array'
+            self.match("array")
 
 
 
@@ -721,9 +677,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T73
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:33:5: ( 'size_is' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:33:7: 'size_is'
-            self.match("size_is")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:31:5: ( 'retval' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:31:7: 'retval'
+            self.match("retval")
 
 
 
@@ -744,9 +700,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T74
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:34:5: ( 'native' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:34:7: 'native'
-            self.match("native")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:32:5: ( 'shared' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:32:7: 'shared'
+            self.match("shared")
 
 
 
@@ -767,9 +723,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T75
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:35:5: ( 'ref' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:35:7: 'ref'
-            self.match("ref")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:33:5: ( 'size_is' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:33:7: 'size_is'
+            self.match("size_is")
 
 
 
@@ -790,9 +746,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T76
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:36:5: ( 'ptr' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:36:7: 'ptr'
-            self.match("ptr")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:34:5: ( 'native' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:34:7: 'native'
+            self.match("native")
 
 
 
@@ -813,9 +769,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T77
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:37:5: ( 'nsid' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:37:7: 'nsid'
-            self.match("nsid")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:35:5: ( 'ref' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:35:7: 'ref'
+            self.match("ref")
 
 
 
@@ -836,9 +792,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T78
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:38:5: ( 'domstring' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:38:7: 'domstring'
-            self.match("domstring")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:36:5: ( 'ptr' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:36:7: 'ptr'
+            self.match("ptr")
 
 
 
@@ -859,9 +815,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T79
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:39:5: ( 'utf8string' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:39:7: 'utf8string'
-            self.match("utf8string")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:37:5: ( 'nsid' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:37:7: 'nsid'
+            self.match("nsid")
 
 
 
@@ -882,9 +838,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T80
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:40:5: ( 'cstring' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:40:7: 'cstring'
-            self.match("cstring")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:38:5: ( 'domstring' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:38:7: 'domstring'
+            self.match("domstring")
 
 
 
@@ -905,9 +861,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T81
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:41:5: ( 'astring' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:41:7: 'astring'
-            self.match("astring")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:39:5: ( 'utf8string' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:39:7: 'utf8string'
+            self.match("utf8string")
 
 
 
@@ -928,9 +884,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T82
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:42:5: ( 'typedef' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:42:7: 'typedef'
-            self.match("typedef")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:40:5: ( 'cstring' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:40:7: 'cstring'
+            self.match("cstring")
 
 
 
@@ -951,9 +907,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T83
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:43:5: ( 'boolean' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:43:7: 'boolean'
-            self.match("boolean")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:41:5: ( 'astring' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:41:7: 'astring'
+            self.match("astring")
 
 
 
@@ -974,9 +930,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T84
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:5: ( 'void' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:7: 'void'
-            self.match("void")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:42:5: ( 'typedef' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:42:7: 'typedef'
+            self.match("typedef")
 
 
 
@@ -997,9 +953,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T85
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:45:5: ( 'string' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:45:7: 'string'
-            self.match("string")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:43:5: ( 'boolean' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:43:7: 'boolean'
+            self.match("boolean")
 
 
 
@@ -1020,9 +976,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T86
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:46:5: ( 'octet' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:46:7: 'octet'
-            self.match("octet")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:5: ( 'void' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:7: 'void'
+            self.match("void")
 
 
 
@@ -1043,9 +999,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T87
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:47:5: ( 'unsigned' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:47:7: 'unsigned'
-            self.match("unsigned")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:45:5: ( 'string' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:45:7: 'string'
+            self.match("string")
 
 
 
@@ -1066,9 +1022,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T88
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:5: ( 'float' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:7: 'float'
-            self.match("float")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:46:5: ( 'octet' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:46:7: 'octet'
+            self.match("octet")
 
 
 
@@ -1089,9 +1045,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T89
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:49:5: ( 'double' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:49:7: 'double'
-            self.match("double")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:47:5: ( 'unsigned' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:47:7: 'unsigned'
+            self.match("unsigned")
 
 
 
@@ -1112,9 +1068,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T90
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:50:5: ( 'char' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:50:7: 'char'
-            self.match("char")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:5: ( 'float' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:7: 'float'
+            self.match("float")
 
 
 
@@ -1135,9 +1091,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T91
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:51:5: ( 'wchar' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:51:7: 'wchar'
-            self.match("wchar")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:49:5: ( 'double' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:49:7: 'double'
+            self.match("double")
 
 
 
@@ -1158,9 +1114,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T92
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:52:5: ( 'wstring' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:52:7: 'wstring'
-            self.match("wstring")
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:50:5: ( 'char' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:50:7: 'char'
+            self.match("char")
 
 
 
@@ -1181,9 +1137,10 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T93
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:53:5: ( '*' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:53:7: '*'
-            self.match(u'*')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:51:5: ( 'wchar' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:51:7: 'wchar'
+            self.match("wchar")
+
 
 
 
@@ -1203,9 +1160,10 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T94
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:54:5: ( '/' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:54:7: '/'
-            self.match(u'/')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:52:5: ( 'wstring' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:52:7: 'wstring'
+            self.match("wstring")
+
 
 
 
@@ -1225,9 +1183,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T95
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:55:5: ( '+' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:55:7: '+'
-            self.match(u'+')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:53:5: ( '*' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:53:7: '*'
+            self.match(u'*')
 
 
 
@@ -1247,9 +1205,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T96
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:56:5: ( '-' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:56:7: '-'
-            self.match(u'-')
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:54:5: ( '/' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:54:7: '/'
+            self.match(u'/')
 
 
 
@@ -1269,10 +1227,9 @@ class XPIDLLexer(Lexer):
         try:
             self.type = T97
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:5: ( '<<' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:7: '<<'
-            self.match("<<")
-
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:55:5: ( '+' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:55:7: '+'
+            self.match(u'+')
 
 
 
@@ -1286,13 +1243,58 @@ class XPIDLLexer(Lexer):
 
 
 
+    # $ANTLR start T98
+    def mT98(self, ):
+
+        try:
+            self.type = T98
+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:56:5: ( '-' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:56:7: '-'
+            self.match(u'-')
+
+
+
+
+
+        finally:
+
+            pass
+
+    # $ANTLR end T98
+
+
+
+    # $ANTLR start T99
+    def mT99(self, ):
+
+        try:
+            self.type = T99
+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:5: ( '<<' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:7: '<<'
+            self.match("<<")
+
+
+
+
+
+
+        finally:
+
+            pass
+
+    # $ANTLR end T99
+
+
+
     # $ANTLR start Integer
     def mInteger(self, ):
 
         try:
             self.type = Integer
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:237:2: ( DecimalInteger | HexInteger )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:286:2: ( DecimalInteger | HexInteger )
             alt1 = 2
             LA1_0 = self.input.LA(1)
 
@@ -1306,18 +1308,18 @@ class XPIDLLexer(Lexer):
             elif ((u'1' <= LA1_0 <= u'9')) :
                 alt1 = 1
             else:
-                nvae = NoViableAltException("236:1: Integer : ( DecimalInteger | HexInteger );", 1, 0, self.input)
+                nvae = NoViableAltException("285:1: Integer : ( DecimalInteger | HexInteger );", 1, 0, self.input)
 
                 raise nvae
 
             if alt1 == 1:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:237:4: DecimalInteger
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:286:4: DecimalInteger
                 self.mDecimalInteger()
 
 
 
             elif alt1 == 2:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:238:4: HexInteger
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:287:4: HexInteger
                 self.mHexInteger()
 
 
@@ -1335,8 +1337,8 @@ class XPIDLLexer(Lexer):
     def mHexInteger(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:242:2: ( '0' ( 'x' | 'X' ) ( HexChar )+ )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:242:4: '0' ( 'x' | 'X' ) ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:291:2: ( '0' ( 'x' | 'X' ) ( HexChar )+ )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:291:4: '0' ( 'x' | 'X' ) ( HexChar )+
             self.match(u'0')
 
             if self.input.LA(1) == u'X' or self.input.LA(1) == u'x':
@@ -1348,7 +1350,7 @@ class XPIDLLexer(Lexer):
                 raise mse
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:242:20: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:291:20: ( HexChar )+
             cnt2 = 0
             while True: #loop2
                 alt2 = 2
@@ -1359,7 +1361,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt2 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:242:20: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:291:20: HexChar
                     self.mHexChar()
 
 
@@ -1390,9 +1392,9 @@ class XPIDLLexer(Lexer):
     def mDecimalInteger(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:246:2: ( ( DecimalChar )+ )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:246:4: ( DecimalChar )+
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:246:4: ( DecimalChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:295:2: ( ( DecimalChar )+ )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:295:4: ( DecimalChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:295:4: ( DecimalChar )+
             cnt3 = 0
             while True: #loop3
                 alt3 = 2
@@ -1403,7 +1405,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt3 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:246:4: DecimalChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:295:4: DecimalChar
                     self.mDecimalChar()
 
 
@@ -1434,10 +1436,10 @@ class XPIDLLexer(Lexer):
     def mDecimalChar(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:250:2: ( ( '0' .. '9' ) )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:250:4: ( '0' .. '9' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:250:4: ( '0' .. '9' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:250:5: '0' .. '9'
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:299:2: ( ( '0' .. '9' ) )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:299:4: ( '0' .. '9' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:299:4: ( '0' .. '9' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:299:5: '0' .. '9'
             self.matchRange(u'0', u'9')
 
 
@@ -1461,11 +1463,11 @@ class XPIDLLexer(Lexer):
         try:
             self.type = Identifier
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:254:2: ( IdentifierStart ( IdentifierPart )* )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:254:4: IdentifierStart ( IdentifierPart )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:2: ( IdentifierStart ( IdentifierPart )* )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:4: IdentifierStart ( IdentifierPart )*
             self.mIdentifierStart()
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:254:20: ( IdentifierPart )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:20: ( IdentifierPart )*
             while True: #loop4
                 alt4 = 2
                 LA4_0 = self.input.LA(1)
@@ -1475,7 +1477,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt4 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:254:20: IdentifierPart
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:20: IdentifierPart
                     self.mIdentifierPart()
 
 
@@ -1500,7 +1502,7 @@ class XPIDLLexer(Lexer):
     def mIdentifierStart(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:2: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:2: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) )
             alt5 = 2
             LA5_0 = self.input.LA(1)
 
@@ -1509,14 +1511,14 @@ class XPIDLLexer(Lexer):
             elif ((u'A' <= LA5_0 <= u'Z')) :
                 alt5 = 2
             else:
-                nvae = NoViableAltException("257:10: fragment IdentifierStart : ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) );", 5, 0, self.input)
+                nvae = NoViableAltException("306:10: fragment IdentifierStart : ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) );", 5, 0, self.input)
 
                 raise nvae
 
             if alt5 == 1:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:4: ( 'a' .. 'z' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:4: ( 'a' .. 'z' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:5: 'a' .. 'z'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:4: ( 'a' .. 'z' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:4: ( 'a' .. 'z' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:5: 'a' .. 'z'
                 self.matchRange(u'a', u'z')
 
 
@@ -1525,9 +1527,9 @@ class XPIDLLexer(Lexer):
 
 
             elif alt5 == 2:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:15: ( 'A' .. 'Z' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:15: ( 'A' .. 'Z' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:258:16: 'A' .. 'Z'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:15: ( 'A' .. 'Z' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:15: ( 'A' .. 'Z' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:307:16: 'A' .. 'Z'
                 self.matchRange(u'A', u'Z')
 
 
@@ -1548,7 +1550,7 @@ class XPIDLLexer(Lexer):
     def mIdentifierPart(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:262:2: ( IdentifierStart | '_' | ( '0' .. '9' ) )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:311:2: ( IdentifierStart | '_' | ( '0' .. '9' ) )
             alt6 = 3
             LA6 = self.input.LA(1)
             if LA6 == u'A' or LA6 == u'B' or LA6 == u'C' or LA6 == u'D' or LA6 == u'E' or LA6 == u'F' or LA6 == u'G' or LA6 == u'H' or LA6 == u'I' or LA6 == u'J' or LA6 == u'K' or LA6 == u'L' or LA6 == u'M' or LA6 == u'N' or LA6 == u'O' or LA6 == u'P' or LA6 == u'Q' or LA6 == u'R' or LA6 == u'S' or LA6 == u'T' or LA6 == u'U' or LA6 == u'V' or LA6 == u'W' or LA6 == u'X' or LA6 == u'Y' or LA6 == u'Z' or LA6 == u'a' or LA6 == u'b' or LA6 == u'c' or LA6 == u'd' or LA6 == u'e' or LA6 == u'f' or LA6 == u'g' or LA6 == u'h' or LA6 == u'i' or LA6 == u'j' or LA6 == u'k' or LA6 == u'l' or LA6 == u'm' or LA6 == u'n' or LA6 == u'o' or LA6 == u'p' or LA6 == u'q' or LA6 == u'r' or LA6 == u's' or LA6 == u't' or LA6 == u'u' or LA6 == u'v' or LA6 == u'w' or LA6 == u'x' or LA6 == u'y' or LA6 == u'z':
@@ -1558,26 +1560,26 @@ class XPIDLLexer(Lexer):
             elif LA6 == u'0' or LA6 == u'1' or LA6 == u'2' or LA6 == u'3' or LA6 == u'4' or LA6 == u'5' or LA6 == u'6' or LA6 == u'7' or LA6 == u'8' or LA6 == u'9':
                 alt6 = 3
             else:
-                nvae = NoViableAltException("261:10: fragment IdentifierPart : ( IdentifierStart | '_' | ( '0' .. '9' ) );", 6, 0, self.input)
+                nvae = NoViableAltException("310:10: fragment IdentifierPart : ( IdentifierStart | '_' | ( '0' .. '9' ) );", 6, 0, self.input)
 
                 raise nvae
 
             if alt6 == 1:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:262:4: IdentifierStart
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:311:4: IdentifierStart
                 self.mIdentifierStart()
 
 
 
             elif alt6 == 2:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:263:4: '_'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:312:4: '_'
                 self.match(u'_')
 
 
 
             elif alt6 == 3:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:4: ( '0' .. '9' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:4: ( '0' .. '9' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:5: '0' .. '9'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:313:4: ( '0' .. '9' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:313:4: ( '0' .. '9' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:313:5: '0' .. '9'
                 self.matchRange(u'0', u'9')
 
 
@@ -1600,12 +1602,12 @@ class XPIDLLexer(Lexer):
         try:
             self.type = UUID
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:2: ( 'uuid' ( WhiteSpace )* '(' UUIDPayload ')' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:4: 'uuid' ( WhiteSpace )* '(' UUIDPayload ')'
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:317:2: ( 'uuid' ( WhiteSpace )* '(' UUIDPayload ')' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:317:4: 'uuid' ( WhiteSpace )* '(' UUIDPayload ')'
             self.match("uuid")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:11: ( WhiteSpace )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:317:11: ( WhiteSpace )*
             while True: #loop7
                 alt7 = 2
                 LA7_0 = self.input.LA(1)
@@ -1615,7 +1617,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt7 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:11: WhiteSpace
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:317:11: WhiteSpace
                     self.mWhiteSpace()
 
 
@@ -1646,9 +1648,9 @@ class XPIDLLexer(Lexer):
     def mUUIDPayload(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:2: ( ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:4: ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:4: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:2: ( ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:4: ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+ '-' ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:4: ( HexChar )+
             cnt8 = 0
             while True: #loop8
                 alt8 = 2
@@ -1659,7 +1661,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt8 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:4: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:4: HexChar
                     self.mHexChar()
 
 
@@ -1676,7 +1678,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'-')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:17: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:17: ( HexChar )+
             cnt9 = 0
             while True: #loop9
                 alt9 = 2
@@ -1687,7 +1689,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt9 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:17: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:17: HexChar
                     self.mHexChar()
 
 
@@ -1704,7 +1706,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'-')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:30: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:30: ( HexChar )+
             cnt10 = 0
             while True: #loop10
                 alt10 = 2
@@ -1715,7 +1717,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt10 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:30: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:30: HexChar
                     self.mHexChar()
 
 
@@ -1732,7 +1734,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'-')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:43: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:43: ( HexChar )+
             cnt11 = 0
             while True: #loop11
                 alt11 = 2
@@ -1743,7 +1745,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt11 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:43: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:43: HexChar
                     self.mHexChar()
 
 
@@ -1760,7 +1762,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'-')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:56: ( HexChar )+
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:56: ( HexChar )+
             cnt12 = 0
             while True: #loop12
                 alt12 = 2
@@ -1771,7 +1773,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt12 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:56: HexChar
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:322:56: HexChar
                     self.mHexChar()
 
 
@@ -1802,7 +1804,7 @@ class XPIDLLexer(Lexer):
     def mHexChar(self, ):
 
         try:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:2: ( ( '0' .. '9' ) | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:326:2: ( ( '0' .. '9' ) | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) )
             alt13 = 3
             LA13 = self.input.LA(1)
             if LA13 == u'0' or LA13 == u'1' or LA13 == u'2' or LA13 == u'3' or LA13 == u'4' or LA13 == u'5' or LA13 == u'6' or LA13 == u'7' or LA13 == u'8' or LA13 == u'9':
@@ -1812,14 +1814,14 @@ class XPIDLLexer(Lexer):
             elif LA13 == u'A' or LA13 == u'B' or LA13 == u'C' or LA13 == u'D' or LA13 == u'E' or LA13 == u'F':
                 alt13 = 3
             else:
-                nvae = NoViableAltException("276:10: fragment HexChar : ( ( '0' .. '9' ) | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) );", 13, 0, self.input)
+                nvae = NoViableAltException("325:10: fragment HexChar : ( ( '0' .. '9' ) | ( 'a' .. 'f' ) | ( 'A' .. 'F' ) );", 13, 0, self.input)
 
                 raise nvae
 
             if alt13 == 1:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:4: ( '0' .. '9' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:4: ( '0' .. '9' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:5: '0' .. '9'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:326:4: ( '0' .. '9' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:326:4: ( '0' .. '9' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:326:5: '0' .. '9'
                 self.matchRange(u'0', u'9')
 
 
@@ -1828,9 +1830,9 @@ class XPIDLLexer(Lexer):
 
 
             elif alt13 == 2:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:4: ( 'a' .. 'f' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:4: ( 'a' .. 'f' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:5: 'a' .. 'f'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:4: ( 'a' .. 'f' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:4: ( 'a' .. 'f' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:5: 'a' .. 'f'
                 self.matchRange(u'a', u'f')
 
 
@@ -1839,9 +1841,9 @@ class XPIDLLexer(Lexer):
 
 
             elif alt13 == 3:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:15: ( 'A' .. 'F' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:15: ( 'A' .. 'F' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:278:16: 'A' .. 'F'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:15: ( 'A' .. 'F' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:15: ( 'A' .. 'F' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:327:16: 'A' .. 'F'
                 self.matchRange(u'A', u'F')
 
 
@@ -1864,12 +1866,12 @@ class XPIDLLexer(Lexer):
         try:
             self.type = InlineCHeader
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:2: ( '%{C++' ( options {greedy=false; } : . )* '%}' ( 'C++' )? )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:4: '%{C++' ( options {greedy=false; } : . )* '%}' ( 'C++' )?
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:2: ( '%{C++' ( options {greedy=false; } : . )* '%}' ( 'C++' )? )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:4: '%{C++' ( options {greedy=false; } : . )* '%}' ( 'C++' )?
             self.match("%{C++")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:12: ( options {greedy=false; } : . )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:12: ( options {greedy=false; } : . )*
             while True: #loop14
                 alt14 = 2
                 LA14_0 = self.input.LA(1)
@@ -1888,7 +1890,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt14 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:39: .
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:39: .
                     self.matchAny()
 
 
@@ -1900,14 +1902,14 @@ class XPIDLLexer(Lexer):
             self.match("%}")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:48: ( 'C++' )?
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:48: ( 'C++' )?
             alt15 = 2
             LA15_0 = self.input.LA(1)
 
             if (LA15_0 == u'C') :
                 alt15 = 1
             if alt15 == 1:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:282:48: 'C++'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:331:48: 'C++'
                 self.match("C++")
 
 
@@ -1932,12 +1934,12 @@ class XPIDLLexer(Lexer):
         try:
             self.type = Include
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:2: ( '#include' ( WhiteSpace )* '\"' (~ ( '\\n' | '\"' ) )* '\"' ( WhiteSpace )* '\\n' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:4: '#include' ( WhiteSpace )* '\"' (~ ( '\\n' | '\"' ) )* '\"' ( WhiteSpace )* '\\n'
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:2: ( '#include' ( WhiteSpace )* '\"' (~ ( '\\n' | '\"' ) )* '\"' ( WhiteSpace )* '\\n' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:4: '#include' ( WhiteSpace )* '\"' (~ ( '\\n' | '\"' ) )* '\"' ( WhiteSpace )* '\\n'
             self.match("#include")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:15: ( WhiteSpace )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:15: ( WhiteSpace )*
             while True: #loop16
                 alt16 = 2
                 LA16_0 = self.input.LA(1)
@@ -1947,7 +1949,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt16 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:15: WhiteSpace
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:15: WhiteSpace
                     self.mWhiteSpace()
 
 
@@ -1958,7 +1960,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'"')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:31: (~ ( '\\n' | '\"' ) )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:31: (~ ( '\\n' | '\"' ) )*
             while True: #loop17
                 alt17 = 2
                 LA17_0 = self.input.LA(1)
@@ -1968,7 +1970,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt17 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:31: ~ ( '\\n' | '\"' )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:31: ~ ( '\\n' | '\"' )
                     if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'!') or (u'#' <= self.input.LA(1) <= u'\uFFFE'):
                         self.input.consume();
 
@@ -1986,7 +1988,7 @@ class XPIDLLexer(Lexer):
 
             self.match(u'"')
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:50: ( WhiteSpace )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:50: ( WhiteSpace )*
             while True: #loop18
                 alt18 = 2
                 LA18_0 = self.input.LA(1)
@@ -2003,7 +2005,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt18 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:289:50: WhiteSpace
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:338:50: WhiteSpace
                     self.mWhiteSpace()
 
 
@@ -2032,12 +2034,12 @@ class XPIDLLexer(Lexer):
         try:
             self.type = BlockComment
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:294:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:294:4: '/*' ( options {greedy=false; } : . )* '*/'
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:343:2: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:343:4: '/*' ( options {greedy=false; } : . )* '*/'
             self.match("/*")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:294:9: ( options {greedy=false; } : . )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:343:9: ( options {greedy=false; } : . )*
             while True: #loop19
                 alt19 = 2
                 LA19_0 = self.input.LA(1)
@@ -2056,7 +2058,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt19 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:294:36: .
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:343:36: .
                     self.matchAny()
 
 
@@ -2089,12 +2091,12 @@ class XPIDLLexer(Lexer):
         try:
             self.type = LineComment
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:298:2: ( '//' (~ ( '\\n' ) )* '\\n' )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:298:4: '//' (~ ( '\\n' ) )* '\\n'
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:347:2: ( '//' (~ ( '\\n' ) )* '\\n' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:347:4: '//' (~ ( '\\n' ) )* '\\n'
             self.match("//")
 
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:298:9: (~ ( '\\n' ) )*
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:347:9: (~ ( '\\n' ) )*
             while True: #loop20
                 alt20 = 2
                 LA20_0 = self.input.LA(1)
@@ -2104,7 +2106,7 @@ class XPIDLLexer(Lexer):
 
 
                 if alt20 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:298:9: ~ ( '\\n' )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:347:9: ~ ( '\\n' )
                     if (u'\u0000' <= self.input.LA(1) <= u'\t') or (u'\u000B' <= self.input.LA(1) <= u'\uFFFE'):
                         self.input.consume();
 
@@ -2143,8 +2145,8 @@ class XPIDLLexer(Lexer):
         try:
             self.type = WhiteSpace
 
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:2: ( ( '\\n' | '\\r' | '\\t' | '\\v' | '\\f' | ' ' ) )
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:303:4: ( '\\n' | '\\r' | '\\t' | '\\v' | '\\f' | ' ' )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:352:2: ( ( '\\n' | '\\r' | '\\t' | '\\v' | '\\f' | ' ' ) )
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:352:4: ( '\\n' | '\\r' | '\\t' | '\\v' | '\\f' | ' ' )
             if (u'\t' <= self.input.LA(1) <= u'\n') or (u'\f' <= self.input.LA(1) <= u'\r') or self.input.LA(1) == u' ' or self.input.LA(1) == u'v':
                 self.input.consume();
 
@@ -2170,312 +2172,312 @@ class XPIDLLexer(Lexer):
 
 
     def mTokens(self):
-        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:8: ( T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | Integer | Identifier | UUID | InlineCHeader | Include | BlockComment | LineComment | WhiteSpace )
+        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:8: ( T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | Integer | Identifier | UUID | InlineCHeader | Include | BlockComment | LineComment | WhiteSpace )
         alt21 = 59
         alt21 = self.dfa21.predict(self.input)
         if alt21 == 1:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:10: T47
-            self.mT47()
-
-
-
-        elif alt21 == 2:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:14: T48
-            self.mT48()
-
-
-
-        elif alt21 == 3:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:18: T49
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:10: T49
             self.mT49()
 
 
 
-        elif alt21 == 4:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:22: T50
+        elif alt21 == 2:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:14: T50
             self.mT50()
 
 
 
-        elif alt21 == 5:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:26: T51
+        elif alt21 == 3:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:18: T51
             self.mT51()
 
 
 
-        elif alt21 == 6:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:30: T52
+        elif alt21 == 4:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:22: T52
             self.mT52()
 
 
 
-        elif alt21 == 7:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:34: T53
+        elif alt21 == 5:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:26: T53
             self.mT53()
 
 
 
-        elif alt21 == 8:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:38: T54
+        elif alt21 == 6:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:30: T54
             self.mT54()
 
 
 
-        elif alt21 == 9:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:42: T55
+        elif alt21 == 7:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:34: T55
             self.mT55()
 
 
 
-        elif alt21 == 10:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:46: T56
+        elif alt21 == 8:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:38: T56
             self.mT56()
 
 
 
-        elif alt21 == 11:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:50: T57
+        elif alt21 == 9:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:42: T57
             self.mT57()
 
 
 
-        elif alt21 == 12:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:54: T58
+        elif alt21 == 10:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:46: T58
             self.mT58()
 
 
 
-        elif alt21 == 13:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:58: T59
+        elif alt21 == 11:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:50: T59
             self.mT59()
 
 
 
-        elif alt21 == 14:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:62: T60
+        elif alt21 == 12:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:54: T60
             self.mT60()
 
 
 
-        elif alt21 == 15:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:66: T61
+        elif alt21 == 13:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:58: T61
             self.mT61()
 
 
 
-        elif alt21 == 16:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:70: T62
+        elif alt21 == 14:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:62: T62
             self.mT62()
 
 
 
-        elif alt21 == 17:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:74: T63
+        elif alt21 == 15:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:66: T63
             self.mT63()
 
 
 
-        elif alt21 == 18:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:78: T64
+        elif alt21 == 16:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:70: T64
             self.mT64()
 
 
 
-        elif alt21 == 19:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:82: T65
+        elif alt21 == 17:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:74: T65
             self.mT65()
 
 
 
-        elif alt21 == 20:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:86: T66
+        elif alt21 == 18:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:78: T66
             self.mT66()
 
 
 
-        elif alt21 == 21:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:90: T67
+        elif alt21 == 19:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:82: T67
             self.mT67()
 
 
 
-        elif alt21 == 22:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:94: T68
+        elif alt21 == 20:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:86: T68
             self.mT68()
 
 
 
-        elif alt21 == 23:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:98: T69
+        elif alt21 == 21:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:90: T69
             self.mT69()
 
 
 
-        elif alt21 == 24:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:102: T70
+        elif alt21 == 22:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:94: T70
             self.mT70()
 
 
 
-        elif alt21 == 25:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:106: T71
+        elif alt21 == 23:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:98: T71
             self.mT71()
 
 
 
-        elif alt21 == 26:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:110: T72
+        elif alt21 == 24:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:102: T72
             self.mT72()
 
 
 
-        elif alt21 == 27:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:114: T73
+        elif alt21 == 25:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:106: T73
             self.mT73()
 
 
 
-        elif alt21 == 28:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:118: T74
+        elif alt21 == 26:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:110: T74
             self.mT74()
 
 
 
-        elif alt21 == 29:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:122: T75
+        elif alt21 == 27:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:114: T75
             self.mT75()
 
 
 
-        elif alt21 == 30:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:126: T76
+        elif alt21 == 28:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:118: T76
             self.mT76()
 
 
 
-        elif alt21 == 31:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:130: T77
+        elif alt21 == 29:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:122: T77
             self.mT77()
 
 
 
-        elif alt21 == 32:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:134: T78
+        elif alt21 == 30:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:126: T78
             self.mT78()
 
 
 
-        elif alt21 == 33:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:138: T79
+        elif alt21 == 31:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:130: T79
             self.mT79()
 
 
 
-        elif alt21 == 34:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:142: T80
+        elif alt21 == 32:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:134: T80
             self.mT80()
 
 
 
-        elif alt21 == 35:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:146: T81
+        elif alt21 == 33:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:138: T81
             self.mT81()
 
 
 
-        elif alt21 == 36:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:150: T82
+        elif alt21 == 34:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:142: T82
             self.mT82()
 
 
 
-        elif alt21 == 37:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:154: T83
+        elif alt21 == 35:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:146: T83
             self.mT83()
 
 
 
-        elif alt21 == 38:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:158: T84
+        elif alt21 == 36:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:150: T84
             self.mT84()
 
 
 
-        elif alt21 == 39:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:162: T85
+        elif alt21 == 37:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:154: T85
             self.mT85()
 
 
 
-        elif alt21 == 40:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:166: T86
+        elif alt21 == 38:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:158: T86
             self.mT86()
 
 
 
-        elif alt21 == 41:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:170: T87
+        elif alt21 == 39:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:162: T87
             self.mT87()
 
 
 
-        elif alt21 == 42:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:174: T88
+        elif alt21 == 40:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:166: T88
             self.mT88()
 
 
 
-        elif alt21 == 43:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:178: T89
+        elif alt21 == 41:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:170: T89
             self.mT89()
 
 
 
-        elif alt21 == 44:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:182: T90
+        elif alt21 == 42:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:174: T90
             self.mT90()
 
 
 
-        elif alt21 == 45:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:186: T91
+        elif alt21 == 43:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:178: T91
             self.mT91()
 
 
 
-        elif alt21 == 46:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:190: T92
+        elif alt21 == 44:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:182: T92
             self.mT92()
 
 
 
-        elif alt21 == 47:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:194: T93
+        elif alt21 == 45:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:186: T93
             self.mT93()
 
 
 
-        elif alt21 == 48:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:198: T94
+        elif alt21 == 46:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:190: T94
             self.mT94()
 
 
 
-        elif alt21 == 49:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:202: T95
+        elif alt21 == 47:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:194: T95
             self.mT95()
 
 
 
-        elif alt21 == 50:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:206: T96
+        elif alt21 == 48:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:198: T96
             self.mT96()
 
 
 
-        elif alt21 == 51:
-            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:210: T97
+        elif alt21 == 49:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:202: T97
             self.mT97()
+
+
+
+        elif alt21 == 50:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:206: T98
+            self.mT98()
+
+
+
+        elif alt21 == 51:
+            # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:1:210: T99
+            self.mT99()
 
 
 

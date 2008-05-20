@@ -1,4 +1,4 @@
-# $ANTLR 3.0.1 /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g 2008-05-19 21:53:24
+# $ANTLR 3.0.1 /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g 2008-05-19 22:12:29
 
 from antlr3 import *
 from antlr3.compat import set, frozenset
@@ -12,63 +12,65 @@ HIDDEN = BaseRecognizer.HIDDEN
 
 # token types
 FORWARD=7
-UUIDPayload=44
-LONG_LONG=22
-UUID=34
-InlineCHeader=33
+UUIDPayload=46
+LONG_LONG=24
+UUID=36
+InlineCHeader=35
 CONST=6
-CHAR=28
-LineComment=46
-PARAM=13
-FLOAT=26
+CHAR=30
+LineComment=48
+PARAM=15
+FLOAT=28
 EOF=-1
-WCHAR=29
-Identifier=36
-BlockComment=45
-MODIFIERS=11
-BOOLEAN=18
-HexChar=39
-UNSIGNED_LONG=24
-UNSIGNED_SHORT=23
-DOUBLE=27
-HexInteger=38
-WhiteSpace=43
-VOID=17
+WCHAR=31
+Identifier=38
+BlockComment=47
+MODIFIERS=13
+BOOLEAN=20
+HexChar=41
+UNSIGNED_LONG=26
+INCLUDE=8
+UNSIGNED_SHORT=25
+DOUBLE=29
+HexInteger=40
+WhiteSpace=45
+VOID=19
 BODY=5
-WSTRING=31
-UNSIGNED_LONG_LONG=25
+WSTRING=33
+UNSIGNED_LONG_LONG=27
+IdentifierPart=44
 ATTR=4
-IdentifierPart=42
-PARAMS=14
-I_UUID=9
-DecimalChar=40
-TYPEDEF=16
-DecimalInteger=37
-IdentifierStart=41
-NATIVE=12
-SHORT=20
-Include=32
-PARENTS=15
-INTERFACE=8
-LONG=21
-METHOD=10
-Integer=35
-OCTET=19
-STRING=30
+PARAMS=16
+I_UUID=11
+DecimalChar=42
+TYPEDEF=18
+DecimalInteger=39
+IdentifierStart=43
+NATIVE=14
+SHORT=22
+Include=34
+PARENTS=17
+INTERFACE=10
+INLINE=9
+LONG=23
+METHOD=12
+Integer=37
+OCTET=21
+STRING=32
 
 # token names
 tokenNames = [
     "<invalid>", "<EOR>", "<DOWN>", "<UP>", 
-    "ATTR", "BODY", "CONST", "FORWARD", "INTERFACE", "I_UUID", "METHOD", 
-    "MODIFIERS", "NATIVE", "PARAM", "PARAMS", "PARENTS", "TYPEDEF", "VOID", 
-    "BOOLEAN", "OCTET", "SHORT", "LONG", "LONG_LONG", "UNSIGNED_SHORT", 
-    "UNSIGNED_LONG", "UNSIGNED_LONG_LONG", "FLOAT", "DOUBLE", "CHAR", "WCHAR", 
-    "STRING", "WSTRING", "Include", "InlineCHeader", "UUID", "Integer", 
-    "Identifier", "DecimalInteger", "HexInteger", "HexChar", "DecimalChar", 
-    "IdentifierStart", "IdentifierPart", "WhiteSpace", "UUIDPayload", "BlockComment", 
-    "LineComment", "'interface'", "';'", "'['", "','", "']'", "':'", "'{'", 
-    "'}'", "'scriptable'", "'function'", "'object'", "'notxpcom'", "'noscript'", 
-    "'('", "')'", "'const'", "'='", "'short'", "'long'", "'attribute'", 
+    "ATTR", "BODY", "CONST", "FORWARD", "INCLUDE", "INLINE", "INTERFACE", 
+    "I_UUID", "METHOD", "MODIFIERS", "NATIVE", "PARAM", "PARAMS", "PARENTS", 
+    "TYPEDEF", "VOID", "BOOLEAN", "OCTET", "SHORT", "LONG", "LONG_LONG", 
+    "UNSIGNED_SHORT", "UNSIGNED_LONG", "UNSIGNED_LONG_LONG", "FLOAT", "DOUBLE", 
+    "CHAR", "WCHAR", "STRING", "WSTRING", "Include", "InlineCHeader", "UUID", 
+    "Integer", "Identifier", "DecimalInteger", "HexInteger", "HexChar", 
+    "DecimalChar", "IdentifierStart", "IdentifierPart", "WhiteSpace", "UUIDPayload", 
+    "BlockComment", "LineComment", "'interface'", "';'", "'['", "','", "']'", 
+    "':'", "'{'", "'}'", "'scriptable'", "'function'", "'object'", "'notxpcom'", 
+    "'noscript'", "'('", "')'", "'const'", "'='", "'short'", "'long'", "'attribute'", 
     "'in'", "'out'", "'inout'", "'array'", "'retval'", "'shared'", "'size_is'", 
     "'native'", "'ref'", "'ptr'", "'nsid'", "'domstring'", "'utf8string'", 
     "'cstring'", "'astring'", "'typedef'", "'boolean'", "'void'", "'string'", 
@@ -114,7 +116,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start idlFile
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:43:1: idlFile : ( toplevel )* EOF ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:84:1: idlFile : ( toplevel )* EOF ;
     def idlFile(self, ):
 
         retval = self.idlFile_return()
@@ -130,22 +132,22 @@ class XPIDLParser(Parser):
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:2: ( ( toplevel )* EOF )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:4: ( toplevel )* EOF
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:85:2: ( ( toplevel )* EOF )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:85:4: ( toplevel )* EOF
                 root_0 = self.adaptor.nil()
 
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:4: ( toplevel )*
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:85:4: ( toplevel )*
                 while True: #loop1
                     alt1 = 2
                     LA1_0 = self.input.LA(1)
 
-                    if ((Include <= LA1_0 <= InlineCHeader) or LA1_0 == 47 or LA1_0 == 49 or LA1_0 == 82) :
+                    if ((Include <= LA1_0 <= InlineCHeader) or LA1_0 == 49 or LA1_0 == 51 or LA1_0 == 84) :
                         alt1 = 1
 
 
                     if alt1 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:44:4: toplevel
-                        self.following.append(self.FOLLOW_toplevel_in_idlFile147)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:85:4: toplevel
+                        self.following.append(self.FOLLOW_toplevel_in_idlFile158)
                         toplevel1 = self.toplevel()
                         self.following.pop()
                         if self.failed:
@@ -159,7 +161,7 @@ class XPIDLParser(Parser):
 
 
                 EOF2 = self.input.LT(1)
-                self.match(self.input, EOF, self.FOLLOW_EOF_in_idlFile150)
+                self.match(self.input, EOF, self.FOLLOW_EOF_in_idlFile161)
                 if self.failed:
                     return retval
 
@@ -192,7 +194,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start toplevel
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:47:1: toplevel : ( interface | typedef | nativeTypeDecl | Include | InlineCHeader );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:88:1: toplevel : ( interface | typedef | nativeTypeDecl | include | inline );
     def toplevel(self, ):
 
         retval = self.toplevel_return()
@@ -200,42 +202,42 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        Include6 = None
-        InlineCHeader7 = None
         interface3 = None
 
         typedef4 = None
 
         nativeTypeDecl5 = None
 
+        include6 = None
 
-        Include6_tree = None
-        InlineCHeader7_tree = None
+        inline7 = None
+
+
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:2: ( interface | typedef | nativeTypeDecl | Include | InlineCHeader )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:89:2: ( interface | typedef | nativeTypeDecl | include | inline )
                 alt2 = 5
                 LA2 = self.input.LA(1)
-                if LA2 == 47:
+                if LA2 == 49:
                     alt2 = 1
-                elif LA2 == 49:
+                elif LA2 == 51:
                     LA2_2 = self.input.LA(2)
 
-                    if ((75 <= LA2_2 <= 81)) :
-                        alt2 = 3
-                    elif (LA2_2 == UUID or (55 <= LA2_2 <= 59)) :
+                    if (LA2_2 == UUID or (57 <= LA2_2 <= 61)) :
                         alt2 = 1
+                    elif ((77 <= LA2_2 <= 83)) :
+                        alt2 = 3
                     else:
                         if self.backtracking > 0:
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("47:1: toplevel : ( interface | typedef | nativeTypeDecl | Include | InlineCHeader );", 2, 2, self.input)
+                        nvae = NoViableAltException("88:1: toplevel : ( interface | typedef | nativeTypeDecl | include | inline );", 2, 2, self.input)
 
                         raise nvae
 
-                elif LA2 == 82:
+                elif LA2 == 84:
                     alt2 = 2
                 elif LA2 == Include:
                     alt2 = 4
@@ -246,15 +248,15 @@ class XPIDLParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("47:1: toplevel : ( interface | typedef | nativeTypeDecl | Include | InlineCHeader );", 2, 0, self.input)
+                    nvae = NoViableAltException("88:1: toplevel : ( interface | typedef | nativeTypeDecl | include | inline );", 2, 0, self.input)
 
                     raise nvae
 
                 if alt2 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:48:4: interface
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:89:4: interface
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_interface_in_toplevel162)
+                    self.following.append(self.FOLLOW_interface_in_toplevel173)
                     interface3 = self.interface()
                     self.following.pop()
                     if self.failed:
@@ -264,10 +266,10 @@ class XPIDLParser(Parser):
 
 
                 elif alt2 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:49:4: typedef
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:90:4: typedef
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_typedef_in_toplevel167)
+                    self.following.append(self.FOLLOW_typedef_in_toplevel178)
                     typedef4 = self.typedef()
                     self.following.pop()
                     if self.failed:
@@ -277,10 +279,10 @@ class XPIDLParser(Parser):
 
 
                 elif alt2 == 3:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:50:4: nativeTypeDecl
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:91:4: nativeTypeDecl
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_nativeTypeDecl_in_toplevel172)
+                    self.following.append(self.FOLLOW_nativeTypeDecl_in_toplevel183)
                     nativeTypeDecl5 = self.nativeTypeDecl()
                     self.following.pop()
                     if self.failed:
@@ -290,31 +292,29 @@ class XPIDLParser(Parser):
 
 
                 elif alt2 == 4:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:51:4: Include
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:92:4: include
                     root_0 = self.adaptor.nil()
 
-                    Include6 = self.input.LT(1)
-                    self.match(self.input, Include, self.FOLLOW_Include_in_toplevel177)
+                    self.following.append(self.FOLLOW_include_in_toplevel188)
+                    include6 = self.include()
+                    self.following.pop()
                     if self.failed:
                         return retval
-
-                    Include6_tree = self.adaptor.createWithPayload(Include6)
-                    self.adaptor.addChild(root_0, Include6_tree)
-
+                    if self.backtracking == 0:
+                        self.adaptor.addChild(root_0, include6.tree)
 
 
                 elif alt2 == 5:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:52:4: InlineCHeader
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:93:4: inline
                     root_0 = self.adaptor.nil()
 
-                    InlineCHeader7 = self.input.LT(1)
-                    self.match(self.input, InlineCHeader, self.FOLLOW_InlineCHeader_in_toplevel182)
+                    self.following.append(self.FOLLOW_inline_in_toplevel193)
+                    inline7 = self.inline()
+                    self.following.pop()
                     if self.failed:
                         return retval
-
-                    InlineCHeader7_tree = self.adaptor.createWithPayload(InlineCHeader7)
-                    self.adaptor.addChild(root_0, InlineCHeader7_tree)
-
+                    if self.backtracking == 0:
+                        self.adaptor.addChild(root_0, inline7.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -335,6 +335,168 @@ class XPIDLParser(Parser):
 
     # $ANTLR end toplevel
 
+    class include_return(object):
+        def __init__(self):
+            self.start = None
+            self.stop = None
+
+            self.tree = None
+
+
+    # $ANTLR start include
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:96:1: include : Include -> ^( INCLUDE Include ) ;
+    def include(self, ):
+
+        retval = self.include_return()
+        retval.start = self.input.LT(1)
+
+        root_0 = None
+
+        Include8 = None
+
+        Include8_tree = None
+        stream_Include = RewriteRuleTokenStream(self.adaptor, "token Include")
+
+        try:
+            try:
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:97:2: ( Include -> ^( INCLUDE Include ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:97:4: Include
+                Include8 = self.input.LT(1)
+                self.match(self.input, Include, self.FOLLOW_Include_in_include204)
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_Include.add(Include8)
+                # AST Rewrite
+                # elements: Include
+                # token labels: 
+                # rule labels: retval
+                # token list labels: 
+                # rule list labels: 
+                if self.backtracking == 0:
+
+                    retval.tree = root_0
+
+                    if retval is not None:
+                        stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                    else:
+                        stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                    root_0 = self.adaptor.nil()
+                    # 97:12: -> ^( INCLUDE Include )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:97:15: ^( INCLUDE Include )
+                    root_1 = self.adaptor.nil()
+                    root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(INCLUDE, "INCLUDE"), root_1)
+
+                    self.adaptor.addChild(root_1, stream_Include.next())
+
+                    self.adaptor.addChild(root_0, root_1)
+
+
+
+
+
+
+                retval.stop = self.input.LT(-1)
+
+                if self.backtracking == 0:
+
+                    retval.tree = self.adaptor.rulePostProcessing(root_0)
+                    self.adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop)
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+
+        return retval
+
+    # $ANTLR end include
+
+    class inline_return(object):
+        def __init__(self):
+            self.start = None
+            self.stop = None
+
+            self.tree = None
+
+
+    # $ANTLR start inline
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:100:1: inline : InlineCHeader -> ^( INLINE InlineCHeader ) ;
+    def inline(self, ):
+
+        retval = self.inline_return()
+        retval.start = self.input.LT(1)
+
+        root_0 = None
+
+        InlineCHeader9 = None
+
+        InlineCHeader9_tree = None
+        stream_InlineCHeader = RewriteRuleTokenStream(self.adaptor, "token InlineCHeader")
+
+        try:
+            try:
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:101:2: ( InlineCHeader -> ^( INLINE InlineCHeader ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:101:4: InlineCHeader
+                InlineCHeader9 = self.input.LT(1)
+                self.match(self.input, InlineCHeader, self.FOLLOW_InlineCHeader_in_inline223)
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_InlineCHeader.add(InlineCHeader9)
+                # AST Rewrite
+                # elements: InlineCHeader
+                # token labels: 
+                # rule labels: retval
+                # token list labels: 
+                # rule list labels: 
+                if self.backtracking == 0:
+
+                    retval.tree = root_0
+
+                    if retval is not None:
+                        stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                    else:
+                        stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                    root_0 = self.adaptor.nil()
+                    # 101:18: -> ^( INLINE InlineCHeader )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:101:21: ^( INLINE InlineCHeader )
+                    root_1 = self.adaptor.nil()
+                    root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(INLINE, "INLINE"), root_1)
+
+                    self.adaptor.addChild(root_1, stream_InlineCHeader.next())
+
+                    self.adaptor.addChild(root_0, root_1)
+
+
+
+
+
+
+                retval.stop = self.input.LT(-1)
+
+                if self.backtracking == 0:
+
+                    retval.tree = self.adaptor.rulePostProcessing(root_0)
+                    self.adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop)
+
+            except RecognitionException, re:
+                self.reportError(re)
+                self.recover(self.input, re)
+        finally:
+
+            pass
+
+        return retval
+
+    # $ANTLR end inline
+
     class interface_return(object):
         def __init__(self):
             self.start = None
@@ -344,7 +506,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start interface
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:55:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:104:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );
     def interface(self, ):
 
         retval = self.interface_return()
@@ -352,42 +514,42 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal8 = None
-        char_literal10 = None
-        char_literal11 = None
+        string_literal10 = None
+        char_literal12 = None
         char_literal13 = None
-        UUID14 = None
         char_literal15 = None
-        string_literal16 = None
-        char_literal18 = None
+        UUID16 = None
+        char_literal17 = None
+        string_literal18 = None
         char_literal20 = None
         char_literal22 = None
-        char_literal23 = None
-        validId9 = None
+        char_literal24 = None
+        char_literal25 = None
+        validId11 = None
 
-        interfaceModifier12 = None
+        interfaceModifier14 = None
 
-        validId17 = None
+        validId19 = None
 
-        validIdList19 = None
+        validIdList21 = None
 
-        interfaceBody21 = None
+        interfaceBody23 = None
 
 
-        string_literal8_tree = None
-        char_literal10_tree = None
-        char_literal11_tree = None
+        string_literal10_tree = None
+        char_literal12_tree = None
         char_literal13_tree = None
-        UUID14_tree = None
         char_literal15_tree = None
-        string_literal16_tree = None
-        char_literal18_tree = None
+        UUID16_tree = None
+        char_literal17_tree = None
+        string_literal18_tree = None
         char_literal20_tree = None
         char_literal22_tree = None
-        char_literal23_tree = None
+        char_literal24_tree = None
+        char_literal25_tree = None
         stream_49 = RewriteRuleTokenStream(self.adaptor, "token 49")
-        stream_48 = RewriteRuleTokenStream(self.adaptor, "token 48")
-        stream_47 = RewriteRuleTokenStream(self.adaptor, "token 47")
+        stream_56 = RewriteRuleTokenStream(self.adaptor, "token 56")
+        stream_55 = RewriteRuleTokenStream(self.adaptor, "token 55")
         stream_51 = RewriteRuleTokenStream(self.adaptor, "token 51")
         stream_UUID = RewriteRuleTokenStream(self.adaptor, "token UUID")
         stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
@@ -400,26 +562,26 @@ class XPIDLParser(Parser):
         stream_validIdList = RewriteRuleSubtreeStream(self.adaptor, "rule validIdList")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:2: ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:2: ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) )
                 alt6 = 2
                 LA6_0 = self.input.LA(1)
 
-                if (LA6_0 == 47) :
+                if (LA6_0 == 49) :
                     LA6_1 = self.input.LA(2)
 
                     if (LA6_1 == Identifier) :
                         LA6_3 = self.input.LA(3)
 
-                        if (LA6_3 == 48) :
-                            alt6 = 1
-                        elif ((52 <= LA6_3 <= 53)) :
+                        if ((54 <= LA6_3 <= 55)) :
                             alt6 = 2
+                        elif (LA6_3 == 50) :
+                            alt6 = 1
                         else:
                             if self.backtracking > 0:
                                 self.failed = True
                                 return retval
 
-                            nvae = NoViableAltException("55:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 3, self.input)
+                            nvae = NoViableAltException("104:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 3, self.input)
 
                             raise nvae
 
@@ -428,42 +590,42 @@ class XPIDLParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("55:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 1, self.input)
+                        nvae = NoViableAltException("104:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 1, self.input)
 
                         raise nvae
 
-                elif (LA6_0 == 49) :
+                elif (LA6_0 == 51) :
                     alt6 = 2
                 else:
                     if self.backtracking > 0:
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("55:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 0, self.input)
+                    nvae = NoViableAltException("104:1: interface options {backtrack=true; } : ( 'interface' validId ';' -> ^( FORWARD validId ) | ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';' -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) ) );", 6, 0, self.input)
 
                     raise nvae
 
                 if alt6 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:57:4: 'interface' validId ';'
-                    string_literal8 = self.input.LT(1)
-                    self.match(self.input, 47, self.FOLLOW_47_in_interface200)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:4: 'interface' validId ';'
+                    string_literal10 = self.input.LT(1)
+                    self.match(self.input, 49, self.FOLLOW_49_in_interface249)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_47.add(string_literal8)
-                    self.following.append(self.FOLLOW_validId_in_interface202)
-                    validId9 = self.validId()
+                        stream_49.add(string_literal10)
+                    self.following.append(self.FOLLOW_validId_in_interface251)
+                    validId11 = self.validId()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_validId.add(validId9.tree)
-                    char_literal10 = self.input.LT(1)
-                    self.match(self.input, 48, self.FOLLOW_48_in_interface204)
+                        stream_validId.add(validId11.tree)
+                    char_literal12 = self.input.LT(1)
+                    self.match(self.input, 50, self.FOLLOW_50_in_interface253)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_48.add(char_literal10)
+                        stream_50.add(char_literal12)
                     # AST Rewrite
                     # elements: validId
                     # token labels: 
@@ -481,8 +643,8 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 58:3: -> ^( FORWARD validId )
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:58:6: ^( FORWARD validId )
+                        # 107:3: -> ^( FORWARD validId )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:107:6: ^( FORWARD validId )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(FORWARD, "FORWARD"), root_1)
 
@@ -495,130 +657,130 @@ class XPIDLParser(Parser):
 
 
                 elif alt6 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:4: ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';'
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:4: ( '[' ( interfaceModifier ',' )* UUID ']' )?
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:4: ( '[' ( interfaceModifier ',' )* UUID ']' )? 'interface' validId ( ':' validIdList )? '{' interfaceBody '}' ';'
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:4: ( '[' ( interfaceModifier ',' )* UUID ']' )?
                     alt4 = 2
                     LA4_0 = self.input.LA(1)
 
-                    if (LA4_0 == 49) :
+                    if (LA4_0 == 51) :
                         alt4 = 1
                     if alt4 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:5: '[' ( interfaceModifier ',' )* UUID ']'
-                        char_literal11 = self.input.LT(1)
-                        self.match(self.input, 49, self.FOLLOW_49_in_interface220)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:5: '[' ( interfaceModifier ',' )* UUID ']'
+                        char_literal13 = self.input.LT(1)
+                        self.match(self.input, 51, self.FOLLOW_51_in_interface269)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_49.add(char_literal11)
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:9: ( interfaceModifier ',' )*
+                            stream_51.add(char_literal13)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:9: ( interfaceModifier ',' )*
                         while True: #loop3
                             alt3 = 2
                             LA3_0 = self.input.LA(1)
 
-                            if ((55 <= LA3_0 <= 59)) :
+                            if ((57 <= LA3_0 <= 61)) :
                                 alt3 = 1
 
 
                             if alt3 == 1:
-                                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:10: interfaceModifier ','
-                                self.following.append(self.FOLLOW_interfaceModifier_in_interface223)
-                                interfaceModifier12 = self.interfaceModifier()
+                                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:10: interfaceModifier ','
+                                self.following.append(self.FOLLOW_interfaceModifier_in_interface272)
+                                interfaceModifier14 = self.interfaceModifier()
                                 self.following.pop()
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
-                                    stream_interfaceModifier.add(interfaceModifier12.tree)
-                                char_literal13 = self.input.LT(1)
-                                self.match(self.input, 50, self.FOLLOW_50_in_interface225)
+                                    stream_interfaceModifier.add(interfaceModifier14.tree)
+                                char_literal15 = self.input.LT(1)
+                                self.match(self.input, 52, self.FOLLOW_52_in_interface274)
                                 if self.failed:
                                     return retval
                                 if self.backtracking == 0:
-                                    stream_50.add(char_literal13)
+                                    stream_52.add(char_literal15)
 
 
                             else:
                                 break #loop3
 
 
-                        UUID14 = self.input.LT(1)
-                        self.match(self.input, UUID, self.FOLLOW_UUID_in_interface229)
+                        UUID16 = self.input.LT(1)
+                        self.match(self.input, UUID, self.FOLLOW_UUID_in_interface278)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_UUID.add(UUID14)
-                        char_literal15 = self.input.LT(1)
-                        self.match(self.input, 51, self.FOLLOW_51_in_interface231)
+                            stream_UUID.add(UUID16)
+                        char_literal17 = self.input.LT(1)
+                        self.match(self.input, 53, self.FOLLOW_53_in_interface280)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_51.add(char_literal15)
+                            stream_53.add(char_literal17)
 
 
 
-                    string_literal16 = self.input.LT(1)
-                    self.match(self.input, 47, self.FOLLOW_47_in_interface235)
+                    string_literal18 = self.input.LT(1)
+                    self.match(self.input, 49, self.FOLLOW_49_in_interface284)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_47.add(string_literal16)
-                    self.following.append(self.FOLLOW_validId_in_interface237)
-                    validId17 = self.validId()
+                        stream_49.add(string_literal18)
+                    self.following.append(self.FOLLOW_validId_in_interface286)
+                    validId19 = self.validId()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_validId.add(validId17.tree)
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:65: ( ':' validIdList )?
+                        stream_validId.add(validId19.tree)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:65: ( ':' validIdList )?
                     alt5 = 2
                     LA5_0 = self.input.LA(1)
 
-                    if (LA5_0 == 52) :
+                    if (LA5_0 == 54) :
                         alt5 = 1
                     if alt5 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:59:66: ':' validIdList
-                        char_literal18 = self.input.LT(1)
-                        self.match(self.input, 52, self.FOLLOW_52_in_interface240)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:108:66: ':' validIdList
+                        char_literal20 = self.input.LT(1)
+                        self.match(self.input, 54, self.FOLLOW_54_in_interface289)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_52.add(char_literal18)
-                        self.following.append(self.FOLLOW_validIdList_in_interface242)
-                        validIdList19 = self.validIdList()
+                            stream_54.add(char_literal20)
+                        self.following.append(self.FOLLOW_validIdList_in_interface291)
+                        validIdList21 = self.validIdList()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_validIdList.add(validIdList19.tree)
+                            stream_validIdList.add(validIdList21.tree)
 
 
 
-                    char_literal20 = self.input.LT(1)
-                    self.match(self.input, 53, self.FOLLOW_53_in_interface249)
+                    char_literal22 = self.input.LT(1)
+                    self.match(self.input, 55, self.FOLLOW_55_in_interface298)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_53.add(char_literal20)
-                    self.following.append(self.FOLLOW_interfaceBody_in_interface251)
-                    interfaceBody21 = self.interfaceBody()
+                        stream_55.add(char_literal22)
+                    self.following.append(self.FOLLOW_interfaceBody_in_interface300)
+                    interfaceBody23 = self.interfaceBody()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_interfaceBody.add(interfaceBody21.tree)
-                    char_literal22 = self.input.LT(1)
-                    self.match(self.input, 54, self.FOLLOW_54_in_interface253)
+                        stream_interfaceBody.add(interfaceBody23.tree)
+                    char_literal24 = self.input.LT(1)
+                    self.match(self.input, 56, self.FOLLOW_56_in_interface302)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_54.add(char_literal22)
-                    char_literal23 = self.input.LT(1)
-                    self.match(self.input, 48, self.FOLLOW_48_in_interface255)
+                        stream_56.add(char_literal24)
+                    char_literal25 = self.input.LT(1)
+                    self.match(self.input, 50, self.FOLLOW_50_in_interface304)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_48.add(char_literal23)
+                        stream_50.add(char_literal25)
                     # AST Rewrite
-                    # elements: interfaceBody, UUID, validIdList, validId, interfaceModifier
+                    # elements: validIdList, validId, UUID, interfaceModifier, interfaceBody
                     # token labels: 
                     # rule labels: retval
                     # token list labels: 
@@ -634,17 +796,17 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 61:3: -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) )
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:61:6: ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) )
+                        # 110:3: -> ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:6: ^( INTERFACE validId ^( I_UUID ( UUID )? ) ^( PARENTS ( validIdList )? ) ^( MODIFIERS ( interfaceModifier )* ) ^( BODY interfaceBody ) )
                         root_1 = self.adaptor.nil()
                         root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(INTERFACE, "INTERFACE"), root_1)
 
                         self.adaptor.addChild(root_1, stream_validId.next())
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:61:26: ^( I_UUID ( UUID )? )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:26: ^( I_UUID ( UUID )? )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(I_UUID, "I_UUID"), root_2)
 
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:61:35: ( UUID )?
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:35: ( UUID )?
                         if stream_UUID.hasNext():
                             self.adaptor.addChild(root_2, stream_UUID.next())
 
@@ -652,11 +814,11 @@ class XPIDLParser(Parser):
                         stream_UUID.reset();
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:61:42: ^( PARENTS ( validIdList )? )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:42: ^( PARENTS ( validIdList )? )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(PARENTS, "PARENTS"), root_2)
 
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:61:52: ( validIdList )?
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:52: ( validIdList )?
                         if stream_validIdList.hasNext():
                             self.adaptor.addChild(root_2, stream_validIdList.next())
 
@@ -664,11 +826,11 @@ class XPIDLParser(Parser):
                         stream_validIdList.reset();
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:62:12: ^( MODIFIERS ( interfaceModifier )* )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:12: ^( MODIFIERS ( interfaceModifier )* )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(MODIFIERS, "MODIFIERS"), root_2)
 
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:62:24: ( interfaceModifier )*
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:24: ( interfaceModifier )*
                         while stream_interfaceModifier.hasNext():
                             self.adaptor.addChild(root_2, stream_interfaceModifier.next())
 
@@ -676,7 +838,7 @@ class XPIDLParser(Parser):
                         stream_interfaceModifier.reset();
 
                         self.adaptor.addChild(root_1, root_2)
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:63:12: ^( BODY interfaceBody )
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:112:12: ^( BODY interfaceBody )
                         root_2 = self.adaptor.nil()
                         root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(BODY, "BODY"), root_2)
 
@@ -717,7 +879,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start interfaceModifierList
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:66:1: interfaceModifierList : interfaceModifier ( ',' interfaceModifier )* -> ( interfaceModifier )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:115:1: interfaceModifierList : interfaceModifier ( ',' interfaceModifier )* -> ( interfaceModifier )* ;
     def interfaceModifierList(self, ):
 
         retval = self.interfaceModifierList_return()
@@ -725,50 +887,50 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal25 = None
-        interfaceModifier24 = None
-
+        char_literal27 = None
         interfaceModifier26 = None
 
+        interfaceModifier28 = None
 
-        char_literal25_tree = None
-        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
+
+        char_literal27_tree = None
+        stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
         stream_interfaceModifier = RewriteRuleSubtreeStream(self.adaptor, "rule interfaceModifier")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:67:2: ( interfaceModifier ( ',' interfaceModifier )* -> ( interfaceModifier )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:67:4: interfaceModifier ( ',' interfaceModifier )*
-                self.following.append(self.FOLLOW_interfaceModifier_in_interfaceModifierList325)
-                interfaceModifier24 = self.interfaceModifier()
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:116:2: ( interfaceModifier ( ',' interfaceModifier )* -> ( interfaceModifier )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:116:4: interfaceModifier ( ',' interfaceModifier )*
+                self.following.append(self.FOLLOW_interfaceModifier_in_interfaceModifierList374)
+                interfaceModifier26 = self.interfaceModifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_interfaceModifier.add(interfaceModifier24.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:67:22: ( ',' interfaceModifier )*
+                    stream_interfaceModifier.add(interfaceModifier26.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:116:22: ( ',' interfaceModifier )*
                 while True: #loop7
                     alt7 = 2
                     LA7_0 = self.input.LA(1)
 
-                    if (LA7_0 == 50) :
+                    if (LA7_0 == 52) :
                         alt7 = 1
 
 
                     if alt7 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:67:23: ',' interfaceModifier
-                        char_literal25 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_interfaceModifierList328)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:116:23: ',' interfaceModifier
+                        char_literal27 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_interfaceModifierList377)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_50.add(char_literal25)
-                        self.following.append(self.FOLLOW_interfaceModifier_in_interfaceModifierList330)
-                        interfaceModifier26 = self.interfaceModifier()
+                            stream_52.add(char_literal27)
+                        self.following.append(self.FOLLOW_interfaceModifier_in_interfaceModifierList379)
+                        interfaceModifier28 = self.interfaceModifier()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_interfaceModifier.add(interfaceModifier26.tree)
+                            stream_interfaceModifier.add(interfaceModifier28.tree)
 
 
                     else:
@@ -792,8 +954,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 68:3: -> ( interfaceModifier )*
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:68:6: ( interfaceModifier )*
+                    # 117:3: -> ( interfaceModifier )*
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:117:6: ( interfaceModifier )*
                     while stream_interfaceModifier.hasNext():
                         self.adaptor.addChild(root_0, stream_interfaceModifier.next())
 
@@ -832,7 +994,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start interfaceModifier
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:71:1: interfaceModifier : ( 'scriptable' | 'function' | 'object' | 'notxpcom' | 'noscript' );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:120:1: interfaceModifier : ( 'scriptable' | 'function' | 'object' | 'notxpcom' | 'noscript' );
     def interfaceModifier(self, ):
 
         retval = self.interfaceModifier_return()
@@ -840,21 +1002,21 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set27 = None
+        set29 = None
 
-        set27_tree = None
+        set29_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:72:2: ( 'scriptable' | 'function' | 'object' | 'notxpcom' | 'noscript' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:121:2: ( 'scriptable' | 'function' | 'object' | 'notxpcom' | 'noscript' )
                 # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:
                 root_0 = self.adaptor.nil()
 
-                set27 = self.input.LT(1)
-                if (55 <= self.input.LA(1) <= 59):
+                set29 = self.input.LT(1)
+                if (57 <= self.input.LA(1) <= 61):
                     self.input.consume();
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set27))
+                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set29))
                     self.errorRecovery = False
                     self.failed = False
 
@@ -900,7 +1062,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start interfaceBody
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:79:1: interfaceBody : ( interfaceBodyItem )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:128:1: interfaceBody : ( interfaceBodyItem )* ;
     def interfaceBody(self, ):
 
         retval = self.interfaceBody_return()
@@ -908,34 +1070,34 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        interfaceBodyItem28 = None
+        interfaceBodyItem30 = None
 
 
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:80:2: ( ( interfaceBodyItem )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:80:4: ( interfaceBodyItem )*
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:129:2: ( ( interfaceBodyItem )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:129:4: ( interfaceBodyItem )*
                 root_0 = self.adaptor.nil()
 
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:80:4: ( interfaceBodyItem )*
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:129:4: ( interfaceBodyItem )*
                 while True: #loop8
                     alt8 = 2
                     LA8_0 = self.input.LA(1)
 
-                    if (LA8_0 == Identifier or LA8_0 == 49 or LA8_0 == 62 or (64 <= LA8_0 <= 66) or (83 <= LA8_0 <= 92)) :
+                    if (LA8_0 == Identifier or LA8_0 == 51 or LA8_0 == 64 or (66 <= LA8_0 <= 68) or (85 <= LA8_0 <= 94)) :
                         alt8 = 1
 
 
                     if alt8 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:80:4: interfaceBodyItem
-                        self.following.append(self.FOLLOW_interfaceBodyItem_in_interfaceBody381)
-                        interfaceBodyItem28 = self.interfaceBodyItem()
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:129:4: interfaceBodyItem
+                        self.following.append(self.FOLLOW_interfaceBodyItem_in_interfaceBody430)
+                        interfaceBodyItem30 = self.interfaceBodyItem()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            self.adaptor.addChild(root_0, interfaceBodyItem28.tree)
+                            self.adaptor.addChild(root_0, interfaceBodyItem30.tree)
 
 
                     else:
@@ -972,7 +1134,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start interfaceBodyItem
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:83:1: interfaceBodyItem : ( attribute | const | method );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:132:1: interfaceBodyItem : ( attribute | const | method );
     def interfaceBodyItem(self, ):
 
         retval = self.interfaceBodyItem_return()
@@ -980,56 +1142,56 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        attribute29 = None
+        attribute31 = None
 
-        const30 = None
+        const32 = None
 
-        method31 = None
+        method33 = None
 
 
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:84:2: ( attribute | const | method )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:133:2: ( attribute | const | method )
                 alt9 = 3
                 alt9 = self.dfa9.predict(self.input)
                 if alt9 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:84:4: attribute
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:133:4: attribute
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_attribute_in_interfaceBodyItem393)
-                    attribute29 = self.attribute()
+                    self.following.append(self.FOLLOW_attribute_in_interfaceBodyItem442)
+                    attribute31 = self.attribute()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, attribute29.tree)
+                        self.adaptor.addChild(root_0, attribute31.tree)
 
 
                 elif alt9 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:85:4: const
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:134:4: const
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_const_in_interfaceBodyItem398)
-                    const30 = self.const()
+                    self.following.append(self.FOLLOW_const_in_interfaceBodyItem447)
+                    const32 = self.const()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, const30.tree)
+                        self.adaptor.addChild(root_0, const32.tree)
 
 
                 elif alt9 == 3:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:86:4: method
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:135:4: method
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_method_in_interfaceBodyItem403)
-                    method31 = self.method()
+                    self.following.append(self.FOLLOW_method_in_interfaceBodyItem452)
+                    method33 = self.method()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, method31.tree)
+                        self.adaptor.addChild(root_0, method33.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -1059,7 +1221,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start method
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:89:1: method : ( methodModifiers )? type validId '(' paramList ')' ';' -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:138:1: method : ( methodModifiers )? type validId '(' paramList ')' ';' -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) ) ;
     def method(self, ):
 
         retval = self.method_return()
@@ -1067,91 +1229,91 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal35 = None
         char_literal37 = None
-        char_literal38 = None
-        methodModifiers32 = None
+        char_literal39 = None
+        char_literal40 = None
+        methodModifiers34 = None
 
-        type33 = None
+        type35 = None
 
-        validId34 = None
+        validId36 = None
 
-        paramList36 = None
+        paramList38 = None
 
 
-        char_literal35_tree = None
         char_literal37_tree = None
-        char_literal38_tree = None
-        stream_48 = RewriteRuleTokenStream(self.adaptor, "token 48")
-        stream_60 = RewriteRuleTokenStream(self.adaptor, "token 60")
-        stream_61 = RewriteRuleTokenStream(self.adaptor, "token 61")
+        char_literal39_tree = None
+        char_literal40_tree = None
+        stream_62 = RewriteRuleTokenStream(self.adaptor, "token 62")
+        stream_63 = RewriteRuleTokenStream(self.adaptor, "token 63")
+        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
         stream_methodModifiers = RewriteRuleSubtreeStream(self.adaptor, "rule methodModifiers")
         stream_paramList = RewriteRuleSubtreeStream(self.adaptor, "rule paramList")
         stream_validId = RewriteRuleSubtreeStream(self.adaptor, "rule validId")
         stream_type = RewriteRuleSubtreeStream(self.adaptor, "rule type")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:90:2: ( ( methodModifiers )? type validId '(' paramList ')' ';' -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:90:4: ( methodModifiers )? type validId '(' paramList ')' ';'
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:90:4: ( methodModifiers )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:139:2: ( ( methodModifiers )? type validId '(' paramList ')' ';' -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:139:4: ( methodModifiers )? type validId '(' paramList ')' ';'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:139:4: ( methodModifiers )?
                 alt10 = 2
                 LA10_0 = self.input.LA(1)
 
-                if (LA10_0 == 49) :
+                if (LA10_0 == 51) :
                     alt10 = 1
                 if alt10 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:90:4: methodModifiers
-                    self.following.append(self.FOLLOW_methodModifiers_in_method414)
-                    methodModifiers32 = self.methodModifiers()
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:139:4: methodModifiers
+                    self.following.append(self.FOLLOW_methodModifiers_in_method463)
+                    methodModifiers34 = self.methodModifiers()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_methodModifiers.add(methodModifiers32.tree)
+                        stream_methodModifiers.add(methodModifiers34.tree)
 
 
 
-                self.following.append(self.FOLLOW_type_in_method417)
-                type33 = self.type()
+                self.following.append(self.FOLLOW_type_in_method466)
+                type35 = self.type()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_type.add(type33.tree)
-                self.following.append(self.FOLLOW_validId_in_method419)
-                validId34 = self.validId()
+                    stream_type.add(type35.tree)
+                self.following.append(self.FOLLOW_validId_in_method468)
+                validId36 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId34.tree)
-                char_literal35 = self.input.LT(1)
-                self.match(self.input, 60, self.FOLLOW_60_in_method421)
-                if self.failed:
-                    return retval
-                if self.backtracking == 0:
-                    stream_60.add(char_literal35)
-                self.following.append(self.FOLLOW_paramList_in_method423)
-                paramList36 = self.paramList()
-                self.following.pop()
-                if self.failed:
-                    return retval
-                if self.backtracking == 0:
-                    stream_paramList.add(paramList36.tree)
+                    stream_validId.add(validId36.tree)
                 char_literal37 = self.input.LT(1)
-                self.match(self.input, 61, self.FOLLOW_61_in_method425)
+                self.match(self.input, 62, self.FOLLOW_62_in_method470)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_61.add(char_literal37)
-                char_literal38 = self.input.LT(1)
-                self.match(self.input, 48, self.FOLLOW_48_in_method427)
+                    stream_62.add(char_literal37)
+                self.following.append(self.FOLLOW_paramList_in_method472)
+                paramList38 = self.paramList()
+                self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_48.add(char_literal38)
+                    stream_paramList.add(paramList38.tree)
+                char_literal39 = self.input.LT(1)
+                self.match(self.input, 63, self.FOLLOW_63_in_method474)
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_63.add(char_literal39)
+                char_literal40 = self.input.LT(1)
+                self.match(self.input, 50, self.FOLLOW_50_in_method476)
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_50.add(char_literal40)
                 # AST Rewrite
-                # elements: paramList, methodModifiers, validId, type
+                # elements: methodModifiers, validId, type, paramList
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1167,18 +1329,18 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 91:3: -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:91:6: ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) )
+                    # 140:3: -> ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:140:6: ^( METHOD type validId ^( MODIFIERS ( methodModifiers )? ) ^( PARAMS paramList ) )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(METHOD, "METHOD"), root_1)
 
                     self.adaptor.addChild(root_1, stream_type.next())
                     self.adaptor.addChild(root_1, stream_validId.next())
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:91:28: ^( MODIFIERS ( methodModifiers )? )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:140:28: ^( MODIFIERS ( methodModifiers )? )
                     root_2 = self.adaptor.nil()
                     root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(MODIFIERS, "MODIFIERS"), root_2)
 
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:91:40: ( methodModifiers )?
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:140:40: ( methodModifiers )?
                     if stream_methodModifiers.hasNext():
                         self.adaptor.addChild(root_2, stream_methodModifiers.next())
 
@@ -1186,7 +1348,7 @@ class XPIDLParser(Parser):
                     stream_methodModifiers.reset();
 
                     self.adaptor.addChild(root_1, root_2)
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:91:58: ^( PARAMS paramList )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:140:58: ^( PARAMS paramList )
                     root_2 = self.adaptor.nil()
                     root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(PARAMS, "PARAMS"), root_2)
 
@@ -1228,7 +1390,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start const
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:94:1: const : 'const' constType validId '=' mathExpr ';' -> ^( CONST constType validId mathExpr ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:143:1: const : 'const' constType validId '=' mathExpr ';' -> ^( CONST constType validId mathExpr ) ;
     def const(self, ):
 
         retval = self.const_return()
@@ -1236,70 +1398,70 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal39 = None
-        char_literal42 = None
+        string_literal41 = None
         char_literal44 = None
-        constType40 = None
+        char_literal46 = None
+        constType42 = None
 
-        validId41 = None
+        validId43 = None
 
-        mathExpr43 = None
+        mathExpr45 = None
 
 
-        string_literal39_tree = None
-        char_literal42_tree = None
+        string_literal41_tree = None
         char_literal44_tree = None
-        stream_48 = RewriteRuleTokenStream(self.adaptor, "token 48")
-        stream_62 = RewriteRuleTokenStream(self.adaptor, "token 62")
-        stream_63 = RewriteRuleTokenStream(self.adaptor, "token 63")
+        char_literal46_tree = None
+        stream_64 = RewriteRuleTokenStream(self.adaptor, "token 64")
+        stream_65 = RewriteRuleTokenStream(self.adaptor, "token 65")
+        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
         stream_constType = RewriteRuleSubtreeStream(self.adaptor, "rule constType")
         stream_mathExpr = RewriteRuleSubtreeStream(self.adaptor, "rule mathExpr")
         stream_validId = RewriteRuleSubtreeStream(self.adaptor, "rule validId")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:95:2: ( 'const' constType validId '=' mathExpr ';' -> ^( CONST constType validId mathExpr ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:95:4: 'const' constType validId '=' mathExpr ';'
-                string_literal39 = self.input.LT(1)
-                self.match(self.input, 62, self.FOLLOW_62_in_const463)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:144:2: ( 'const' constType validId '=' mathExpr ';' -> ^( CONST constType validId mathExpr ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:144:4: 'const' constType validId '=' mathExpr ';'
+                string_literal41 = self.input.LT(1)
+                self.match(self.input, 64, self.FOLLOW_64_in_const512)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_62.add(string_literal39)
-                self.following.append(self.FOLLOW_constType_in_const465)
-                constType40 = self.constType()
+                    stream_64.add(string_literal41)
+                self.following.append(self.FOLLOW_constType_in_const514)
+                constType42 = self.constType()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_constType.add(constType40.tree)
-                self.following.append(self.FOLLOW_validId_in_const467)
-                validId41 = self.validId()
+                    stream_constType.add(constType42.tree)
+                self.following.append(self.FOLLOW_validId_in_const516)
+                validId43 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId41.tree)
-                char_literal42 = self.input.LT(1)
-                self.match(self.input, 63, self.FOLLOW_63_in_const469)
-                if self.failed:
-                    return retval
-                if self.backtracking == 0:
-                    stream_63.add(char_literal42)
-                self.following.append(self.FOLLOW_mathExpr_in_const471)
-                mathExpr43 = self.mathExpr()
-                self.following.pop()
-                if self.failed:
-                    return retval
-                if self.backtracking == 0:
-                    stream_mathExpr.add(mathExpr43.tree)
+                    stream_validId.add(validId43.tree)
                 char_literal44 = self.input.LT(1)
-                self.match(self.input, 48, self.FOLLOW_48_in_const473)
+                self.match(self.input, 65, self.FOLLOW_65_in_const518)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_48.add(char_literal44)
+                    stream_65.add(char_literal44)
+                self.following.append(self.FOLLOW_mathExpr_in_const520)
+                mathExpr45 = self.mathExpr()
+                self.following.pop()
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_mathExpr.add(mathExpr45.tree)
+                char_literal46 = self.input.LT(1)
+                self.match(self.input, 50, self.FOLLOW_50_in_const522)
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    stream_50.add(char_literal46)
                 # AST Rewrite
-                # elements: validId, constType, mathExpr
+                # elements: constType, mathExpr, validId
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1315,8 +1477,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 96:3: -> ^( CONST constType validId mathExpr )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:96:6: ^( CONST constType validId mathExpr )
+                    # 145:3: -> ^( CONST constType validId mathExpr )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:145:6: ^( CONST constType validId mathExpr )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(CONST, "CONST"), root_1)
 
@@ -1358,7 +1520,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start constType
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:99:1: constType : ( 'short' -> SHORT | 'long' -> LONG | validId );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:148:1: constType : ( 'short' -> SHORT | 'long' -> LONG | validId );
     def constType(self, ):
 
         retval = self.constType_return()
@@ -1366,24 +1528,24 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal45 = None
-        string_literal46 = None
-        validId47 = None
+        string_literal47 = None
+        string_literal48 = None
+        validId49 = None
 
 
-        string_literal45_tree = None
-        string_literal46_tree = None
-        stream_64 = RewriteRuleTokenStream(self.adaptor, "token 64")
-        stream_65 = RewriteRuleTokenStream(self.adaptor, "token 65")
+        string_literal47_tree = None
+        string_literal48_tree = None
+        stream_67 = RewriteRuleTokenStream(self.adaptor, "token 67")
+        stream_66 = RewriteRuleTokenStream(self.adaptor, "token 66")
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:100:2: ( 'short' -> SHORT | 'long' -> LONG | validId )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:149:2: ( 'short' -> SHORT | 'long' -> LONG | validId )
                 alt11 = 3
                 LA11 = self.input.LA(1)
-                if LA11 == 64:
+                if LA11 == 66:
                     alt11 = 1
-                elif LA11 == 65:
+                elif LA11 == 67:
                     alt11 = 2
                 elif LA11 == Identifier:
                     alt11 = 3
@@ -1392,18 +1554,18 @@ class XPIDLParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("99:1: constType : ( 'short' -> SHORT | 'long' -> LONG | validId );", 11, 0, self.input)
+                    nvae = NoViableAltException("148:1: constType : ( 'short' -> SHORT | 'long' -> LONG | validId );", 11, 0, self.input)
 
                     raise nvae
 
                 if alt11 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:100:4: 'short'
-                    string_literal45 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_constType498)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:149:4: 'short'
+                    string_literal47 = self.input.LT(1)
+                    self.match(self.input, 66, self.FOLLOW_66_in_constType547)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_64.add(string_literal45)
+                        stream_66.add(string_literal47)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -1421,7 +1583,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 100:12: -> SHORT
+                        # 149:12: -> SHORT
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(SHORT, "SHORT"))
 
 
@@ -1429,13 +1591,13 @@ class XPIDLParser(Parser):
 
 
                 elif alt11 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:101:4: 'long'
-                    string_literal46 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_constType507)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:150:4: 'long'
+                    string_literal48 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_constType556)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal46)
+                        stream_67.add(string_literal48)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -1453,7 +1615,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 101:11: -> LONG
+                        # 150:11: -> LONG
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(LONG, "LONG"))
 
 
@@ -1461,16 +1623,16 @@ class XPIDLParser(Parser):
 
 
                 elif alt11 == 3:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:102:4: validId
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:151:4: validId
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_validId_in_constType516)
-                    validId47 = self.validId()
+                    self.following.append(self.FOLLOW_validId_in_constType565)
+                    validId49 = self.validId()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, validId47.tree)
+                        self.adaptor.addChild(root_0, validId49.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -1500,7 +1662,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start attribute
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:105:1: attribute : ( methodModifiers )? 'attribute' type validId ';' -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:154:1: attribute : ( methodModifiers )? 'attribute' type validId ';' -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) ) ;
     def attribute(self, ):
 
         retval = self.attribute_return()
@@ -1508,72 +1670,72 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal49 = None
-        char_literal52 = None
-        methodModifiers48 = None
+        string_literal51 = None
+        char_literal54 = None
+        methodModifiers50 = None
 
-        type50 = None
+        type52 = None
 
-        validId51 = None
+        validId53 = None
 
 
-        string_literal49_tree = None
-        char_literal52_tree = None
-        stream_66 = RewriteRuleTokenStream(self.adaptor, "token 66")
-        stream_48 = RewriteRuleTokenStream(self.adaptor, "token 48")
+        string_literal51_tree = None
+        char_literal54_tree = None
+        stream_68 = RewriteRuleTokenStream(self.adaptor, "token 68")
+        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
         stream_methodModifiers = RewriteRuleSubtreeStream(self.adaptor, "rule methodModifiers")
         stream_validId = RewriteRuleSubtreeStream(self.adaptor, "rule validId")
         stream_type = RewriteRuleSubtreeStream(self.adaptor, "rule type")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:2: ( ( methodModifiers )? 'attribute' type validId ';' -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:4: ( methodModifiers )? 'attribute' type validId ';'
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:4: ( methodModifiers )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:2: ( ( methodModifiers )? 'attribute' type validId ';' -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:4: ( methodModifiers )? 'attribute' type validId ';'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:4: ( methodModifiers )?
                 alt12 = 2
                 LA12_0 = self.input.LA(1)
 
-                if (LA12_0 == 49) :
+                if (LA12_0 == 51) :
                     alt12 = 1
                 if alt12 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:106:4: methodModifiers
-                    self.following.append(self.FOLLOW_methodModifiers_in_attribute527)
-                    methodModifiers48 = self.methodModifiers()
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:4: methodModifiers
+                    self.following.append(self.FOLLOW_methodModifiers_in_attribute576)
+                    methodModifiers50 = self.methodModifiers()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_methodModifiers.add(methodModifiers48.tree)
+                        stream_methodModifiers.add(methodModifiers50.tree)
 
 
 
-                string_literal49 = self.input.LT(1)
-                self.match(self.input, 66, self.FOLLOW_66_in_attribute530)
+                string_literal51 = self.input.LT(1)
+                self.match(self.input, 68, self.FOLLOW_68_in_attribute579)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_66.add(string_literal49)
-                self.following.append(self.FOLLOW_type_in_attribute532)
-                type50 = self.type()
+                    stream_68.add(string_literal51)
+                self.following.append(self.FOLLOW_type_in_attribute581)
+                type52 = self.type()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_type.add(type50.tree)
-                self.following.append(self.FOLLOW_validId_in_attribute534)
-                validId51 = self.validId()
+                    stream_type.add(type52.tree)
+                self.following.append(self.FOLLOW_validId_in_attribute583)
+                validId53 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId51.tree)
-                char_literal52 = self.input.LT(1)
-                self.match(self.input, 48, self.FOLLOW_48_in_attribute536)
+                    stream_validId.add(validId53.tree)
+                char_literal54 = self.input.LT(1)
+                self.match(self.input, 50, self.FOLLOW_50_in_attribute585)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_48.add(char_literal52)
+                    stream_50.add(char_literal54)
                 # AST Rewrite
-                # elements: validId, type, methodModifiers
+                # elements: methodModifiers, validId, type
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -1589,14 +1751,14 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 107:3: -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:107:6: ^( ATTR type validId ^( MODIFIERS methodModifiers ) )
+                    # 156:3: -> ^( ATTR type validId ^( MODIFIERS methodModifiers ) )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:156:6: ^( ATTR type validId ^( MODIFIERS methodModifiers ) )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(ATTR, "ATTR"), root_1)
 
                     self.adaptor.addChild(root_1, stream_type.next())
                     self.adaptor.addChild(root_1, stream_validId.next())
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:107:26: ^( MODIFIERS methodModifiers )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:156:26: ^( MODIFIERS methodModifiers )
                     root_2 = self.adaptor.nil()
                     root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(MODIFIERS, "MODIFIERS"), root_2)
 
@@ -1638,7 +1800,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start methodModifiers
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:110:1: methodModifiers : '[' methodModifier ( ',' methodModifier )+ ']' -> ( methodModifier )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:159:1: methodModifiers : '[' methodModifier ( ',' methodModifier )+ ']' -> ( methodModifier )* ;
     def methodModifiers(self, ):
 
         retval = self.methodModifiers_return()
@@ -1646,63 +1808,63 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal53 = None
         char_literal55 = None
         char_literal57 = None
-        methodModifier54 = None
-
+        char_literal59 = None
         methodModifier56 = None
 
+        methodModifier58 = None
 
-        char_literal53_tree = None
+
         char_literal55_tree = None
         char_literal57_tree = None
-        stream_49 = RewriteRuleTokenStream(self.adaptor, "token 49")
+        char_literal59_tree = None
         stream_51 = RewriteRuleTokenStream(self.adaptor, "token 51")
-        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
+        stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
+        stream_53 = RewriteRuleTokenStream(self.adaptor, "token 53")
         stream_methodModifier = RewriteRuleSubtreeStream(self.adaptor, "rule methodModifier")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:2: ( '[' methodModifier ( ',' methodModifier )+ ']' -> ( methodModifier )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:4: '[' methodModifier ( ',' methodModifier )+ ']'
-                char_literal53 = self.input.LT(1)
-                self.match(self.input, 49, self.FOLLOW_49_in_methodModifiers565)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:160:2: ( '[' methodModifier ( ',' methodModifier )+ ']' -> ( methodModifier )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:160:4: '[' methodModifier ( ',' methodModifier )+ ']'
+                char_literal55 = self.input.LT(1)
+                self.match(self.input, 51, self.FOLLOW_51_in_methodModifiers614)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_49.add(char_literal53)
-                self.following.append(self.FOLLOW_methodModifier_in_methodModifiers567)
-                methodModifier54 = self.methodModifier()
+                    stream_51.add(char_literal55)
+                self.following.append(self.FOLLOW_methodModifier_in_methodModifiers616)
+                methodModifier56 = self.methodModifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_methodModifier.add(methodModifier54.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:23: ( ',' methodModifier )+
+                    stream_methodModifier.add(methodModifier56.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:160:23: ( ',' methodModifier )+
                 cnt13 = 0
                 while True: #loop13
                     alt13 = 2
                     LA13_0 = self.input.LA(1)
 
-                    if (LA13_0 == 50) :
+                    if (LA13_0 == 52) :
                         alt13 = 1
 
 
                     if alt13 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:111:24: ',' methodModifier
-                        char_literal55 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_methodModifiers570)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:160:24: ',' methodModifier
+                        char_literal57 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_methodModifiers619)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_50.add(char_literal55)
-                        self.following.append(self.FOLLOW_methodModifier_in_methodModifiers572)
-                        methodModifier56 = self.methodModifier()
+                            stream_52.add(char_literal57)
+                        self.following.append(self.FOLLOW_methodModifier_in_methodModifiers621)
+                        methodModifier58 = self.methodModifier()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_methodModifier.add(methodModifier56.tree)
+                            stream_methodModifier.add(methodModifier58.tree)
 
 
                     else:
@@ -1719,12 +1881,12 @@ class XPIDLParser(Parser):
                     cnt13 += 1
 
 
-                char_literal57 = self.input.LT(1)
-                self.match(self.input, 51, self.FOLLOW_51_in_methodModifiers576)
+                char_literal59 = self.input.LT(1)
+                self.match(self.input, 53, self.FOLLOW_53_in_methodModifiers625)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_51.add(char_literal57)
+                    stream_53.add(char_literal59)
                 # AST Rewrite
                 # elements: methodModifier
                 # token labels: 
@@ -1742,8 +1904,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 112:3: -> ( methodModifier )*
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:112:6: ( methodModifier )*
+                    # 161:3: -> ( methodModifier )*
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:161:6: ( methodModifier )*
                     while stream_methodModifier.hasNext():
                         self.adaptor.addChild(root_0, stream_methodModifier.next())
 
@@ -1782,7 +1944,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start methodModifier
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:115:1: methodModifier : ( 'noscript' | 'notxpcom' );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:164:1: methodModifier : ( 'noscript' | 'notxpcom' );
     def methodModifier(self, ):
 
         retval = self.methodModifier_return()
@@ -1790,21 +1952,21 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set58 = None
+        set60 = None
 
-        set58_tree = None
+        set60_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:116:2: ( 'noscript' | 'notxpcom' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:165:2: ( 'noscript' | 'notxpcom' )
                 # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:
                 root_0 = self.adaptor.nil()
 
-                set58 = self.input.LT(1)
-                if (58 <= self.input.LA(1) <= 59):
+                set60 = self.input.LT(1)
+                if (60 <= self.input.LA(1) <= 61):
                     self.input.consume();
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set58))
+                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set60))
                     self.errorRecovery = False
                     self.failed = False
 
@@ -1850,7 +2012,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start paramList
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:120:1: paramList : paramDecl ( ',' paramDecl )+ -> ( paramDecl )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:169:1: paramList : paramDecl ( ',' paramDecl )+ -> ( paramDecl )* ;
     def paramList(self, ):
 
         retval = self.paramList_return()
@@ -1858,51 +2020,51 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal60 = None
-        paramDecl59 = None
-
+        char_literal62 = None
         paramDecl61 = None
 
+        paramDecl63 = None
 
-        char_literal60_tree = None
-        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
+
+        char_literal62_tree = None
+        stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
         stream_paramDecl = RewriteRuleSubtreeStream(self.adaptor, "rule paramDecl")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:121:2: ( paramDecl ( ',' paramDecl )+ -> ( paramDecl )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:121:4: paramDecl ( ',' paramDecl )+
-                self.following.append(self.FOLLOW_paramDecl_in_paramList610)
-                paramDecl59 = self.paramDecl()
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:170:2: ( paramDecl ( ',' paramDecl )+ -> ( paramDecl )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:170:4: paramDecl ( ',' paramDecl )+
+                self.following.append(self.FOLLOW_paramDecl_in_paramList659)
+                paramDecl61 = self.paramDecl()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_paramDecl.add(paramDecl59.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:121:14: ( ',' paramDecl )+
+                    stream_paramDecl.add(paramDecl61.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:170:14: ( ',' paramDecl )+
                 cnt14 = 0
                 while True: #loop14
                     alt14 = 2
                     LA14_0 = self.input.LA(1)
 
-                    if (LA14_0 == 50) :
+                    if (LA14_0 == 52) :
                         alt14 = 1
 
 
                     if alt14 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:121:15: ',' paramDecl
-                        char_literal60 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_paramList613)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:170:15: ',' paramDecl
+                        char_literal62 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_paramList662)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_50.add(char_literal60)
-                        self.following.append(self.FOLLOW_paramDecl_in_paramList615)
-                        paramDecl61 = self.paramDecl()
+                            stream_52.add(char_literal62)
+                        self.following.append(self.FOLLOW_paramDecl_in_paramList664)
+                        paramDecl63 = self.paramDecl()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_paramDecl.add(paramDecl61.tree)
+                            stream_paramDecl.add(paramDecl63.tree)
 
 
                     else:
@@ -1936,8 +2098,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 122:3: -> ( paramDecl )*
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:122:6: ( paramDecl )*
+                    # 171:3: -> ( paramDecl )*
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:171:6: ( paramDecl )*
                     while stream_paramDecl.hasNext():
                         self.adaptor.addChild(root_0, stream_paramDecl.next())
 
@@ -1976,7 +2138,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start paramDecl
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:125:1: paramDecl : ( paramModifiersDecl )? paramType type validId -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:174:1: paramDecl : ( paramModifiersDecl )? paramType type validId -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) ) ;
     def paramDecl(self, ):
 
         retval = self.paramDecl_return()
@@ -1984,13 +2146,13 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        paramModifiersDecl62 = None
+        paramModifiersDecl64 = None
 
-        paramType63 = None
+        paramType65 = None
 
-        type64 = None
+        type66 = None
 
-        validId65 = None
+        validId67 = None
 
 
         stream_paramModifiersDecl = RewriteRuleSubtreeStream(self.adaptor, "rule paramModifiersDecl")
@@ -1999,49 +2161,49 @@ class XPIDLParser(Parser):
         stream_paramType = RewriteRuleSubtreeStream(self.adaptor, "rule paramType")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:126:2: ( ( paramModifiersDecl )? paramType type validId -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:126:4: ( paramModifiersDecl )? paramType type validId
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:126:4: ( paramModifiersDecl )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:175:2: ( ( paramModifiersDecl )? paramType type validId -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:175:4: ( paramModifiersDecl )? paramType type validId
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:175:4: ( paramModifiersDecl )?
                 alt15 = 2
                 LA15_0 = self.input.LA(1)
 
-                if (LA15_0 == 49) :
+                if (LA15_0 == 51) :
                     alt15 = 1
                 if alt15 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:126:4: paramModifiersDecl
-                    self.following.append(self.FOLLOW_paramModifiersDecl_in_paramDecl635)
-                    paramModifiersDecl62 = self.paramModifiersDecl()
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:175:4: paramModifiersDecl
+                    self.following.append(self.FOLLOW_paramModifiersDecl_in_paramDecl684)
+                    paramModifiersDecl64 = self.paramModifiersDecl()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_paramModifiersDecl.add(paramModifiersDecl62.tree)
+                        stream_paramModifiersDecl.add(paramModifiersDecl64.tree)
 
 
 
-                self.following.append(self.FOLLOW_paramType_in_paramDecl638)
-                paramType63 = self.paramType()
+                self.following.append(self.FOLLOW_paramType_in_paramDecl687)
+                paramType65 = self.paramType()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_paramType.add(paramType63.tree)
-                self.following.append(self.FOLLOW_type_in_paramDecl640)
-                type64 = self.type()
+                    stream_paramType.add(paramType65.tree)
+                self.following.append(self.FOLLOW_type_in_paramDecl689)
+                type66 = self.type()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_type.add(type64.tree)
-                self.following.append(self.FOLLOW_validId_in_paramDecl642)
-                validId65 = self.validId()
+                    stream_type.add(type66.tree)
+                self.following.append(self.FOLLOW_validId_in_paramDecl691)
+                validId67 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId65.tree)
+                    stream_validId.add(validId67.tree)
                 # AST Rewrite
-                # elements: validId, paramType, paramModifiersDecl, type
+                # elements: paramType, validId, paramModifiersDecl, type
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2057,19 +2219,19 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 127:3: -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:127:6: ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) )
+                    # 176:3: -> ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:176:6: ^( PARAM paramType type validId ^( MODIFIERS ( paramModifiersDecl )? ) )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(PARAM, "PARAM"), root_1)
 
                     self.adaptor.addChild(root_1, stream_paramType.next())
                     self.adaptor.addChild(root_1, stream_type.next())
                     self.adaptor.addChild(root_1, stream_validId.next())
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:127:37: ^( MODIFIERS ( paramModifiersDecl )? )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:176:37: ^( MODIFIERS ( paramModifiersDecl )? )
                     root_2 = self.adaptor.nil()
                     root_2 = self.adaptor.becomeRoot(self.adaptor.createFromType(MODIFIERS, "MODIFIERS"), root_2)
 
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:127:49: ( paramModifiersDecl )?
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:176:49: ( paramModifiersDecl )?
                     if stream_paramModifiersDecl.hasNext():
                         self.adaptor.addChild(root_2, stream_paramModifiersDecl.next())
 
@@ -2112,7 +2274,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start paramType
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:130:1: paramType : ( 'in' | 'out' | 'inout' );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:179:1: paramType : ( 'in' | 'out' | 'inout' );
     def paramType(self, ):
 
         retval = self.paramType_return()
@@ -2120,21 +2282,21 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set66 = None
+        set68 = None
 
-        set66_tree = None
+        set68_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:131:2: ( 'in' | 'out' | 'inout' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:180:2: ( 'in' | 'out' | 'inout' )
                 # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:
                 root_0 = self.adaptor.nil()
 
-                set66 = self.input.LT(1)
-                if (67 <= self.input.LA(1) <= 69):
+                set68 = self.input.LT(1)
+                if (69 <= self.input.LA(1) <= 71):
                     self.input.consume();
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set66))
+                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set68))
                     self.errorRecovery = False
                     self.failed = False
 
@@ -2180,7 +2342,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start paramModifiersDecl
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:136:1: paramModifiersDecl : '[' paramModifier ( ',' paramModifier )* ']' -> ( paramModifier )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:185:1: paramModifiersDecl : '[' paramModifier ( ',' paramModifier )* ']' -> ( paramModifier )* ;
     def paramModifiersDecl(self, ):
 
         retval = self.paramModifiersDecl_return()
@@ -2188,74 +2350,74 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal67 = None
         char_literal69 = None
         char_literal71 = None
-        paramModifier68 = None
-
+        char_literal73 = None
         paramModifier70 = None
 
+        paramModifier72 = None
 
-        char_literal67_tree = None
+
         char_literal69_tree = None
         char_literal71_tree = None
-        stream_49 = RewriteRuleTokenStream(self.adaptor, "token 49")
+        char_literal73_tree = None
         stream_51 = RewriteRuleTokenStream(self.adaptor, "token 51")
-        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
+        stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
+        stream_53 = RewriteRuleTokenStream(self.adaptor, "token 53")
         stream_paramModifier = RewriteRuleSubtreeStream(self.adaptor, "rule paramModifier")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:137:2: ( '[' paramModifier ( ',' paramModifier )* ']' -> ( paramModifier )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:137:4: '[' paramModifier ( ',' paramModifier )* ']'
-                char_literal67 = self.input.LT(1)
-                self.match(self.input, 49, self.FOLLOW_49_in_paramModifiersDecl695)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:186:2: ( '[' paramModifier ( ',' paramModifier )* ']' -> ( paramModifier )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:186:4: '[' paramModifier ( ',' paramModifier )* ']'
+                char_literal69 = self.input.LT(1)
+                self.match(self.input, 51, self.FOLLOW_51_in_paramModifiersDecl744)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_49.add(char_literal67)
-                self.following.append(self.FOLLOW_paramModifier_in_paramModifiersDecl697)
-                paramModifier68 = self.paramModifier()
+                    stream_51.add(char_literal69)
+                self.following.append(self.FOLLOW_paramModifier_in_paramModifiersDecl746)
+                paramModifier70 = self.paramModifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_paramModifier.add(paramModifier68.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:137:22: ( ',' paramModifier )*
+                    stream_paramModifier.add(paramModifier70.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:186:22: ( ',' paramModifier )*
                 while True: #loop16
                     alt16 = 2
                     LA16_0 = self.input.LA(1)
 
-                    if (LA16_0 == 50) :
+                    if (LA16_0 == 52) :
                         alt16 = 1
 
 
                     if alt16 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:137:23: ',' paramModifier
-                        char_literal69 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_paramModifiersDecl700)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:186:23: ',' paramModifier
+                        char_literal71 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_paramModifiersDecl749)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_50.add(char_literal69)
-                        self.following.append(self.FOLLOW_paramModifier_in_paramModifiersDecl702)
-                        paramModifier70 = self.paramModifier()
+                            stream_52.add(char_literal71)
+                        self.following.append(self.FOLLOW_paramModifier_in_paramModifiersDecl751)
+                        paramModifier72 = self.paramModifier()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_paramModifier.add(paramModifier70.tree)
+                            stream_paramModifier.add(paramModifier72.tree)
 
 
                     else:
                         break #loop16
 
 
-                char_literal71 = self.input.LT(1)
-                self.match(self.input, 51, self.FOLLOW_51_in_paramModifiersDecl706)
+                char_literal73 = self.input.LT(1)
+                self.match(self.input, 53, self.FOLLOW_53_in_paramModifiersDecl755)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_51.add(char_literal71)
+                    stream_53.add(char_literal73)
                 # AST Rewrite
                 # elements: paramModifier
                 # token labels: 
@@ -2273,8 +2435,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 138:3: -> ( paramModifier )*
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:138:6: ( paramModifier )*
+                    # 187:3: -> ( paramModifier )*
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:187:6: ( paramModifier )*
                     while stream_paramModifier.hasNext():
                         self.adaptor.addChild(root_0, stream_paramModifier.next())
 
@@ -2313,7 +2475,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start paramModifier
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:142:1: paramModifier : ( 'array' | sizeIs | 'retval' | 'const' | 'shared' );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:191:1: paramModifier : ( 'array' | sizeIs | 'retval' | 'const' | 'shared' );
     def paramModifier(self, ):
 
         retval = self.paramModifier_return()
@@ -2321,75 +2483,48 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal72 = None
         string_literal74 = None
-        string_literal75 = None
         string_literal76 = None
-        sizeIs73 = None
+        string_literal77 = None
+        string_literal78 = None
+        sizeIs75 = None
 
 
-        string_literal72_tree = None
         string_literal74_tree = None
-        string_literal75_tree = None
         string_literal76_tree = None
+        string_literal77_tree = None
+        string_literal78_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:143:2: ( 'array' | sizeIs | 'retval' | 'const' | 'shared' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:192:2: ( 'array' | sizeIs | 'retval' | 'const' | 'shared' )
                 alt17 = 5
                 LA17 = self.input.LA(1)
-                if LA17 == 70:
+                if LA17 == 72:
                     alt17 = 1
-                elif LA17 == 73:
+                elif LA17 == 75:
                     alt17 = 2
-                elif LA17 == 71:
+                elif LA17 == 73:
                     alt17 = 3
-                elif LA17 == 62:
+                elif LA17 == 64:
                     alt17 = 4
-                elif LA17 == 72:
+                elif LA17 == 74:
                     alt17 = 5
                 else:
                     if self.backtracking > 0:
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("142:1: paramModifier : ( 'array' | sizeIs | 'retval' | 'const' | 'shared' );", 17, 0, self.input)
+                    nvae = NoViableAltException("191:1: paramModifier : ( 'array' | sizeIs | 'retval' | 'const' | 'shared' );", 17, 0, self.input)
 
                     raise nvae
 
                 if alt17 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:143:4: 'array'
-                    root_0 = self.adaptor.nil()
-
-                    string_literal72 = self.input.LT(1)
-                    self.match(self.input, 70, self.FOLLOW_70_in_paramModifier725)
-                    if self.failed:
-                        return retval
-
-                    string_literal72_tree = self.adaptor.createWithPayload(string_literal72)
-                    self.adaptor.addChild(root_0, string_literal72_tree)
-
-
-
-                elif alt17 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:144:4: sizeIs
-                    root_0 = self.adaptor.nil()
-
-                    self.following.append(self.FOLLOW_sizeIs_in_paramModifier730)
-                    sizeIs73 = self.sizeIs()
-                    self.following.pop()
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, sizeIs73.tree)
-
-
-                elif alt17 == 3:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:145:4: 'retval'
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:192:4: 'array'
                     root_0 = self.adaptor.nil()
 
                     string_literal74 = self.input.LT(1)
-                    self.match(self.input, 71, self.FOLLOW_71_in_paramModifier735)
+                    self.match(self.input, 72, self.FOLLOW_72_in_paramModifier774)
                     if self.failed:
                         return retval
 
@@ -2398,31 +2533,58 @@ class XPIDLParser(Parser):
 
 
 
-                elif alt17 == 4:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:146:4: 'const'
+                elif alt17 == 2:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:193:4: sizeIs
                     root_0 = self.adaptor.nil()
 
-                    string_literal75 = self.input.LT(1)
-                    self.match(self.input, 62, self.FOLLOW_62_in_paramModifier740)
+                    self.following.append(self.FOLLOW_sizeIs_in_paramModifier779)
+                    sizeIs75 = self.sizeIs()
+                    self.following.pop()
                     if self.failed:
                         return retval
-
-                    string_literal75_tree = self.adaptor.createWithPayload(string_literal75)
-                    self.adaptor.addChild(root_0, string_literal75_tree)
-
+                    if self.backtracking == 0:
+                        self.adaptor.addChild(root_0, sizeIs75.tree)
 
 
-                elif alt17 == 5:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:147:4: 'shared'
+                elif alt17 == 3:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:194:4: 'retval'
                     root_0 = self.adaptor.nil()
 
                     string_literal76 = self.input.LT(1)
-                    self.match(self.input, 72, self.FOLLOW_72_in_paramModifier745)
+                    self.match(self.input, 73, self.FOLLOW_73_in_paramModifier784)
                     if self.failed:
                         return retval
 
                     string_literal76_tree = self.adaptor.createWithPayload(string_literal76)
                     self.adaptor.addChild(root_0, string_literal76_tree)
+
+
+
+                elif alt17 == 4:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:195:4: 'const'
+                    root_0 = self.adaptor.nil()
+
+                    string_literal77 = self.input.LT(1)
+                    self.match(self.input, 64, self.FOLLOW_64_in_paramModifier789)
+                    if self.failed:
+                        return retval
+
+                    string_literal77_tree = self.adaptor.createWithPayload(string_literal77)
+                    self.adaptor.addChild(root_0, string_literal77_tree)
+
+
+
+                elif alt17 == 5:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:196:4: 'shared'
+                    root_0 = self.adaptor.nil()
+
+                    string_literal78 = self.input.LT(1)
+                    self.match(self.input, 74, self.FOLLOW_74_in_paramModifier794)
+                    if self.failed:
+                        return retval
+
+                    string_literal78_tree = self.adaptor.createWithPayload(string_literal78)
+                    self.adaptor.addChild(root_0, string_literal78_tree)
 
 
 
@@ -2453,7 +2615,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start sizeIs
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:150:1: sizeIs : 'size_is' '(' validId ')' ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:199:1: sizeIs : 'size_is' '(' validId ')' ;
     def sizeIs(self, ):
 
         retval = self.sizeIs_return()
@@ -2461,52 +2623,52 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal77 = None
-        char_literal78 = None
+        string_literal79 = None
         char_literal80 = None
-        validId79 = None
+        char_literal82 = None
+        validId81 = None
 
 
-        string_literal77_tree = None
-        char_literal78_tree = None
+        string_literal79_tree = None
         char_literal80_tree = None
+        char_literal82_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:151:2: ( 'size_is' '(' validId ')' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:151:4: 'size_is' '(' validId ')'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:200:2: ( 'size_is' '(' validId ')' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:200:4: 'size_is' '(' validId ')'
                 root_0 = self.adaptor.nil()
 
-                string_literal77 = self.input.LT(1)
-                self.match(self.input, 73, self.FOLLOW_73_in_sizeIs757)
+                string_literal79 = self.input.LT(1)
+                self.match(self.input, 75, self.FOLLOW_75_in_sizeIs806)
                 if self.failed:
                     return retval
 
-                string_literal77_tree = self.adaptor.createWithPayload(string_literal77)
-                self.adaptor.addChild(root_0, string_literal77_tree)
+                string_literal79_tree = self.adaptor.createWithPayload(string_literal79)
+                self.adaptor.addChild(root_0, string_literal79_tree)
 
-                char_literal78 = self.input.LT(1)
-                self.match(self.input, 60, self.FOLLOW_60_in_sizeIs759)
-                if self.failed:
-                    return retval
-
-                char_literal78_tree = self.adaptor.createWithPayload(char_literal78)
-                self.adaptor.addChild(root_0, char_literal78_tree)
-
-                self.following.append(self.FOLLOW_validId_in_sizeIs761)
-                validId79 = self.validId()
-                self.following.pop()
-                if self.failed:
-                    return retval
-                if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, validId79.tree)
                 char_literal80 = self.input.LT(1)
-                self.match(self.input, 61, self.FOLLOW_61_in_sizeIs763)
+                self.match(self.input, 62, self.FOLLOW_62_in_sizeIs808)
                 if self.failed:
                     return retval
 
                 char_literal80_tree = self.adaptor.createWithPayload(char_literal80)
                 self.adaptor.addChild(root_0, char_literal80_tree)
+
+                self.following.append(self.FOLLOW_validId_in_sizeIs810)
+                validId81 = self.validId()
+                self.following.pop()
+                if self.failed:
+                    return retval
+                if self.backtracking == 0:
+                    self.adaptor.addChild(root_0, validId81.tree)
+                char_literal82 = self.input.LT(1)
+                self.match(self.input, 63, self.FOLLOW_63_in_sizeIs812)
+                if self.failed:
+                    return retval
+
+                char_literal82_tree = self.adaptor.createWithPayload(char_literal82)
+                self.adaptor.addChild(root_0, char_literal82_tree)
 
 
 
@@ -2538,7 +2700,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start nativeTypeDecl
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:154:1: nativeTypeDecl : nativeType ';' ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:203:1: nativeTypeDecl : nativeType ';' ;
     def nativeTypeDecl(self, ):
 
         retval = self.nativeTypeDecl_return()
@@ -2546,27 +2708,27 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal82 = None
-        nativeType81 = None
+        char_literal84 = None
+        nativeType83 = None
 
 
-        char_literal82_tree = None
+        char_literal84_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:2: ( nativeType ';' )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:155:4: nativeType ';'
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:204:2: ( nativeType ';' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:204:4: nativeType ';'
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_nativeType_in_nativeTypeDecl775)
-                nativeType81 = self.nativeType()
+                self.following.append(self.FOLLOW_nativeType_in_nativeTypeDecl824)
+                nativeType83 = self.nativeType()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, nativeType81.tree)
-                char_literal82 = self.input.LT(1)
-                self.match(self.input, 48, self.FOLLOW_48_in_nativeTypeDecl777)
+                    self.adaptor.addChild(root_0, nativeType83.tree)
+                char_literal84 = self.input.LT(1)
+                self.match(self.input, 50, self.FOLLOW_50_in_nativeTypeDecl826)
                 if self.failed:
                     return retval
 
@@ -2599,7 +2761,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start nativeType
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:158:1: nativeType : typeModifiersDecl 'native' validId -> ^( NATIVE validId typeModifiersDecl ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:207:1: nativeType : typeModifiersDecl 'native' validId -> ^( NATIVE validId typeModifiersDecl ) ;
     def nativeType(self, ):
 
         retval = self.nativeType_return()
@@ -2607,42 +2769,42 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal84 = None
-        typeModifiersDecl83 = None
+        string_literal86 = None
+        typeModifiersDecl85 = None
 
-        validId85 = None
+        validId87 = None
 
 
-        string_literal84_tree = None
-        stream_74 = RewriteRuleTokenStream(self.adaptor, "token 74")
+        string_literal86_tree = None
+        stream_76 = RewriteRuleTokenStream(self.adaptor, "token 76")
         stream_typeModifiersDecl = RewriteRuleSubtreeStream(self.adaptor, "rule typeModifiersDecl")
         stream_validId = RewriteRuleSubtreeStream(self.adaptor, "rule validId")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:159:2: ( typeModifiersDecl 'native' validId -> ^( NATIVE validId typeModifiersDecl ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:159:4: typeModifiersDecl 'native' validId
-                self.following.append(self.FOLLOW_typeModifiersDecl_in_nativeType789)
-                typeModifiersDecl83 = self.typeModifiersDecl()
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:208:2: ( typeModifiersDecl 'native' validId -> ^( NATIVE validId typeModifiersDecl ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:208:4: typeModifiersDecl 'native' validId
+                self.following.append(self.FOLLOW_typeModifiersDecl_in_nativeType838)
+                typeModifiersDecl85 = self.typeModifiersDecl()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_typeModifiersDecl.add(typeModifiersDecl83.tree)
-                string_literal84 = self.input.LT(1)
-                self.match(self.input, 74, self.FOLLOW_74_in_nativeType791)
+                    stream_typeModifiersDecl.add(typeModifiersDecl85.tree)
+                string_literal86 = self.input.LT(1)
+                self.match(self.input, 76, self.FOLLOW_76_in_nativeType840)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_74.add(string_literal84)
-                self.following.append(self.FOLLOW_validId_in_nativeType793)
-                validId85 = self.validId()
+                    stream_76.add(string_literal86)
+                self.following.append(self.FOLLOW_validId_in_nativeType842)
+                validId87 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId85.tree)
+                    stream_validId.add(validId87.tree)
                 # AST Rewrite
-                # elements: typeModifiersDecl, validId
+                # elements: validId, typeModifiersDecl
                 # token labels: 
                 # rule labels: retval
                 # token list labels: 
@@ -2658,8 +2820,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 160:3: -> ^( NATIVE validId typeModifiersDecl )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:160:6: ^( NATIVE validId typeModifiersDecl )
+                    # 209:3: -> ^( NATIVE validId typeModifiersDecl )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:209:6: ^( NATIVE validId typeModifiersDecl )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(NATIVE, "NATIVE"), root_1)
 
@@ -2700,7 +2862,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start typeModifiersDecl
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:163:1: typeModifiersDecl : '[' typeModifier ( ',' typeModifier )* ']' -> ( typeModifier )+ ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:212:1: typeModifiersDecl : '[' typeModifier ( ',' typeModifier )* ']' -> ( typeModifier )+ ;
     def typeModifiersDecl(self, ):
 
         retval = self.typeModifiersDecl_return()
@@ -2708,74 +2870,74 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal86 = None
         char_literal88 = None
         char_literal90 = None
-        typeModifier87 = None
-
+        char_literal92 = None
         typeModifier89 = None
 
+        typeModifier91 = None
 
-        char_literal86_tree = None
+
         char_literal88_tree = None
         char_literal90_tree = None
-        stream_49 = RewriteRuleTokenStream(self.adaptor, "token 49")
+        char_literal92_tree = None
         stream_51 = RewriteRuleTokenStream(self.adaptor, "token 51")
-        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
+        stream_52 = RewriteRuleTokenStream(self.adaptor, "token 52")
+        stream_53 = RewriteRuleTokenStream(self.adaptor, "token 53")
         stream_typeModifier = RewriteRuleSubtreeStream(self.adaptor, "rule typeModifier")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:164:2: ( '[' typeModifier ( ',' typeModifier )* ']' -> ( typeModifier )+ )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:164:4: '[' typeModifier ( ',' typeModifier )* ']'
-                char_literal86 = self.input.LT(1)
-                self.match(self.input, 49, self.FOLLOW_49_in_typeModifiersDecl816)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:213:2: ( '[' typeModifier ( ',' typeModifier )* ']' -> ( typeModifier )+ )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:213:4: '[' typeModifier ( ',' typeModifier )* ']'
+                char_literal88 = self.input.LT(1)
+                self.match(self.input, 51, self.FOLLOW_51_in_typeModifiersDecl865)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_49.add(char_literal86)
-                self.following.append(self.FOLLOW_typeModifier_in_typeModifiersDecl818)
-                typeModifier87 = self.typeModifier()
+                    stream_51.add(char_literal88)
+                self.following.append(self.FOLLOW_typeModifier_in_typeModifiersDecl867)
+                typeModifier89 = self.typeModifier()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_typeModifier.add(typeModifier87.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:164:21: ( ',' typeModifier )*
+                    stream_typeModifier.add(typeModifier89.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:213:21: ( ',' typeModifier )*
                 while True: #loop18
                     alt18 = 2
                     LA18_0 = self.input.LA(1)
 
-                    if (LA18_0 == 50) :
+                    if (LA18_0 == 52) :
                         alt18 = 1
 
 
                     if alt18 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:164:22: ',' typeModifier
-                        char_literal88 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_typeModifiersDecl821)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:213:22: ',' typeModifier
+                        char_literal90 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_typeModifiersDecl870)
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_50.add(char_literal88)
-                        self.following.append(self.FOLLOW_typeModifier_in_typeModifiersDecl823)
-                        typeModifier89 = self.typeModifier()
+                            stream_52.add(char_literal90)
+                        self.following.append(self.FOLLOW_typeModifier_in_typeModifiersDecl872)
+                        typeModifier91 = self.typeModifier()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            stream_typeModifier.add(typeModifier89.tree)
+                            stream_typeModifier.add(typeModifier91.tree)
 
 
                     else:
                         break #loop18
 
 
-                char_literal90 = self.input.LT(1)
-                self.match(self.input, 51, self.FOLLOW_51_in_typeModifiersDecl827)
+                char_literal92 = self.input.LT(1)
+                self.match(self.input, 53, self.FOLLOW_53_in_typeModifiersDecl876)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_51.add(char_literal90)
+                    stream_53.add(char_literal92)
                 # AST Rewrite
                 # elements: typeModifier
                 # token labels: 
@@ -2793,8 +2955,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 165:3: -> ( typeModifier )+
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:165:6: ( typeModifier )+
+                    # 214:3: -> ( typeModifier )+
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:214:6: ( typeModifier )+
                     if not (stream_typeModifier.hasNext()):
                         raise RewriteEarlyExitException()
 
@@ -2836,7 +2998,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start typeModifier
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:168:1: typeModifier : ( 'ref' | 'ptr' | 'nsid' | 'domstring' | 'utf8string' | 'cstring' | 'astring' );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:217:1: typeModifier : ( 'ref' | 'ptr' | 'nsid' | 'domstring' | 'utf8string' | 'cstring' | 'astring' );
     def typeModifier(self, ):
 
         retval = self.typeModifier_return()
@@ -2844,21 +3006,21 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set91 = None
+        set93 = None
 
-        set91_tree = None
+        set93_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:169:2: ( 'ref' | 'ptr' | 'nsid' | 'domstring' | 'utf8string' | 'cstring' | 'astring' )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:218:2: ( 'ref' | 'ptr' | 'nsid' | 'domstring' | 'utf8string' | 'cstring' | 'astring' )
                 # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:
                 root_0 = self.adaptor.nil()
 
-                set91 = self.input.LT(1)
-                if (75 <= self.input.LA(1) <= 81):
+                set93 = self.input.LT(1)
+                if (77 <= self.input.LA(1) <= 83):
                     self.input.consume();
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set91))
+                        self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set93))
                     self.errorRecovery = False
                     self.failed = False
 
@@ -2904,7 +3066,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start typedef
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:178:1: typedef : 'typedef' type validId ';' -> ^( TYPEDEF type validId ) ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:227:1: typedef : 'typedef' type validId ';' -> ^( TYPEDEF type validId ) ;
     def typedef(self, ):
 
         retval = self.typedef_return()
@@ -2912,49 +3074,49 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal92 = None
-        char_literal95 = None
-        type93 = None
+        string_literal94 = None
+        char_literal97 = None
+        type95 = None
 
-        validId94 = None
+        validId96 = None
 
 
-        string_literal92_tree = None
-        char_literal95_tree = None
-        stream_48 = RewriteRuleTokenStream(self.adaptor, "token 48")
-        stream_82 = RewriteRuleTokenStream(self.adaptor, "token 82")
+        string_literal94_tree = None
+        char_literal97_tree = None
+        stream_84 = RewriteRuleTokenStream(self.adaptor, "token 84")
+        stream_50 = RewriteRuleTokenStream(self.adaptor, "token 50")
         stream_validId = RewriteRuleSubtreeStream(self.adaptor, "rule validId")
         stream_type = RewriteRuleSubtreeStream(self.adaptor, "rule type")
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:179:2: ( 'typedef' type validId ';' -> ^( TYPEDEF type validId ) )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:179:4: 'typedef' type validId ';'
-                string_literal92 = self.input.LT(1)
-                self.match(self.input, 82, self.FOLLOW_82_in_typedef886)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:228:2: ( 'typedef' type validId ';' -> ^( TYPEDEF type validId ) )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:228:4: 'typedef' type validId ';'
+                string_literal94 = self.input.LT(1)
+                self.match(self.input, 84, self.FOLLOW_84_in_typedef935)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_82.add(string_literal92)
-                self.following.append(self.FOLLOW_type_in_typedef888)
-                type93 = self.type()
+                    stream_84.add(string_literal94)
+                self.following.append(self.FOLLOW_type_in_typedef937)
+                type95 = self.type()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_type.add(type93.tree)
-                self.following.append(self.FOLLOW_validId_in_typedef890)
-                validId94 = self.validId()
+                    stream_type.add(type95.tree)
+                self.following.append(self.FOLLOW_validId_in_typedef939)
+                validId96 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_validId.add(validId94.tree)
-                char_literal95 = self.input.LT(1)
-                self.match(self.input, 48, self.FOLLOW_48_in_typedef892)
+                    stream_validId.add(validId96.tree)
+                char_literal97 = self.input.LT(1)
+                self.match(self.input, 50, self.FOLLOW_50_in_typedef941)
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    stream_48.add(char_literal95)
+                    stream_50.add(char_literal97)
                 # AST Rewrite
                 # elements: type, validId
                 # token labels: 
@@ -2972,8 +3134,8 @@ class XPIDLParser(Parser):
 
 
                     root_0 = self.adaptor.nil()
-                    # 180:3: -> ^( TYPEDEF type validId )
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:180:6: ^( TYPEDEF type validId )
+                    # 229:3: -> ^( TYPEDEF type validId )
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:229:6: ^( TYPEDEF type validId )
                     root_1 = self.adaptor.nil()
                     root_1 = self.adaptor.becomeRoot(self.adaptor.createFromType(TYPEDEF, "TYPEDEF"), root_1)
 
@@ -3014,7 +3176,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start type
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:183:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:232:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );
     def type(self, ):
 
         retval = self.type_return()
@@ -3022,8 +3184,6 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal96 = None
-        string_literal97 = None
         string_literal98 = None
         string_literal99 = None
         string_literal100 = None
@@ -3042,11 +3202,11 @@ class XPIDLParser(Parser):
         string_literal113 = None
         string_literal114 = None
         string_literal115 = None
-        validId116 = None
+        string_literal116 = None
+        string_literal117 = None
+        validId118 = None
 
 
-        string_literal96_tree = None
-        string_literal97_tree = None
         string_literal98_tree = None
         string_literal99_tree = None
         string_literal100_tree = None
@@ -3065,38 +3225,40 @@ class XPIDLParser(Parser):
         string_literal113_tree = None
         string_literal114_tree = None
         string_literal115_tree = None
+        string_literal116_tree = None
+        string_literal117_tree = None
+        stream_67 = RewriteRuleTokenStream(self.adaptor, "token 67")
+        stream_66 = RewriteRuleTokenStream(self.adaptor, "token 66")
+        stream_94 = RewriteRuleTokenStream(self.adaptor, "token 94")
+        stream_93 = RewriteRuleTokenStream(self.adaptor, "token 93")
         stream_92 = RewriteRuleTokenStream(self.adaptor, "token 92")
         stream_91 = RewriteRuleTokenStream(self.adaptor, "token 91")
         stream_90 = RewriteRuleTokenStream(self.adaptor, "token 90")
-        stream_64 = RewriteRuleTokenStream(self.adaptor, "token 64")
-        stream_65 = RewriteRuleTokenStream(self.adaptor, "token 65")
-        stream_83 = RewriteRuleTokenStream(self.adaptor, "token 83")
         stream_86 = RewriteRuleTokenStream(self.adaptor, "token 86")
         stream_87 = RewriteRuleTokenStream(self.adaptor, "token 87")
         stream_88 = RewriteRuleTokenStream(self.adaptor, "token 88")
-        stream_84 = RewriteRuleTokenStream(self.adaptor, "token 84")
         stream_89 = RewriteRuleTokenStream(self.adaptor, "token 89")
         stream_85 = RewriteRuleTokenStream(self.adaptor, "token 85")
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:184:2: ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:233:2: ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId )
                 alt19 = 16
                 LA19 = self.input.LA(1)
-                if LA19 == 83:
+                if LA19 == 85:
                     alt19 = 1
-                elif LA19 == 84:
-                    alt19 = 2
-                elif LA19 == 85:
-                    alt19 = 3
                 elif LA19 == 86:
+                    alt19 = 2
+                elif LA19 == 87:
+                    alt19 = 3
+                elif LA19 == 88:
                     alt19 = 4
-                elif LA19 == 64:
+                elif LA19 == 66:
                     alt19 = 5
-                elif LA19 == 65:
+                elif LA19 == 67:
                     LA19_6 = self.input.LA(2)
 
-                    if (LA19_6 == 65) :
+                    if (LA19_6 == 67) :
                         alt19 = 7
                     elif (LA19_6 == Identifier) :
                         alt19 = 6
@@ -3105,17 +3267,17 @@ class XPIDLParser(Parser):
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("183:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 6, self.input)
+                        nvae = NoViableAltException("232:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 6, self.input)
 
                         raise nvae
 
-                elif LA19 == 87:
+                elif LA19 == 89:
                     LA19_7 = self.input.LA(2)
 
-                    if (LA19_7 == 65) :
+                    if (LA19_7 == 67) :
                         LA19_16 = self.input.LA(3)
 
-                        if (LA19_16 == 65) :
+                        if (LA19_16 == 67) :
                             alt19 = 10
                         elif (LA19_16 == Identifier) :
                             alt19 = 9
@@ -3124,30 +3286,30 @@ class XPIDLParser(Parser):
                                 self.failed = True
                                 return retval
 
-                            nvae = NoViableAltException("183:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 16, self.input)
+                            nvae = NoViableAltException("232:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 16, self.input)
 
                             raise nvae
 
-                    elif (LA19_7 == 64) :
+                    elif (LA19_7 == 66) :
                         alt19 = 8
                     else:
                         if self.backtracking > 0:
                             self.failed = True
                             return retval
 
-                        nvae = NoViableAltException("183:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 7, self.input)
+                        nvae = NoViableAltException("232:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 7, self.input)
 
                         raise nvae
 
-                elif LA19 == 88:
-                    alt19 = 11
-                elif LA19 == 89:
-                    alt19 = 12
                 elif LA19 == 90:
-                    alt19 = 13
+                    alt19 = 11
                 elif LA19 == 91:
-                    alt19 = 14
+                    alt19 = 12
                 elif LA19 == 92:
+                    alt19 = 13
+                elif LA19 == 93:
+                    alt19 = 14
+                elif LA19 == 94:
                     alt19 = 15
                 elif LA19 == Identifier:
                     alt19 = 16
@@ -3156,78 +3318,14 @@ class XPIDLParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("183:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 0, self.input)
+                    nvae = NoViableAltException("232:1: type : ( 'boolean' -> BOOLEAN | 'void' -> VOID | 'string' -> STRING | 'octet' -> OCTET | 'short' -> SHORT | 'long' -> LONG | 'long' 'long' -> LONG_LONG | 'unsigned' 'short' -> UNSIGNED_SHORT | 'unsigned' 'long' -> UNSIGNED_LONG | 'unsigned' 'long' 'long' -> UNSIGNED_LONG_LONG | 'float' -> FLOAT | 'double' -> DOUBLE | 'char' -> CHAR | 'wchar' -> WCHAR | 'wstring' -> WSTRING | validId );", 19, 0, self.input)
 
                     raise nvae
 
                 if alt19 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:184:4: 'boolean'
-                    string_literal96 = self.input.LT(1)
-                    self.match(self.input, 83, self.FOLLOW_83_in_type915)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_83.add(string_literal96)
-                    # AST Rewrite
-                    # elements: 
-                    # token labels: 
-                    # rule labels: retval
-                    # token list labels: 
-                    # rule list labels: 
-                    if self.backtracking == 0:
-
-                        retval.tree = root_0
-
-                        if retval is not None:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
-                        else:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
-
-
-                        root_0 = self.adaptor.nil()
-                        # 184:14: -> BOOLEAN
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(BOOLEAN, "BOOLEAN"))
-
-
-
-
-
-                elif alt19 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:185:4: 'void'
-                    string_literal97 = self.input.LT(1)
-                    self.match(self.input, 84, self.FOLLOW_84_in_type924)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_84.add(string_literal97)
-                    # AST Rewrite
-                    # elements: 
-                    # token labels: 
-                    # rule labels: retval
-                    # token list labels: 
-                    # rule list labels: 
-                    if self.backtracking == 0:
-
-                        retval.tree = root_0
-
-                        if retval is not None:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
-                        else:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
-
-
-                        root_0 = self.adaptor.nil()
-                        # 185:11: -> VOID
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(VOID, "VOID"))
-
-
-
-
-
-                elif alt19 == 3:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:186:4: 'string'
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:233:4: 'boolean'
                     string_literal98 = self.input.LT(1)
-                    self.match(self.input, 85, self.FOLLOW_85_in_type933)
+                    self.match(self.input, 85, self.FOLLOW_85_in_type964)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3249,17 +3347,17 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 186:13: -> STRING
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(STRING, "STRING"))
+                        # 233:14: -> BOOLEAN
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(BOOLEAN, "BOOLEAN"))
 
 
 
 
 
-                elif alt19 == 4:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:187:4: 'octet'
+                elif alt19 == 2:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:234:4: 'void'
                     string_literal99 = self.input.LT(1)
-                    self.match(self.input, 86, self.FOLLOW_86_in_type942)
+                    self.match(self.input, 86, self.FOLLOW_86_in_type973)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3281,7 +3379,71 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 187:12: -> OCTET
+                        # 234:11: -> VOID
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(VOID, "VOID"))
+
+
+
+
+
+                elif alt19 == 3:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:235:4: 'string'
+                    string_literal100 = self.input.LT(1)
+                    self.match(self.input, 87, self.FOLLOW_87_in_type982)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_87.add(string_literal100)
+                    # AST Rewrite
+                    # elements: 
+                    # token labels: 
+                    # rule labels: retval
+                    # token list labels: 
+                    # rule list labels: 
+                    if self.backtracking == 0:
+
+                        retval.tree = root_0
+
+                        if retval is not None:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                        else:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                        root_0 = self.adaptor.nil()
+                        # 235:13: -> STRING
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(STRING, "STRING"))
+
+
+
+
+
+                elif alt19 == 4:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:236:4: 'octet'
+                    string_literal101 = self.input.LT(1)
+                    self.match(self.input, 88, self.FOLLOW_88_in_type991)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_88.add(string_literal101)
+                    # AST Rewrite
+                    # elements: 
+                    # token labels: 
+                    # rule labels: retval
+                    # token list labels: 
+                    # rule list labels: 
+                    if self.backtracking == 0:
+
+                        retval.tree = root_0
+
+                        if retval is not None:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                        else:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                        root_0 = self.adaptor.nil()
+                        # 236:12: -> OCTET
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(OCTET, "OCTET"))
 
 
@@ -3289,13 +3451,13 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 5:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:188:4: 'short'
-                    string_literal100 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_type951)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:237:4: 'short'
+                    string_literal102 = self.input.LT(1)
+                    self.match(self.input, 66, self.FOLLOW_66_in_type1000)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_64.add(string_literal100)
+                        stream_66.add(string_literal102)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3313,7 +3475,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 188:12: -> SHORT
+                        # 237:12: -> SHORT
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(SHORT, "SHORT"))
 
 
@@ -3321,13 +3483,13 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 6:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:189:4: 'long'
-                    string_literal101 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type960)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:238:4: 'long'
+                    string_literal103 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1009)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal101)
+                        stream_67.add(string_literal103)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3345,7 +3507,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 189:11: -> LONG
+                        # 238:11: -> LONG
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(LONG, "LONG"))
 
 
@@ -3353,19 +3515,19 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 7:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:190:4: 'long' 'long'
-                    string_literal102 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type969)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:239:4: 'long' 'long'
+                    string_literal104 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1018)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal102)
-                    string_literal103 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type971)
+                        stream_67.add(string_literal104)
+                    string_literal105 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1020)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal103)
+                        stream_67.add(string_literal105)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3383,7 +3545,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 190:18: -> LONG_LONG
+                        # 239:18: -> LONG_LONG
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(LONG_LONG, "LONG_LONG"))
 
 
@@ -3391,19 +3553,19 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 8:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:191:4: 'unsigned' 'short'
-                    string_literal104 = self.input.LT(1)
-                    self.match(self.input, 87, self.FOLLOW_87_in_type980)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:240:4: 'unsigned' 'short'
+                    string_literal106 = self.input.LT(1)
+                    self.match(self.input, 89, self.FOLLOW_89_in_type1029)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_87.add(string_literal104)
-                    string_literal105 = self.input.LT(1)
-                    self.match(self.input, 64, self.FOLLOW_64_in_type982)
+                        stream_89.add(string_literal106)
+                    string_literal107 = self.input.LT(1)
+                    self.match(self.input, 66, self.FOLLOW_66_in_type1031)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_64.add(string_literal105)
+                        stream_66.add(string_literal107)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3421,7 +3583,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 191:23: -> UNSIGNED_SHORT
+                        # 240:23: -> UNSIGNED_SHORT
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(UNSIGNED_SHORT, "UNSIGNED_SHORT"))
 
 
@@ -3429,19 +3591,19 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 9:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:192:4: 'unsigned' 'long'
-                    string_literal106 = self.input.LT(1)
-                    self.match(self.input, 87, self.FOLLOW_87_in_type991)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:241:4: 'unsigned' 'long'
+                    string_literal108 = self.input.LT(1)
+                    self.match(self.input, 89, self.FOLLOW_89_in_type1040)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_87.add(string_literal106)
-                    string_literal107 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type993)
+                        stream_89.add(string_literal108)
+                    string_literal109 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1042)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal107)
+                        stream_67.add(string_literal109)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3459,7 +3621,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 192:22: -> UNSIGNED_LONG
+                        # 241:22: -> UNSIGNED_LONG
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(UNSIGNED_LONG, "UNSIGNED_LONG"))
 
 
@@ -3467,25 +3629,25 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 10:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:193:4: 'unsigned' 'long' 'long'
-                    string_literal108 = self.input.LT(1)
-                    self.match(self.input, 87, self.FOLLOW_87_in_type1002)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_87.add(string_literal108)
-                    string_literal109 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type1004)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_65.add(string_literal109)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:242:4: 'unsigned' 'long' 'long'
                     string_literal110 = self.input.LT(1)
-                    self.match(self.input, 65, self.FOLLOW_65_in_type1006)
+                    self.match(self.input, 89, self.FOLLOW_89_in_type1051)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        stream_65.add(string_literal110)
+                        stream_89.add(string_literal110)
+                    string_literal111 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1053)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_67.add(string_literal111)
+                    string_literal112 = self.input.LT(1)
+                    self.match(self.input, 67, self.FOLLOW_67_in_type1055)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_67.add(string_literal112)
                     # AST Rewrite
                     # elements: 
                     # token labels: 
@@ -3503,7 +3665,7 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 193:29: -> UNSIGNED_LONG_LONG
+                        # 242:29: -> UNSIGNED_LONG_LONG
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(UNSIGNED_LONG_LONG, "UNSIGNED_LONG_LONG"))
 
 
@@ -3511,73 +3673,9 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 11:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:194:4: 'float'
-                    string_literal111 = self.input.LT(1)
-                    self.match(self.input, 88, self.FOLLOW_88_in_type1015)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_88.add(string_literal111)
-                    # AST Rewrite
-                    # elements: 
-                    # token labels: 
-                    # rule labels: retval
-                    # token list labels: 
-                    # rule list labels: 
-                    if self.backtracking == 0:
-
-                        retval.tree = root_0
-
-                        if retval is not None:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
-                        else:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
-
-
-                        root_0 = self.adaptor.nil()
-                        # 194:12: -> FLOAT
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(FLOAT, "FLOAT"))
-
-
-
-
-
-                elif alt19 == 12:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:195:4: 'double'
-                    string_literal112 = self.input.LT(1)
-                    self.match(self.input, 89, self.FOLLOW_89_in_type1024)
-                    if self.failed:
-                        return retval
-                    if self.backtracking == 0:
-                        stream_89.add(string_literal112)
-                    # AST Rewrite
-                    # elements: 
-                    # token labels: 
-                    # rule labels: retval
-                    # token list labels: 
-                    # rule list labels: 
-                    if self.backtracking == 0:
-
-                        retval.tree = root_0
-
-                        if retval is not None:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
-                        else:
-                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
-
-
-                        root_0 = self.adaptor.nil()
-                        # 195:13: -> DOUBLE
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(DOUBLE, "DOUBLE"))
-
-
-
-
-
-                elif alt19 == 13:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:196:4: 'char'
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:243:4: 'float'
                     string_literal113 = self.input.LT(1)
-                    self.match(self.input, 90, self.FOLLOW_90_in_type1033)
+                    self.match(self.input, 90, self.FOLLOW_90_in_type1064)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3599,17 +3697,17 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 196:11: -> CHAR
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(CHAR, "CHAR"))
+                        # 243:12: -> FLOAT
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(FLOAT, "FLOAT"))
 
 
 
 
 
-                elif alt19 == 14:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:197:4: 'wchar'
+                elif alt19 == 12:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:244:4: 'double'
                     string_literal114 = self.input.LT(1)
-                    self.match(self.input, 91, self.FOLLOW_91_in_type1042)
+                    self.match(self.input, 91, self.FOLLOW_91_in_type1073)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3631,17 +3729,17 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 197:12: -> WCHAR
-                        self.adaptor.addChild(root_0, self.adaptor.createFromType(WCHAR, "WCHAR"))
+                        # 244:13: -> DOUBLE
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(DOUBLE, "DOUBLE"))
 
 
 
 
 
-                elif alt19 == 15:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:198:4: 'wstring'
+                elif alt19 == 13:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:245:4: 'char'
                     string_literal115 = self.input.LT(1)
-                    self.match(self.input, 92, self.FOLLOW_92_in_type1051)
+                    self.match(self.input, 92, self.FOLLOW_92_in_type1082)
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
@@ -3663,7 +3761,71 @@ class XPIDLParser(Parser):
 
 
                         root_0 = self.adaptor.nil()
-                        # 198:14: -> WSTRING
+                        # 245:11: -> CHAR
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(CHAR, "CHAR"))
+
+
+
+
+
+                elif alt19 == 14:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:246:4: 'wchar'
+                    string_literal116 = self.input.LT(1)
+                    self.match(self.input, 93, self.FOLLOW_93_in_type1091)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_93.add(string_literal116)
+                    # AST Rewrite
+                    # elements: 
+                    # token labels: 
+                    # rule labels: retval
+                    # token list labels: 
+                    # rule list labels: 
+                    if self.backtracking == 0:
+
+                        retval.tree = root_0
+
+                        if retval is not None:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                        else:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                        root_0 = self.adaptor.nil()
+                        # 246:12: -> WCHAR
+                        self.adaptor.addChild(root_0, self.adaptor.createFromType(WCHAR, "WCHAR"))
+
+
+
+
+
+                elif alt19 == 15:
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:247:4: 'wstring'
+                    string_literal117 = self.input.LT(1)
+                    self.match(self.input, 94, self.FOLLOW_94_in_type1100)
+                    if self.failed:
+                        return retval
+                    if self.backtracking == 0:
+                        stream_94.add(string_literal117)
+                    # AST Rewrite
+                    # elements: 
+                    # token labels: 
+                    # rule labels: retval
+                    # token list labels: 
+                    # rule list labels: 
+                    if self.backtracking == 0:
+
+                        retval.tree = root_0
+
+                        if retval is not None:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", retval.tree)
+                        else:
+                            stream_retval = RewriteRuleSubtreeStream(self.adaptor, "token retval", None)
+
+
+                        root_0 = self.adaptor.nil()
+                        # 247:14: -> WSTRING
                         self.adaptor.addChild(root_0, self.adaptor.createFromType(WSTRING, "WSTRING"))
 
 
@@ -3671,16 +3833,16 @@ class XPIDLParser(Parser):
 
 
                 elif alt19 == 16:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:199:4: validId
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:248:4: validId
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_validId_in_type1060)
-                    validId116 = self.validId()
+                    self.following.append(self.FOLLOW_validId_in_type1109)
+                    validId118 = self.validId()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, validId116.tree)
+                        self.adaptor.addChild(root_0, validId118.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -3710,7 +3872,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start mathExpr
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:202:1: mathExpr : mathMultDiv ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:251:1: mathExpr : mathMultDiv ;
     def mathExpr(self, ):
 
         retval = self.mathExpr_return()
@@ -3718,23 +3880,23 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        mathMultDiv117 = None
+        mathMultDiv119 = None
 
 
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:203:2: ( mathMultDiv )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:203:4: mathMultDiv
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:252:2: ( mathMultDiv )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:252:4: mathMultDiv
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_mathMultDiv_in_mathExpr1071)
-                mathMultDiv117 = self.mathMultDiv()
+                self.following.append(self.FOLLOW_mathMultDiv_in_mathExpr1120)
+                mathMultDiv119 = self.mathMultDiv()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, mathMultDiv117.tree)
+                    self.adaptor.addChild(root_0, mathMultDiv119.tree)
 
 
 
@@ -3765,7 +3927,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start mathMultDiv
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:206:1: mathMultDiv : mathAddSub ( ( '*' | '/' ) mathAddSub )? ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:255:1: mathMultDiv : mathAddSub ( ( '*' | '/' ) mathAddSub )? ;
     def mathMultDiv(self, ):
 
         retval = self.mathMultDiv_return()
@@ -3773,40 +3935,40 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set119 = None
-        mathAddSub118 = None
-
+        set121 = None
         mathAddSub120 = None
 
+        mathAddSub122 = None
 
-        set119_tree = None
+
+        set121_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:207:2: ( mathAddSub ( ( '*' | '/' ) mathAddSub )? )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:207:4: mathAddSub ( ( '*' | '/' ) mathAddSub )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:256:2: ( mathAddSub ( ( '*' | '/' ) mathAddSub )? )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:256:4: mathAddSub ( ( '*' | '/' ) mathAddSub )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_mathAddSub_in_mathMultDiv1082)
-                mathAddSub118 = self.mathAddSub()
+                self.following.append(self.FOLLOW_mathAddSub_in_mathMultDiv1131)
+                mathAddSub120 = self.mathAddSub()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, mathAddSub118.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:207:15: ( ( '*' | '/' ) mathAddSub )?
+                    self.adaptor.addChild(root_0, mathAddSub120.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:256:15: ( ( '*' | '/' ) mathAddSub )?
                 alt20 = 2
                 LA20_0 = self.input.LA(1)
 
-                if ((93 <= LA20_0 <= 94)) :
+                if ((95 <= LA20_0 <= 96)) :
                     alt20 = 1
                 if alt20 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:207:16: ( '*' | '/' ) mathAddSub
-                    set119 = self.input.LT(1)
-                    if (93 <= self.input.LA(1) <= 94):
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:256:16: ( '*' | '/' ) mathAddSub
+                    set121 = self.input.LT(1)
+                    if (95 <= self.input.LA(1) <= 96):
                         self.input.consume();
                         if self.backtracking == 0:
-                            self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set119))
+                            self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set121))
                         self.errorRecovery = False
                         self.failed = False
 
@@ -3817,18 +3979,18 @@ class XPIDLParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_mathMultDiv1085
+                            self.input, mse, self.FOLLOW_set_in_mathMultDiv1134
                             )
                         raise mse
 
 
-                    self.following.append(self.FOLLOW_mathAddSub_in_mathMultDiv1091)
-                    mathAddSub120 = self.mathAddSub()
+                    self.following.append(self.FOLLOW_mathAddSub_in_mathMultDiv1140)
+                    mathAddSub122 = self.mathAddSub()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, mathAddSub120.tree)
+                        self.adaptor.addChild(root_0, mathAddSub122.tree)
 
 
 
@@ -3862,7 +4024,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start mathAddSub
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:210:1: mathAddSub : mathShift ( ( '+' | '-' ) mathShift )? ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:259:1: mathAddSub : mathShift ( ( '+' | '-' ) mathShift )? ;
     def mathAddSub(self, ):
 
         retval = self.mathAddSub_return()
@@ -3870,40 +4032,40 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        set122 = None
-        mathShift121 = None
-
+        set124 = None
         mathShift123 = None
 
+        mathShift125 = None
 
-        set122_tree = None
+
+        set124_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:211:2: ( mathShift ( ( '+' | '-' ) mathShift )? )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:211:4: mathShift ( ( '+' | '-' ) mathShift )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:260:2: ( mathShift ( ( '+' | '-' ) mathShift )? )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:260:4: mathShift ( ( '+' | '-' ) mathShift )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_mathShift_in_mathAddSub1104)
-                mathShift121 = self.mathShift()
+                self.following.append(self.FOLLOW_mathShift_in_mathAddSub1153)
+                mathShift123 = self.mathShift()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, mathShift121.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:211:14: ( ( '+' | '-' ) mathShift )?
+                    self.adaptor.addChild(root_0, mathShift123.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:260:14: ( ( '+' | '-' ) mathShift )?
                 alt21 = 2
                 LA21_0 = self.input.LA(1)
 
-                if ((95 <= LA21_0 <= 96)) :
+                if ((97 <= LA21_0 <= 98)) :
                     alt21 = 1
                 if alt21 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:211:15: ( '+' | '-' ) mathShift
-                    set122 = self.input.LT(1)
-                    if (95 <= self.input.LA(1) <= 96):
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:260:15: ( '+' | '-' ) mathShift
+                    set124 = self.input.LT(1)
+                    if (97 <= self.input.LA(1) <= 98):
                         self.input.consume();
                         if self.backtracking == 0:
-                            self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set122))
+                            self.adaptor.addChild(root_0, self.adaptor.createWithPayload(set124))
                         self.errorRecovery = False
                         self.failed = False
 
@@ -3914,18 +4076,18 @@ class XPIDLParser(Parser):
 
                         mse = MismatchedSetException(None, self.input)
                         self.recoverFromMismatchedSet(
-                            self.input, mse, self.FOLLOW_set_in_mathAddSub1107
+                            self.input, mse, self.FOLLOW_set_in_mathAddSub1156
                             )
                         raise mse
 
 
-                    self.following.append(self.FOLLOW_mathShift_in_mathAddSub1113)
-                    mathShift123 = self.mathShift()
+                    self.following.append(self.FOLLOW_mathShift_in_mathAddSub1162)
+                    mathShift125 = self.mathShift()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, mathShift123.tree)
+                        self.adaptor.addChild(root_0, mathShift125.tree)
 
 
 
@@ -3959,7 +4121,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start mathShift
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:214:1: mathShift : mathVar ( '<<' mathVar )? ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:263:1: mathShift : mathVar ( '<<' mathVar )? ;
     def mathShift(self, ):
 
         retval = self.mathShift_return()
@@ -3967,50 +4129,50 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        string_literal125 = None
-        mathVar124 = None
-
+        string_literal127 = None
         mathVar126 = None
 
+        mathVar128 = None
 
-        string_literal125_tree = None
+
+        string_literal127_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:215:2: ( mathVar ( '<<' mathVar )? )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:215:4: mathVar ( '<<' mathVar )?
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:2: ( mathVar ( '<<' mathVar )? )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:4: mathVar ( '<<' mathVar )?
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_mathVar_in_mathShift1126)
-                mathVar124 = self.mathVar()
+                self.following.append(self.FOLLOW_mathVar_in_mathShift1175)
+                mathVar126 = self.mathVar()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, mathVar124.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:215:12: ( '<<' mathVar )?
+                    self.adaptor.addChild(root_0, mathVar126.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:12: ( '<<' mathVar )?
                 alt22 = 2
                 LA22_0 = self.input.LA(1)
 
-                if (LA22_0 == 97) :
+                if (LA22_0 == 99) :
                     alt22 = 1
                 if alt22 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:215:13: '<<' mathVar
-                    string_literal125 = self.input.LT(1)
-                    self.match(self.input, 97, self.FOLLOW_97_in_mathShift1129)
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:264:13: '<<' mathVar
+                    string_literal127 = self.input.LT(1)
+                    self.match(self.input, 99, self.FOLLOW_99_in_mathShift1178)
                     if self.failed:
                         return retval
 
-                    string_literal125_tree = self.adaptor.createWithPayload(string_literal125)
-                    self.adaptor.addChild(root_0, string_literal125_tree)
+                    string_literal127_tree = self.adaptor.createWithPayload(string_literal127)
+                    self.adaptor.addChild(root_0, string_literal127_tree)
 
-                    self.following.append(self.FOLLOW_mathVar_in_mathShift1131)
-                    mathVar126 = self.mathVar()
+                    self.following.append(self.FOLLOW_mathVar_in_mathShift1180)
+                    mathVar128 = self.mathVar()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, mathVar126.tree)
+                        self.adaptor.addChild(root_0, mathVar128.tree)
 
 
 
@@ -4044,7 +4206,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start mathVar
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:218:1: mathVar : ( Integer | validId );
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:267:1: mathVar : ( Integer | validId );
     def mathVar(self, ):
 
         retval = self.mathVar_return()
@@ -4052,15 +4214,15 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        Integer127 = None
-        validId128 = None
+        Integer129 = None
+        validId130 = None
 
 
-        Integer127_tree = None
+        Integer129_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:219:2: ( Integer | validId )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:2: ( Integer | validId )
                 alt23 = 2
                 LA23_0 = self.input.LA(1)
 
@@ -4073,35 +4235,35 @@ class XPIDLParser(Parser):
                         self.failed = True
                         return retval
 
-                    nvae = NoViableAltException("218:1: mathVar : ( Integer | validId );", 23, 0, self.input)
+                    nvae = NoViableAltException("267:1: mathVar : ( Integer | validId );", 23, 0, self.input)
 
                     raise nvae
 
                 if alt23 == 1:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:219:4: Integer
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:268:4: Integer
                     root_0 = self.adaptor.nil()
 
-                    Integer127 = self.input.LT(1)
-                    self.match(self.input, Integer, self.FOLLOW_Integer_in_mathVar1144)
+                    Integer129 = self.input.LT(1)
+                    self.match(self.input, Integer, self.FOLLOW_Integer_in_mathVar1193)
                     if self.failed:
                         return retval
 
-                    Integer127_tree = self.adaptor.createWithPayload(Integer127)
-                    self.adaptor.addChild(root_0, Integer127_tree)
+                    Integer129_tree = self.adaptor.createWithPayload(Integer129)
+                    self.adaptor.addChild(root_0, Integer129_tree)
 
 
 
                 elif alt23 == 2:
-                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:220:4: validId
+                    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:269:4: validId
                     root_0 = self.adaptor.nil()
 
-                    self.following.append(self.FOLLOW_validId_in_mathVar1149)
-                    validId128 = self.validId()
+                    self.following.append(self.FOLLOW_validId_in_mathVar1198)
+                    validId130 = self.validId()
                     self.following.pop()
                     if self.failed:
                         return retval
                     if self.backtracking == 0:
-                        self.adaptor.addChild(root_0, validId128.tree)
+                        self.adaptor.addChild(root_0, validId130.tree)
 
 
                 retval.stop = self.input.LT(-1)
@@ -4131,7 +4293,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start validIdList
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:223:1: validIdList : validId ( ',' validId )* ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:272:1: validIdList : validId ( ',' validId )* ;
     def validIdList(self, ):
 
         retval = self.validIdList_return()
@@ -4139,53 +4301,53 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        char_literal130 = None
-        validId129 = None
-
+        char_literal132 = None
         validId131 = None
 
+        validId133 = None
 
-        char_literal130_tree = None
+
+        char_literal132_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:224:2: ( validId ( ',' validId )* )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:224:4: validId ( ',' validId )*
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:2: ( validId ( ',' validId )* )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:4: validId ( ',' validId )*
                 root_0 = self.adaptor.nil()
 
-                self.following.append(self.FOLLOW_validId_in_validIdList1160)
-                validId129 = self.validId()
+                self.following.append(self.FOLLOW_validId_in_validIdList1209)
+                validId131 = self.validId()
                 self.following.pop()
                 if self.failed:
                     return retval
                 if self.backtracking == 0:
-                    self.adaptor.addChild(root_0, validId129.tree)
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:224:12: ( ',' validId )*
+                    self.adaptor.addChild(root_0, validId131.tree)
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:12: ( ',' validId )*
                 while True: #loop24
                     alt24 = 2
                     LA24_0 = self.input.LA(1)
 
-                    if (LA24_0 == 50) :
+                    if (LA24_0 == 52) :
                         alt24 = 1
 
 
                     if alt24 == 1:
-                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:224:13: ',' validId
-                        char_literal130 = self.input.LT(1)
-                        self.match(self.input, 50, self.FOLLOW_50_in_validIdList1163)
+                        # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:273:13: ',' validId
+                        char_literal132 = self.input.LT(1)
+                        self.match(self.input, 52, self.FOLLOW_52_in_validIdList1212)
                         if self.failed:
                             return retval
 
-                        char_literal130_tree = self.adaptor.createWithPayload(char_literal130)
-                        self.adaptor.addChild(root_0, char_literal130_tree)
+                        char_literal132_tree = self.adaptor.createWithPayload(char_literal132)
+                        self.adaptor.addChild(root_0, char_literal132_tree)
 
-                        self.following.append(self.FOLLOW_validId_in_validIdList1165)
-                        validId131 = self.validId()
+                        self.following.append(self.FOLLOW_validId_in_validIdList1214)
+                        validId133 = self.validId()
                         self.following.pop()
                         if self.failed:
                             return retval
                         if self.backtracking == 0:
-                            self.adaptor.addChild(root_0, validId131.tree)
+                            self.adaptor.addChild(root_0, validId133.tree)
 
 
                     else:
@@ -4222,7 +4384,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start validId
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:227:1: validId : Identifier ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:276:1: validId : Identifier ;
     def validId(self, ):
 
         retval = self.validId_return()
@@ -4230,23 +4392,23 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        Identifier132 = None
+        Identifier134 = None
 
-        Identifier132_tree = None
+        Identifier134_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:228:2: ( Identifier )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:228:4: Identifier
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:2: ( Identifier )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:277:4: Identifier
                 root_0 = self.adaptor.nil()
 
-                Identifier132 = self.input.LT(1)
-                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_validId1178)
+                Identifier134 = self.input.LT(1)
+                self.match(self.input, Identifier, self.FOLLOW_Identifier_in_validId1227)
                 if self.failed:
                     return retval
 
-                Identifier132_tree = self.adaptor.createWithPayload(Identifier132)
-                self.adaptor.addChild(root_0, Identifier132_tree)
+                Identifier134_tree = self.adaptor.createWithPayload(Identifier134)
+                self.adaptor.addChild(root_0, Identifier134_tree)
 
 
 
@@ -4278,7 +4440,7 @@ class XPIDLParser(Parser):
 
 
     # $ANTLR start uuid
-    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:231:1: uuid : UUID ;
+    # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:280:1: uuid : UUID ;
     def uuid(self, ):
 
         retval = self.uuid_return()
@@ -4286,23 +4448,23 @@ class XPIDLParser(Parser):
 
         root_0 = None
 
-        UUID133 = None
+        UUID135 = None
 
-        UUID133_tree = None
+        UUID135_tree = None
 
         try:
             try:
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:232:2: ( UUID )
-                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:232:4: UUID
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:281:2: ( UUID )
+                # /home/visbrero/rev_control/git/pecobro/pecobro/xpidl/XPIDL.g:281:4: UUID
                 root_0 = self.adaptor.nil()
 
-                UUID133 = self.input.LT(1)
-                self.match(self.input, UUID, self.FOLLOW_UUID_in_uuid1189)
+                UUID135 = self.input.LT(1)
+                self.match(self.input, UUID, self.FOLLOW_UUID_in_uuid1238)
                 if self.failed:
                     return retval
 
-                UUID133_tree = self.adaptor.createWithPayload(UUID133)
-                self.adaptor.addChild(root_0, UUID133_tree)
+                UUID135_tree = self.adaptor.createWithPayload(UUID135)
+                self.adaptor.addChild(root_0, UUID135_tree)
 
 
 
@@ -4337,11 +4499,11 @@ class XPIDLParser(Parser):
         )
 
     DFA9_min = DFA.unpack(
-        u"\1\44\1\72\3\uffff\1\62\1\72\1\62\1\44"
+        u"\1\46\1\74\3\uffff\1\64\1\74\1\64\1\46"
         )
 
     DFA9_max = DFA.unpack(
-        u"\1\134\1\73\3\uffff\1\62\1\73\1\63\1\134"
+        u"\1\136\1\75\3\uffff\1\64\1\75\1\65\1\136"
         )
 
     DFA9_accept = DFA.unpack(
@@ -4371,137 +4533,139 @@ class XPIDLParser(Parser):
     DFA9 = DFA
  
 
-    FOLLOW_toplevel_in_idlFile147 = frozenset([32, 33, 47, 49, 82])
-    FOLLOW_EOF_in_idlFile150 = frozenset([1])
-    FOLLOW_interface_in_toplevel162 = frozenset([1])
-    FOLLOW_typedef_in_toplevel167 = frozenset([1])
-    FOLLOW_nativeTypeDecl_in_toplevel172 = frozenset([1])
-    FOLLOW_Include_in_toplevel177 = frozenset([1])
-    FOLLOW_InlineCHeader_in_toplevel182 = frozenset([1])
-    FOLLOW_47_in_interface200 = frozenset([36])
-    FOLLOW_validId_in_interface202 = frozenset([48])
-    FOLLOW_48_in_interface204 = frozenset([1])
-    FOLLOW_49_in_interface220 = frozenset([34, 55, 56, 57, 58, 59])
-    FOLLOW_interfaceModifier_in_interface223 = frozenset([50])
-    FOLLOW_50_in_interface225 = frozenset([34, 55, 56, 57, 58, 59])
-    FOLLOW_UUID_in_interface229 = frozenset([51])
-    FOLLOW_51_in_interface231 = frozenset([47])
-    FOLLOW_47_in_interface235 = frozenset([36])
-    FOLLOW_validId_in_interface237 = frozenset([52, 53])
-    FOLLOW_52_in_interface240 = frozenset([36])
-    FOLLOW_validIdList_in_interface242 = frozenset([53])
-    FOLLOW_53_in_interface249 = frozenset([36, 49, 54, 62, 64, 65, 66, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_interfaceBody_in_interface251 = frozenset([54])
-    FOLLOW_54_in_interface253 = frozenset([48])
-    FOLLOW_48_in_interface255 = frozenset([1])
-    FOLLOW_interfaceModifier_in_interfaceModifierList325 = frozenset([1, 50])
-    FOLLOW_50_in_interfaceModifierList328 = frozenset([55, 56, 57, 58, 59])
-    FOLLOW_interfaceModifier_in_interfaceModifierList330 = frozenset([1, 50])
+    FOLLOW_toplevel_in_idlFile158 = frozenset([34, 35, 49, 51, 84])
+    FOLLOW_EOF_in_idlFile161 = frozenset([1])
+    FOLLOW_interface_in_toplevel173 = frozenset([1])
+    FOLLOW_typedef_in_toplevel178 = frozenset([1])
+    FOLLOW_nativeTypeDecl_in_toplevel183 = frozenset([1])
+    FOLLOW_include_in_toplevel188 = frozenset([1])
+    FOLLOW_inline_in_toplevel193 = frozenset([1])
+    FOLLOW_Include_in_include204 = frozenset([1])
+    FOLLOW_InlineCHeader_in_inline223 = frozenset([1])
+    FOLLOW_49_in_interface249 = frozenset([38])
+    FOLLOW_validId_in_interface251 = frozenset([50])
+    FOLLOW_50_in_interface253 = frozenset([1])
+    FOLLOW_51_in_interface269 = frozenset([36, 57, 58, 59, 60, 61])
+    FOLLOW_interfaceModifier_in_interface272 = frozenset([52])
+    FOLLOW_52_in_interface274 = frozenset([36, 57, 58, 59, 60, 61])
+    FOLLOW_UUID_in_interface278 = frozenset([53])
+    FOLLOW_53_in_interface280 = frozenset([49])
+    FOLLOW_49_in_interface284 = frozenset([38])
+    FOLLOW_validId_in_interface286 = frozenset([54, 55])
+    FOLLOW_54_in_interface289 = frozenset([38])
+    FOLLOW_validIdList_in_interface291 = frozenset([55])
+    FOLLOW_55_in_interface298 = frozenset([38, 51, 56, 64, 66, 67, 68, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_interfaceBody_in_interface300 = frozenset([56])
+    FOLLOW_56_in_interface302 = frozenset([50])
+    FOLLOW_50_in_interface304 = frozenset([1])
+    FOLLOW_interfaceModifier_in_interfaceModifierList374 = frozenset([1, 52])
+    FOLLOW_52_in_interfaceModifierList377 = frozenset([57, 58, 59, 60, 61])
+    FOLLOW_interfaceModifier_in_interfaceModifierList379 = frozenset([1, 52])
     FOLLOW_set_in_interfaceModifier0 = frozenset([1])
-    FOLLOW_interfaceBodyItem_in_interfaceBody381 = frozenset([1, 36, 49, 62, 64, 65, 66, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_attribute_in_interfaceBodyItem393 = frozenset([1])
-    FOLLOW_const_in_interfaceBodyItem398 = frozenset([1])
-    FOLLOW_method_in_interfaceBodyItem403 = frozenset([1])
-    FOLLOW_methodModifiers_in_method414 = frozenset([36, 64, 65, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_type_in_method417 = frozenset([36])
-    FOLLOW_validId_in_method419 = frozenset([60])
-    FOLLOW_60_in_method421 = frozenset([49, 67, 68, 69])
-    FOLLOW_paramList_in_method423 = frozenset([61])
-    FOLLOW_61_in_method425 = frozenset([48])
-    FOLLOW_48_in_method427 = frozenset([1])
-    FOLLOW_62_in_const463 = frozenset([36, 64, 65])
-    FOLLOW_constType_in_const465 = frozenset([36])
-    FOLLOW_validId_in_const467 = frozenset([63])
-    FOLLOW_63_in_const469 = frozenset([35, 36])
-    FOLLOW_mathExpr_in_const471 = frozenset([48])
-    FOLLOW_48_in_const473 = frozenset([1])
-    FOLLOW_64_in_constType498 = frozenset([1])
-    FOLLOW_65_in_constType507 = frozenset([1])
-    FOLLOW_validId_in_constType516 = frozenset([1])
-    FOLLOW_methodModifiers_in_attribute527 = frozenset([66])
-    FOLLOW_66_in_attribute530 = frozenset([36, 64, 65, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_type_in_attribute532 = frozenset([36])
-    FOLLOW_validId_in_attribute534 = frozenset([48])
-    FOLLOW_48_in_attribute536 = frozenset([1])
-    FOLLOW_49_in_methodModifiers565 = frozenset([58, 59])
-    FOLLOW_methodModifier_in_methodModifiers567 = frozenset([50])
-    FOLLOW_50_in_methodModifiers570 = frozenset([58, 59])
-    FOLLOW_methodModifier_in_methodModifiers572 = frozenset([50, 51])
-    FOLLOW_51_in_methodModifiers576 = frozenset([1])
+    FOLLOW_interfaceBodyItem_in_interfaceBody430 = frozenset([1, 38, 51, 64, 66, 67, 68, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_attribute_in_interfaceBodyItem442 = frozenset([1])
+    FOLLOW_const_in_interfaceBodyItem447 = frozenset([1])
+    FOLLOW_method_in_interfaceBodyItem452 = frozenset([1])
+    FOLLOW_methodModifiers_in_method463 = frozenset([38, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_type_in_method466 = frozenset([38])
+    FOLLOW_validId_in_method468 = frozenset([62])
+    FOLLOW_62_in_method470 = frozenset([51, 69, 70, 71])
+    FOLLOW_paramList_in_method472 = frozenset([63])
+    FOLLOW_63_in_method474 = frozenset([50])
+    FOLLOW_50_in_method476 = frozenset([1])
+    FOLLOW_64_in_const512 = frozenset([38, 66, 67])
+    FOLLOW_constType_in_const514 = frozenset([38])
+    FOLLOW_validId_in_const516 = frozenset([65])
+    FOLLOW_65_in_const518 = frozenset([37, 38])
+    FOLLOW_mathExpr_in_const520 = frozenset([50])
+    FOLLOW_50_in_const522 = frozenset([1])
+    FOLLOW_66_in_constType547 = frozenset([1])
+    FOLLOW_67_in_constType556 = frozenset([1])
+    FOLLOW_validId_in_constType565 = frozenset([1])
+    FOLLOW_methodModifiers_in_attribute576 = frozenset([68])
+    FOLLOW_68_in_attribute579 = frozenset([38, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_type_in_attribute581 = frozenset([38])
+    FOLLOW_validId_in_attribute583 = frozenset([50])
+    FOLLOW_50_in_attribute585 = frozenset([1])
+    FOLLOW_51_in_methodModifiers614 = frozenset([60, 61])
+    FOLLOW_methodModifier_in_methodModifiers616 = frozenset([52])
+    FOLLOW_52_in_methodModifiers619 = frozenset([60, 61])
+    FOLLOW_methodModifier_in_methodModifiers621 = frozenset([52, 53])
+    FOLLOW_53_in_methodModifiers625 = frozenset([1])
     FOLLOW_set_in_methodModifier0 = frozenset([1])
-    FOLLOW_paramDecl_in_paramList610 = frozenset([50])
-    FOLLOW_50_in_paramList613 = frozenset([49, 67, 68, 69])
-    FOLLOW_paramDecl_in_paramList615 = frozenset([1, 50])
-    FOLLOW_paramModifiersDecl_in_paramDecl635 = frozenset([67, 68, 69])
-    FOLLOW_paramType_in_paramDecl638 = frozenset([36, 64, 65, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_type_in_paramDecl640 = frozenset([36])
-    FOLLOW_validId_in_paramDecl642 = frozenset([1])
+    FOLLOW_paramDecl_in_paramList659 = frozenset([52])
+    FOLLOW_52_in_paramList662 = frozenset([51, 69, 70, 71])
+    FOLLOW_paramDecl_in_paramList664 = frozenset([1, 52])
+    FOLLOW_paramModifiersDecl_in_paramDecl684 = frozenset([69, 70, 71])
+    FOLLOW_paramType_in_paramDecl687 = frozenset([38, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_type_in_paramDecl689 = frozenset([38])
+    FOLLOW_validId_in_paramDecl691 = frozenset([1])
     FOLLOW_set_in_paramType0 = frozenset([1])
-    FOLLOW_49_in_paramModifiersDecl695 = frozenset([62, 70, 71, 72, 73])
-    FOLLOW_paramModifier_in_paramModifiersDecl697 = frozenset([50, 51])
-    FOLLOW_50_in_paramModifiersDecl700 = frozenset([62, 70, 71, 72, 73])
-    FOLLOW_paramModifier_in_paramModifiersDecl702 = frozenset([50, 51])
-    FOLLOW_51_in_paramModifiersDecl706 = frozenset([1])
-    FOLLOW_70_in_paramModifier725 = frozenset([1])
-    FOLLOW_sizeIs_in_paramModifier730 = frozenset([1])
-    FOLLOW_71_in_paramModifier735 = frozenset([1])
-    FOLLOW_62_in_paramModifier740 = frozenset([1])
-    FOLLOW_72_in_paramModifier745 = frozenset([1])
-    FOLLOW_73_in_sizeIs757 = frozenset([60])
-    FOLLOW_60_in_sizeIs759 = frozenset([36])
-    FOLLOW_validId_in_sizeIs761 = frozenset([61])
-    FOLLOW_61_in_sizeIs763 = frozenset([1])
-    FOLLOW_nativeType_in_nativeTypeDecl775 = frozenset([48])
-    FOLLOW_48_in_nativeTypeDecl777 = frozenset([1])
-    FOLLOW_typeModifiersDecl_in_nativeType789 = frozenset([74])
-    FOLLOW_74_in_nativeType791 = frozenset([36])
-    FOLLOW_validId_in_nativeType793 = frozenset([1])
-    FOLLOW_49_in_typeModifiersDecl816 = frozenset([75, 76, 77, 78, 79, 80, 81])
-    FOLLOW_typeModifier_in_typeModifiersDecl818 = frozenset([50, 51])
-    FOLLOW_50_in_typeModifiersDecl821 = frozenset([75, 76, 77, 78, 79, 80, 81])
-    FOLLOW_typeModifier_in_typeModifiersDecl823 = frozenset([50, 51])
-    FOLLOW_51_in_typeModifiersDecl827 = frozenset([1])
+    FOLLOW_51_in_paramModifiersDecl744 = frozenset([64, 72, 73, 74, 75])
+    FOLLOW_paramModifier_in_paramModifiersDecl746 = frozenset([52, 53])
+    FOLLOW_52_in_paramModifiersDecl749 = frozenset([64, 72, 73, 74, 75])
+    FOLLOW_paramModifier_in_paramModifiersDecl751 = frozenset([52, 53])
+    FOLLOW_53_in_paramModifiersDecl755 = frozenset([1])
+    FOLLOW_72_in_paramModifier774 = frozenset([1])
+    FOLLOW_sizeIs_in_paramModifier779 = frozenset([1])
+    FOLLOW_73_in_paramModifier784 = frozenset([1])
+    FOLLOW_64_in_paramModifier789 = frozenset([1])
+    FOLLOW_74_in_paramModifier794 = frozenset([1])
+    FOLLOW_75_in_sizeIs806 = frozenset([62])
+    FOLLOW_62_in_sizeIs808 = frozenset([38])
+    FOLLOW_validId_in_sizeIs810 = frozenset([63])
+    FOLLOW_63_in_sizeIs812 = frozenset([1])
+    FOLLOW_nativeType_in_nativeTypeDecl824 = frozenset([50])
+    FOLLOW_50_in_nativeTypeDecl826 = frozenset([1])
+    FOLLOW_typeModifiersDecl_in_nativeType838 = frozenset([76])
+    FOLLOW_76_in_nativeType840 = frozenset([38])
+    FOLLOW_validId_in_nativeType842 = frozenset([1])
+    FOLLOW_51_in_typeModifiersDecl865 = frozenset([77, 78, 79, 80, 81, 82, 83])
+    FOLLOW_typeModifier_in_typeModifiersDecl867 = frozenset([52, 53])
+    FOLLOW_52_in_typeModifiersDecl870 = frozenset([77, 78, 79, 80, 81, 82, 83])
+    FOLLOW_typeModifier_in_typeModifiersDecl872 = frozenset([52, 53])
+    FOLLOW_53_in_typeModifiersDecl876 = frozenset([1])
     FOLLOW_set_in_typeModifier0 = frozenset([1])
-    FOLLOW_82_in_typedef886 = frozenset([36, 64, 65, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92])
-    FOLLOW_type_in_typedef888 = frozenset([36])
-    FOLLOW_validId_in_typedef890 = frozenset([48])
-    FOLLOW_48_in_typedef892 = frozenset([1])
-    FOLLOW_83_in_type915 = frozenset([1])
-    FOLLOW_84_in_type924 = frozenset([1])
-    FOLLOW_85_in_type933 = frozenset([1])
-    FOLLOW_86_in_type942 = frozenset([1])
-    FOLLOW_64_in_type951 = frozenset([1])
-    FOLLOW_65_in_type960 = frozenset([1])
-    FOLLOW_65_in_type969 = frozenset([65])
-    FOLLOW_65_in_type971 = frozenset([1])
-    FOLLOW_87_in_type980 = frozenset([64])
-    FOLLOW_64_in_type982 = frozenset([1])
-    FOLLOW_87_in_type991 = frozenset([65])
-    FOLLOW_65_in_type993 = frozenset([1])
-    FOLLOW_87_in_type1002 = frozenset([65])
-    FOLLOW_65_in_type1004 = frozenset([65])
-    FOLLOW_65_in_type1006 = frozenset([1])
-    FOLLOW_88_in_type1015 = frozenset([1])
-    FOLLOW_89_in_type1024 = frozenset([1])
-    FOLLOW_90_in_type1033 = frozenset([1])
-    FOLLOW_91_in_type1042 = frozenset([1])
-    FOLLOW_92_in_type1051 = frozenset([1])
-    FOLLOW_validId_in_type1060 = frozenset([1])
-    FOLLOW_mathMultDiv_in_mathExpr1071 = frozenset([1])
-    FOLLOW_mathAddSub_in_mathMultDiv1082 = frozenset([1, 93, 94])
-    FOLLOW_set_in_mathMultDiv1085 = frozenset([35, 36])
-    FOLLOW_mathAddSub_in_mathMultDiv1091 = frozenset([1])
-    FOLLOW_mathShift_in_mathAddSub1104 = frozenset([1, 95, 96])
-    FOLLOW_set_in_mathAddSub1107 = frozenset([35, 36])
-    FOLLOW_mathShift_in_mathAddSub1113 = frozenset([1])
-    FOLLOW_mathVar_in_mathShift1126 = frozenset([1, 97])
-    FOLLOW_97_in_mathShift1129 = frozenset([35, 36])
-    FOLLOW_mathVar_in_mathShift1131 = frozenset([1])
-    FOLLOW_Integer_in_mathVar1144 = frozenset([1])
-    FOLLOW_validId_in_mathVar1149 = frozenset([1])
-    FOLLOW_validId_in_validIdList1160 = frozenset([1, 50])
-    FOLLOW_50_in_validIdList1163 = frozenset([36])
-    FOLLOW_validId_in_validIdList1165 = frozenset([1, 50])
-    FOLLOW_Identifier_in_validId1178 = frozenset([1])
-    FOLLOW_UUID_in_uuid1189 = frozenset([1])
+    FOLLOW_84_in_typedef935 = frozenset([38, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94])
+    FOLLOW_type_in_typedef937 = frozenset([38])
+    FOLLOW_validId_in_typedef939 = frozenset([50])
+    FOLLOW_50_in_typedef941 = frozenset([1])
+    FOLLOW_85_in_type964 = frozenset([1])
+    FOLLOW_86_in_type973 = frozenset([1])
+    FOLLOW_87_in_type982 = frozenset([1])
+    FOLLOW_88_in_type991 = frozenset([1])
+    FOLLOW_66_in_type1000 = frozenset([1])
+    FOLLOW_67_in_type1009 = frozenset([1])
+    FOLLOW_67_in_type1018 = frozenset([67])
+    FOLLOW_67_in_type1020 = frozenset([1])
+    FOLLOW_89_in_type1029 = frozenset([66])
+    FOLLOW_66_in_type1031 = frozenset([1])
+    FOLLOW_89_in_type1040 = frozenset([67])
+    FOLLOW_67_in_type1042 = frozenset([1])
+    FOLLOW_89_in_type1051 = frozenset([67])
+    FOLLOW_67_in_type1053 = frozenset([67])
+    FOLLOW_67_in_type1055 = frozenset([1])
+    FOLLOW_90_in_type1064 = frozenset([1])
+    FOLLOW_91_in_type1073 = frozenset([1])
+    FOLLOW_92_in_type1082 = frozenset([1])
+    FOLLOW_93_in_type1091 = frozenset([1])
+    FOLLOW_94_in_type1100 = frozenset([1])
+    FOLLOW_validId_in_type1109 = frozenset([1])
+    FOLLOW_mathMultDiv_in_mathExpr1120 = frozenset([1])
+    FOLLOW_mathAddSub_in_mathMultDiv1131 = frozenset([1, 95, 96])
+    FOLLOW_set_in_mathMultDiv1134 = frozenset([37, 38])
+    FOLLOW_mathAddSub_in_mathMultDiv1140 = frozenset([1])
+    FOLLOW_mathShift_in_mathAddSub1153 = frozenset([1, 97, 98])
+    FOLLOW_set_in_mathAddSub1156 = frozenset([37, 38])
+    FOLLOW_mathShift_in_mathAddSub1162 = frozenset([1])
+    FOLLOW_mathVar_in_mathShift1175 = frozenset([1, 99])
+    FOLLOW_99_in_mathShift1178 = frozenset([37, 38])
+    FOLLOW_mathVar_in_mathShift1180 = frozenset([1])
+    FOLLOW_Integer_in_mathVar1193 = frozenset([1])
+    FOLLOW_validId_in_mathVar1198 = frozenset([1])
+    FOLLOW_validId_in_validIdList1209 = frozenset([1, 52])
+    FOLLOW_52_in_validIdList1212 = frozenset([38])
+    FOLLOW_validId_in_validIdList1214 = frozenset([1, 52])
+    FOLLOW_Identifier_in_validId1227 = frozenset([1])
+    FOLLOW_UUID_in_uuid1238 = frozenset([1])
 
